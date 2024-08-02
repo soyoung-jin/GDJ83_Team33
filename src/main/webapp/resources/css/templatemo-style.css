@@ -21,6 +21,16 @@ https://templatemo.com/tm-524-product-admin
   font-style: normal;
 }
 
+.form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+ 
+}
+
+.login {
+  margin: auto;
+}
 
 html {
   font-size: 16px;
