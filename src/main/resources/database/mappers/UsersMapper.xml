@@ -5,8 +5,11 @@
   
   <!-- namespace는 꼭 들어가야될 속성 -->
   <mapper namespace="com.team3.tamagochi.users.UsersDAO">
-  	<select id="getList" parameterType="UsersDTO" resultType="UsersDTO">
-  		SELECT * FROM USERS
-  	</select>
+  	<insert id="registerUsers" parameterType="UsersDTO">
+  		INSERT INTO USERS
+  		(USER_ID, USER_PW, USER_NAME, USER_NICKNAME, USER_PHONE, USER_EMAIL)
+		VALUES
+		(#{user_id}, #{user_pw}, #{user_name}, #{user_nickname}, #{user_phone}, #{user_email})
+  	</insert>
   
   </mapper>

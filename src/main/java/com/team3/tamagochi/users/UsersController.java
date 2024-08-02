@@ -1,11 +1,10 @@
 package com.team3.tamagochi.users;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -16,12 +15,17 @@ public class UsersController {
 	private UsersService usersService;
 	
 	
-	@GetMapping("list")
-	public void getList(UsersDTO usersDTO, Model model) throws Exception{
+	@GetMapping("register")
+	public void registerUsers() throws Exception{
 		
-		List<UsersDTO> list = usersService.getList(usersDTO);
+	}
+	
+	@PostMapping("register")
+	public String registerUsers(UsersDTO usersDTO) throws Exception{
 		
-		model.addAttribute("list", list);
+		int result = usersService.registerUsers(usersDTO);
+		
+		return "redirect:/";
 	}
 
 }

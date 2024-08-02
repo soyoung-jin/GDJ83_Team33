@@ -1,7 +1,5 @@
 package com.team3.tamagochi.users;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +10,10 @@ public class UsersService {
 	private UsersDAO usersDAO;
 	
 	
-	public List<UsersDTO> getList(UsersDTO usersDTO) throws Exception{
+	public int registerUsers(UsersDTO usersDTO) throws Exception{
 		
-		return usersDAO.getList(usersDTO);
-		
+		return usersDAO.registerUsers(usersDTO);
 	}
+	
 
 }
