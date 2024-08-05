@@ -69,5 +69,10 @@ public class UsersController {
 	public void getMyPage() throws Exception{
 		
 	}
+	
+	@PostMapping("update")
+	public void updateUsers(Model model) throws Exception{
+		
+	}
 
 }

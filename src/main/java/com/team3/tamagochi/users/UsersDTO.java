@@ -1,5 +1,9 @@
 package com.team3.tamagochi.users;
 
+import java.util.List;
+
+import com.team3.tamagochi.friend.FriendDTO;
+
 public class UsersDTO {
 	
 	private String user_id;
@@ -10,9 +14,16 @@ public class UsersDTO {
 	private String user_email;
 	private Integer user_auth;
 	private Integer user_resign;
+	private List<FriendDTO> friendDTO;
 	
 	
-	
+
+	public List<FriendDTO> getFriendDTO() {
+		return friendDTO;
+	}
+	public void setFriendDTO(List<FriendDTO> friendDTO) {
+		this.friendDTO = friendDTO;
+	}
 	public String getUser_id() {
 		return user_id;
 	}
