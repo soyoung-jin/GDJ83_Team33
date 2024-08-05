@@ -17,7 +17,7 @@ public class FriendService {
 		return friendDAO.getFriendList(usersDTO);
 	}
 	
-	public UsersDTO getFriendDetail(FriendDTO friendDTO) {
+	public FriendDTO getFriendDetail(FriendDTO friendDTO) {
 		return friendDAO.getFriendDetail(friendDTO);
 	}
 	

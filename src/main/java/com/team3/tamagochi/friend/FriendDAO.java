@@ -20,7 +20,7 @@ public class FriendDAO {
 		return sqlSession.selectList(NAMESPACE + "getFriendList", usersDTO);
 	}
 	
-	public UsersDTO getFriendDetail(FriendDTO friendDTO) {
+	public FriendDTO getFriendDetail(FriendDTO friendDTO) {
 		return sqlSession.selectOne(NAMESPACE + "getFriendDetail", friendDTO);
 	}
 	

@@ -2,6 +2,8 @@ package com.team3.tamagochi.friend;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,20 +20,23 @@ public class FriendController {
 	private FriendService friendService;
 	
 	@GetMapping("friendList")
-	public void getFriendList(UsersDTO userDTO, Model model) {
+	public void getFriendList(UsersDTO userDTO, Model model) throws Exception{
 		List<FriendDTO> list = friendService.getFriendList(userDTO);
 		model.addAttribute("list", list);
 		
 	}
 	
 	@GetMapping("friendDetail")
-	public void	getFriendDetail(FriendDTO friendDTO, Model model) {
-		UsersDTO usersDTO = friendService.getFriendDetail(friendDTO);
-		model.addAttribute("usersDTO", usersDTO);
+	public void	getFriendDetail(FriendDTO friendDTO, Model model, HttpSession session) throws Exception{
+		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
+		
+		friendDTO = friendService.getFriendDetail(friendDTO);
+		
+		model.addAttribute("friendDTO", friendDTO);
 	}
 	
 	@GetMapping("deleteFriend")
-	public String deleteFriend(FriendDTO friendDTO, Model model) {
+	public String deleteFriend(FriendDTO friendDTO, Model model) throws Exception{
 		int result = friendService.deleteFriend(friendDTO);
 		
 		if(result>0) {

@@ -28,21 +28,21 @@
                               	</div>
                               
                                 <div class="mb-2">
-                                    <span class="display-5 fw-bold">${usersDTO.user_nickname}</span>
+                                    <span class="display-5 fw-bold">${friendDTO.userDTO.user_nickname}</span>
                                  </div>
                                 <ul class="list-unstyled mb-4">
                                     <li class="mb-2">
-                                    <strong>${usersDTO.user_phone}</strong>
+                                    <strong>${friendDTO.userDTO.user_phone}</strong>
                                     </li>
                                     <li class="mb-2">
-                                    <strong>${usersDTO.user_email}</strong>
+                                    <strong>${friendDTO.userDTO.user_email}</strong>
                                     </li>
                                 </ul>
                           </div>
                      </div>
               		 <div class="d-md-flex justify-content-md-end mt-5">
          				 <a class="btn btn-secondary justify-content-end" href="./friendList" role="button">돌아가기</a>
-         				 <a class="btn btn-danger justify-content-end ml-2" href="deleteFriend?friend_num=${}" role="button">친구 끊기</a>
+         				 <a class="btn btn-danger justify-content-end ml-2" href="deleteFriend?user_id=${friendDTO.userDTO.user_id}&friend_num=${friend_num}" role="button">친구 끊기</a>
         			 </div>
              </div>
         </div>
