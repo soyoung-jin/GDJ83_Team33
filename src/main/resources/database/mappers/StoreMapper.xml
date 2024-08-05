@@ -5,13 +5,19 @@
   
   <mapper namespace="com.team3.tamagochi.store.StoreDAO">
   
-  	<select id="getItemList" resultType="WeaponDTO">
-  		SELECT * FROM WEAPON
+  	<select id="getItemList" parameterType="Integer" resultType="ItemDTO">
+  		SELECT *
+  		FROM
+  			<choose>
+  				<when test="value == 0"> CHARACTER </when>
+  				<otherwise> WEAPON </otherwise>
+  			</choose>
+  		ORDER BY ITEM_NUM ASC
   	</select>
   	
-  	<select id="getItemDetail" parameterType="WeaponDTO" resultType="WeaponDTO">
-  		SELECT * FROM WEAPON
-  		WHERE WEAPON_NUM=#{weapon_num}
+  	<select id="getItemDetail" parameterType="ItemDTO" resultType="ItemDTO">
+  		SELECT * FROM CHARACTER
+  		WHERE ITEM_NUM=#{item_num}
   	</select>
   
   </mapper>
