@@ -9,7 +9,7 @@
 <body>
   <script>
   	alert('${result}')
-  	location.href = "${url}"
+  	location.href = '${url}'
   </script>
 </body>
 </html>

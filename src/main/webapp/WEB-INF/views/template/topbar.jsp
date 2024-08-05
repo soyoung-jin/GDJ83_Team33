@@ -61,12 +61,12 @@
                     </ul>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link d-block" href="login.html">
+                            <a class="nav-link d-block" href="/users/login">
                                  <b>로그인</b>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link d-block" href="login.html">
+                            <a class="nav-link d-block" href="/users/register">
                                  <b>회원가입</b>
                             </a>
                         </li>
