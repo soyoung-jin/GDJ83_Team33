@@ -21,11 +21,16 @@ public class UsersController {
 	}
 	
 	@PostMapping("register")
-	public String registerUsers(UsersDTO usersDTO) throws Exception{
+	public String registerUsers(UsersDTO usersDTO, Model model) throws Exception{
 		
 		int result = usersService.registerUsers(usersDTO);
 		
-		return "redirect:/";
+		if(result>0) {
+			model.addAttribute("result", "회원가입 성공!");
+			model.addAttribute("url", "/");	
+		}
+		
+		return "commons/message";
 	}
 
 }
