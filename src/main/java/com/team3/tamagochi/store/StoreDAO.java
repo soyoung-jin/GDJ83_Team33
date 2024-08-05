@@ -14,12 +14,12 @@ public class StoreDAO {
 	
 	private final String NAMESPACE="com.team3.tamagochi.store.StoreDAO.";
 	
-	public List<WeaponDTO> getItemList() {
-		return sqlSession.selectList(NAMESPACE+"getItemList");
+	public List<ItemDTO> getItemList(Integer category) {
+		return sqlSession.selectList(NAMESPACE+"getItemList", category);
 	}
 	
-	public WeaponDTO getItemDetail(WeaponDTO weaponDTO) {
-		return sqlSession.selectOne(NAMESPACE+"getItemDetail", weaponDTO);
+	public ItemDTO getItemDetail(ItemDTO itemDTO) {
+		return sqlSession.selectOne(NAMESPACE+"getItemDetail", itemDTO);
 	}
 
 }

@@ -13,27 +13,30 @@
         <div class="row">
             <div class="col">
                 <h1 class="text-white mt-5 mb-5">Item Detail</h1>
+                <img alt="" width="300" src="/resources/img/character/4.gif">
 				<table class="table">
 					<thead>
 						<tr>
-							<th>무기 번호</th>
-							<th>무기 이름</th>
+							<th>이름</th>
 							<th>추가 체력</th>
 							<th>추가 공격력</th>
 							<th>추가 회피력</th>
-							<th>무기 설명</th>
+							<c:if test="${itemDTO.item_description ne null}">
+								<th>무기 설명</th>	
+							</c:if>
 							<th>가격</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>${wpDTO.weapon_num}</td>
-							<td>${wpDTO.weapon_name}</a></td>
-							<td>${wpDTO.weapon_hp}</td>
-							<td>${wpDTO.weapon_atk}</td>
-							<td>${wpDTO.weapon_dod}</td>
-							<td>${wpDTO.weapon_description}</td>
-							<td>${wpDTO.weapon_price}</td>
+							<td>${itemDTO.item_name}</td>
+							<td>${itemDTO.item_hp}</td>
+							<td>${itemDTO.item_atk}</td>
+							<td>${itemDTO.item_dod}</td>
+							<c:if test="${itemDTO.item_description ne null}">
+								<td>${itemDTO.item_description}</td>
+							</c:if>
+							<td>${itemDTO.item_price}</td>
 						</tr>
 					</tbody>
 				</table>
