@@ -8,5 +8,10 @@
   	<select id="getItemList" resultType="WeaponDTO">
   		SELECT * FROM WEAPON
   	</select>
+  	
+  	<select id="getItemDetail" parameterType="WeaponDTO" resultType="WeaponDTO">
+  		SELECT * FROM WEAPON
+  		WHERE WEAPON_NUM=#{weapon_num}
+  	</select>
   
   </mapper>

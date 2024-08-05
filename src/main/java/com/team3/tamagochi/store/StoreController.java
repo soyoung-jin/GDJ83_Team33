@@ -23,4 +23,15 @@ public class StoreController {
 		
 		model.addAttribute("wpList", list);
 	}
+	
+	@GetMapping("itemDetail")
+	public void getItemDetail (WeaponDTO weaponDTO, Model model) throws Exception {
+		System.out.println(weaponDTO.getWeapon_num());
+		
+		weaponDTO = storeService.getItemDetail(weaponDTO);
+		
+		model.addAttribute("wpDTO", weaponDTO);
+		
+		
+	}
 }

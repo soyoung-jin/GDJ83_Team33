@@ -17,5 +17,9 @@ public class StoreDAO {
 	public List<WeaponDTO> getItemList() {
 		return sqlSession.selectList(NAMESPACE+"getItemList");
 	}
+	
+	public WeaponDTO getItemDetail(WeaponDTO weaponDTO) {
+		return sqlSession.selectOne(NAMESPACE+"getItemDetail", weaponDTO);
+	}
 
 }
