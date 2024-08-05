@@ -20,9 +20,15 @@ public class FriendController {
 	private FriendService friendService;
 	
 	@GetMapping("friendList")
-	public void getFriendList(UsersDTO userDTO, Model model) throws Exception{
-		List<FriendDTO> list = friendService.getFriendList(userDTO);
-		model.addAttribute("list", list);
+	public void getFriendList(FriendDTO friendDTO, Model model, HttpSession session) throws Exception{
+		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
+		
+		usersDTO = friendService.getFriendDetail(friendDTO);
+		
+		model.addAttribute("usersDTO", usersDTO);
+		
+//		List<FriendDTO> list = friendService.getFriendList(userDTO);
+//		model.addAttribute("list", list);
 		
 	}
 	
@@ -30,9 +36,9 @@ public class FriendController {
 	public void	getFriendDetail(FriendDTO friendDTO, Model model, HttpSession session) throws Exception{
 		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
 		
-		friendDTO = friendService.getFriendDetail(friendDTO);
+		usersDTO = friendService.getFriendDetail(friendDTO);
 		
-		model.addAttribute("friendDTO", friendDTO);
+		model.addAttribute("usersDTO", usersDTO);
 	}
 	
 	@GetMapping("deleteFriend")

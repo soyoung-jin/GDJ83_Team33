@@ -20,7 +20,7 @@
 			</div>
 			<div class="row gx-5 justify-content-center">
 				<!-- Pricing card free-->
-				<c:forEach items="${list}" var="friendDTO">
+				<c:forEach items="${usersDTO.friendDTO}" var="friendDTO">
 					<div class="col-lg-6 col-xl-4 mb-5">
 						<div class="card mb-5">
 							<div class="card-body p-5">

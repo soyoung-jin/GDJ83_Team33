@@ -13,15 +13,15 @@ public class FriendService {
 	@Autowired
 	private FriendDAO friendDAO;
 	
-	public List<FriendDTO> getFriendList(UsersDTO usersDTO) {
+	public List<FriendDTO> getFriendList(UsersDTO usersDTO) throws Exception{
 		return friendDAO.getFriendList(usersDTO);
 	}
 	
-	public FriendDTO getFriendDetail(FriendDTO friendDTO) {
+	public UsersDTO getFriendDetail(FriendDTO friendDTO) throws Exception{
 		return friendDAO.getFriendDetail(friendDTO);
 	}
 	
-	public int deleteFriend(FriendDTO friendDTO) {
+	public int deleteFriend(FriendDTO friendDTO) throws Exception{
 		return friendDAO.deleteFriend(friendDTO);
 	}
 	
