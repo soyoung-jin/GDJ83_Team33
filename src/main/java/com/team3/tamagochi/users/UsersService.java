@@ -9,12 +9,13 @@ public class UsersService {
 	@Autowired
 	private UsersDAO usersDAO;
 	
-	
+	// 회원가입 메서드
 	public int registerUsers(UsersDTO usersDTO) throws Exception{
 		
 		return usersDAO.registerUsers(usersDTO);
 	}
 	
+	// 로그인 메서드
 	public UsersDTO loginUsers(UsersDTO usersDTO) throws Exception{
 		
 		UsersDTO result = usersDAO.loginUsers(usersDTO);
@@ -31,6 +32,12 @@ public class UsersService {
 		}
 		
 		return null; // id와 password 모두 일치하지 않을 경우 Null을 리턴
+	}
+	
+	// 회원정보 수정 메서드
+	public int updateUsers(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.updateUsers(usersDTO);
 	}
 	
 
