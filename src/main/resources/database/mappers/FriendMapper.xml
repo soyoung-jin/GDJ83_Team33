@@ -5,9 +5,39 @@
   
   <!-- namespace는 꼭 들어가야될 속성 -->
   <mapper namespace="com.team3.tamagochi.friend.FriendDAO">
-  	<select id="">
-  		
+  	<select id="getFriendList" parameterType="FriendDTO" resultType="FriendDTO">
+  		SELECT * FROM FRIEND
   	</select>
   	
+  	<select id="getFriendDetail" parameterType="FriendDTO" resultMap="detailFriend">
+  		SELECT *
+			FROM USERS u 
+			LEFT JOIN
+			FRIEND f 
+			ON u.USER_ID = f.USER_ID 
+		WHERE u.USER_ID = #{user_id} AND f.FRIEND_ID = #{friend_id}
+  	</select>
+  	
+  	<resultMap type="UsersDTO" id="detailFriend">
+  		<id column="USER_ID" property="user_id"/>
+  		<result column="USER_PW" property="user_pw"/>
+  		<result column="USER_NAME" property="user_name"/>
+  		<result column="USER_NICKNAME" property="user_nickname"/>
+  		<result column="USER_PHONE" property="user_phone"/>
+  		<result column="USER_EMAIL" property="user_email"/>
+  		<result column="USER_AUTH" property="user_auth"/>
+  		<result column="USER_RESIGN" property="user_resign"/>
+  		
+  		
+  		<collection property="userDTO" javaType="java.util.List" ofType="FriendDTO">
+  			<id column="USER_ID" property="user_id"/>
+  		<result column="USER_PW" property="user_pw"/>
+  		<result column="USER_NAME" property="user_name"/>
+  		</collection>
+  	</resultMap>
+  	
+  	<delete id="deleteFriend" parameterType="FriendDTO">
+  		DELETE FROM FRIEND WHERE friend_num = #{friend_num}
+  	</delete>
   	
   </mapper>

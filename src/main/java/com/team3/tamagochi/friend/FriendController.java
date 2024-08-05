@@ -20,6 +20,28 @@ public class FriendController {
 	@GetMapping("friendList")
 	public void getFriendList(UsersDTO userDTO, Model model) {
 		List<FriendDTO> list = friendService.getFriendList(userDTO);
+		model.addAttribute("list", list);
+		
+	}
+	
+	@GetMapping("friendDetail")
+	public void	getFriendDetail(FriendDTO friendDTO, Model model) {
+		UsersDTO usersDTO = friendService.getFriendDetail(friendDTO);
+		model.addAttribute("usersDTO", usersDTO);
+	}
+	
+	@GetMapping("deleteFriend")
+	public String deleteFriend(FriendDTO friendDTO, Model model) {
+		int result = friendService.deleteFriend(friendDTO);
+		
+		if(result>0) {
+			model.addAttribute("result", "친구를 끊었습니다.");
+			model .addAttribute("url", "./friendList");
+		} else {
+			model.addAttribute("result", "오류발생.");
+			model .addAttribute("url", "./friendList");
+		}
+		return "commons/message";
 	}
 	
 }

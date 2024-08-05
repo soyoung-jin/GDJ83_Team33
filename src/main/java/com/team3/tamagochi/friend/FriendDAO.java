@@ -20,4 +20,12 @@ public class FriendDAO {
 		return sqlSession.selectList(NAMESPACE + "getFriendList", usersDTO);
 	}
 	
+	public UsersDTO getFriendDetail(FriendDTO friendDTO) {
+		return sqlSession.selectOne(NAMESPACE + "getFriendDetail", friendDTO);
+	}
+	
+	public int deleteFriend(FriendDTO friendDTO) {
+		return sqlSession.delete(NAMESPACE + "deleteFriend", friendDTO);
+	}
+	
 }
