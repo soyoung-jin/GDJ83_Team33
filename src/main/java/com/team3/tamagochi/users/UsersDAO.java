@@ -24,4 +24,10 @@ public class UsersDAO {
 		
 		return sqlSession.selectOne(NAMESPACE + "loginUsers", usersDTO);
 	}
+	
+	// 회원정보 수정 메서드
+	public int updateUsers(UsersDTO usersDTO) throws Exception{
+		
+		return sqlSession.update(NAMESPACE + "updateUsers", usersDTO);
+	}
 }
