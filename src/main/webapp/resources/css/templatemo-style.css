@@ -5,6 +5,11 @@ Product Admin CSS Template
 https://templatemo.com/tm-524-product-admin
 
 */
+@import url("https://cdn.jsdelivr.net/npm/galmuri/dist/galmuri.css");
+
+.font {
+	font-family: "Galmuri11", sans-serif;
+}
 
 #tama {
 	width: 20%;
@@ -14,12 +19,7 @@ https://templatemo.com/tm-524-product-admin
  	margin: -25px 0 0 -25px; 
 }
 
-.pixelify-sans-font {
-  font-family: "Pixelify Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
+
 
 .form {
   background-color: white;

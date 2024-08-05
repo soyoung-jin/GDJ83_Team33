@@ -5,7 +5,7 @@
 	<title>Home</title>
 	<c:import url="./template/header.jsp"></c:import>
 </head>
-<body id="reportsPage" class="pixelify-sans-font">
+<body id="reportsPage" class="font">
 	<div class="" id="home">
 	<c:import url="./template/topbar.jsp"></c:import>
 	
