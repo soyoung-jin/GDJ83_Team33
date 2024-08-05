@@ -17,7 +17,7 @@ public class FriendController {
 	@Autowired
 	private FriendService friendService;
 	
-	@GetMapping("getFriendList")
+	@GetMapping("friendList")
 	public void getFriendList(UsersDTO userDTO, Model model) {
 		List<FriendDTO> list = friendService.getFriendList(userDTO);
 	}
