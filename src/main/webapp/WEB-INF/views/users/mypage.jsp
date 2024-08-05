@@ -4,12 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Message</title>
+<title>Insert title here</title>
 </head>
 <body>
-  <script>
-  	alert('${result}')
-  	location.href = '${url}'
-  </script>
+	<h1>마이 페이지</h1>
 </body>
 </html>

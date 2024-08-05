@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
     <nav class="navbar navbar-expand-xl">
             <div class="container h-100">
@@ -59,19 +60,35 @@
                             </div>
                         </li>
                     </ul>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link d-block" href="login.html">
-                                 <b>로그인</b>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-block" href="login.html">
-                                 <b>회원가입</b>
-                            </a>
-                        </li>
-                    </ul>
+                    <!-- session에 로그인 정보가 있으면 로그아웃을 출력, 로그인 정보가 없으면 로그인을 출력 -->
+		            <ul class="navbar-nav">
+	                    <c:choose>
+	                    	<c:when test="${not empty users_info}">
+			                        <li class="nav-item">
+			                            <a class="nav-link d-block" href="/users/logout">
+			                                 <b>로그아웃</b>
+			                            </a>
+			                        </li>
+			                        <li class="nav-item">
+			                            <a class="nav-link d-block" href="/users/mypage">
+			                                 <b>${users_info.user_nickname }님</b>
+			                            </a>
+			                        </li>
+	                    	</c:when>
+	                    	<c:otherwise>
+			                        <li class="nav-item">
+			                            <a class="nav-link d-block" href="/users/login">
+			                                 <b>로그인</b>
+			                            </a>
+			                        </li>
+			                        <li class="nav-item">
+			                            <a class="nav-link d-block" href="/users/register">
+			                                 <b>회원가입</b>
+			                            </a>
+			                        </li>
+	                    	</c:otherwise>
+	                    </c:choose>
+		            </ul>
                 </div>
             </div>
-
         </nav>
