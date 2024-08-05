@@ -8,6 +8,12 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<interceptors>
+		<interceptor> <!-- 로그인 인터셉터 -->
+			<mapping path="/users/mypage"/>
+			<beans:bean class="com.team3.tamagochi.interceptor.LoginInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors>
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
