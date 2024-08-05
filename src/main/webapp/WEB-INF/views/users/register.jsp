@@ -21,26 +21,40 @@
 			<div class="row ">
 				<main class="form-signin w-100 m-auto">
 					<div class="col-6 login">
-						<form class="form">
+						<form class="form" action="/users/register" method="post">
 							<h1 class="h3 mb-3 fw-normal">Please Register</h1>
 
 							<div class="form-floating">
-								<input type="email" class="form-control" id="floatingInput"
-									placeholder="name@example.com"> <label
-									for="floatingInput">Email address</label>
+								<input type="text" class="form-control" id="floatingInput"
+								name="user_id">
+								<label for="floatingInput">User ID</label>
 							</div>
 							<div class="form-floating">
-								<input type="password" class="form-control"
-									id="floatingPassword" placeholder="Password"> <label
-									for="floatingPassword">Password</label>
+								<input type="password" class="form-control" id="floatingPassword"
+								name="user_pw">
+								<label for="floatingPassword">Password</label>
 							</div>
-
-							<div class="form-check text-start my-3">
-								<input class="form-check-input" type="checkbox"
-									value="remember-me" id="flexCheckDefault"> <label
-									class="form-check-label" for="flexCheckDefault">
-									Remember me </label>
+							<div class="form-floating">
+								<input type="text" class="form-control" id="floatingInput"
+								name="user_name">
+								<label for="floatingInput">User Name</label>
 							</div>
+							<div class="form-floating">
+								<input type="text" class="form-control" id="floatingInput"
+								name="user_nickname">
+								<label for="floatingInput">User NickName</label>
+							</div>
+							<div class="form-floating">
+								<input type="text" class="form-control" id="floatingInput"
+								name="user_phone">
+								<label for="floatingInput">Phone Number</label>
+							</div>
+							<div class="form-floating">
+								<input type="email" class="form-control" id="floatingInput"
+								name="user_email" placeholder="name@example.com">
+								<label for="floatingInput">Email</label>
+							</div>
+							
 							<button class="btn btn-primary w-100 py-2" type="submit">Let's Register!!</button>
 
 						</form>
