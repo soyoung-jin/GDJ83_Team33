@@ -14,4 +14,8 @@
   		<typeAlias type="com.team3.tamagochi.store.ItemDTO" alias="ItemDTO"/>
   		
   	</typeAliases>
+
+  	
+
+
   </configuration>
