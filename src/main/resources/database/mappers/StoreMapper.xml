@@ -15,9 +15,14 @@
   		ORDER BY ITEM_NUM ASC
   	</select>
   	
-  	<select id="getItemDetail" parameterType="ItemDTO" resultType="ItemDTO">
-  		SELECT * FROM CHARACTER
-  		WHERE ITEM_NUM=#{item_num}
+  	<select id="getItemDetail" parameterType="java.util.Map" resultType="ItemDTO">
+  		SELECT *
+  		FROM
+  			<choose>
+  				<when test="category == 0"> CHARACTER </when>
+  				<otherwise> WEAPON </otherwise>
+  			</choose>
+  		WHERE ITEM_NUM=#{itemDTO.item_num}
   	</select>
   
   </mapper>

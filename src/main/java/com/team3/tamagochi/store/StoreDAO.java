@@ -1,6 +1,7 @@
 package com.team3.tamagochi.store;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class StoreDAO {
 		return sqlSession.selectList(NAMESPACE+"getItemList", category);
 	}
 	
-	public ItemDTO getItemDetail(ItemDTO itemDTO) {
-		return sqlSession.selectOne(NAMESPACE+"getItemDetail", itemDTO);
+	public ItemDTO getItemDetail(Map<String, Object> map) {
+		return sqlSession.selectOne(NAMESPACE+"getItemDetail", map);
 	}
 
 }

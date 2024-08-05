@@ -15,23 +15,31 @@ public class StoreController {
 	@Autowired
 	StoreService storeService;
 	
-	//Item 리스트 조회
-	@GetMapping("itemList")
-	public void getItemList (Model model, Integer category) throws Exception {
+	@GetMapping("itemListRefresh")
+	public String getItemList(Integer category, Model model) throws Exception {
 		
+		List<ItemDTO> list = null;
 		
-		List<ItemDTO> list = storeService.getItemList(category);
+		if(category == null) {
+			category = 0;
+		}
 		
-		
+		list = storeService.getItemList(category);
+
 		model.addAttribute("itemList", list);
+		
+		return "store/itemListRefresh";
+	}
+	
+	@GetMapping("itemList")
+	public void getItemList() {
 	}
 	
 	//Item 상세정보 조회
 	@GetMapping("itemDetail")
-	public void getItemDetail (ItemDTO itemDTO, Model model) throws Exception {
-		System.out.println(itemDTO.getItem_num());
+	public void getItemDetail (ItemDTO itemDTO, Integer category, Model model) throws Exception {
 		
-		itemDTO = storeService.getItemDetail(itemDTO);
+		itemDTO = storeService.getItemDetail(itemDTO, category);
 		
 		model.addAttribute("itemDTO", itemDTO);
 	}

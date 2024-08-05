@@ -1,24 +1,19 @@
 const category = document.getElementById("category");
-const storeItemList = document.getElementById("storeItemList")
+const itemListdiv = document.getElementById("itemListdiv")
 
 category.addEventListener("change",()=>{
     
-    console.log(category.value)
+    getList(category.value);
 
-    // location.href="itemList?category="+category.value;
+    
 })
 
-getList(1)
+getList(0)
 
 function getList(num){
-
-    fetch("itemList?category="+num,{
+    fetch("./itemListRefresh?category="+num,{
         method:"get"
-    }).then((r)=>{
-        r.text()
-    })
-    .then((r)=>{
-        storeItemList.innerHTML=r;
-    })
+    }).then((res)=>res.text())
+    .then((res)=>itemListdiv.innerHTML=res)
 
 }
