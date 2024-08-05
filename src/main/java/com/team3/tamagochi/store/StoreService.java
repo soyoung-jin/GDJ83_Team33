@@ -11,12 +11,12 @@ public class StoreService {
 	@Autowired
 	StoreDAO storeDAO;
 	
-	public List<WeaponDTO> getItemList() throws Exception {
-		return storeDAO.getItemList();
+	public List<ItemDTO> getItemList(Integer category) throws Exception {
+		return storeDAO.getItemList(category);
 	}
 	
-	public WeaponDTO getItemDetail(WeaponDTO weaponDTO) throws Exception {
-		return storeDAO.getItemDetail(weaponDTO);
+	public ItemDTO getItemDetail(ItemDTO itemDTO) throws Exception {
+		return storeDAO.getItemDetail(itemDTO);
 	}
 
 }
