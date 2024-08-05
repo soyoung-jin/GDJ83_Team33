@@ -14,3 +14,4 @@
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <!-- https://getbootstrap.com/ -->
 <link rel="stylesheet" href="/resources/css/templatemo-style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri/dist/galmuri.css">
