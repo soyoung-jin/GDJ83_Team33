@@ -5,6 +5,9 @@
   <configuration>
   	<typeAliases>
   		<typeAlias type="com.team3.tamagochi.users.UsersDTO" alias="UsersDTO"/>
+  		<typeAlias type="com.team3.tamagochi.store.CharacterDTO" alias="CharacterDTO"/>
+  		<typeAlias type="com.team3.tamagochi.store.WeaponDTO" alias="WeaponDTO"/>
+  		<typeAlias type="com.team3.tamagochi.store.WishlistDTO" alias="WishlistDTO"/>
   		
   	</typeAliases>
   </configuration>
