@@ -31,5 +31,4 @@ public class NoticeDAO implements BoardDAO {
 
 		return sqlSession.selectOne(NAMESPACE + "getTotalCount", pager);
 	}
-
 }

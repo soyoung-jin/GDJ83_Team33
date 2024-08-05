@@ -23,12 +23,12 @@ public class NoticeController {
 		return "Notice";
 	}
 
-	@RequestMapping(value = "list", method = RequestMethod.GET)
+	@RequestMapping(value = "noticeList", method = RequestMethod.GET)
 	public String list(Model model, Pager pager) throws Exception {
 		List<BoardDTO> list = noticeService.list(pager);
 		model.addAttribute("list", list);
 
-		return "board/list";
+		return "notice/noticeList";
 
 	}
 
