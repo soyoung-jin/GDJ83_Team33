@@ -15,4 +15,8 @@
   		<typeAlias type="com.team3.tamagochi.boards.notice.NoticeDTO" alias="NoticeDTO"/>
   		
   	</typeAliases>
+
+  	
+
+
   </configuration>
