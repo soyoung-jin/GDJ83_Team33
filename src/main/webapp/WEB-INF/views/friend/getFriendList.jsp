@@ -5,7 +5,7 @@
 	<title>Home</title>
 	<c:import url="./template/header.jsp"></c:import>
 </head>
-<body id="reportsPage" class="font">
+<body id="reportsPage" class="pixelify-sans-font">
 	<div class="" id="home">
 	<c:import url="./template/topbar.jsp"></c:import>
 	
@@ -13,9 +13,11 @@
         <div class="row">
             <div class="col">
                 <p class="text-white mt-5 mb-5">Welcome, <b>Admin</b></p>
-            </div>
         </div>
-            <!-- row -->
+    </div>
+	
+	
+	
     </div>
 	<c:import url="./template/footer.jsp"></c:import>
 	<c:import url="./template/boot-footer.jsp"></c:import>
