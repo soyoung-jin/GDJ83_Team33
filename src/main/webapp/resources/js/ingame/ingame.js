@@ -6,9 +6,9 @@ const petParent = document.getElementById("petParent");
 
 let x = 50;
 let y = 100;
-let currentPositionX = 0;
-let currentPositionY = 0;
-
+let currentPositionX = 50;
+let currentPositionY = 100;
+let flag = true;
 
 document.addEventListener("keydown", (e)=>{
     if(e.key==='ArrowLeft') {
@@ -39,7 +39,9 @@ myPet.addEventListener("click", ()=>{
     petChatBtn.classList.add('btn', 'btn-warning');
     petChatBtn.setAttribute("id", "petChat");
     petChatBtn.setAttribute("type", "button");
+    petChatBtn.setAttribute("data-bs-target", "#chatModal");
 
     petChatBtn.style.left = currentPositionX;
     petChatBtn.style.top = currentPositionY;
+    
 })
