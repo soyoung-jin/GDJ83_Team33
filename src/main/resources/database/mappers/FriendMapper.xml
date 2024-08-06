@@ -15,6 +15,15 @@
 		WHERE u.USER_ID =#{user_id}
   	</select>
   	
+  	<select id="getFriendDetail" parameterType="FriendDTO" resultMap="detailFriend">
+  		SELECT u.*, f.*
+			FROM USERS u 
+			LEFT JOIN
+			FRIEND f 
+			ON u.USER_ID = f.USER_ID 
+		WHERE u.USER_ID =#{user_id} AND f.FRIEND_ID = #{friend_id}
+  	</select>
+  	
   	<resultMap type="UsersDTO" id="detailFriend">
   		<id column="USER_ID" property="user_id"/>
   			<result column="USER_PW" property="user_pw"/>
@@ -31,10 +40,6 @@
   			<result column="FRIEND_ID" property="friend_id"/>
   		</collection>
   	</resultMap>
-  	
-  	<select id="getFriendDetail" parameterType="FriendDTO" resultType="UsersDTO">
-  		SELECT * FROM USERS WHERE USER_ID = #{user_id}
-  	</select>
   	
   	<delete id="deleteFriend" parameterType="FriendDTO">
   		DELETE FROM FRIEND WHERE friend_num = #{friend_num}

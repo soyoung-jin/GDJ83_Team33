@@ -33,7 +33,7 @@
 								</div>
 								<div class="d-grid">
 									<a class="btn btn-outline-secondary"
-										href="./friendDetail?friend_num=${fDTO.friend_num}">자세히 보기</a>
+										href="./friendDetail?user_id=${fDTO.user_id}&friend_id=${fDTO.friend_id}">자세히 보기</a>
 								</div>
 							</div>
 						</div>
