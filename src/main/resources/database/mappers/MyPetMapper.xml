@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- namespace는 꼭 들어가야될 속성 -->
+  <mapper namespace="com.team3.tamagochi.mypet.MyPetDAO">
+  	
+  	<select id="getList" resultType="com.team3.tamagochi.mypet.MyPetDTO">
+  		SELECT * FROM MY_PET
+  	</select>
+  
+  </mapper>
