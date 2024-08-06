@@ -17,14 +17,9 @@ public class StoreService {
 		return storeDAO.getItemList(category);
 	}
 	
-	public ItemDTO getItemDetail(ItemDTO itemDTO, Integer category) throws Exception {
+	public ItemDTO getItemDetail(Long item_num,Integer category) throws Exception {
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("itemDTO", itemDTO);
-		map.put("category", category);
-		
-		return storeDAO.getItemDetail(map);
+		return storeDAO.getItemDetail(item_num, category);
 	}
 
 }

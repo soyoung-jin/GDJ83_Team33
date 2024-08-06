@@ -5,7 +5,7 @@
 	<title>Home</title>
 	<c:import url="../template/header.jsp"></c:import>
 </head>
-<body id="reportsPage" class="pixelify-sans-font">
+<body id="reportsPage" class="font">
 	<div class="" id="home">
 	<c:import url="../template/topbar.jsp"></c:import>
 	
@@ -21,7 +21,7 @@
 							<th>추가 체력</th>
 							<th>추가 공격력</th>
 							<th>추가 회피력</th>
-							<c:if test="${itemDTO.item_description ne null}">
+							<c:if test="${param.category == 1}">
 								<th>무기 설명</th>	
 							</c:if>
 							<th>가격</th>
@@ -33,8 +33,8 @@
 							<td>${itemDTO.item_hp}</td>
 							<td>${itemDTO.item_atk}</td>
 							<td>${itemDTO.item_dod}</td>
-							<c:if test="${itemDTO.item_description ne null}">
-								<td>${itemDTO.item_description}</td>
+							<c:if test="${param.category == 1}">
+								<td>${itemDTO.weapon_description}</td>
 							</c:if>
 							<td>${itemDTO.item_price}</td>
 						</tr>

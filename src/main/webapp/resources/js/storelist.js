@@ -15,5 +15,5 @@ function getList(num){
         method:"get"
     }).then((res)=>res.text())
     .then((res)=>itemListdiv.innerHTML=res)
-
 }
+
