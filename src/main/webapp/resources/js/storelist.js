@@ -1,11 +1,9 @@
 const category = document.getElementById("category");
 const itemListdiv = document.getElementById("itemListdiv")
+const wpdiv = document.getElementById("wpdiv")
 
 category.addEventListener("change",()=>{
-    
     getList(category.value);
-
-    
 })
 
 getList(0)

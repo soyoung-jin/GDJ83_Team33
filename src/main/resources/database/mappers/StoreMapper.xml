@@ -9,22 +9,27 @@
   		SELECT *
   		FROM
   			<choose>
-  				<when test="value == 0"> CHARACTER </when>
-  				<otherwise> WEAPON </otherwise>
+  				<when test="value == 0">
+  					CHARACTER
+  					ORDER BY CHARACTER_NUM ASC
+  				</when>
+  				<otherwise>
+  					WEAPON 
+  					ORDER BY WEAPON_NUM ASC
+  				</otherwise>
   			</choose>
-  		ORDER BY ITEM_NUM ASC
   	</select>
   	
   	<select id="getWeaponDetail" parameterType="Long" resultType="WeaponDTO">
   		SELECT *
   		FROM WEAPON
-  		WHERE ITEM_NUM=#{item_num}
+  		WHERE WEAPON_NUM=#{weapon_num}
   	</select>
   	
   	<select id="getCharacterDetail" parameterType="Long" resultType="CharacterDTO">
   		SELECT *
   		FROM CHARACTER
-  		WHERE ITEM_NUM=#{item_num}
+  		WHERE CHARACTER_NUM=#{character_num}
   	</select>
   
   </mapper>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("/store/*")
@@ -42,13 +43,17 @@ public class StoreController {
 	//category 리스트 조회 때 생긴 parameter 재사용
 	public void getItemDetail (Long item_num, Integer category, Model model) throws Exception {
 		
-		 ItemDTO itemDTO = storeService.getItemDetail(item_num,category);
+		ItemDTO itemDTO = storeService.getItemDetail(item_num,category);
 		
 		model.addAttribute("itemDTO", itemDTO);
 	}
 	
 	@GetMapping("addItem")
 	public void addItem () throws Exception {
+	}
+	
+	@PostMapping("addItem")
+	public void addItem (ItemDTO itemDTO) throws Exception {
 		
 	}
 }
