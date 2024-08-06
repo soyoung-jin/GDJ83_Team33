@@ -25,37 +25,37 @@
 							<h1 class="h3 mb-3 fw-normal">Please Register</h1>
 
 							<div class="form-floating">
-								<input type="text" class="form-control" id="floatingInput"
+								<input type="text" class="form-control" id="user_id"
 								name="user_id">
-								<label for="floatingInput">User ID</label>
+								<label for="user_id">아이디</label>
 							</div>
 							<div class="form-floating">
-								<input type="password" class="form-control" id="floatingPassword"
+								<input type="password" class="form-control" id="user_pw"
 								name="user_pw">
-								<label for="floatingPassword">Password</label>
+								<label for="user_pw">비밀번호</label>
 							</div>
 							<div class="form-floating">
-								<input type="text" class="form-control" id="floatingInput"
+								<input type="text" class="form-control" id="user_name"
 								name="user_name">
-								<label for="floatingInput">User Name</label>
+								<label for="user_name">이름</label>
 							</div>
 							<div class="form-floating">
-								<input type="text" class="form-control" id="floatingInput"
+								<input type="text" class="form-control" id="user_nickname"
 								name="user_nickname">
-								<label for="floatingInput">User NickName</label>
+								<label for="user_nickname">닉네임</label>
 							</div>
 							<div class="form-floating">
-								<input type="text" class="form-control" id="floatingInput"
+								<input type="text" class="form-control" id="user_phone"
 								name="user_phone">
-								<label for="floatingInput">Phone Number</label>
+								<label for="user_phone">전화 번호</label>
 							</div>
 							<div class="form-floating">
-								<input type="email" class="form-control" id="floatingInput"
+								<input type="email" class="form-control" id="user_email"
 								name="user_email" placeholder="name@example.com">
-								<label for="floatingInput">Email</label>
+								<label for="user_email">이메일</label>
 							</div>
 							
-							<button class="btn btn-primary w-100 py-2" type="submit">Let's Register!!</button>
+							<button class="btn btn-primary w-100 py-2" type="submit">회원 가입</button>
 
 						</form>
 					</div>

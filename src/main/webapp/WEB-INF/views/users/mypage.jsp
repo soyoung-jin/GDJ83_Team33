@@ -69,8 +69,9 @@
 								</div>
 								<div class="form-group col-lg-6">
 									<label class="tm-hide-sm">&nbsp;</label>
-									<button type="submit" class="btn btn-danger btn-block text-uppercase">
-										회원 탈퇴</button>
+									<a type="button" class="btn btn-danger btn-block text-uppercase"
+									href="/users/deleteAccount">
+										회원 탈퇴</a>
 								</div>
 								<div class="col-12">
 									<button type="submit" class="btn btn-primary btn-block text-uppercase">

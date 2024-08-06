@@ -18,9 +18,7 @@ public class UsersController {
 	
 	
 	@GetMapping("register")
-	public void registerUsers() throws Exception{
-		
-	}
+	public void registerUsers() throws Exception{}
 	
 	@PostMapping("register")
 	public String registerUsers(UsersDTO usersDTO, Model model) throws Exception{
@@ -35,19 +33,22 @@ public class UsersController {
 		return "commons/message";
 	}
 	
+	
 	@GetMapping("login")
-	public void loginUsers() throws Exception{
-		
-	}
+	public void loginUsers() throws Exception{}
 	
 	@PostMapping("login")
 	public String loginUsers(UsersDTO usersDTO, Model model, HttpSession session) throws Exception{
 		
 		usersDTO = usersService.loginUsers(usersDTO);
 		
-		if(usersDTO != null) {
+		// 탈퇴한 회원은 resign값이 0이기 때문에 이 값으로 탈퇴한 회원인지 아닌지 구분.
+		if(usersDTO != null && usersDTO.getUser_resign() == 1) {
 			session.setAttribute("users_info", usersDTO);
-			model.addAttribute("result", "로그인 성공!");
+			model.addAttribute("result", "환영합니다!");
+			model.addAttribute("url", "/");
+		}else if(usersDTO != null && usersDTO.getUser_resign() == 0){
+			model.addAttribute("result", "탈퇴한 회원입니다.");
 			model.addAttribute("url", "/");
 		}else {
 			model.addAttribute("result", "로그인 실패!");
@@ -57,6 +58,7 @@ public class UsersController {
 		return "commons/message";
 	}
 	
+	
 	@GetMapping("logout")
 	public String logoutUsers(HttpSession session) throws Exception{	
 		
@@ -65,14 +67,19 @@ public class UsersController {
 		return "redirect:/";
 	}
 	
+	
 	@GetMapping("mypage")
 	public void getMyPage(HttpSession session, Model model) throws Exception{
 		
 		UsersDTO usersDTO = (UsersDTO)session.getAttribute("users_info");
 		
-		model.addAttribute("usersDTO", usersDTO);
+		// 회원 정보 수정시, 로그인 정보가 session에 담겨있기 때문에 로그아웃을 했다가 다시 로그인해야 수정된 정보가 출력됨
+		// updateUsersData라는 메서드를 만들어서 업데이트된 정보를 새로 호출함으로서 바로 보여줄 수 있게 만듬
+		usersDTO = usersService.updateUsersData(usersDTO);
 		
+		model.addAttribute("usersDTO", usersDTO);	
 	}
+	
 	
 	@PostMapping("update")
 	public String updateUsers(Model model, UsersDTO usersDTO) throws Exception{
@@ -86,9 +93,33 @@ public class UsersController {
 			model.addAttribute("result", "수정 실패!!");
 			model.addAttribute("url", "/users/mypage");
 		}
-		// update후에 mypage가 바로 최신화 되도록 수정해야 됨
-		// 현재는 로그아웃 후 다시 로그인해야 mypage 정보가 바뀜
-		// service딴에서 detail 메서드를 만들어서 호출하는 식으로 사용하면 되는듯 함
+		
+		return "commons/message";
+	}
+	
+	
+	@GetMapping("deleteAccount")
+	public void deleteAccount() throws Exception{}
+	
+	@PostMapping("deleteAccount")
+	public String deleteAccount(UsersDTO usersDTO, HttpSession session, Model model) throws Exception{
+		
+		// session에 담긴 로그인 id를 임시 DTO에 담아둔 뒤, 그걸 다시 꺼내서 입력받은 usersDTO에 넣는 코드
+		// 입력받은 usersDTO에는 id값이 없기 때문에 이러한 과정을 거침
+		UsersDTO tempDTO = (UsersDTO)session.getAttribute("users_info");
+		usersDTO.setUser_id(tempDTO.getUser_id());
+		
+		int result = usersService.deleteAccount(usersDTO);
+		
+		if(result > 0) {
+			model.addAttribute("result", "회원 탈퇴가 완료되었습니다. 감사합니다.");
+			model.addAttribute("url", "/");
+			session.invalidate();
+		}else {
+			model.addAttribute("result", "올바른 비밀번호를 입력해주세요.");
+			model.addAttribute("url", "/users/deleteAccount");
+		}
+		
 		return "commons/message";
 	}
 
