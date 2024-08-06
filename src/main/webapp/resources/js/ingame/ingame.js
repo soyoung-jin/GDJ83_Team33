@@ -1,5 +1,4 @@
 const myPet = document.getElementById("myPet");
-const myPetBtn = document.getElementById("myPetBtn");
 const petParent = document.getElementById("petParent");
 
 
@@ -7,9 +6,9 @@ const petParent = document.getElementById("petParent");
 
 let x = 50;
 let y = 100;
-let currentPositionX = 0;
-let currentPositionY = 0;
-
+let currentPositionX = 50;
+let currentPositionY = 100;
+let flag = true;
 
 document.addEventListener("keydown", (e)=>{
     if(e.key==='ArrowLeft') {
@@ -31,11 +30,18 @@ document.addEventListener("keydown", (e)=>{
     }
 })
 
-myPetBtn.addEventListener("click", ()=>{
-    let petChat = document.createElement("button");
-    petParent.append(petChat);
-    petChat.innerHTML = "대화하기";
-    petChat.classList.add('btn', 'btn-warning');
-    petChat.setAttribute("id", "petChat");
-    petChat.setAttribute("type", "button");
+myPet.addEventListener("click", ()=>{
+    let petChatBtn = document.createElement("button");
+    petChatBtn.innerHTML = "대화하기";
+    petParent.append(petChatBtn);
+
+
+    petChatBtn.classList.add('btn', 'btn-warning');
+    petChatBtn.setAttribute("id", "petChat");
+    petChatBtn.setAttribute("type", "button");
+    petChatBtn.setAttribute("data-bs-target", "#chatModal");
+
+    petChatBtn.style.left = currentPositionX;
+    petChatBtn.style.top = currentPositionY;
+    
 })
