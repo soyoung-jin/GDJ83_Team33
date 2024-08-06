@@ -16,8 +16,16 @@ public class FriendDAO {
 
 	private final String NAMESPACE = "com.team3.tamagochi.friend.FriendDAO.";
 	
-	public List<FriendDTO> getFriendList(UsersDTO usersDTO) {
-		return sqlSession.selectList(NAMESPACE + "getFriendList", usersDTO);
+	public UsersDTO getFriendList(UsersDTO usersDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE + "getFriendList", usersDTO);
+	}
+	
+	public UsersDTO getFriendDetail(FriendDTO friendDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE + "getFriendDetail", friendDTO);
+	}
+	
+	public int deleteFriend(FriendDTO friendDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE + "deleteFriend", friendDTO);
 	}
 	
 }

@@ -3,24 +3,22 @@
 <html>
 <head>
 	<title>Home</title>
-	<c:import url="./template/header.jsp"></c:import>
+	<c:import url="../template/header.jsp"></c:import>
 </head>
-<body id="reportsPage" class="pixelify-sans-font">
+<body id="reportsPage" class="font">
 	<div class="" id="home">
-	<c:import url="./template/topbar.jsp"></c:import>
+	<c:import url="../template/topbar.jsp"></c:import>
 	
 	<div class="container">
         <div class="row">
             <div class="col">
                 <p class="text-white mt-5 mb-5">Welcome, <b>Admin</b></p>
+            </div>
         </div>
+       
     </div>
-	
-	
-	
-    </div>
-	<c:import url="./template/footer.jsp"></c:import>
-	<c:import url="./template/boot-footer.jsp"></c:import>
+	<c:import url="../template/footer.jsp"></c:import>
+	<c:import url="../template/boot-footer.jsp"></c:import>
 	</div>
 </body>
 </html>
