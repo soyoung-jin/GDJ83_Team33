@@ -27,7 +27,10 @@ public class UsersController {
 		
 		if(result>0) {
 			model.addAttribute("result", "회원가입 성공!");
-			model.addAttribute("url", "/");	
+			model.addAttribute("url", "/");
+			
+			// 회원가입시 디폴트 캐릭터 4개가 자동으로 생성되는 코드
+			result = usersService.setDefaultCharacter(usersDTO);
 		}
 		
 		return "commons/message";

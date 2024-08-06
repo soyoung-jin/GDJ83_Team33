@@ -9,6 +9,7 @@ public class UsersService {
 	@Autowired
 	private UsersDAO usersDAO;
 	
+	
 	// 회원가입 메서드
 	public int registerUsers(UsersDTO usersDTO) throws Exception{
 		
@@ -51,6 +52,19 @@ public class UsersService {
 	public int deleteAccount(UsersDTO usersDTO) throws Exception{
 		
 		return usersDAO.deleteAccount(usersDTO);
+	}
+	
+	
+	
+	// 회원가입시 디폴트 캐릭터를 만들어주는 메서드 4개를 service에서 하나로 합침
+	public int setDefaultCharacter(UsersDTO usersDTO) throws Exception{
+		
+		int result = usersDAO.setDefaultCharacter1(usersDTO);
+		result = usersDAO.setDefaultCharacter2(usersDTO);
+		result = usersDAO.setDefaultCharacter3(usersDTO);
+		result = usersDAO.setDefaultCharacter4(usersDTO);
+		
+		return result;
 	}
 	
 
