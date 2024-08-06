@@ -13,8 +13,21 @@ public class UsersDAO {
 	private final String NAMESPACE = "com.team3.tamagochi.users.UsersDAO.";
 	
 	
+	// 회원가입 메서드
 	public int registerUsers(UsersDTO usersDTO) throws Exception{
 		
 		return sqlSession.insert(NAMESPACE + "registerUsers", usersDTO);		
+	}
+	
+	// 로그인 메서드
+	public UsersDTO loginUsers(UsersDTO usersDTO) throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE + "loginUsers", usersDTO);
+	}
+	
+	// 회원정보 수정 메서드
+	public int updateUsers(UsersDTO usersDTO) throws Exception{
+		
+		return sqlSession.update(NAMESPACE + "updateUsers", usersDTO);
 	}
 }
