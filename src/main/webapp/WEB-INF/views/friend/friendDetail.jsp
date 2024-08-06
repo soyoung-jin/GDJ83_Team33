@@ -24,7 +24,7 @@
 		<div class="container px-5 my-5">
 			<div class="row gx-5 justify-content-center">
 			
-		<button type="button" id="openModal" class="btn btn-outline-warning mt-3 mb-5 chatBtn" data-bs-toggle="modal" data-bs-target="#commentModal">
+		<button type="button" id="startChat" class="btn btn-outline-warning mt-3 mb-5 chatBtn" data-bs-toggle="modal" data-bs-target="#commentModal">
 		  채팅 시작
 		</button>
 		<!-- 댓글 모달 창 -->

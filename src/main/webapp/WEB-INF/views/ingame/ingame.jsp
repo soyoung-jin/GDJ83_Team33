@@ -4,8 +4,6 @@
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" href="/resources/css/ingame.css">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 	<c:import url="../template/header.jsp"></c:import>
 </head>
 <body id="reportsPage" class="font">
@@ -16,37 +14,10 @@
 		<div id="petParent">
 			<img id="myPet" src="/resources/img/ingame/ex2.gif" alt="moving cracked egg">
 		</div>
-
-		<div class="modal fade" id="chatModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-scrollable">
-			  <div class="modal-content">
-				<div class="modal-header">
-				  <h1 class="modal-title fs-5" id="exampleModalLabel">캐릭터이름</h1>
-				  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
-				</div>
-				<div class="modal-body">
-				 <div class="form-floating" id="modalContent">
-					
-					
-					
-				  </div>
-				</div>
-				<div class="modal-footer">
-				  <div class="input-group mb-3">
-					  <input type="text" class="form-control" id="chatContent" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-					  <button class="btn btn-outline-secondary" type="button" id="sendBtn">보내기</button>
-					  
-					</div>
-				  
-				</div>
-			  </div>
-			</div>
-		  </div>
        
     </div>
 	
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>	
+
 	<script src="/resources/js/ingame/ingame.js"></script>
 	<c:import url="../template/boot-footer.jsp"></c:import>
 	</div>
