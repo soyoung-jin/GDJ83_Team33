@@ -19,14 +19,9 @@ public class StoreController {
 	@GetMapping("itemListRefresh")
 	public String getItemList(Integer category, Model model) throws Exception {
 		
-		List<ItemDTO> list = null;
-		
-		if(category == null) {
-			category = 0;
-		}
-		
-		list = storeService.getItemList(category);
 
+		List<Object> list = storeService.getItemList(category);
+		
 		model.addAttribute("itemList", list);
 		
 		return "store/itemListRefresh";
@@ -43,9 +38,14 @@ public class StoreController {
 	//category 리스트 조회 때 생긴 parameter 재사용
 	public void getItemDetail (Long item_num, Integer category, Model model) throws Exception {
 		
-		ItemDTO itemDTO = storeService.getItemDetail(item_num,category);
-		
-		model.addAttribute("itemDTO", itemDTO);
+		if(category == 1) {
+			WeaponDTO itemDTO = (WeaponDTO) storeService.getItemDetail(item_num,category);
+			model.addAttribute("itemDTO", itemDTO);
+
+		} else if(category == 0){
+			CharacterDTO itemDTO = (CharacterDTO) storeService.getItemDetail(item_num,category);
+			model.addAttribute("itemDTO", itemDTO);
+		}
 	}
 	
 	@GetMapping("addItem")
@@ -53,7 +53,10 @@ public class StoreController {
 	}
 	
 	@PostMapping("addItem")
-	public void addItem (ItemDTO itemDTO) throws Exception {
+	public void addItem (WeaponDTO weaponDTO) throws Exception {
+
+		storeService.addItem(weaponDTO);
+		
 		
 	}
 }

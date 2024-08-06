@@ -4,6 +4,7 @@ const wpdiv = document.getElementById("wpdiv")
 
 category.addEventListener("change",()=>{
     getList(category.value);
+    
 })
 
 getList(0)
