@@ -59,7 +59,7 @@
 								<input type="file" id="imgFile" name="attach">
 							</div>
 							<div class="mt-3">
-								<button class="btn btn-primary w-100 py-2" type="submit">아이템 추가</button>
+								<button class="btn btn-primary w-100 py-2" type="submit" id="addItem">아이템 추가</button>
 							</div>
 						</form>
 					</div>
