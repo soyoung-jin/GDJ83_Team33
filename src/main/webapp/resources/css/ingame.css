@@ -3,7 +3,16 @@
     position: absolute; /*부모 태그를 기준으로 한 위치 - petParent div*/
     left: 50px;
     top: 100px;
+    cursor: pointer;
 }
+
+#petChat {
+    position: absolute;
+    left: 50px;
+    top: 100px;;
+}
+
+
 
 #reportsPage{
     background-image: url("/resources/img/ingame/background1.jpg");

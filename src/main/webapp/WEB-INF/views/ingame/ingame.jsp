@@ -12,8 +12,7 @@
 	
 	<div class="container">
 		<div id="petParent">
-			
-			<a href="" id="myPetBtn"><img id="myPet" src="/resources/img/ingame/ex2.gif" alt="moving cracked egg"></a>
+			<img id="myPet" src="/resources/img/ingame/ex2.gif" alt="moving cracked egg">
 		</div>
        
     </div>

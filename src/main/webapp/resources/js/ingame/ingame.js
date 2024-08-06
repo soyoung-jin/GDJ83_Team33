@@ -1,5 +1,4 @@
 const myPet = document.getElementById("myPet");
-const myPetBtn = document.getElementById("myPetBtn");
 const petParent = document.getElementById("petParent");
 
 
@@ -31,11 +30,16 @@ document.addEventListener("keydown", (e)=>{
     }
 })
 
-myPetBtn.addEventListener("click", ()=>{
-    let petChat = document.createElement("button");
-    petParent.append(petChat);
-    petChat.innerHTML = "대화하기";
-    petChat.classList.add('btn', 'btn-warning');
-    petChat.setAttribute("id", "petChat");
-    petChat.setAttribute("type", "button");
+myPet.addEventListener("click", ()=>{
+    let petChatBtn = document.createElement("button");
+    petChatBtn.innerHTML = "대화하기";
+    petParent.append(petChatBtn);
+
+
+    petChatBtn.classList.add('btn', 'btn-warning');
+    petChatBtn.setAttribute("id", "petChat");
+    petChatBtn.setAttribute("type", "button");
+
+    petChatBtn.style.left = currentPositionX;
+    petChatBtn.style.top = currentPositionY;
 })
