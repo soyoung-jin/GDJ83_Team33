@@ -15,23 +15,34 @@ public class StoreController {
 	@Autowired
 	StoreService storeService;
 	
-	//Item 리스트 조회
-	@GetMapping("itemList")
-	public void getItemList (Model model, Integer category) throws Exception {
+	@GetMapping("itemListRefresh")
+	public String getItemList(Integer category, Model model) throws Exception {
 		
+		List<ItemDTO> list = null;
 		
-		List<ItemDTO> list = storeService.getItemList(category);
+		if(category == null) {
+			category = 0;
+		}
 		
-		
+		list = storeService.getItemList(category);
+
 		model.addAttribute("itemList", list);
+		
+		return "store/itemListRefresh";
+	}
+	
+	//ajax로 리스트 조회하기 위해 jsp 찾아가는 경로만 작성
+	//resources/js/storelist.js 스트립트 작성
+	@GetMapping("itemList")
+	public void getItemList() {
 	}
 	
 	//Item 상세정보 조회
 	@GetMapping("itemDetail")
-	public void getItemDetail (ItemDTO itemDTO, Model model) throws Exception {
-		System.out.println(itemDTO.getItem_num());
+	//category 리스트 조회 때 생긴 parameter 재사용
+	public void getItemDetail (Long item_num, Integer category, Model model) throws Exception {
 		
-		itemDTO = storeService.getItemDetail(itemDTO);
+		 ItemDTO itemDTO = storeService.getItemDetail(item_num,category);
 		
 		model.addAttribute("itemDTO", itemDTO);
 	}

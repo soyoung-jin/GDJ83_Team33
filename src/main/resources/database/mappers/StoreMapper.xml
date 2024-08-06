@@ -15,8 +15,15 @@
   		ORDER BY ITEM_NUM ASC
   	</select>
   	
-  	<select id="getItemDetail" parameterType="ItemDTO" resultType="ItemDTO">
-  		SELECT * FROM CHARACTER
+  	<select id="getWeaponDetail" parameterType="Long" resultType="WeaponDTO">
+  		SELECT *
+  		FROM WEAPON
+  		WHERE ITEM_NUM=#{item_num}
+  	</select>
+  	
+  	<select id="getCharacterDetail" parameterType="Long" resultType="CharacterDTO">
+  		SELECT *
+  		FROM CHARACTER
   		WHERE ITEM_NUM=#{item_num}
   	</select>
   

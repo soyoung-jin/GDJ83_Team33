@@ -26,30 +26,7 @@
             	
             	
             	<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
-	            	<div class="row">
-	            	<!-- List<WeaponDTO>에서 DTO 하나씩 꺼내옴 -->
-	            	<c:forEach items="${itemList}" var="itemDTO">
-	            		<!-- 브라우저 사이즈에 따라 column 길이 변화 -->
-		            	<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 tm-block-col">
-							<!-- 카드형 태그 -->
-			            	<div class="card h-100" style="max-width:300px">
-			            		<!-- 디테일가기위한 a태그 -->
-			            	  <a href="itemDetail?item_num=${itemDTO.item_num}">
-			            	  	<!-- 카드형 상부 이미지 -->
-							  	<img src="/resources/img/character/4.gif" class="card-img-top" alt="...">
-							  </a>
-							  <div class="card-body">
-							  	<!-- 카드 이미지 하단 아이템명, 가격 -->
-							    <h5 class="card-title">${itemDTO.item_name}</h5>
-							    <p class="card-text">
-							    	${itemDTO.item_price} 원
-								</p>
-							    <a href="#" class="btn btn-primary">구매</a>
-							    <a href="#" class="btn btn-info">장바구니</a>
-							  </div>
-							</div>
-						</div>
-					</c:forEach>
+	            	<div id="itemListdiv" class="row justify-content-center">
 					</div>
 				</div>
 				</div>
