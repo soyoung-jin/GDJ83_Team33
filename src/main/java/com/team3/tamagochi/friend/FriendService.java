@@ -13,7 +13,7 @@ public class FriendService {
 	@Autowired
 	private FriendDAO friendDAO;
 	
-	public List<FriendDTO> getFriendList(UsersDTO usersDTO) throws Exception{
+	public UsersDTO getFriendList(UsersDTO usersDTO) throws Exception{
 		return friendDAO.getFriendList(usersDTO);
 	}
 	

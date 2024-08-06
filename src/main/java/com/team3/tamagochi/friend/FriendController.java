@@ -20,10 +20,12 @@ public class FriendController {
 	private FriendService friendService;
 	
 	@GetMapping("friendList")
-	public void getFriendList(FriendDTO friendDTO, Model model, HttpSession session) throws Exception{
-		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
+	public void getFriendList(UsersDTO usersDTO, Model model, HttpSession session) throws Exception{
+		usersDTO = (UsersDTO) session.getAttribute("users_info");
 		
-		usersDTO = friendService.getFriendDetail(friendDTO);
+		usersDTO = friendService.getFriendList(usersDTO);
+		
+		
 		
 		model.addAttribute("usersDTO", usersDTO);
 		

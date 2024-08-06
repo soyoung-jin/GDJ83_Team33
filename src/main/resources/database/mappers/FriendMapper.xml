@@ -16,7 +16,7 @@
   	</select>
   	
   	<resultMap type="UsersDTO" id="detailFriend">
-  	<id column="USER_ID" property="user_id"/>
+  		<id column="USER_ID" property="user_id"/>
   			<result column="USER_PW" property="user_pw"/>
   			<result column="USER_NAME" property="user_name"/>
   			<result column="USER_NICKNAME" property="user_nickname"/>

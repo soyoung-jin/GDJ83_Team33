@@ -20,20 +20,20 @@
 			</div>
 			<div class="row gx-5 justify-content-center">
 				<!-- Pricing card free-->
-				<c:forEach items="${usersDTO.friendDTO}" var="friendDTO">
+				<c:forEach items="${usersDTO.friendDTO}" var="fDTO">
 					<div class="col-lg-6 col-xl-4 mb-5">
 						<div class="card mb-5">
 							<div class="card-body p-5">
-								<div class="small text-uppercase fw-bold text-muted">${friendDTO.friend_num}</div>
+								<div class="small text-uppercase fw-bold text-muted">${fDTO.friend_num}</div>
 								<div>
 									<img alt="tamagochi" src="/resources/img/tama.gif">
 								</div>
 								<div class="mb-3">
-									<span class="display-5 fw-bold">${friendDTO.friend_id}</span> 
+									<span class="display-5 fw-bold">${fDTO.friend_id}</span> 
 								</div>
 								<div class="d-grid">
 									<a class="btn btn-outline-secondary"
-										href="./friendDetail?friend_num=${friendDTO.friend_num}">자세히 보기</a>
+										href="./friendDetail?friend_num=${fDTO.friend_num}">자세히 보기</a>
 								</div>
 							</div>
 						</div>
