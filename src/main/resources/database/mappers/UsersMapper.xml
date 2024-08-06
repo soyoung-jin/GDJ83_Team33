@@ -29,5 +29,45 @@
   		USER_RESIGN = 0
   		WHERE USER_ID = #{user_id} AND USER_PW = #{user_pw}
   	</update>
+  	
+  	
+  	
+  	
+  	
+  	
+  	<!-- 회원가입시 기본 캐릭터 4개를 만들어주는 쿼리문 -->
+  	<!-- 캐릭터 하나당 쿼리문 하나를 작성했는데, 더 좋은 방법 알면 제보 바람 -->
+  	<insert id="setDefaultCharacter1" parameterType="UsersDTO">
+  		INSERT INTO MY_PET
+  		(PET_NUM, USER_ID, CHARACTER_NUM, WEAPON_NUM, PET_NAME, PET_SPC,
+  			PET_EXP,PET_LEVEL, PET_HP, PET_ATK, PET_DOD, PET_POP, PET_HUNGRY)
+		VALUES
+		(PET_SEQ.NEXTVAL, #{user_id}, 1, NULL, '오크', '오크',
+			0, 1, 50, 20, 20, 0, 10)
+  	</insert>
+  	<insert id="setDefaultCharacter2" parameterType="UsersDTO">
+  		INSERT INTO MY_PET
+  		(PET_NUM, USER_ID, CHARACTER_NUM, WEAPON_NUM, PET_NAME, PET_SPC,
+  			PET_EXP,PET_LEVEL, PET_HP, PET_ATK, PET_DOD, PET_POP, PET_HUNGRY)
+		VALUES
+		(PET_SEQ.NEXTVAL, #{user_id}, 2, NULL, '휴먼', '휴먼',
+			0, 1, 50, 20, 20, 0, 10)
+  	</insert>
+  	<insert id="setDefaultCharacter3" parameterType="UsersDTO">
+  		INSERT INTO MY_PET
+  		(PET_NUM, USER_ID, CHARACTER_NUM, WEAPON_NUM, PET_NAME, PET_SPC,
+  			PET_EXP,PET_LEVEL, PET_HP, PET_ATK, PET_DOD, PET_POP, PET_HUNGRY)
+		VALUES
+		(PET_SEQ.NEXTVAL, #{user_id}, 3, NULL, '엘프', '엘프',
+			0, 1, 50, 20, 20, 0, 10)
+  	</insert>
+  	<insert id="setDefaultCharacter4" parameterType="UsersDTO">
+  		INSERT INTO MY_PET
+  		(PET_NUM, USER_ID, CHARACTER_NUM, WEAPON_NUM, PET_NAME, PET_SPC,
+  			PET_EXP,PET_LEVEL, PET_HP, PET_ATK, PET_DOD, PET_POP, PET_HUNGRY)
+		VALUES
+		(PET_SEQ.NEXTVAL, #{user_id}, 4, NULL, '펭귄', '펭귄',
+			0, 1, 50, 20, 20, 0, 10)
+  	</insert>
   
   </mapper>

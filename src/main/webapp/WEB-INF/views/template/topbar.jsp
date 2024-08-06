@@ -38,7 +38,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="products.html">
+                            <a class="nav-link" href="/store/itemList">
                                 <i class="fas fa-shopping-cart"></i>
                                 상점
                             </a>
@@ -54,9 +54,9 @@
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="#">Billing</a>
-                                <a class="dropdown-item" href="#">Customize</a>
+                                <a class="dropdown-item" href="/users/mypage">내 정보</a>
+                                <a class="dropdown-item" href="/mypet/mypetList">내 캐릭터</a>
+                                <a class="dropdown-item" href="#">거래 내역</a>
                             </div>
                         </li>
                     </ul>

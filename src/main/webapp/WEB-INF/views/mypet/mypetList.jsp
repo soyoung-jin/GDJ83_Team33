@@ -24,14 +24,14 @@
 									<!-- 카드형 태그 -->
 									<div class="card h-10">
 										<!-- 디테일가기위한 a태그 -->
-										<a href="#">
+										<a href="/mypet/petDetail?pet_num=${dto.pet_num }">
 											<!-- 카드형 상부 이미지 -->
 											<img src="/resources/img/character/4.gif" class="card-img-top" alt="...">
 										</a>
 										<div class="card-body">
 											<!-- 카드 이미지 하단 아이템명, 가격 -->
-											<h5 class="card-title">이름</h5>
-											<h5 class="card-title">레벨</h5>
+											<h5 class="card-title">이름 ${dto.pet_name }</h5>
+											<h5 class="card-title">레벨 ${dto.pet_level }</h5>
 										</div>
 									</div>
 								</div>							

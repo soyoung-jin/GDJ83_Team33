@@ -6,8 +6,14 @@
   <!-- namespace는 꼭 들어가야될 속성 -->
   <mapper namespace="com.team3.tamagochi.mypet.MyPetDAO">
   	
-  	<select id="getList" resultType="com.team3.tamagochi.mypet.MyPetDTO">
+  	<select id="getList" resultType="com.team3.tamagochi.mypet.MyPetDTO" parameterType="UsersDTO">
   		SELECT * FROM MY_PET
+  		WHERE USER_ID = #{user_id}
+  	</select>
+  	
+  	<select id="getDetail" resultType="com.team3.tamagochi.mypet.MyPetDTO" parameterType="com.team3.tamagochi.mypet.MyPetDTO">
+  		SELECT * FROM MY_PET
+		WHERE PET_NUM = #{pet_num}
   	</select>
   
   </mapper>

@@ -36,4 +36,21 @@ public class UsersDAO {
 		
 		return sqlSession.update(NAMESPACE + "deleteAccount", usersDTO);
 	}
+	
+	
+	
+	
+	// 회원가입시 디폴트 캐릭터를 만들어주는 메서드 4개
+	public int setDefaultCharacter1(UsersDTO usersDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE + "setDefaultCharacter1", usersDTO);
+	}
+	public int setDefaultCharacter2(UsersDTO usersDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE + "setDefaultCharacter2", usersDTO);
+	}
+	public int setDefaultCharacter3(UsersDTO usersDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE + "setDefaultCharacter3", usersDTO);
+	}
+	public int setDefaultCharacter4(UsersDTO usersDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE + "setDefaultCharacter4", usersDTO);
+	}
 }
