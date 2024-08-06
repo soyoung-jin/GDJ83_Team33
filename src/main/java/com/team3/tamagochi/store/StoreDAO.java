@@ -15,10 +15,13 @@ public class StoreDAO {
 	
 	private final String NAMESPACE="com.team3.tamagochi.store.StoreDAO.";
 	
-	public List<ItemDTO> getItemList(Integer category) {
-		return sqlSession.selectList(NAMESPACE+"getItemList", category);
+	public List<Object> getItemList(Integer category) {
+		//카테고리 0: 캐릭터, 1:무기 분류, resultType이 달라야해서 mapper 분리함
+		if(category==1) {
+			return sqlSession.selectList(NAMESPACE+"getWeaponList", category);
+		}
+		return sqlSession.selectList(NAMESPACE+"getCharacterList", category);
 	}
-	
 	
 	public ItemDTO getItemDetail(Long item_num,Integer category) {
 	
@@ -28,6 +31,10 @@ public class StoreDAO {
 		}
 		
 		return sqlSession.selectOne(NAMESPACE+"getCharacterDetail", item_num);
+	}
+	
+	public void addItem (WeaponDTO weaponDTO) {
+		sqlSession.insert(NAMESPACE+"addItem", weaponDTO);
 	}
 
 }

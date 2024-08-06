@@ -10,8 +10,14 @@
 							<!-- 카드형 태그 -->
 			            	<div class="card h-10" >
 			            		<!-- 디테일가기위한 a태그 -->
-			            		
-			            	  <a href="itemDetail?category=${param.category}">
+			            		<c:choose>
+									<c:when test="${param.category eq 1}">
+			            	  			<a href="itemDetail?item_num=${itemDTO.weapon_num}&category=${param.category}">
+									</c:when>
+			            			<c:otherwise>
+			            				<a href="itemDetail?item_num=${itemDTO.character_num}&category=${param.category}">
+			            			</c:otherwise>
+			            		</c:choose>
 			            	  	<!-- 카드형 상부 이미지 -->
 							  	<img src="/resources/img/character/4.gif" class="card-img-top" alt="...">
 							  </a>
