@@ -40,5 +40,18 @@ public class UsersService {
 		return usersDAO.updateUsers(usersDTO);
 	}
 	
+	// 수정된 회원 정보를 보여주는 메서드
+	// login 쿼리문을 재사용하여 service에서 updateData 메서드를 새로 만듬
+	public UsersDTO updateUsersData(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.loginUsers(usersDTO);
+	}
+	
+	// 회원 탈퇴 메서드(데이터는 남아있으나 resign값을 0으로 만들어 더이상 로그인 하지 못하게 만듬)
+	public int deleteAccount(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.deleteAccount(usersDTO);
+	}
+	
 
 }

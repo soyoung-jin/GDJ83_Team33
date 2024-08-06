@@ -14,34 +14,28 @@
 			<div class="row">
 				<div class="col">
 					<p class="text-white mt-5 mb-5">
-						Welcome, <b>Admin</b>
+						By, <b>Admin</b>
 					</p>
 				</div>
 			</div>
 			<div class="row ">
 				<main class="form-signin w-100 m-auto">
 					<div class="col-6 login">
-						<form class="form" action="/users/login" method="post">
-							<h1 class="h3 mb-3 fw-normal">Please Sign In</h1>
+						<form class="form" action="/users/deleteAccount" method="post">
+							<h1 class="h3 mb-3 fw-normal">Please Check Password</h1>
 
-							<div class="form-floating">
-								<input type="text" class="form-control" id="user_id"
-									name="user_id" placeholder="User ID">
-								<label for="user_id">아이디</label>
-							</div>
 							<div class="form-floating">
 								<input type="password" class="form-control" id="user_pw"
 									name="user_pw" placeholder="Password">
-								<label for="user_pw">비밀번호</label>
+								<label for="floatingInput">비밀번호</label>
+							</div>
+							<div class="form-floating">
+								<input type="password" class="form-control" id="user_pw2"
+									name="user_pw2" placeholder="Re-enter Password">
+								<label for="floatingPassword">비밀번호 확인</label>
 							</div>
 
-							<div class="form-check text-start my-3">
-								<input class="form-check-input" type="checkbox"
-									value="remember-me" id="flexCheckDefault"> <label
-									class="form-check-label" for="flexCheckDefault">
-									Remember me </label>
-							</div>
-							<button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
+							<button class="btn btn-danger w-100 py-2" type="submit">회원 탈퇴</button>
 
 						</form>
 					</div>
