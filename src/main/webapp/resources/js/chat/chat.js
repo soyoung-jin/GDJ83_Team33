@@ -27,4 +27,5 @@ sendBtn.addEventListener("click", ()=>{
 startChat.addEventListener("click", ()=>{
     chatContent.value="";
     div.remove();
+    div.innerHTML = "";
 })
