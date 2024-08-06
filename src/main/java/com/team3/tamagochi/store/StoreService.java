@@ -17,7 +17,9 @@ public class StoreService {
 	
 	public List<Object> getItemList(Integer category, Pager pager) throws Exception {
 		
-		return storeDAO.getItemList(category, pager);
+		pager.makerow();
+		
+		return storeDAO.getItemList(category);
 	}
 	
 	public ItemDTO getItemDetail(Long item_num,Integer category) throws Exception {

@@ -17,12 +17,16 @@ public class StoreDAO {
 	
 	private final String NAMESPACE="com.team3.tamagochi.store.StoreDAO.";
 	
-	public List<Object> getItemList(Integer category, Pager pager) {
+	public List<Object> getItemList(Integer category) {
 		//카테고리 0: 캐릭터, 1:무기 분류, resultType이 달라야해서 mapper 분리함
 		if(category==1) {
 			return sqlSession.selectList(NAMESPACE+"getWeaponList", category);
 		}
 		return sqlSession.selectList(NAMESPACE+"getCharacterList", category);
+	}
+	
+	public Integer getTotalPage() {
+		return sqlSession.selectOne(NAMESPACE+"getTotalPage");
 	}
 	
 	public ItemDTO getItemDetail(Long item_num,Integer category) {

@@ -19,7 +19,9 @@ public class StoreController {
 	StoreService storeService;
 	
 	@GetMapping("itemListRefresh")
-	public String getItemList(Integer category, Model model, Pager pager) throws Exception {
+	public String getItemList(Integer category, Pager pager, Model model) throws Exception {
+		
+		System.out.println(pager.getPage());
 		
 		List<Object> list = storeService.getItemList(category, pager);
 		
@@ -31,7 +33,8 @@ public class StoreController {
 	//ajax로 리스트 조회하기 위해 jsp 찾아가는 경로만 작성
 	//resources/js/storelist.js 스트립트 작성
 	@GetMapping("itemList")
-	public void getItemList() {
+	public void getItemList(Pager pager, Model model) {
+		
 	}
 	
 	//Item 상세정보 조회
