@@ -20,7 +20,8 @@
             configBar,
             configPie,
             lineChart;
-        barChart, pieChart;
+            barChart; 
+            pieChart;
         // DOM is ready
         $(function () {
             drawLineChart(); // Line Chart

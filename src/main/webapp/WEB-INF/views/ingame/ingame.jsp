@@ -3,6 +3,7 @@
 <html>
 <head>
 	<title>Home</title>
+	<link rel="stylesheet" href="/resources/css/ingame.css">
 	<c:import url="../template/header.jsp"></c:import>
 </head>
 <body id="reportsPage" class="font">
@@ -10,14 +11,15 @@
 	<c:import url="../template/topbar.jsp"></c:import>
 	
 	<div class="container">
-        <div class="row">
-            <div class="col">
-                <p class="text-white mt-5 mb-5">Welcome, <b>Admin</b></p>
-            </div>
-        </div>
+		<div id="petParent">
+			
+			<a href="" id="myPetBtn"><img id="myPet" src="/resources/img/ingame/ex2.gif" alt="moving cracked egg"></a>
+		</div>
        
     </div>
-	<c:import url="../template/footer.jsp"></c:import>
+	
+
+	<script src="/resources/js/ingame/ingame.js"></script>
 	<c:import url="../template/boot-footer.jsp"></c:import>
 	</div>
 </body>
