@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.team3.tamagochi.boards.util.Pager;
+
 @Repository
 public class StoreDAO {
 	
@@ -15,7 +17,7 @@ public class StoreDAO {
 	
 	private final String NAMESPACE="com.team3.tamagochi.store.StoreDAO.";
 	
-	public List<Object> getItemList(Integer category) {
+	public List<Object> getItemList(Integer category, Pager pager) {
 		//카테고리 0: 캐릭터, 1:무기 분류, resultType이 달라야해서 mapper 분리함
 		if(category==1) {
 			return sqlSession.selectList(NAMESPACE+"getWeaponList", category);
@@ -33,8 +35,8 @@ public class StoreDAO {
 		return sqlSession.selectOne(NAMESPACE+"getCharacterDetail", item_num);
 	}
 	
-	public void addItem (WeaponDTO weaponDTO) {
-		sqlSession.insert(NAMESPACE+"addItem", weaponDTO);
+	public int addItem (WeaponDTO weaponDTO) {
+		return sqlSession.insert(NAMESPACE+"addItem", weaponDTO);
 	}
 
 }

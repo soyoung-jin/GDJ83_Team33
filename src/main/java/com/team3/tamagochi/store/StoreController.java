@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.team3.tamagochi.boards.util.Pager;
+
 @RequestMapping("/store/*")
 @Controller
 public class StoreController {
@@ -17,10 +19,9 @@ public class StoreController {
 	StoreService storeService;
 	
 	@GetMapping("itemListRefresh")
-	public String getItemList(Integer category, Model model) throws Exception {
+	public String getItemList(Integer category, Model model, Pager pager) throws Exception {
 		
-
-		List<Object> list = storeService.getItemList(category);
+		List<Object> list = storeService.getItemList(category, pager);
 		
 		model.addAttribute("itemList", list);
 		
@@ -52,11 +53,19 @@ public class StoreController {
 	public void addItem () throws Exception {
 	}
 	
+	//weaponDTO의 변수에 무기설명 변수가 더 있어 매개변수로 받아옴
 	@PostMapping("addItem")
-	public void addItem (WeaponDTO weaponDTO) throws Exception {
+	public String addItem (WeaponDTO weaponDTO, Model model) throws Exception {
 
-		storeService.addItem(weaponDTO);
+		int result = storeService.addItem(weaponDTO);
 		
-		
+		if(result>0) {
+			model.addAttribute("result", "추가 성공");
+		} else {
+			model.addAttribute("result", "추가 실패");
+		}
+
+		model.addAttribute("url","addItem");
+		return "commons/message";
 	}
 }

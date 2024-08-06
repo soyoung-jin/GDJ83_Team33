@@ -29,6 +29,16 @@
 					</div>
 				</div>
 				</div>
+				
+				<nav aria-label="Page navigation example">
+				  <ul class="pagination">
+				    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+				    <li class="page-item"><a class="page-link" href="#">1</a></li>
+				    <li class="page-item"><a class="page-link" href="#">2</a></li>
+				    <li class="page-item"><a class="page-link" href="#">3</a></li>
+				    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+				  </ul>
+				</nav>
             	
             	<!-- 위시리스트에서 사용
             	<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
@@ -53,9 +63,11 @@
          -->
             <!-- row -->
     </div>
-	<c:import url="../template/footer.jsp"></c:import>
-	<c:import url="../template/boot-footer.jsp"></c:import>
 	</div>
+	</div>
+	<c:import url="../template/footer.jsp"></c:import>
+	</div>
+	<c:import url="../template/boot-footer.jsp"></c:import>
 	
 	<script src="/resources/js/storelist.js"></script>
 </body>
