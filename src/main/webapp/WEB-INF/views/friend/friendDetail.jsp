@@ -42,7 +42,7 @@
                      </div>
               		 <div class="d-md-flex justify-content-md-end mt-5">
          				 <a class="btn btn-secondary justify-content-end" href="./friendList" role="button">돌아가기</a>
-         				 <a class="btn btn-danger justify-content-end ml-2" href="deleteFriend?friend_num=${usersDTO.friendDTO.friend_num}" role="button">친구 끊기</a>
+         				 <a class="btn btn-danger justify-content-end ml-2" href="deleteFriend?friend_num=${usersDTO.friendDTO[0].friend_num}" role="button">친구 끊기</a>
         			 </div>
              </div>
         </div>
