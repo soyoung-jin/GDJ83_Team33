@@ -2,19 +2,12 @@ package com.team3.tamagochi.store;
 
 public class ItemDTO {
 	
-	private Long item_num;
 	private String item_name;
 	private Long item_hp;
 	private Long item_atk;
 	private Long item_dod;
 	private Long item_price;
 	
-	public Long getItem_num() {
-		return item_num;
-	}
-	public void setItem_num(Long item_num) {
-		this.item_num = item_num;
-	}
 	public String getItem_name() {
 		return item_name;
 	}

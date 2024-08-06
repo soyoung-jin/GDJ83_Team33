@@ -12,8 +12,7 @@
 	<div class="container">
         <div class="row">
             <div class="col">
-            	<h1 class="text-white mt-5 mb-5">STORE</h1>
-            	
+				<h1 class="text-white mt-5 mb-5">STORE</h1>
             	<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
             	<div class="mb-5">
             	<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
