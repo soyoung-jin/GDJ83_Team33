@@ -6,7 +6,15 @@ public class WeaponDTO extends ItemDTO {
 	
 	private String weapon_description;
 	
+	private InventoryDTO inventoryDTO;
+	
 
+	public InventoryDTO getInventoryDTO() {
+		return inventoryDTO;
+	}
+	public void setInventoryDTO(InventoryDTO inventoryDTO) {
+		this.inventoryDTO = inventoryDTO;
+	}
 	public Long getWeapon_num() {
 		return weapon_num;
 	}

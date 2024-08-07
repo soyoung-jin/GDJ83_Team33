@@ -19,7 +19,16 @@ public class StoreService {
 		
 		pager.makerow();
 		
-		return storeDAO.getItemList(category);
+		Integer totalCount =  storeDAO.getTotalCount(category);
+		
+		pager.makeNum(totalCount);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("category", category);
+		map.put("pager", pager);
+		
+		return storeDAO.getItemList(map);
 	}
 	
 	public ItemDTO getItemDetail(Long item_num,Integer category) throws Exception {
