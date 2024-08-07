@@ -1,13 +1,20 @@
 package com.team3.tamagochi.users;
 
+import java.util.List;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.team3.tamagochi.store.WeaponDTO;
 
 @Controller
 @RequestMapping("/users/*")
@@ -38,10 +45,14 @@ public class UsersController {
 	
 	
 	@GetMapping("login")
-	public void loginUsers() throws Exception{}
+	public void loginUsers(Model model, @CookieValue(name="remember", required=false, defaultValue="") String value) throws Exception{
+		
+		model.addAttribute("remember", value);
+	}
 	
 	@PostMapping("login")
-	public String loginUsers(UsersDTO usersDTO, Model model, HttpSession session) throws Exception{
+	public String loginUsers(UsersDTO usersDTO, Model model, HttpSession session,
+			String remember, HttpServletResponse response) throws Exception{
 		
 		usersDTO = usersService.loginUsers(usersDTO);
 		
@@ -56,6 +67,17 @@ public class UsersController {
 		}else {
 			model.addAttribute("result", "로그인 실패!");
 			model.addAttribute("url", "/");
+		}
+		
+		// 아이디 저장 코드 (쿠키 사용)
+		if(remember != null) {
+			Cookie cookie = new Cookie("remember", usersDTO.getUser_id());
+			cookie.setMaxAge(3600);
+			response.addCookie(cookie);
+		}else {
+			Cookie cookie = new Cookie("remember", "");
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
 		}
 		
 		return "commons/message";
@@ -128,8 +150,13 @@ public class UsersController {
 	
 	
 	@GetMapping("inventory")
-	public void getInvenList() throws Exception{
+	public void getInvenList(UsersDTO usersDTO, Model model, HttpSession session) throws Exception{
 		
+		usersDTO = (UsersDTO)session.getAttribute("users_info");
+		
+		List<WeaponDTO> list = usersService.getInvenList(usersDTO);
+		
+		model.addAttribute("list", list);
 	}
 
 }
