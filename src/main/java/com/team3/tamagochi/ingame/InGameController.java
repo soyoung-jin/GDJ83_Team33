@@ -14,4 +14,9 @@ public class InGameController {
 		
 	}
 	
+	@GetMapping("ingameChat")
+	public void gameChatView() throws Exception {
+		
+	}
+	
 }
