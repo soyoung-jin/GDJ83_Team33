@@ -1,7 +1,11 @@
 package com.team3.tamagochi.users;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.team3.tamagochi.store.WeaponDTO;
 
 @Service
 public class UsersService {
@@ -52,6 +56,13 @@ public class UsersService {
 	public int deleteAccount(UsersDTO usersDTO) throws Exception{
 		
 		return usersDAO.deleteAccount(usersDTO);
+	}
+	
+	// 인벤토리에서 내가 보유한 무기를 가져오는 메서드
+	// 무기 데이터를 가져와야 하므로 리턴 타입은 weaponDTO가 된다
+	public List<WeaponDTO> getInvenList(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.getInvenList(usersDTO);
 	}
 	
 	

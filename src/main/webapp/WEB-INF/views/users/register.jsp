@@ -35,6 +35,10 @@
 								<label for="user_pw">비밀번호</label>
 							</div>
 							<div class="form-floating">
+								<input type="password" class="form-control" id="user_pw2">
+								<label for="user_pw2">비밀번호 확인</label>
+							</div>
+							<div class="form-floating">
 								<input type="text" class="form-control" id="user_name"
 								name="user_name">
 								<label for="user_name">이름</label>
@@ -45,7 +49,7 @@
 								<label for="user_nickname">닉네임</label>
 							</div>
 							<div class="form-floating">
-								<input type="text" class="form-control" id="user_phone"
+								<input type="tel" class="form-control" id="user_phone"
 								name="user_phone">
 								<label for="user_phone">전화 번호</label>
 							</div>
@@ -55,7 +59,7 @@
 								<label for="user_email">이메일</label>
 							</div>
 							
-							<button class="btn btn-primary w-100 py-2" type="submit">회원 가입</button>
+							<button id="blankCheck" class="btn btn-primary w-100 py-2" type="submit">회원 가입</button>
 
 						</form>
 					</div>
@@ -65,5 +69,6 @@
 		<c:import url="../template/footer.jsp"></c:import>
 		<c:import url="../template/boot-footer.jsp"></c:import>
 	</div>
+	<script src="/resources/js/users/register.js"></script>
 </body>
 </html>
