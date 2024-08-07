@@ -1,15 +1,16 @@
 #myPet {
     width: 20%;
     position: absolute; /*부모 태그를 기준으로 한 위치 - petParent div*/
-    left: 50px;
-    top: 100px;
+    left: 500px;
+    top: 400px;
     cursor: pointer;
 }
 
 #petChat {
     position: absolute;
-    left: 50px;
-    top: 100px;;
+    background-color: brown;
+    
+    
 }
 
 
