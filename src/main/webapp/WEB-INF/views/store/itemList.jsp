@@ -13,22 +13,20 @@
             <div class="col">
 				<h1 class="text-white mt-5 mb-5">STORE</h1>
 
-				<form action="list">
 					<div class="form-row align-items-center mb-3">
 						<div class="col-auto">
-							<select name="kind" class="custom-select mr-sm-2" id="kind">
-							<option value="k1">종족</option>
-							<option value="k2">이름</option>
+							<select id="kind" class="custom-select mr-sm-2">
+							<option value="k1" id="option">종족</option>
+							<option value="k2">가격</option>
 							</select>
 					    </div>
 					    <div class="col-sm-3 my-1">
-							<input type="text" name="search" class="form-control" id="inlineFormInputName">
+							<input type="text" name="search" class="form-control" id="search">
 					    </div>
 					    <div class="col-auto my-1">
-							<button type="submit" class="btn btn-primary">검색</button>
+							<button type="button" class="btn btn-primary" id="searchbtn">검색</button>
 					    </div>
 					</div>
-				</form>
 				
 				
 				<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->

@@ -20,6 +20,7 @@ public class StoreController {
 	
 	@GetMapping("itemListRefresh")
 	public String getItemList(Integer category, Pager pager, Model model) throws Exception {
+		
 		pager.setPerPage(6);
 		
 		List<Object> list = storeService.getItemList(category, pager);
