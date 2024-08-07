@@ -35,11 +35,22 @@ public class StoreService {
 	
 	public ItemDTO getItemDetail(Long item_num,Integer category) throws Exception {
 		
+		
 		return storeDAO.getItemDetail(item_num, category);
 	}
 	
 	public int addItem(WeaponDTO weaponDTO) {
 		return storeDAO.addItem(weaponDTO);
+	}
+	
+	public int updateItem(WeaponDTO weaponDTO, Long item_num) {
+		
+		Map <String, Object> map = new HashMap<String, Object>();
+		
+		map.put("dto", weaponDTO);
+		map.put("item_num", item_num);
+		
+		return storeDAO.updateItem(map);		
 	}
 
 }

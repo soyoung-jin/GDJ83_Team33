@@ -29,17 +29,18 @@ function getList(num, page, kind, search){
         
         itemListdiv.innerHTML=res
 
-    })
-    .catch((res)=>{alert("리스트 조회 실패")})
+    }).catch(()=>{alert("리스트 조회 실패")})
 }
 
 itemListdiv.addEventListener("click", (e)=>{
 
-    page = e.target.id
+    if(e.target.classList.contains("pagenum")){
+        page = e.target.getAttribute("data-num");
+        getList(category.value, page, kind, search)
+    }
 
     console.log(page)
 
-    getList(category.value, page, kind, search)
 })
 
 searchbtn.addEventListener("click",()=>{

@@ -43,14 +43,9 @@ public class StoreController {
 	//category 리스트 조회 때 생긴 parameter 재사용
 	public void getItemDetail (Long item_num, Integer category, Model model) throws Exception {
 		
-		if(category == 1) {
-			WeaponDTO itemDTO = (WeaponDTO) storeService.getItemDetail(item_num,category);
-			model.addAttribute("itemDTO", itemDTO);
-
-		} else if(category == 0){
-			CharacterDTO itemDTO = (CharacterDTO) storeService.getItemDetail(item_num,category);
-			model.addAttribute("itemDTO", itemDTO);
-		}
+		ItemDTO itemDTO = storeService.getItemDetail(item_num, category);
+		
+		model.addAttribute("dto", itemDTO);
 	}
 	
 	@GetMapping("addItem")
@@ -71,5 +66,27 @@ public class StoreController {
 
 		model.addAttribute("url","addItem");
 		return "commons/message";
+	}
+	
+	@GetMapping("updateItem")
+	public String updateItem (Integer category, Long item_num, Model model) throws Exception {
+		
+		ItemDTO itemDTO = storeService.getItemDetail(item_num, category);
+		
+		model.addAttribute("dto", itemDTO);
+		model.addAttribute("category", category);
+		
+		return "store/addItem";
+	}
+	
+	@PostMapping("updateItem")
+	public String updateItem (WeaponDTO weaponDTO, Long item_num) throws Exception{
+		int result = storeService.updateItem(weaponDTO, item_num);
+		
+		return "store/itemList";
+	}
+	
+	@GetMapping("deleteItem")
+	public void deleteItem () throws Exception {
 	}
 }

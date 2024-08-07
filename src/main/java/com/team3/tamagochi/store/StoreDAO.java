@@ -30,7 +30,6 @@ public class StoreDAO {
 	}
 	
 	public ItemDTO getItemDetail(Long item_num,Integer category) {
-	
 		//카테고리 0: 캐릭터, 1:무기 분류, resultType이 달라야해서 mapper 분리함
 		if(category==1) {
 			return sqlSession.selectOne(NAMESPACE+"getWeaponDetail", item_num);
@@ -41,6 +40,14 @@ public class StoreDAO {
 	
 	public int addItem (WeaponDTO weaponDTO) {
 		return sqlSession.insert(NAMESPACE+"addItem", weaponDTO);
+	}
+	
+	public int updateItem (Map <String,Object> map) {
+		return sqlSession.update(NAMESPACE+"updateItem", map);
+	}
+	
+	public int deleteItem () {
+		return sqlSession.delete(NAMESPACE+"deleteItem", NAMESPACE)
 	}
 
 }

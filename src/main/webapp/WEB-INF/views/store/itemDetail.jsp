@@ -13,6 +13,8 @@
         <div class="row">
             <div class="col">
                 <h1 class="text-white mt-5 mb-5">Item Detail</h1>
+		        <a class="btn btn-primary" href="updateItem?category=${param.category}&item_num=${param.category==1?dto.weapon_num:dto.character_num}">수정</a>
+	            <a class="btn btn-primary" href="deleteItem?category=${param.category}&item_num=${param.category==1?dto.weapon_num:dto.character_num}">삭제</a>
                 <img alt="" width="300" src="/resources/img/character/4.gif">
 				<table class="table">
 					<thead>
@@ -36,14 +38,14 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>${itemDTO.item_name}</td>
-							<td>${itemDTO.item_hp}</td>
-							<td>${itemDTO.item_atk}</td>
-							<td>${itemDTO.item_dod}</td>
+							<td>${dto.item_name}</td>
+							<td>${dto.item_hp}</td>
+							<td>${dto.item_atk}</td>
+							<td>${dto.item_dod}</td>
 							<c:if test="${param.category == 1}">
-								<td>${itemDTO.weapon_description}</td>
+								<td>${dto.weapon_description}</td>
 							</c:if>
-							<td>${itemDTO.item_price}</td>
+							<td>${dto.item_price}</td>
 						</tr>
 					</tbody>
 				</table>
