@@ -110,5 +110,19 @@
   			</otherwise>
   		</choose>
   	</update>
+  	
+  	<delete id="deleteItem" parameterType="java.util.Map">
+  		DELETE
+  		<choose>
+  			<when test="category == 1">
+  				WEAPON
+  				WHERE WEAPON_NUM = #{item_num}
+  			</when>
+  			<otherwise>
+  				CHARACTER
+  				WHERE CHARACTER_NUM =#{item_num}
+  			</otherwise>
+  		</choose>
+  	</delete>
   
   </mapper>
