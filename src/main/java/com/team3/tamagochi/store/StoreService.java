@@ -16,17 +16,19 @@ public class StoreService {
 	StoreDAO storeDAO;
 	
 	public List<Object> getItemList(Integer category, Pager pager) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("category", category);
 		
 		pager.makerow();
 		
-		Integer totalCount =  storeDAO.getTotalCount(category);
+		map.put("pager", pager);		
+		
+		Integer totalCount =  storeDAO.getTotalCount(map);
+		
+		System.out.println(totalCount);
 		
 		pager.makeNum(totalCount);
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("category", category);
-		map.put("pager", pager);
 		
 		return storeDAO.getItemList(map);
 	}

@@ -25,8 +25,8 @@ public class StoreDAO {
 		return sqlSession.selectList(NAMESPACE+"getCharacterList", map.get("pager"));
 	}
 	
-	public Integer getTotalCount(Integer category) {
-		return sqlSession.selectOne(NAMESPACE+"getTotalCount", category);
+	public Integer getTotalCount(Map<String, Object> map) {
+		return sqlSession.selectOne(NAMESPACE+"getTotalCount", map);
 	}
 	
 	public ItemDTO getItemDetail(Long item_num,Integer category) {

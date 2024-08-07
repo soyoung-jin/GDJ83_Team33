@@ -17,7 +17,14 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>이름</th>
+						<c:choose>
+							<c:when test="${param.category == 1}">
+								<th>무기 이름</th>
+							</c:when>
+							<c:otherwise>
+								<th>종족</th>
+							</c:otherwise>
+						</c:choose>
 							<th>추가 체력</th>
 							<th>추가 공격력</th>
 							<th>추가 회피력</th>
