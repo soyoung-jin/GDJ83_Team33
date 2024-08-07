@@ -1,5 +1,7 @@
 package com.team3.tamagochi.store;
 
+import com.team3.tamagochi.users.InventoryDTO;
+
 public class WeaponDTO extends ItemDTO {
 	
 	private Long weapon_num;
