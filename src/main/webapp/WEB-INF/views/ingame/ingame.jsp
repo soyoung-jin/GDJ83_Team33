@@ -41,7 +41,7 @@
 						<div class="modal-dialog modal-dialog-scrollable">
 						  <div class="modal-content">
 							<div class="modal-header">
-							  <h1 class="modal-title fs-5" id="exampleModalLabel">To. ${usersDTO.friendDTO[0].friend_id}</h1>
+							  <h1 class="modal-title fs-5" id="exampleModalLabel">마이펫</h1>
 							  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
 							</div>
 							<div class="modal-body">
@@ -76,8 +76,8 @@
 	
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-	
 	<script src="/resources/js/ingame/ingame.js"></script>
+	<script src="/resources/js/ingame/chatbot.js"></script>
 	<c:import url="../template/boot-footer.jsp"></c:import>
 
 </body>
