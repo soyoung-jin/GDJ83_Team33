@@ -7,7 +7,7 @@ let div = document.createElement("div");
 let petChatBtn;
 /* =====================챗봇에 관련된 변수===================== */
 // 내 키
-const apiKey = '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';
+const apiKey = '';
 // post로 보낼시 json 형식으로 나타날 주소 
 const apiEndpoint = 'https://api.openai.com/v1/chat/completions';
 
