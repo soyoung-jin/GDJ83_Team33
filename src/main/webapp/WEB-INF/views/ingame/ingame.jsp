@@ -12,7 +12,7 @@
 	<div class="" id="home">
 	<c:import url="../template/topbar.jsp"></c:import>
 			<!-- 캐릭터 상태&기본행위 메뉴 -->
-			<div class="row justify-content-end">
+			<div class="row justify-content-end mt-5 mr-5">
 				<div class="col-sm-5 justify-content-center ">
 				  <div class="card">
 					<div class="card-body">
