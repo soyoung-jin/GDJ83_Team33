@@ -28,51 +28,63 @@
 			<div class="row tm-content-row">
 				<div class="tm-block-col tm-col-avatar">
 					<div class="tm-bg-primary-dark tm-block tm-block-avatar">
-						<h2 class="tm-block-title">캐릭터 이름</h2>
-						<input name="name" value="${myPetDTO.pet_name }" type="text" class="form-control validate" />
-						<div class="tm-avatar-container">
-							<img src="/resources/img/character/4.gif" alt="Avatar"
-								class="tm-avatar img-fluid mb-4" />
-						</div>
-						<button class="btn btn-primary btn-block text-uppercase">
-							캐릭터 이름 수정</button>
+						<form action="/mypet/updateName" method="post" class="tm-signup-form row">
+							<h2 class="tm-block-title">캐릭터 이름</h2>
+							<input name="pet_name" value="${myPetDTO.pet_name }" type="text"
+								class="form-control validate" />
+							<input name="pet_num" value="${myPetDTO.pet_num }" type="hidden"/>
+							<div class="tm-avatar-container">
+								<img src="/resources/img/character/4.gif" alt="Avatar"
+									class="tm-avatar img-fluid mb-4" />
+							</div>
+							<button class="btn btn-primary btn-block text-uppercase">
+								캐릭터 이름 수정</button>
+						</form>
 					</div>
 				</div>
 				<div class="tm-block-col tm-col-account-settings">
 					<div class="tm-bg-primary-dark tm-block tm-block-settings">
-						<h2 class="tm-block-title">Account Settings</h2>
+						<h2 class="tm-block-title">캐릭터 정보</h2>
 						<form action="" class="tm-signup-form row">
 							<div class="form-group col-lg-6">
-								<label for="name">Account Name</label> <input id="name"
-									name="name" type="text" class="form-control validate" />
+								<label for="pet_spc">종족</label>
+								<input id="pet_spc" name="pet_spc" value="${myPetDTO.pet_spc }"
+									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 							</div>
 							<div class="form-group col-lg-6">
-								<label for="email">Account Email</label> <input id="email"
-									name="email" type="email" class="form-control validate" />
+								<label for="pet_level">레벨</label>
+								<input id="pet_level" name="pet_level" value="${myPetDTO.pet_level }"
+									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 							</div>
 							<div class="form-group col-lg-6">
-								<label for="password">Password</label> <input id="password"
-									name="password" type="password" class="form-control validate" />
+								<label for="pet_exp">경험치</label>
+								<input id="pet_exp" name="pet_exp" value="${myPetDTO.pet_exp }"
+									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 							</div>
 							<div class="form-group col-lg-6">
-								<label for="password2">Re-enter Password</label> <input
-									id="password2" name="password2" type="password"
-									class="form-control validate" />
+								<label for="pet_hp">체력</label>
+								<input id="pet_hp" name="pet_hp" value="${myPetDTO.pet_hp }"
+									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 							</div>
 							<div class="form-group col-lg-6">
-								<label for="phone">Phone</label> <input id="phone" name="phone"
-									type="tel" class="form-control validate" />
+								<label for="pet_atk">공격력</label>
+								<input id="pet_atk" name="pet_atk" value="${myPetDTO.pet_atk }"
+									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 							</div>
 							<div class="form-group col-lg-6">
-								<label class="tm-hide-sm">&nbsp;</label>
-								<button type="submit"
-									class="btn btn-primary btn-block text-uppercase">
-									Update Your Profile</button>
+								<label for="pet_dod">회피력</label>
+								<input id="pet_dod" name="pet_dod" value="${myPetDTO.pet_dod }"
+									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 							</div>
-							<div class="col-12">
-								<button type="submit"
-									class="btn btn-primary btn-block text-uppercase">
-									Delete Your Account</button>
+							<div class="form-group col-lg-6">
+								<label for="pet_pop">인기도</label>
+								<input id="pet_pop" name="pet_pop" value="${myPetDTO.pet_pop }"
+									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
+							</div>
+							<div class="form-group col-lg-6">
+								<label for="pet_hungry">포만감</label>
+								<input id="pet_hungry" name="pet_hungry" value="${myPetDTO.pet_hungry }"
+									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 							</div>
 						</form>
 					</div>

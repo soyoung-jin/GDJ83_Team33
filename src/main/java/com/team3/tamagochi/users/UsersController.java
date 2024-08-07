@@ -125,5 +125,11 @@ public class UsersController {
 		
 		return "commons/message";
 	}
+	
+	
+	@GetMapping("inventory")
+	public void getInvenList() throws Exception{
+		
+	}
 
 }

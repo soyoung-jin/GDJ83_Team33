@@ -6,7 +6,6 @@
 	<c:import url="../template/header.jsp"></c:import>
 </head>
 <body id="reportsPage" class="font">
-	<div class="" id="home">
 		<c:import url="../template/topbar.jsp"></c:import>
 
 		<div class="container">
@@ -86,6 +85,5 @@
 		</div>
 		<c:import url="../template/footer.jsp"></c:import>
 		<c:import url="../template/boot-footer.jsp"></c:import>
-	</div>
 </body>
 </html>

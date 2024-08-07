@@ -30,6 +30,29 @@
   		WHERE USER_ID = #{user_id} AND USER_PW = #{user_pw}
   	</update>
   	
+  	<!-- 내 소지품에서 무기를 가져오는 쿼리문. JOIN을 사용했기 때문에 ResultMap이 필요하다 -->
+  	<select id="getInvenList" parameterType="InventoryDTO" resultMap="invenResult">
+  		SELECT * FROM
+  		INVENTORY I
+		LEFT JOIN
+		WEAPON W
+		ON I.WEAPON_NUM = W.WEAPON_NUM
+		WHERE I.user_id = #{user_id}
+  	</select>
+  	<resultMap type="WeaponDTO" id="invenResult">
+  		<id column="WEAPON_NUM" property="weapon_num"></id>
+  		<result column="ITEM_NAME" property="item_name"></result>
+  		<result column="ITEM_DESCRIPTION" property="item_description"></result>
+  		<result column="ITEM_HP" property="item_hp"></result>
+  		<result column="ITEM_ATK" property="item_atk"></result>
+  		<result column="ITEM_DOD" property="item_dod"></result>
+  		
+  		<association property="InventoryDTO" javaType="InventoryDTO">
+  			<id column="INVENTORY_NUM" property="inventory_num"></id>
+  			<result column="USER_ID" property="user_id"/>
+  		</association>
+  	</resultMap>
+  	
   	
   	
   	

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.team3.tamagochi.users.UsersDTO;
@@ -40,6 +41,23 @@ public class MyPetController {
 		// detail 페이지에서 select바로 내가 가진 캐릭터 목록을 보여주는 코드
 		// 위에서 만들어둔 getList 메서드를 호출해서 내가 보유하고 있는 캐릭터 list를 가져옴
 		this.getList(model, session);
+	}
+	
+	@PostMapping("updateName")
+	public String updatePetName(MyPetDTO myPetDTO, Model model) throws Exception{
+		
+		int result = myPetService.updatePetName(myPetDTO);
+		
+		if(result > 0) {
+			model.addAttribute("result", "이름이 변경되었습니다.");
+			model.addAttribute("url", "/mypet/petDetail?pet_num=" + myPetDTO.getPet_num());
+		}else {
+			model.addAttribute("result", "이름 수정 실패!");
+			model.addAttribute("url", "/mypet/petDetail?pet_num=" + myPetDTO.getPet_num());
+		}
+		
+		return "commons/message";
+		
 	}
 
 }
