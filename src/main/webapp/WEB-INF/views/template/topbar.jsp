@@ -56,7 +56,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/users/mypage">내 정보</a>
                                 <a class="dropdown-item" href="/mypet/mypetList">내 캐릭터</a>
-                                <a class="dropdown-item" href="#">거래 내역</a>
+                                <a class="dropdown-item" href="#">인벤토리</a>
                             </div>
                         </li>
                     </ul>

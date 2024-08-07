@@ -26,5 +26,10 @@ public class MyPetDAO {
 		
 		return sqlSession.selectOne(NAMESAPCE + "getDetail", myPetDTO);
 	}
+	
+	public int updatePetName(MyPetDTO myPetDTO) throws Exception{
+		
+		return sqlSession.update(NAMESAPCE + "updatePetName", myPetDTO);
+	}
 
 }

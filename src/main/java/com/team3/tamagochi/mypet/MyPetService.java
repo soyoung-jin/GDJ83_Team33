@@ -23,5 +23,10 @@ public class MyPetService {
 		
 		return myPetDAO.getDetail(myPetDTO);
 	}
+	
+	public int updatePetName(MyPetDTO myPetDTO) throws Exception{
+		
+		return myPetDAO.updatePetName(myPetDTO);
+	}
 
 }
