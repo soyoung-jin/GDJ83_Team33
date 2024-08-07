@@ -16,7 +16,8 @@
 					<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 						<h2 class="tm-block-title">내 캐릭터 정보</h2>
 						<p class="text-white">캐릭터 선택</p>
-						<select class="custom-select">
+						<select id="categori" class="custom-select">
+						<option>보유 캐릭터</option>
 						<c:forEach items="${list }" var="dto">
 							<option value="${dto.pet_num }">${dto.pet_name }</option>						
 						</c:forEach>
@@ -95,5 +96,6 @@
 	</div>
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>
+	<script src="/resources/js/selectPetDetail.js"></script>
 </body>
 </html>

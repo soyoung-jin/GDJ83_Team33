@@ -5,9 +5,9 @@ const startChat = document.getElementById("startChat");
 let div = document.createElement("div");
 
 function chatting () {
-    let h1 = document.createElement("h1");
-    h1.append(chatContent.value);
-    div.append(h1);
+    let h3 = document.createElement("h3");
+    h3.append(chatContent.value);
+    div.append(h3);
     modalContent.append(div);
 }
 

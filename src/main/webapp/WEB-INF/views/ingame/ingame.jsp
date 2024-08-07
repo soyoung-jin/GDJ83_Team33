@@ -12,8 +12,8 @@
 	<div class="" id="home">
 	<c:import url="../template/topbar.jsp"></c:import>
 			<!-- 캐릭터 상태&기본행위 메뉴 -->
-			<div class="row justify-content-end">
-				<div class="col-sm-5 justify-content-center ">
+			<div class="row justify-content-end mt-5 mr-5">
+				<div class="col-sm-5 col-lg-3 col-md-3 justify-content-center ">
 				  <div class="card">
 					<div class="card-body">
 					  <h5 class="card-title">펫이름</h5>
@@ -22,7 +22,7 @@
 					  <p class="card-text">펫상태3</p>
 					  <div>
 					  <a href="#" class="btn btn-primary">밥주기</a>
-					  <a href="#" class="btn btn-primary">산책하기</a>
+					  <a href="#" class="btn btn-primary mt-2 mb-2">산책하기</a>
 					  <a href="#" class="btn btn-primary">똥치우기</a>
 					  </div>
 					</div>
@@ -41,7 +41,7 @@
 						<div class="modal-dialog modal-dialog-scrollable">
 						  <div class="modal-content">
 							<div class="modal-header">
-							  <h1 class="modal-title fs-5" id="exampleModalLabel">To. ${usersDTO.friendDTO[0].friend_id}</h1>
+							  <h1 class="modal-title fs-5" id="exampleModalLabel">마이펫</h1>
 							  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
 							</div>
 							<div class="modal-body">
@@ -76,8 +76,8 @@
 	
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-	
 	<script src="/resources/js/ingame/ingame.js"></script>
+	<script src="/resources/js/ingame/chatbot.js"></script>
 	<c:import url="../template/boot-footer.jsp"></c:import>
 
 </body>
