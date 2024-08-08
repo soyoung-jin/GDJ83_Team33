@@ -7,6 +7,7 @@ public class ItemDTO {
 	private Long item_num;
 	private Long category_num;
 	private String item_name;
+	private String item_description;
 	private Long item_hp;
 	private Long item_atk;
 	private Long item_dod;
@@ -15,6 +16,12 @@ public class ItemDTO {
 	private InventoryDTO inventoryDTO;
 	
 	
+	public String getItem_description() {
+		return item_description;
+	}
+	public void setItem_description(String item_description) {
+		this.item_description = item_description;
+	}
 	public InventoryDTO getInventoryDTO() {
 		return inventoryDTO;
 	}

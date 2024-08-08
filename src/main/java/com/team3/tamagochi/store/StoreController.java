@@ -20,10 +20,12 @@ public class StoreController {
 
 	@GetMapping("itemListRefresh")
 	public String getItemList(ItemDTO itemDTO, Pager pager, Model model) throws Exception {
+		
+		System.out.println(itemDTO.getCategory_num());
 
 		pager.setPerPage(6);
 
-		List<Object> list = storeService.getItemList(itemDTO, pager);
+		List<ItemDTO> list = storeService.getItemList(itemDTO, pager);
 
 		model.addAttribute("itemList", list);
 		model.addAttribute("pager", pager);

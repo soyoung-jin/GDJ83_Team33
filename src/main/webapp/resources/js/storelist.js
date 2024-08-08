@@ -3,7 +3,7 @@ const itemListdiv = document.getElementById("itemListdiv");
 const option = document.getElementById("option");
 const searchbtn = document.getElementById("searchbtn");
 
-getList(0,1,kind,search)
+getList(0,1,"","")
 
 function getList(category_num, page, kind, search){
     
@@ -17,16 +17,11 @@ function getList(category_num, page, kind, search){
     }).catch(()=>{alert("리스트 조회 실패")})
 }
 
-// category.addEventListener("change",()=>{
-    
-//     if(category.value == 1){
-//         option.innerHTML="이름"
-//     } else {
-//         option.innerHTML="종족"
-//     }
+category.addEventListener("change",()=>{
 
-//     getList(category.value,page,kind,search);
-// })
+    getList(category.value,1,"","");
+
+})
 
 
 // itemListdiv.addEventListener("click", (e)=>{
