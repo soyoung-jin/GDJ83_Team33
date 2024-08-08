@@ -41,5 +41,9 @@ public class StoreDAO {
 	public int deleteItem(ItemDTO itemDTO) {
 		return sqlSession.update(NAMESPACE + "deleteItem", itemDTO);
 	}
+	
+	public int addWishList(WishListDTO wishListDTO) {
+		return sqlSession.insert(NAMESPACE+"addWishList", wishListDTO);
+	}
 
 }

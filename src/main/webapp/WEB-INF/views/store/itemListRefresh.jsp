@@ -20,7 +20,7 @@
 								${itemDTO.item_price} 원
 							</p>
 							<a href="#" class="btn btn-primary">구매</a>
-							<a href="addwishList?item_num=${itemDTO.item_num}" class="btn btn-info">장바구니</a>
+							<button type="button" class="btn btn-info addwish" data-inum="${itemDTO.item_num}">장바구니</a>
 						</div>
 					</div>
 				</div>

@@ -75,6 +75,6 @@
 		</div>
 		<c:import url="../template/footer.jsp"></c:import>
 		<c:import url="../template/boot-footer.jsp"></c:import>
-		<script src="/resources/js/addItem.js"></script>
+		<script src="/resources/js/store/addItem.js"></script>
 </body>
 </html>

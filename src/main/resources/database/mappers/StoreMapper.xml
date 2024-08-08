@@ -5,7 +5,12 @@
   
   <mapper namespace="com.team3.tamagochi.store.StoreDAO">
   
-  	<select id="getItemList" parameterType="java.util.Map" resultType="ItemDTO">
+  	<insert id="addWishList" parameterType="WishListDTO">
+  		INSERT INTO WISHLIST (WISHLIST_NUM, USER_ID, ITEM_ID)
+  		VALUES (WISHLIST_SEQ.NEXTVAL, #{user_id}, #{item_id})
+  	</insert>
+  
+  	<select id="getItemList" parameterType="Map" resultType="ItemDTO">
   		SELECT *
   		FROM (SELECT ROWNUM R, C.*
 				FROM (SELECT *
@@ -25,7 +30,7 @@
   		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
   	</select>
   	
-  	<select id="getTotalCount" parameterType="java.util.Map" resultType="Integer">
+  	<select id="getTotalCount" parameterType="Map" resultType="Integer">
   		SELECT COUNT(C.ITEM_NUM)
   		FROM (SELECT *
   				FROM ITEM

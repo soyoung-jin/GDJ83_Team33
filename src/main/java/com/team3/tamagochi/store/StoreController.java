@@ -28,11 +28,17 @@ public class StoreController {
 	//==============================위시리스트 관련 메소드=============================
 	
 	@GetMapping("addWishList")
-	public void addWishList(WishListDTO wishListDTO, HttpSession session) throws Exception {
+	public void addWishList(WishListDTO wishListDTO, HttpSession session, Model model) throws Exception {
 		
 		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
 		
+		wishListDTO.setUser_id(usersDTO.getUser_id());
 		
+		int result = storeService.addWishList (wishListDTO);
+		
+		if (result == 1) {
+			model.addAttribute("result", "위시리스트 추가 성공");
+		}
 		
 	}
 	

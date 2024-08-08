@@ -50,5 +50,9 @@ public class StoreService {
 
 		return storeDAO.deleteItem(itemDTO);
 	}
+	
+	public int addWishList(WishListDTO wishListDTO) {
+		return storeDAO.addWishList(wishListDTO);
+	}
 
 }
