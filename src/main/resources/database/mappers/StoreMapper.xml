@@ -94,5 +94,35 @@
   		</choose>
   		
   	</insert>
+  	
+  	<update id="updateItem" parameterType="java.util.Map">
+  		UPDATE 
+  		<choose>
+  			<when test="weapon_description != null">
+  				WEAPON SET
+  				ITEM_NAME=#{dto.item_name}, WEAPON_DESCRIPTION=#{dto.weapon_description}, ITEM_HP=#{dto.item_hp}, ITEM_ATK=#{dto.item_atk}, ITEM_DOD=#{dto.item_dod}, ITEM_PRICE=#{dto.item_price}
+  				WHERE WEAPON_NUM = #{item_num}
+  			</when>
+  			<otherwise>
+  				CHARACTER SET
+  				ITEM_NAME=#{dto.item_name}, ITEM_HP=#{dto.item_hp}, ITEM_ATK=#{dto.item_atk}, ITEM_DOD=#{dto.item_dod}, ITEM_PRICE=#{dto.item_price}
+  				WHERE CHARACTER_NUM = #{item_num}
+  			</otherwise>
+  		</choose>
+  	</update>
+  	
+  	<delete id="deleteItem" parameterType="java.util.Map">
+  		DELETE
+  		<choose>
+  			<when test="category == 1">
+  				WEAPON
+  				WHERE WEAPON_NUM = #{item_num}
+  			</when>
+  			<otherwise>
+  				CHARACTER
+  				WHERE CHARACTER_NUM =#{item_num}
+  			</otherwise>
+  		</choose>
+  	</delete>
   
   </mapper>
