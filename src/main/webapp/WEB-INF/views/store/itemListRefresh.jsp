@@ -41,7 +41,7 @@
 					<ul class="pagination">
 					<li class="page-item ${pager.pre?'':'disabled'}"><a class="page-link" id="${pager.startNum-1}" >Previous</a></li>
 					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" step="1" var="i">
-						<li class="page-item"><a class="page-link" id="${i}">${i}</a></li>
+						<li class="page-item"><a class="page-link pagenum" data-num="${i}">${i}</a></li>
 					</c:forEach>
 					<li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" id="${pager.lastNum+1}">Next</a></li>
 					</ul>

@@ -12,8 +12,10 @@
         <div class="row">
             <div class="col">
 				<h1 class="text-white mt-5 mb-5">STORE</h1>
-
-					<div class="form-row align-items-center mb-3">
+					<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+					<!-- 검색기능 태그 -->
+					<!-- 검색기능 태그 -->
+					<div class="form-row align-items-center">
 						<div class="col-auto">
 							<select id="kind" class="custom-select mr-sm-2">
 							<option value="k1" id="option">종족</option>
@@ -27,10 +29,15 @@
 							<button type="button" class="btn btn-primary" id="searchbtn">검색</button>
 					    </div>
 					</div>
+					<!-- 검색기능 태그 -->
+					<!-- 검색기능 태그 -->
+					</div>
 				
 				
-				<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
             	<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+            	
+					<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
+					<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
 					<div class="mb-5">
 						<h2 class="tm-block-title">분류</h2>
 						<select class="custom-select" id="category">
@@ -38,18 +45,18 @@
 							<option value="1">무기</option>
 						</select>
 					</div>
+					<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
+					<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
             	
             	<!-- list 비동기식 조회될 div -->
             	<!-- list 비동기식 조회될 div -->
 					<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
 						<div id="itemListdiv" class="row justify-content-center">
-
-							
 						</div>
 					</div>
 				</div>
-				<!-- //list 비동기식 조회될 div -->
-				<!-- //list 비동기식 조회될 div -->
+				<!-- list 비동기식 조회될 div -->
+				<!-- list 비동기식 조회될 div -->
             	
             	
     		</div>

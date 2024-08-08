@@ -22,35 +22,46 @@
 			<div class="row">
 				<main class="form-signin w-100 m-auto">
 					<div class="col-6 login">
-						<form class="form" action="addItem" method="post">
-							<div class="mb-2">
-							<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
-							<select class="custom-select" id="category">
-								<option value="0">캐릭터</option>
-								<option value="1">무기</option>
-							</select>
-							</div>
+						<form class="form" action="${dto eq null?'addItem':'updateItem'}" method="post">
+								<div class="mb-2">
+									<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
+									<c:choose>
+										<c:when test="${dto eq null}">
+											<select class="custom-select" id="category">
+												<option value="0">캐릭터</option>
+												<option value="1">무기</option>
+											</select>
+										</c:when>
+										<c:otherwise>
+											<input type="hidden" id="category" value="${category eq 1?'1':'0'}">
+											<input type="hidden" name="item_num" value="${category eq 1?dto.weapon_num:dto.character_num}"> 
+										</c:otherwise>
+									</c:choose>
+								</div>
+							
 							<div class="form-floating">
 								<label for="item_name">이름</label>
-								<input type="text" class="form-control" id="item_name" name="item_name">
+								<input type="text" class="form-control" id="item_name" name="item_name" value="${dto.item_name}">
 							</div>
 							<div class="form-floating mt-1">
 											<label for="item_hp">추가 체력</label>
-								<input type="text" class="form-control" id="item_hp" name="item_hp">
+								<input type="text" class="form-control" id="item_hp" name="item_hp" value="${dto.item_hp}">
 							</div>
 							<div class="form-floating mt-1">
 								<label for="item_atk">추가 공격력</label>
-								<input type="text" class="form-control" id="item_atk" name="item_atk">
+								<input type="text" class="form-control" id="item_atk" name="item_atk" value="${dto.item_atk}">
 							</div>
 							<div class="form-floating mt-1">
 								<label for="item_dod">추가 회피력</label>
-								<input type="text" class="form-control" id="item_dod" name="item_dod">
+								<input type="text" class="form-control" id="item_dod" name="item_dod" value="${dto.item_dod}">
 							</div>
-							<div class="form-floating mt-1" id="wpdiv">
+							<div class="form-floating mt-1" id="wpdiv" style="display: none;">
+								<label for="weapon_description">설명</label>
+								<input type="text" class="form-control" id="weapon_description" name="weapon_description" value="${category eq 1?dto.weapon_description:''}">
 							</div>
 							<div class="form-floating mt-1">
 								<label for="item_price">가격</label>
-								<input type="text" class="form-control" id="item_price" name="item_price">
+								<input type="text" class="form-control" id="item_price" name="item_price" value="${dto.item_price}">
 							</div>
 							<div class="form-floating mt-1">
 								<label for="imgFile" class="form-label">이미지</label>
