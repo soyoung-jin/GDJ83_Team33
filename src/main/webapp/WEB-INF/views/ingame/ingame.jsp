@@ -18,8 +18,7 @@
 					<div class="card-body">
 					  <h5 class="card-title">펫이름</h5>
 					  <p class="card-text">펫상태1</p>
-					  <p class="card-text">펫상태2</p>
-					  <p class="card-text">펫상태3</p>
+					  
 					  <div class="justify-content-center align-item-center">
 					  <a href="#" id="feed" class="btn btn-primary">먹이주기</a>
 					  <a href="#" id="stroll" class="btn btn-primary mt-2 mb-2">산책하기</a>
