@@ -25,12 +25,7 @@ public class FriendController {
 		
 		usersDTO = friendService.getFriendList(usersDTO);
 		
-		
-		
 		model.addAttribute("usersDTO", usersDTO);
-		
-//		List<FriendDTO> list = friendService.getFriendList(userDTO);
-//		model.addAttribute("list", list);
 		
 	}
 	
