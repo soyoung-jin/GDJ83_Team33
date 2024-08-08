@@ -23,23 +23,36 @@ document.addEventListener("keydown", (e)=>{
         x = x-5;
         myPet.style.left = x+"px";
         currentPositionX = myPet.style.left;
+        
+        if(x < -100) {
+            myPet.style.left = "-90px";
+        }
+
     } else if(e.key==='ArrowRight') {
         x = x+5;
         myPet.style.left = x+"px";
         currentPositionX = myPet.style.left;
-        if(x>1640) {
-            myPet.style.left = "1640px";
+
+        if(x>1600) {
+            myPet.style.left = "1550px";
         }
+
     } else if(e.key==='ArrowUp') {
         y = y-5;
         myPet.style.top = y+"px";
         currentPositionY = myPet.style.top;
+
+        if(y < 10) {
+            myPet.style.top = "20px";
+        }
+
     } else if(e.key==='ArrowDown') {
         y = y+5;
         myPet.style.top = y+"px";
         currentPositionY = myPet.style.top
-        if(y>665) {
-            myPet.style.top = "665px";
+
+        if(y>645) {
+            myPet.style.top = "640px";
         }
     }
 })
