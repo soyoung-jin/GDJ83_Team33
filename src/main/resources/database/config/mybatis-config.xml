@@ -15,6 +15,7 @@
   		<typeAlias type="com.team3.tamagochi.boards.notice.NoticeDTO" alias="NoticeDTO"/>
   		<typeAlias type="com.team3.tamagochi.mypet.MyPetDTO" alias="MyPetDTO"/>
   		<typeAlias type="com.team3.tamagochi.users.InventoryDTO" alias="InventoryDTO"/>
+  		<typeAlias type="com.team3.tamagochi.record.RecordDTO" alias="RecordDTO"/>
   		
   	</typeAliases>
 
