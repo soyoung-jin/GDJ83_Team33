@@ -21,22 +21,25 @@
 			<div class="row ">
 				<main class="form-signin w-100 m-auto">
 					<div class="col-6 login">
-						<form class="form" action="/users/register" method="post">
+						<form class="form" action="/users/register" method="post" id="form">
 							<h1 class="h3 mb-3 fw-normal">Please Register</h1>
 
 							<div class="form-floating">
 								<input type="text" class="form-control" id="user_id"
 								name="user_id">
 								<label for="user_id">아이디</label>
+								<div id="duplicate-check"></div>
 							</div>
 							<div class="form-floating">
 								<input type="password" class="form-control" id="user_pw"
 								name="user_pw">
 								<label for="user_pw">비밀번호</label>
+								<div id="length-check"></div>
 							</div>
 							<div class="form-floating">
 								<input type="password" class="form-control" id="user_pw2">
 								<label for="user_pw2">비밀번호 확인</label>
+								<div id="error-message"></div>
 							</div>
 							<div class="form-floating">
 								<input type="text" class="form-control" id="user_name"
@@ -59,7 +62,7 @@
 								<label for="user_email">이메일</label>
 							</div>
 							
-							<button id="blankCheck" class="btn btn-primary w-100 py-2" type="submit">회원 가입</button>
+							<button id="blankCheck" class="btn btn-primary w-100 py-2" type="button">회원 가입</button>
 
 						</form>
 					</div>

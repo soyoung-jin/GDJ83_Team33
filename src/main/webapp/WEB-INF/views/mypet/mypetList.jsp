@@ -48,6 +48,5 @@
 
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>
-	<script src="/resources/js/storelist.js"></script>
 </body>
 </html>
