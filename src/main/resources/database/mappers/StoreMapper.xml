@@ -6,8 +6,8 @@
   <mapper namespace="com.team3.tamagochi.store.StoreDAO">
   
   	<insert id="addWishList" parameterType="WishListDTO">
-  		INSERT INTO WISHLIST (WISHLIST_NUM, USER_ID, ITEM_ID)
-  		VALUES (WISHLIST_SEQ.NEXTVAL, #{user_id}, #{item_id})
+  		INSERT INTO WISHLIST (WISHLIST_NUM, USER_ID, ITEM_NUM)
+  		VALUES (WISHLIST_SEQ.NEXTVAL, #{user_id}, #{item_num})
   	</insert>
   
   	<select id="getItemList" parameterType="Map" resultType="ItemDTO">

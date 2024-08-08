@@ -28,28 +28,30 @@ public class StoreController {
 	//==============================위시리스트 관련 메소드=============================
 	
 	@GetMapping("addWishList")
-	public void addWishList(WishListDTO wishListDTO, HttpSession session, Model model) throws Exception {
+	public String addWishList(WishListDTO wishListDTO, HttpSession session, Model model) throws Exception {
 		
 		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
+		
+		if(usersDTO == null) {
+			model.addAttribute("msg", -1);
+			
+			return "commons/result";
+		}
 		
 		wishListDTO.setUser_id(usersDTO.getUser_id());
 		
 		int result = storeService.addWishList (wishListDTO);
 		
-		if (result == 1) {
-			model.addAttribute("result", "위시리스트 추가 성공");
-		}
+		model.addAttribute("msg", result);
 		
+		return "commons/result";
 	}
 	
 	
-	
-	
-	//==============================위시리스트 관련 메소드=============================
-	//==============================위시리스트 관련 메소드=============================
-	//==============================위시리스트 관련 메소드=============================
-	
-	
+	@GetMapping("getWishList")
+	public void getWishList() throws Exception {
+		System.out.println("go");
+	}
 	
 	
 	//============================== 상점,아이템관련 메소드 =============================
@@ -160,8 +162,4 @@ public class StoreController {
 
 		return "commons/message";
 	}
-	
-	//============================== 상점,아이템관련 메소드 =============================
-	//============================== 상점,아이템관련 메소드 =============================
-	//============================== 상점,아이템관련 메소드 =============================
 }
