@@ -53,7 +53,25 @@
             	<!-- list 비동기식 조회될 div -->
 					<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
 						<div id="itemListdiv" class="row justify-content-center">
-							<h3>검색어를 입력해주세요.</h3>
+							<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
+								<div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-overflow">
+									<h2 class="tm-block-title">Notification List</h2>
+									<div class="tm-notification-items">
+									<c:forEach items="${wpList}" var="wpDTO">
+										<div class="media tm-notification-item">
+											<div class="tm-gray-circle"><img src="/resources/img/character/1. 펭귄-알.gif" width="80" alt="Avatar Image" class="rounded-circle"></div>
+											<div class="media-body">
+												<p class="mb-2"><b>Jessica</b> and <b>6 others</b> sent you new
+												<a href="#"class="tm-notification-link">product updates</a>. Check new orders.</p>
+												<span class="tm-small tm-text-color-secondary">6h ago.</span>
+											</div>
+										</div>
+									</c:forEach>
+									</div>
+								</div>
+							</div>
+							</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -70,25 +88,3 @@
 	<script src="/resources/js/store/storelist.js"></script>
 </body>
 </html>
-
-<!-- TEST 위시리스트에서 사용 무시하세요
-<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
-	<div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-overflow">
-		<h2 class="tm-block-title">Notification List</h2>
-		<div class="tm-notification-items">
-		<c:forEach items="${wpList}" var="wpDTO">
-			<div class="media tm-notification-item">
-				<div class="tm-gray-circle"><img src="/resources/img/character/1. 펭귄-알.gif" width="80" alt="Avatar Image" class="rounded-circle"></div>
-				<div class="media-body">
-					<p class="mb-2"><b>Jessica</b> and <b>6 others</b> sent you new <a href="#"
-							class="tm-notification-link">product updates</a>. Check new orders.</p>
-					<span class="tm-small tm-text-color-secondary">6h ago.</span>
-				</div>
-			</div>
-		</c:forEach>
-		</div>
-	</div>
-</div>
-</div>
-</div>
-위시리스트에서 사용 무시하세요 Test -->

@@ -38,7 +38,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/store/itemList">
+                            <a class="nav-link" href="/store/itemList?category_num=0">
                                 <i class="fas fa-shopping-cart"></i>
                                 상점
                             </a>

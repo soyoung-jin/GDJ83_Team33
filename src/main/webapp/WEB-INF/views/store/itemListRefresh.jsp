@@ -9,7 +9,7 @@
 					<!-- 카드형 태그 -->
 					<div class="card h-10" >
 						<!-- 디테일가기위한 a태그 -->
-							<a href="itemDetail?">
+							<a href="itemDetail?item_num=${itemDTO.item_num}">
 						<!-- 카드형 상부 이미지 -->
 						<img src="/resources/img/character/4.gif" class="card-img-top" alt="...">
 					</a>
@@ -20,7 +20,7 @@
 								${itemDTO.item_price} 원
 							</p>
 							<a href="#" class="btn btn-primary">구매</a>
-							<a href="#" class="btn btn-info">장바구니</a>
+							<button type="button" class="btn btn-info addwish" data-inum="${itemDTO.item_num}">장바구니</a>
 						</div>
 					</div>
 				</div>
@@ -29,7 +29,7 @@
 
 			<!-- 페이징 -->
 			<!-- 페이징 -->
-			<div class="row justify-content-center" id="paging"></div>
+			<div class="row justify-content-center" id="paging">
 				<nav aria-label="Page navigation example">
 					<ul class="pagination">
 					<li class="page-item ${pager.pre?'':'disabled'}"><a class="page-link" id="${pager.startNum-1}" >Previous</a></li>
