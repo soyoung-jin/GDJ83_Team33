@@ -12,7 +12,7 @@
 	<div class="" id="home">
 	<c:import url="../template/topbar.jsp"></c:import>
 			<!-- 캐릭터 상태&기본행위 메뉴 -->
-			<div class="row justify-content-end mt-3 mr-3">
+			<div class="row justify-content-end mt-3 mr-3 petMenu">
 				<div class="col-sm-4 col-lg-3 col-md-3 justify-content-center ">
 				  <div class="card">
 					<div class="card-body">
@@ -20,7 +20,7 @@
 					  <p class="card-text">펫상태1</p>
 					  <p class="card-text">펫상태2</p>
 					  <p class="card-text">펫상태3</p>
-					  <div>
+					  <div class="justify-content-center align-item-center">
 					  <a href="#" id="feed" class="btn btn-primary">먹이주기</a>
 					  <a href="#" id="stroll" class="btn btn-primary mt-2 mb-2">산책하기</a>
 					  <a href="#" id="clean" class="btn btn-primary">똥치우기</a>

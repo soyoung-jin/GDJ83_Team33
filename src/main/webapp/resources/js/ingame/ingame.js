@@ -27,6 +27,9 @@ document.addEventListener("keydown", (e)=>{
         x = x+5;
         myPet.style.left = x+"px";
         currentPositionX = myPet.style.left;
+        if(x>1640) {
+            myPet.style.left = "1640px";
+        }
     } else if(e.key==='ArrowUp') {
         y = y-5;
         myPet.style.top = y+"px";
@@ -35,6 +38,9 @@ document.addEventListener("keydown", (e)=>{
         y = y+5;
         myPet.style.top = y+"px";
         currentPositionY = myPet.style.top
+        if(y>665) {
+            myPet.style.top = "665px";
+        }
     }
 })
 
