@@ -65,6 +65,11 @@ public class UsersService {
 		return usersDAO.getInvenList(usersDTO);
 	}
 	
+	public UsersDTO checkID(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.checkID(usersDTO);
+	}
+	
 	
 	
 	// 회원가입시 디폴트 캐릭터를 만들어주는 메서드 4개를 service에서 하나로 합침

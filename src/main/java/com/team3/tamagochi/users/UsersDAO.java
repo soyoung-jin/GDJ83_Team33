@@ -48,6 +48,12 @@ public class UsersDAO {
 		return sqlSession.selectList(NAMESPACE + "getInvenList", usersDTO);
 	}
 	
+	// 회원가입시 입력한 id값이 중복인지 아닌지 검사하는 JS 이벤트 코드
+	public UsersDTO checkID(UsersDTO usersDTO) throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE + "checkID", usersDTO);
+	}
+	
 	
 	
 	

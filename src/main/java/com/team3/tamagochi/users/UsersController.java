@@ -158,5 +158,23 @@ public class UsersController {
 		
 		model.addAttribute("list", list);
 	}
+	
+	@GetMapping("checkID")
+	public String checkID(UsersDTO usersDTO, Model model) throws Exception{
+		
+		UsersDTO check = usersService.checkID(usersDTO);
+		int result;
+		
+		if(usersDTO.getUser_id().equals(check.getUser_id())) {
+			result = 1;
+		}else {
+			result = 0;
+		}
+		
+		model.addAttribute("msg", result);
+		
+		return "commons/result";
+		
+	}
 
 }
