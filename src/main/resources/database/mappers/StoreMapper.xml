@@ -10,18 +10,18 @@
   		FROM (SELECT ROWNUM R, C.*
 				FROM (SELECT *
 		  				FROM ITEM
-		  				WHERE CATEGORY_NUM = #{itemDTO.category_num}
+		  				WHERE CATEGORY_NUM = #{itemDTO.category_num} AND ITEM_DEL = 0
 		  				ORDER BY ITEM_NUM DESC) C
 		  		<where>
   					<choose>
-  						<when test="kind=='k1'">
-  							ITEM_NAME LIKE '%'||#{pager.search}||'%'
+  						<when test="kind='k1'">
+  							ITEM_NAME LIKE '%'||#{pager.search}||'%')
   						</when>
-  						<when test="kind=='k2'">
-		  					ITEM_PRICE LIKE '%'||#{pager.search}||'%'
-		  				</when>
+  						<otherwise>
+  							ITEM_PRICE LIKE '%'||#{pager.search}||'%')
+  						</otherwise>
   					</choose>
-  				</where>)
+  				</where>
   		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
   	</select>
   	
@@ -32,71 +32,38 @@
   				WHERE CATEGORY_NUM = #{itemDTO.category_num}) C
   		<where>
   			<choose>
-  				<when test="kind=='k1'">
+  				<when test="kind='k1'">
   					ITEM_NAME LIKE '%'||#{pager.search}||'%'
   				</when>
-  				<when test="kind=='k2'">
+  				<otherwise>  				
   					ITEM_PRICE LIKE '%'||#{pager.search}||'%'
-  				</when>
+  				</otherwise>
   			</choose>
   		</where>
   	</select>
   	
-  	<select id="getWeaponDetail" parameterType="Long" resultType="WeaponDTO">
+  	<select id="getItemDetail" parameterType="ItemDTO" resultType="ItemDTO">
   		SELECT *
-  		FROM WEAPON
-  		WHERE WEAPON_NUM=#{weapon_num}
+  		FROM ITEM
+  		WHERE ITEM_NUM=#{item_num}
   	</select>
   	
-  	<select id="getCharacterDetail" parameterType="Long" resultType="CharacterDTO">
-  		SELECT *
-  		FROM CHARACTER
-  		WHERE CHARACTER_NUM=#{character_num}
-  	</select>
-  	
-  	<insert id="addItem" parameterType="WeaponDTO">
-  		INSERT INTO
-  		<choose>
-  			<when test="weapon_description != null">
-  				WEAPON (WEAPON_NUM, ITEM_NAME, WEAPON_DESCRIPTION, ITEM_HP, ITEM_ATK, ITEM_DOD, ITEM_PRICE)
-  				VALUES (WEAPON_SEQ.NEXTVAL,#{item_name}, #{weapon_description}, #{item_hp}, #{item_atk}, #{item_dod}, #{item_price})
-  			</when>
-  			<otherwise>
-  				CHARACTER (CHARACTER_NUM, ITEM_NAME, ITEM_HP, ITEM_ATK, ITEM_DOD, ITEM_PRICE)
-  				VALUES (CHARACTER_SEQ.NEXTVAL,#{item_name}, #{item_hp}, #{item_atk}, #{item_dod}, #{item_price})
-  			</otherwise>
-  		</choose>
-  		
+  	<insert id="addItem" parameterType="ItemDTO">
+  		INSERT INTO ITEM (ITEM_NUM, CATEGORY_NUM, ITEM_NAME, ITEM_DESCRIPTION, ITEM_HP, ITEM_ATK, ITEM_DOD, ITEM_PRICE)
+  		VALUES (ITEM_SEQ.NEXTVAL, #{category_num}, #{item_name}, #{item_description}, #{item_hp}, #{item_atk}, #{item_dod}, #{item_price})
   	</insert>
   	
-  	<update id="updateItem" parameterType="java.util.Map">
+  	<update id="updateItem" parameterType="ItemDTO">
   		UPDATE 
-  		<choose>
-  			<when test="weapon_description != null">
-  				WEAPON SET
-  				ITEM_NAME=#{dto.item_name}, WEAPON_DESCRIPTION=#{dto.weapon_description}, ITEM_HP=#{dto.item_hp}, ITEM_ATK=#{dto.item_atk}, ITEM_DOD=#{dto.item_dod}, ITEM_PRICE=#{dto.item_price}
-  				WHERE WEAPON_NUM = #{item_num}
-  			</when>
-  			<otherwise>
-  				CHARACTER SET
-  				ITEM_NAME=#{dto.item_name}, ITEM_HP=#{dto.item_hp}, ITEM_ATK=#{dto.item_atk}, ITEM_DOD=#{dto.item_dod}, ITEM_PRICE=#{dto.item_price}
-  				WHERE CHARACTER_NUM = #{item_num}
-  			</otherwise>
-  		</choose>
+  		ITEM SET
+  		ITEM_NAME=#{item_name}, ITEM_DESCRIPTION=#{item_description}, ITEM_HP=#{item_hp}, ITEM_ATK=#{item_atk}, ITEM_DOD=#{item_dod}, ITEM_PRICE=#{item_price}
+  		WHERE ITEM_NUM = #{item_num}
   	</update>
   	
-  	<delete id="deleteItem" parameterType="java.util.Map">
-  		DELETE
-  		<choose>
-  			<when test="category == 1">
-  				WEAPON
-  				WHERE WEAPON_NUM = #{item_num}
-  			</when>
-  			<otherwise>
-  				CHARACTER
-  				WHERE CHARACTER_NUM =#{item_num}
-  			</otherwise>
-  		</choose>
-  	</delete>
-  
+  	<update id="deleteItem" parameterType="ItemDTO">
+  		UPDATE 
+  		ITEM SET
+  		ITEM_DEL = 1
+  		WHERE ITEM_NUM=#{item_num}
+  	</update>
   </mapper>

@@ -12,18 +12,19 @@
         <div class="row">
             <div class="col">
 				<h1 class="text-white mt-5 mb-5">STORE</h1>
+				<a class="btn btn-primary" href="addItem">추가</a>
 					<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 					<!-- 검색기능 태그 -->
 					<!-- 검색기능 태그 -->
 					<div class="form-row align-items-center">
 						<div class="col-auto">
 							<select id="kind" class="custom-select mr-sm-2">
-							<option value="k1" id="option">종족</option>
+							<option value="k1">종족</option>
 							<option value="k2">가격</option>
 							</select>
 					    </div>
 					    <div class="col-sm-3 my-1">
-							<input type="text" name="search" class="form-control" id="search">
+							<input type="text" class="form-control" id="search">
 					    </div>
 					    <div class="col-auto my-1">
 							<button type="button" class="btn btn-primary" id="searchbtn">검색</button>
@@ -40,7 +41,7 @@
 					<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
 					<div class="mb-5">
 						<h2 class="tm-block-title">분류</h2>
-						<select class="custom-select" id="category">
+						<select class="custom-select" id="category" data-cat-num="${itemDTO.category_num}">
 							<option value="0">캐릭터</option>
 							<option value="1">무기</option>
 						</select>
@@ -52,6 +53,7 @@
             	<!-- list 비동기식 조회될 div -->
 					<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
 						<div id="itemListdiv" class="row justify-content-center">
+							<h3>검색어를 입력해주세요.</h3>
 						</div>
 					</div>
 				</div>

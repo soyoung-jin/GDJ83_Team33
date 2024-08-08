@@ -18,47 +18,37 @@ public class StoreService {
 	public List<ItemDTO> getItemList(ItemDTO itemDTO, Pager pager) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
+
 		map.put("itemDTO", itemDTO);
-
-		pager.makerow();
-
 		map.put("pager", pager);
 
+		pager.makerow();
+		
 		Integer totalCount = storeDAO.getTotalCount(map);
-
-		System.out.println(totalCount);
-
+		
 		pager.makeNum(totalCount);
-
+		
+		
 		return storeDAO.getItemList(map);
 	}
 
-	public ItemDTO getItemDetail(Long item_num, Integer category) throws Exception {
+	public ItemDTO getItemDetail(ItemDTO itemDTO) throws Exception {
 
-		return storeDAO.getItemDetail(item_num, category);
+		return storeDAO.getItemDetail(itemDTO);
 	}
 
-	public int addItem(WeaponDTO weaponDTO) {
-		return storeDAO.addItem(weaponDTO);
+	public int addItem(ItemDTO itemDTO) {
+		return storeDAO.addItem(itemDTO);
 	}
 
-	public int updateItem(WeaponDTO weaponDTO, Long item_num) {
+	public int updateItem(ItemDTO itemDTO) {
 
-		Map<String, Object> map = new HashMap<String, Object>();
-
-		map.put("dto", weaponDTO);
-		map.put("item_num", item_num);
-
-		return storeDAO.updateItem(map);
+		return storeDAO.updateItem(itemDTO);
 	}
 
-	public int deleteItem(Integer category, Long item_num) {
-		Map<String, Object> map = new HashMap<String, Object>();
+	public int deleteItem(ItemDTO itemDTO) {
 
-		map.put("category", category);
-		map.put("item_num", item_num);
-
-		return storeDAO.deleteItem(map);
+		return storeDAO.deleteItem(itemDTO);
 	}
 
 }

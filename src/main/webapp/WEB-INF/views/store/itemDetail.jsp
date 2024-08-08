@@ -13,26 +13,24 @@
         <div class="row">
             <div class="col">
                 <h1 class="text-white mt-5 mb-5">Item Detail</h1>
-		        <a class="btn btn-primary" href="updateItem?category=${param.category}&item_num=${param.category==1?dto.weapon_num:dto.character_num}">수정</a>
-	            <a class="btn btn-primary" href="deleteItem?category=${param.category}&item_num=${param.category==1?dto.weapon_num:dto.character_num}">삭제</a>
+		        <a class="btn btn-primary" href="updateItem?item_num=${dto.item_num}">수정</a>
+	            <a class="btn btn-primary" href="deleteItem?item_num=${dto.item_num}">삭제</a>
                 <img alt="" width="300" src="/resources/img/character/4.gif">
 				<table class="table">
 					<thead>
 						<tr>
 						<c:choose>
-							<c:when test="${param.category == 1}">
-								<th>무기 이름</th>
+							<c:when test="${dto.category_num == 0}">
+								<th>종족</th>
 							</c:when>
 							<c:otherwise>
-								<th>종족</th>
+								<th>무기이름</th>
 							</c:otherwise>
 						</c:choose>
 							<th>추가 체력</th>
 							<th>추가 공격력</th>
 							<th>추가 회피력</th>
-							<c:if test="${param.category == 1}">
-								<th>무기 설명</th>	
-							</c:if>
+							<th>무기 설명</th>
 							<th>가격</th>
 						</tr>
 					</thead>
@@ -42,9 +40,7 @@
 							<td>${dto.item_hp}</td>
 							<td>${dto.item_atk}</td>
 							<td>${dto.item_dod}</td>
-							<c:if test="${param.category == 1}">
-								<td>${dto.weapon_description}</td>
-							</c:if>
+							<td>${dto.item_description}</td>
 							<td>${dto.item_price}</td>
 						</tr>
 					</tbody>

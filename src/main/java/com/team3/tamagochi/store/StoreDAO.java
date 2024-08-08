@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.team3.tamagochi.boards.util.Pager;
+
 @Repository
 public class StoreDAO {
 
@@ -16,8 +18,7 @@ public class StoreDAO {
 	private final String NAMESPACE = "com.team3.tamagochi.store.StoreDAO.";
 
 	public List<ItemDTO> getItemList(Map<String, Object> map) {
-		// 카테고리 0: 캐릭터, 1:무기 분류, resultType이 달라야해서 mapper 분리함
-		
+	
 		return sqlSession.selectList(NAMESPACE + "getItemList", map);
 	}
 
@@ -25,25 +26,20 @@ public class StoreDAO {
 		return sqlSession.selectOne(NAMESPACE + "getTotalCount", map);
 	}
 
-	public ItemDTO getItemDetail(Long item_num, Integer category) {
-		// 카테고리 0: 캐릭터, 1:무기 분류, resultType이 달라야해서 mapper 분리함
-		if (category == 1) {
-			return sqlSession.selectOne(NAMESPACE + "getWeaponDetail", item_num);
-		}
-
-		return sqlSession.selectOne(NAMESPACE + "getCharacterDetail", item_num);
+	public ItemDTO getItemDetail(ItemDTO itemDTO) {
+		return sqlSession.selectOne(NAMESPACE + "getItemDetail", itemDTO);
 	}
 
-	public int addItem(WeaponDTO weaponDTO) {
-		return sqlSession.insert(NAMESPACE + "addItem", weaponDTO);
+	public int addItem(ItemDTO itemDTO) {
+		return sqlSession.insert(NAMESPACE + "addItem", itemDTO);
 	}
 
-	public int updateItem(Map<String, Object> map) {
-		return sqlSession.update(NAMESPACE + "updateItem", map);
+	public int updateItem(ItemDTO itemDTO) {
+		return sqlSession.update(NAMESPACE + "updateItem", itemDTO);
 	}
 
-	public int deleteItem(Map<String, Object> map) {
-		return sqlSession.delete(NAMESPACE + "deleteItem", map);
+	public int deleteItem(ItemDTO itemDTO) {
+		return sqlSession.update(NAMESPACE + "deleteItem", itemDTO);
 	}
 
 }

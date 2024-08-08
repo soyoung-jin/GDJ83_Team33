@@ -138,6 +138,8 @@ public class Pager {
 
 		long curBlock = 0;
 		curBlock = page / perBlock;
+		
+		System.out.println(page);
 
 		if (page % perBlock != 0) {
 			curBlock++;
@@ -145,6 +147,9 @@ public class Pager {
 		// 현재 블럭번호로 시작번호, 끝번호 구하기
 		this.startNum = (curBlock - 1) * perBlock + 1;
 		this.lastNum = curBlock * perBlock;
+		
+		System.out.println(curBlock);
+		System.out.println(lastNum);
 
 		// 이전 다음
 		this.pre = true;
