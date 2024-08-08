@@ -23,4 +23,14 @@ public class InGameDAO {
 		return sqlSession.update(NAMESPACE + "feedPet", usersDTO);
 	}
 	
+	public int strollPet(UsersDTO usersDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "strollPet", usersDTO);
+	}
+	
+	public int cleanPet(UsersDTO usersDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "cleanPet", usersDTO);
+	}
+	
+	
+	
 }
