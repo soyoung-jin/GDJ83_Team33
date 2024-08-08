@@ -1,5 +1,5 @@
 #myPet {
-    width: 20%;
+    width: 15%;
     position: absolute; /*부모 태그를 기준으로 한 위치 - petParent div*/
     left: 500px;
     top: 400px;
@@ -15,6 +15,11 @@
 
 h3 {
     text-align: end;
+    
+}
+
+#petStatusList{
+    width: 100%;
 }
 
 
@@ -24,6 +29,12 @@ h3 {
     background-size: cover;
 }
 
-.petMenu {
-    
+
+
+.petAct{
+    width: 100%;
+}
+
+#actCloseBtn {
+    display: none;
 }

@@ -3,6 +3,8 @@ const petParent = document.getElementById("petParent");
 const modalContent = document.getElementById("modalContent");
 const sendBtn = document.getElementById("sendBtn");
 const chatContent = document.getElementById("chatContent");
+
+
 let div = document.createElement("div");
 let petChatBtn;
 /* =====================챗봇에 관련된 변수===================== */
@@ -89,7 +91,10 @@ myPet.addEventListener("click", ()=>{
         div.remove();
         div.innerHTML = "";
     })
+
 })
+
+
 
 function addMessage(sender, message){
     //div 태그 안에 클래스 추가
