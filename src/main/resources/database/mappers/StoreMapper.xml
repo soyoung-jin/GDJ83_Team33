@@ -10,7 +10,7 @@
   		FROM (SELECT ROWNUM R, C.*
 				FROM (SELECT *
 		  				FROM ITEM
-		  				WHERE CATEGORY_NUM == #{itemDTO.category_num}
+		  				WHERE CATEGORY_NUM = #{itemDTO.category_num}
 		  				ORDER BY ITEM_NUM DESC) C
 		  		<where>
   					<choose>

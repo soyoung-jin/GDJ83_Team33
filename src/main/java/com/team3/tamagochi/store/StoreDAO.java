@@ -15,7 +15,7 @@ public class StoreDAO {
 
 	private final String NAMESPACE = "com.team3.tamagochi.store.StoreDAO.";
 
-	public List<Object> getItemList(Map<String, Object> map) {
+	public List<ItemDTO> getItemList(Map<String, Object> map) {
 		// 카테고리 0: 캐릭터, 1:무기 분류, resultType이 달라야해서 mapper 분리함
 		
 		return sqlSession.selectList(NAMESPACE + "getItemList", map);

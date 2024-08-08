@@ -15,7 +15,7 @@ public class StoreService {
 	@Autowired
 	StoreDAO storeDAO;
 
-	public List<Object> getItemList(ItemDTO itemDTO, Pager pager) throws Exception {
+	public List<ItemDTO> getItemList(ItemDTO itemDTO, Pager pager) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("itemDTO", itemDTO);
