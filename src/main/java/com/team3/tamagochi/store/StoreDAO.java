@@ -17,10 +17,8 @@ public class StoreDAO {
 
 	public List<Object> getItemList(Map<String, Object> map) {
 		// 카테고리 0: 캐릭터, 1:무기 분류, resultType이 달라야해서 mapper 분리함
-		if ((Integer) map.get("category") == 1) {
-			return sqlSession.selectList(NAMESPACE + "getWeaponList", map.get("pager"));
-		}
-		return sqlSession.selectList(NAMESPACE + "getCharacterList", map.get("pager"));
+		
+		return sqlSession.selectList(NAMESPACE + "getItemList", map);
 	}
 
 	public Integer getTotalCount(Map<String, Object> map) {
