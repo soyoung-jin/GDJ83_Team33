@@ -20,8 +20,8 @@
 			FROM USERS u 
 			LEFT JOIN
 			FRIEND f 
-			ON u.USER_ID = f.USER_ID 
-		WHERE u.USER_ID =#{user_id} AND f.FRIEND_ID = #{friend_id}
+			ON u.USER_ID = f.FRIEND_ID
+		WHERE f.FRIEND_NUM = #{friend_num}
   	</select>
   	
   	<resultMap type="UsersDTO" id="detailFriend">

@@ -34,8 +34,23 @@ public class InGameController {
 	@GetMapping("feed")
 	public String feedPet(Model model, UsersDTO usersDTO, HttpSession session) throws Exception {
 		usersDTO = (UsersDTO) session.getAttribute("users_info");
-		
 		int result = inGameService.feedPet(usersDTO);
+		model.addAttribute("msg", result);
+		return "commons/result";
+	}
+	
+	@GetMapping("stroll")
+	public String strollPet(Model model, UsersDTO usersDTO, HttpSession session) throws Exception {
+		usersDTO = (UsersDTO) session.getAttribute("users_info");
+		int result = inGameService.strollPet(usersDTO);
+		model.addAttribute("msg", result);
+		return "commons/result";
+	}
+	
+	@GetMapping("clean")
+	public String cleanPet(Model model, UsersDTO usersDTO, HttpSession session) throws Exception {
+		usersDTO = (UsersDTO) session.getAttribute("users_info");
+		int result = inGameService.cleanPet(usersDTO);
 		model.addAttribute("msg", result);
 		return "commons/result";
 	}

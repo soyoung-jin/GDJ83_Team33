@@ -19,4 +19,12 @@ public class InGameService {
 	public int feedPet(UsersDTO usersDTO) throws Exception {
 		return inGameDAO.feedPet(usersDTO);
 	}
+	
+	public int strollPet(UsersDTO usersDTO) throws Exception {
+		return inGameDAO.strollPet(usersDTO);
+	}
+	
+	public int cleanPet(UsersDTO usersDTO) throws Exception {
+		return inGameDAO.cleanPet(usersDTO);
+	}
 }

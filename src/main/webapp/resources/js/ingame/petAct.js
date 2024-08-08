@@ -25,6 +25,7 @@ feed.addEventListener("click", ()=>{
             actImg.src = "/resources/img/petAct/feed.gif";
             setTimeout(closePet, 1500);
             alert("포만감이 올라갔어요");
+            location.href = "./ingame";
             
         }
     })
@@ -37,15 +38,50 @@ feed.addEventListener("click", ()=>{
 })
 
 stroll.addEventListener("click", ()=>{
-    modalActLabel.innerHTML = "산책 중";
-    actImg.src = "/resources/img/petAct/stroll.gif";
-    setTimeout(closePet, 1500);
+
+    fetch("./stroll", {
+        method: "GET"
+    })
+    .then(r=>r.text())
+    .then((r)=>{
+        r.trim()
+        if(r>0) {
+            modalActLabel.innerHTML = "산책 중";
+            actImg.src = "/resources/img/petAct/stroll.gif";
+            setTimeout(closePet, 1500);
+            alert("경험치가 올라갔어요");
+            location.href = "./ingame";
+            
+        }
+    })
+    .catch(()=>{
+        alert("오류");
+    })
+
+    
 })
 
 clean.addEventListener("click", ()=>{
-    modalActLabel.innerHTML = "청소 중";
-    actImg.src = "/resources/img/petAct/clean.gif";
-    setTimeout(closePet, 1500);
+
+    fetch("./stroll", {
+        method: "GET"
+    })
+    .then(r=>r.text())
+    .then((r)=>{
+        r.trim()
+        if(r>0) {
+            modalActLabel.innerHTML = "청소 중";
+            actImg.src = "/resources/img/petAct/clean.gif";
+            setTimeout(closePet, 1500);
+            alert("경험치가 올라갔어요");
+            location.href = "./ingame";
+            
+        }
+    })
+    .catch(()=>{
+        alert("오류");
+    })
+    
 })
 
 

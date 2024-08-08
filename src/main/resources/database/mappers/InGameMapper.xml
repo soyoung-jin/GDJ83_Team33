@@ -10,7 +10,15 @@
   	</select>
   	
   	<update id="feedPet" parameterType="UsersDTO">
-  		UPDATE MY_PET SET PET_HUNGRY = PET_HUNGRY + 10 WHERE USER_ID = #{user_id} AND PET_NAME = '박쥐'
+  		UPDATE MY_PET SET PET_HUNGRY = PET_HUNGRY + 10, PET_EXP = PET_EXP + 10 WHERE USER_ID = #{user_id} AND PET_NAME = '박쥐'
+  	</update>
+  	
+  	<update id="strollPet" parameterType="UsersDTO">
+  		UPDATE MY_PET SET PET_EXP = PET_EXP + 10 WHERE USER_ID = #{user_id} AND PET_NAME = '박쥐'
+  	</update>
+  	
+  	<update id="cleanPet" parameterType="UsersDTO">
+  		UPDATE MY_PET SET PET_HP = PET_HP + 10 WHERE USER_ID = #{user_id} AND PET_NAME = '박쥐'
   	</update>
   	
   </mapper>

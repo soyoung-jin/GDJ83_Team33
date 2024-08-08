@@ -24,9 +24,10 @@
 		<div class="container px-5 my-5">
 			<div class="row gx-5 justify-content-center">
 			
-		<button type="button" id="startChat" class="btn btn-outline-warning mt-3 mb-5 chatBtn" data-bs-toggle="modal" data-bs-target="#commentModal">
+		<button type="button" id="startChat" class="btn btn-outline-warning chatBtn" data-bs-toggle="modal" data-bs-target="#commentModal">
 		  채팅 시작
 		</button>
+		
 		<!-- 댓글 모달 창 -->
 			<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog modal-dialog-scrollable">
@@ -80,14 +81,29 @@
 							<a class="btn btn-danger justify-content-end ml-2" href="deleteFriend?friend_num=${usersDTO.friendDTO[0].friend_num}" role="button">친구 끊기</a>
 						</div>
 				</div>
-        	</div>
-    	</div>  
+				
+					<!-- 선물 보내기 버튼 -->
+					<button type="button" id="gift" class="btn btn-outline-warning ml-3 chatBtn">
+					  선물보내기
+					</button>
+	        	</div>
+	    	</div>  
+		</div>
 	</div>
-</div>
+
+		<footer class="tm-footer row tm-mt-small fixed-bottom">
+            <div class="col-12 font-weight-light">
+                <p class="text-center text-white mb-0 px-4 small">
+                    Copyright &copy; <b>2018</b> All rights reserved. 
+                    
+                    Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
+                </p>
+            </div>
+        </footer>
+        
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 <script src="/resources/js/chat/chat.js"></script>
-<c:import url="../template/footer.jsp"></c:import>
 <c:import url="../template/boot-footer.jsp"></c:import>
 </body>
 </html>
