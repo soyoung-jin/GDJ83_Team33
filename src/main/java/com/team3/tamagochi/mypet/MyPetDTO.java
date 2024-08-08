@@ -4,7 +4,7 @@ public class MyPetDTO {
 	
 	private Long pet_num;
 	private String user_id;
-	private Long weapon_num;
+	private Long item_num;
 	private String pet_name;
 	private String pet_spc;
 	private Long pet_exp;
@@ -14,14 +14,21 @@ public class MyPetDTO {
 	private Long pet_dod;
 	private Long pet_pop;
 	private Long pet_hungry;
-	private Long character_num;
+	private Integer pet_selected;
 	
 	
-	public Long getCharacter_num() {
-		return character_num;
+
+	public Integer getPet_selected() {
+		return pet_selected;
 	}
-	public void setCharacter_num(Long character_num) {
-		this.character_num = character_num;
+	public void setPet_selected(Integer pet_selected) {
+		this.pet_selected = pet_selected;
+	}
+	public Long getItem_num() {
+		return item_num;
+	}
+	public void setItem_num(Long item_num) {
+		this.item_num = item_num;
 	}
 	public Long getPet_num() {
 		return pet_num;
@@ -34,12 +41,6 @@ public class MyPetDTO {
 	}
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
-	}
-	public Long getWeapon_num() {
-		return weapon_num;
-	}
-	public void setWeapon_num(Long weapon_num) {
-		this.weapon_num = weapon_num;
 	}
 	public String getPet_name() {
 		return pet_name;

@@ -29,7 +29,7 @@
 										<div class="card-body">
 											<!-- 카드 이미지 하단 아이템명, 가격 -->
 											<h5 class="card-title">${dto.item_name }</h5>
-											<h5 class="card-title">${dto.weapon_description }</h5>
+											<h5 class="card-title">${dto.item_description }</h5>
 											<h5 class="card-title">체력 증가 : ${dto.item_hp }</h5>
 											<h5 class="card-title">공격력 증가 : ${dto.item_atk }</h5>
 											<h5 class="card-title">회피력 증가 : ${dto.item_dod }</h5>
