@@ -54,6 +54,18 @@ public class UsersController {
 	public String loginUsers(UsersDTO usersDTO, Model model, HttpSession session,
 			String remember, HttpServletResponse response) throws Exception{
 		
+		// 아이디 저장 코드 (쿠키 사용)
+		if(remember != null) {
+			Cookie cookie = new Cookie("remember", usersDTO.getUser_id());
+			cookie.setMaxAge(3600);
+			response.addCookie(cookie);
+		}else {
+			Cookie cookie = new Cookie("remember", "");
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+		}	
+		
+		
 		usersDTO = usersService.loginUsers(usersDTO);
 		
 		// 탈퇴한 회원은 resign값이 0이기 때문에 이 값으로 탈퇴한 회원인지 아닌지 구분.
@@ -69,16 +81,6 @@ public class UsersController {
 			model.addAttribute("url", "/");
 		}
 		
-		// 아이디 저장 코드 (쿠키 사용)
-		if(remember != null) {
-			Cookie cookie = new Cookie("remember", usersDTO.getUser_id());
-			cookie.setMaxAge(3600);
-			response.addCookie(cookie);
-		}else {
-			Cookie cookie = new Cookie("remember", "");
-			cookie.setMaxAge(0);
-			response.addCookie(cookie);
-		}
 		
 		return "commons/message";
 	}

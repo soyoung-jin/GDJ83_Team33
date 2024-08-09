@@ -18,7 +18,7 @@ const form = document.getElementById("form");
 
 
 
-// 회원가입시 입력란이 비어있으면 alert창을 띄워주는 함수
+// 회원가입시 입력란이 비어있으면 alert창을 띄워주는 이벤트
 // 공백칸으로 focus가 향하도록 설계
 blankCheck.addEventListener("click", ()=>{
 
@@ -26,6 +26,7 @@ blankCheck.addEventListener("click", ()=>{
     // 검증 통과 후 1차 비밀번호를 수정하는 케이스를 방지하기 위해 버튼 클릭시 검증을 한번 더 진행함
     if(user_pw.value != user_pw2.value){
         user_pw.value="";
+        user_pw2.value="";
     }
 
     if(user_id.value=="" || user_pw.value=="" || user_pw2.value=="" || user_name.value=="" || 
@@ -72,10 +73,29 @@ user_pw.addEventListener("change", ()=>{
     }
 })
 
+const regId = /^(?=.*[a-zA-Z])[-a-zA-Z0-9_.]{4,16}$/;
+
 // 입력한 아이디가 중복인지 아닌지 검증하는 이벤트
 // 입력한 데이터를 해당 주소의 Controller로 보내서 검증을 한다
+// ★ 아이디 정규식 검사를 먼저 진행한 뒤, 정규식을 통과하면 중복 검사 실시
 user_id.addEventListener("blur", ()=>{
+    
+    // 공백인데 검증이 실시되는걸 방지하는 코드
+    if(user_id.value==""){
+        return;
+    }
 
+    // 아이디 정규식 검증 코드
+    if(!regId.test(user_id.value)){
+        duplicate_check.innerHTML="아이디의 첫글자는 영문만 가능하며, 4자 이상 16자 미만의 영문/숫자/특수문자만 사용 가능합니다"
+        duplicate_check.classList="text-danger";
+        user_id.value="";
+        return;
+    }else{
+        duplicate_check.innerHTML="";
+    }
+
+    // 아이디 중복 검사 코드
     let id = user_id.value
     fetch("/users/checkID?user_id=" + id, {
         method:"GET"
@@ -94,4 +114,71 @@ user_id.addEventListener("blur", ()=>{
     .catch(()=>{
         alert("오류 발생!");
     })
+})
+
+
+
+
+
+// ------------------------------------------------------------------------
+// --------------------------정규식 변수와 이벤트----------------------------
+
+const regName = /^(?=.*[가-힣])[가-힣]{2,}$/;
+const regPhone = /^\d{2,3}-\d{3,4}-\d{4}$/;
+const regEmail = /^[A-Za-z-0-9\-\.]+@[A-Za-z-0-9\-\.]+\.[A-Za-z-0-9]+$/;
+
+const regDivName = document.getElementById("regDivName");
+const regDivPhone = document.getElementById("regDivPhone");
+const regDivEmail = document.getElementById("regDivEmail");
+
+
+// 이름 정규식 검증
+user_name.addEventListener("blur", ()=>{
+
+    // 공백인데 검증이 실시되는걸 방지하는 코드
+    if(user_name.value==""){
+        return;
+    }
+
+    if(!regName.test(user_name.value)){
+        regDivName.innerHTML="한글만 입력 가능합니다";
+        regDivName.classList="text-danger";
+        user_name.value="";
+    }else{
+        regDivName.innerHTML="";
+    }
+})
+
+// 전화번호 정규식 검증
+user_phone.addEventListener("blur", ()=>{
+
+    // 공백인데 검증이 실시되는걸 방지하는 코드
+    if(user_phone.value==""){
+        return;
+    }
+
+    if(!regPhone.test(user_phone.value)){
+        regDivPhone.innerHTML="전화번호 형식에 맞게 입력해주세요";
+        regDivPhone.classList="text-danger";
+        user_phone.value="";
+    }else{
+        regDivPhone.innerHTML="";
+    }
+})
+
+// 이메일 정규식 검증
+user_email.addEventListener("blur", ()=>{
+
+    // 공백인데 검증이 실시되는걸 방지하는 코드
+    if(user_email.value==""){
+        return;
+    }
+
+    if(!regEmail.test(user_email.value)){
+        regDivEmail.innerHTML="이메일 형식에 맞게 입력해주세요";
+        regDivEmail.classList="text-danger";
+        user_email.value="";
+    }else{
+        regDivEmail.innerHTML="";
+    }
 })
