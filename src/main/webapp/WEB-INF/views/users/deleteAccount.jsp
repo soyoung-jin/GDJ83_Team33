@@ -33,6 +33,7 @@
 								<input type="password" class="form-control" id="user_pw2"
 									name="user_pw2" placeholder="Re-enter Password">
 								<label for="floatingPassword">비밀번호 확인</label>
+								<div id="error-message"></div>
 							</div>
 
 							<button class="btn btn-danger w-100 py-2" type="submit">회원 탈퇴</button>
@@ -45,5 +46,6 @@
 		<c:import url="../template/footer.jsp"></c:import>
 		<c:import url="../template/boot-footer.jsp"></c:import>
 	</div>
+	<script src="/resources/js/users/deleteAccount.js"></script>
 </body>
 </html>

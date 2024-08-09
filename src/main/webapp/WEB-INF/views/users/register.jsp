@@ -45,6 +45,7 @@
 								<input type="text" class="form-control" id="user_name"
 								name="user_name">
 								<label for="user_name">이름</label>
+								<div id="regDivName"></div>
 							</div>
 							<div class="form-floating">
 								<input type="text" class="form-control" id="user_nickname"
@@ -55,11 +56,13 @@
 								<input type="tel" class="form-control" id="user_phone"
 								name="user_phone">
 								<label for="user_phone">전화 번호</label>
+								<div id="regDivPhone"></div>
 							</div>
 							<div class="form-floating">
 								<input type="email" class="form-control" id="user_email"
-								name="user_email" placeholder="name@example.com">
+								name="user_email" placeholder="name@example.com" >
 								<label for="user_email">이메일</label>
+								<div id="regDivEmail"></div>
 							</div>
 							
 							<button id="blankCheck" class="btn btn-primary w-100 py-2" type="button">회원 가입</button>
