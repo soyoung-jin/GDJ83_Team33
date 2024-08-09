@@ -10,8 +10,9 @@ const user_email = document.getElementById("user_email");
 const form_control = document.getElementsByClassName("form-control");
 // 비밀번호 검증 결과를 띄워주는 div 태그의 id
 const error_message = document.getElementById("error-message");
-// 비밀번호 길이 제한 검증 div 태그의 id
+// 비밀번호 길이 제한 검증 결과를 띄워주는 div 태그의 id
 const length_check = document.getElementById("length-check");
+// 아이디 중복 검사 결과를 띄워주는 div 태그의 id
 const duplicate_check = document.getElementById("duplicate-check");
 const form = document.getElementById("form");
 
@@ -71,6 +72,8 @@ user_pw.addEventListener("change", ()=>{
     }
 })
 
+// 입력한 아이디가 중복인지 아닌지 검증하는 이벤트
+// 입력한 데이터를 해당 주소의 Controller로 보내서 검증을 한다
 user_id.addEventListener("blur", ()=>{
 
     let id = user_id.value
@@ -80,6 +83,7 @@ user_id.addEventListener("blur", ()=>{
     .then((res)=>{return res.text()})
     .then((res)=>{
         if(res > 0){
+            user_id.value="";
             duplicate_check.innerHTML="중복된 아이디입니다.";
             duplicate_check.classList="text-danger";
         }else{

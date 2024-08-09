@@ -159,12 +159,17 @@ public class UsersController {
 		model.addAttribute("list", list);
 	}
 	
+	
+	// 회원가입시 입력한 id값이 중복인지 아닌지 검사하는 JS 이벤트 코드
+	// JS에서 비동기식 ajax를 사용해서 여기로 넘어옴
 	@GetMapping("checkID")
 	public String checkID(UsersDTO usersDTO, Model model) throws Exception{
 		
 		UsersDTO check = usersService.checkID(usersDTO);
 		int result;
 		
+		// 넘겨받은 user_id를 DB에서 검색, 검색 결과가 있으면 result를 1로 만듬
+		// 검색 결과가 없으면 result를 0으로 만듬
 		if(usersDTO.getUser_id().equals(check.getUser_id())) {
 			result = 1;
 		}else {
