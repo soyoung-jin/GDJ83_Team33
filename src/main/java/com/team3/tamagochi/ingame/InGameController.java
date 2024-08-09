@@ -36,9 +36,10 @@ public class InGameController {
 	@GetMapping("feed")
 	@ResponseBody
 	public MyPetDTO feedPet(Model model, MyPetDTO myPetDTO, HttpSession session) throws Exception {
-		myPetDTO = (MyPetDTO) session.getAttribute("users_info");
-		int result = inGameService.feedPet(myPetDTO);
+		UsersDTO tempDTO = (UsersDTO) session.getAttribute("users_info");
+		myPetDTO.setUser_id(tempDTO.getUser_id());
 		myPetDTO.setItem_num(4L);
+		int result = inGameService.feedPet(myPetDTO);
 		//펫 상태 다시 불러오기
 		myPetDTO =inGameService.getPetStatus(myPetDTO);
 		model.addAttribute("msg", result);
@@ -49,9 +50,10 @@ public class InGameController {
 	@GetMapping("stroll")
 	@ResponseBody
 	public MyPetDTO strollPet(Model model, MyPetDTO myPetDTO, HttpSession session) throws Exception {
-		myPetDTO = (MyPetDTO) session.getAttribute("users_info");
-		int result = inGameService.strollPet(myPetDTO);
+		UsersDTO tempDTO = (UsersDTO) session.getAttribute("users_info");
+		myPetDTO.setUser_id(tempDTO.getUser_id());
 		myPetDTO.setItem_num(4L);
+		int result = inGameService.strollPet(myPetDTO);
 		//펫 상태 다시 불러오기
 		myPetDTO =inGameService.getPetStatus(myPetDTO);
 		model.addAttribute("msg", result);
@@ -62,9 +64,10 @@ public class InGameController {
 	@GetMapping("clean")
 	@ResponseBody
 	public MyPetDTO cleanPet(Model model, MyPetDTO myPetDTO, HttpSession session) throws Exception {
-		myPetDTO = (MyPetDTO) session.getAttribute("users_info");
-		int result = inGameService.cleanPet(myPetDTO);
+		UsersDTO tempDTO = (UsersDTO) session.getAttribute("users_info");
+		myPetDTO.setUser_id(tempDTO.getUser_id());
 		myPetDTO.setItem_num(4L);
+		int result = inGameService.cleanPet(myPetDTO);
 		
 		//펫 상태 다시 불러오기
 		myPetDTO = inGameService.getPetStatus(myPetDTO);
