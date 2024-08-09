@@ -17,32 +17,63 @@
 			<div class="row justify-content-end mt-3 mr-3 petMenu">
 				<div class="col-sm-4 col-lg-3 col-md-3 justify-content-center ">
 				  <div class="card">
-					<div class="card-body">
-					  <h5 class="card-title">펫이름</h5>
-					  <p class="card-text"><a href="#" data-bs-toggle="modal" data-bs-target="#petStatusModal">펫 상태 보기</a></p>
-					  <div class="justify-content-center align-item-center">
-					  
-					  <!-- 펫 상태 보기 모달 버튼 -->
-					  
-					  <a href="./feed" id="feed" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#actModal">먹이주기</a>
-					  <a href="./stroll" id="stroll" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#actModal">산책하기</a>
-					  <a href="./clean" id="clean" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#actModal">청소하기</a>
-					  </div>
+						<div class="card-body">
+							<h5 class="card-title">펫이름</h5>
+							<p class="card-text"><a href="#" id="petStatusBtn" data-bs-toggle="modal" data-bs-target="#petStatusModal">펫 상태 보기</a></p>
+								<div class="justify-content-center align-item-center">
+
+								<!-- 펫 상태 보기 모달 버튼 -->
+								
+								<a href="./feed" id="feed" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#actModal">먹이주기</a>
+								<a href="./stroll" id="stroll" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#actModal">산책하기</a>
+								<a href="./clean" id="clean" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#actModal">청소하기</a>
+								</div>
+						</div>
 					</div>
-				  </div>
 				</div>
-			  </div>
-			  
+			</div>
+		
+			<!-- 펫 행동 모달(식사,산책,화장실) -->
+			
+			<div id="petDiv">
+				<div class="modal fade" id="actModal" tabindex="-1" aria-labelledby="modalActLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-scrollable">
+						<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="modalActLabel"></h1>
+							<button id="actCloseBtn" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+						</div>
+						<div class="modal-body">
+						<div class="form-floating" id="modalImg">
+							<img id="actImg" class="petAct" src="" alt="">
+							
+						</div>
+						</div>
+						<div class="modal-footer">
+							<div class="input-group mb-3 justify-content-center">
+								
+								<button id="doneFeeding" class="btn btn-outline-secondary close" type="button" data-bs-dismiss="modal" aria-label="Close">확인</button>
+								
+							</div>
+							
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			  <!-- 펫 상태 보기 모달 -->
 			  
 			  <div id="petStatusDiv">
 				<div class="modal fade" id="petStatusModal" tabindex="-1" aria-labelledby="petStatusModal" aria-hidden="true">
 					<div class="modal-dialog modal-dialog-scrollable">
 					  <div class="modal-content">
+
 						<div class="modal-header">
 						  <h1 class="modal-title fs-5" id="petStatusModal">마이펫</h1>
 						  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
 						</div>
+
 						<div class="modal-body">
 						 <!-- 펫 상태 리스트 -->
 						 <div class="tm-block-col tm-col-account-settings" id="petStatusList">
@@ -99,25 +130,6 @@
 			   </div>
 
 
-			  <!-- 펫 행동 모달(식사,산책,화장실) -->
-			  
-			  <div id="petDiv">
-				<div class="modal fade" id="actModal" tabindex="-1" aria-labelledby="modalActLabel" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-scrollable">
-					  <div class="modal-content">
-						<div class="modal-header">
-						  <h1 class="modal-title fs-5" id="modalActLabel">마이펫</h1>
-						  <button id="actCloseBtn" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
-						</div>
-						<div class="modal-body">
-						 <div class="form-floating" id="modalImg">
-							<img id="actImg" class="petAct" src="" alt="">
-						  </div>
-						</div>
-					  </div>
-					</div>
-				  </div>
-			   </div>
 	
 	
 			<!-- 펫이랑 대화 모달 -->
@@ -130,13 +142,15 @@
 						<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-dialog-scrollable">
 							  <div class="modal-content">
+
 								<div class="modal-header">
 								  <h1 class="modal-title fs-5" id="exampleModalLabel">마이펫</h1>
 								  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
 								</div>
+
+								<!-- 대화 내용 -->
 								<div class="modal-body">
 								 <div class="form-floating" id="modalContent">
-								 <!-- 대화 내용 -->
 									
 									
 								  </div>

@@ -5,8 +5,6 @@ const sendBtn = document.getElementById("sendBtn");
 const chatContent = document.getElementById("chatContent");
 
 
-let div = document.createElement("div");
-let petChatBtn;
 /* =====================챗봇에 관련된 변수===================== */
 // 내 키
 const apiKey = '';
@@ -19,46 +17,48 @@ let y = 400;
 let currentPositionX = 450;
 let currentPositionY = 350;
 
-
+// 펫 방향키로 움직이기
 document.addEventListener("keydown", (e)=>{
     if(e.key==='ArrowLeft') {
         x = x-5;
         myPet.style.left = x+"px";
-        currentPositionX = myPet.style.left;
+        currentPositionX = x-50 + "px";
         
         if(x < -100) {
             myPet.style.left = "-90px";
         }
-
+        
     } else if(e.key==='ArrowRight') {
         x = x+5;
         myPet.style.left = x+"px";
-        currentPositionX = myPet.style.left;
-
+        currentPositionX = x-50 + "px";
+        
         if(x>1600) {
             myPet.style.left = "1550px";
         }
-
+        
     } else if(e.key==='ArrowUp') {
         y = y-5;
         myPet.style.top = y+"px";
-        currentPositionY = myPet.style.top;
-
+        currentPositionY = y-50 + "px";
+        
         if(y < 10) {
             myPet.style.top = "20px";
         }
-
+        
     } else if(e.key==='ArrowDown') {
         y = y+5;
         myPet.style.top = y+"px";
-        currentPositionY = myPet.style.top
-
+        currentPositionY = y-50 + "px";
+        
         if(y>645) {
             myPet.style.top = "640px";
         }
     }
 })
 
+
+let div = document.createElement("div");
 
 //input 창에 쓴대로 한줄씩 추가되는 태그 생성
 function chatting() {
@@ -70,10 +70,23 @@ function chatting() {
 }
 
 // pet 이미지를 누를 때 이벤트
-myPet.addEventListener("click", ()=>{
+let petChatBtn = document.createElement("button");
 
+myPet.addEventListener("keyup", (e)=>{
+    if(e.key === 'ArrowLeft') {
+        petChatBtn.remove();
+    } else if(e.key === 'ArrowRight') {
+        petChatBtn.remove();
+    } else if(e.key === 'ArrowUp') {
+        petChatBtn.remove();
+    } else if(e.key === 'ArrowDown') {
+        petChatBtn.remove();
+    }
+})
+
+myPet.addEventListener("click", ()=>{
+    
     // 캐릭터 누르면 버튼 생성
-    petChatBtn = document.createElement("button");
     petChatBtn.setAttribute("type", "button");
     petChatBtn.classList.add('btn', 'btn-outline-warning');
     petChatBtn.setAttribute("id", "petChat");
@@ -92,6 +105,7 @@ myPet.addEventListener("click", ()=>{
         div.innerHTML = "";
     })
 
+    
 })
 
 
@@ -106,7 +120,7 @@ function addMessage(sender, message){
     modalContent.prepend(div);
 }
 
-async function fetchAIResponse(prompt) {
+async function fetchAIResponse(userMsg) {
     const requestOptions = {
         method: "POST",
         headers: {
@@ -122,21 +136,21 @@ async function fetchAIResponse(prompt) {
                     content: [
                       {
                         type: "text",
-                        text: "you are my pet.\nyou should be kind and happy all the time and give me joy.\nyou don't need to be my assistant.\nyou just need to be my pet.\nyou don't have to ask me anything, just be fun. basically, you are a bird."
+                        text: "you are my pet.\nyou are kind and happy all the time and bring me joy.\nyou don't need to be my assistant.\njust at least pretend to be a pet.\nyou don't have to ask me anything, just be fun. basically, you are a bird."
                       }
                     ]
                 },
                 {
                     role: "user", // 메시지 역할을 user로 설정
-                    content: prompt // 사용자가 입력한 메시지
+                    content: userMsg // 사용자가 입력한 메시지
                 }
         ],
             temperature: 0.8, // 모델의 출력 다양성
-            max_tokens: 1024, // 응답받을 메시지 최대 토큰(단어) 수 설정
+            max_tokens: 500, // 응답받을 메시지 최대 토큰(단어) 수 설정
             top_p: 1, // 토큰 샘플링 확률을 설정
             frequency_penalty: 0.5, // 일반적으로 나오지 않는 단어를 억제하는 정도
             presence_penalty: 0.5, // 동일한 단어나 구문이 반복되는 것을 억제하는 정도
-            stop: ["Human"], // 생성된 텍스트에서 종료 구문을 설정
+            stop: ["bye"], // 생성된 텍스트에서 종료 구문을 설정
         }),
     };
 
@@ -173,6 +187,4 @@ chatContent.addEventListener("keyup", (e)=>{
     }
     
 })
-
-
 

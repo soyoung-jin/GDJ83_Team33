@@ -12,19 +12,19 @@ public class InGameService {
 	@Autowired
 	private InGameDAO inGameDAO;
 	
-	public MyPetDTO getPetStatus(UsersDTO usersDTO) throws Exception {
-		return inGameDAO.getPetStatus(usersDTO);
+	public MyPetDTO getPetStatus(MyPetDTO myPetDTO) throws Exception {
+		return inGameDAO.getPetStatus(myPetDTO);
 	}
 	
-	public int feedPet(UsersDTO usersDTO) throws Exception {
-		return inGameDAO.feedPet(usersDTO);
+	public int feedPet(MyPetDTO myPetDTO) throws Exception {
+		return inGameDAO.feedPet(myPetDTO);
 	}
 	
-	public int strollPet(UsersDTO usersDTO) throws Exception {
-		return inGameDAO.strollPet(usersDTO);
+	public int strollPet(MyPetDTO myPetDTO) throws Exception {
+		return inGameDAO.strollPet(myPetDTO);
 	}
 	
-	public int cleanPet(UsersDTO usersDTO) throws Exception {
-		return inGameDAO.cleanPet(usersDTO);
+	public int cleanPet(MyPetDTO myPetDTO) throws Exception {
+		return inGameDAO.cleanPet(myPetDTO);
 	}
 }

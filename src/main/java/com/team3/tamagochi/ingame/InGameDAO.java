@@ -15,20 +15,20 @@ public class InGameDAO {
 
 	private final String NAMESPACE = "com.team3.tamagochi.ingame.InGameDAO.";
 	
-	public MyPetDTO getPetStatus(UsersDTO userDTO) throws Exception{
-		return sqlSession.selectOne(NAMESPACE + "getPetStatus", userDTO);
+	public MyPetDTO getPetStatus(MyPetDTO myPetDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE + "getPetStatus", myPetDTO);
 	}
 	
-	public int feedPet(UsersDTO usersDTO) throws Exception {
-		return sqlSession.update(NAMESPACE + "feedPet", usersDTO);
+	public int feedPet(MyPetDTO myPetDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "feedPet", myPetDTO);
 	}
 	
-	public int strollPet(UsersDTO usersDTO) throws Exception {
-		return sqlSession.update(NAMESPACE + "strollPet", usersDTO);
+	public int strollPet(MyPetDTO myPetDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "strollPet", myPetDTO);
 	}
 	
-	public int cleanPet(UsersDTO usersDTO) throws Exception {
-		return sqlSession.update(NAMESPACE + "cleanPet", usersDTO);
+	public int cleanPet(MyPetDTO myPetDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "cleanPet", myPetDTO);
 	}
 	
 	
