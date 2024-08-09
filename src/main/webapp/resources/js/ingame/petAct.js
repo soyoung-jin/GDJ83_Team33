@@ -22,6 +22,7 @@ let followingPetDiv = document.createElement("div");
 let followingPetText = document.createElement("p");
 
 
+
 //=====================펫 먹이주기 버튼======================
 feed.addEventListener("click", ()=>{
     modalActLabel.innerHTML = "식사 중";
@@ -48,23 +49,26 @@ feed.addEventListener("click", ()=>{
                 modalImg.append(h4Two);
 
             })
+        .then((r)=>{
+            followingPetText.innerHTML = "배불러요";
+            followingPetText.setAttribute("id", "followingPetText");
+            followingPetDiv.append(followingPetText);
+            followingPetDiv.setAttribute("id", "followingPetDiv");
+            followingPetDiv.style.left = myPetAct.style.left;
+            followingPetDiv.style.top = myPetAct.style.top;
+            actPetParent.append(followingPetDiv);
+    
+            setTimeout(()=>{
+                followingPetDiv.remove();
+            }, 5000)
+
+        })
             .catch(()=>{
                 alert("오류");
             })
             
         }, 1500)
         
-        followingPetText.innerHTML = "배불러요";
-        followingPetText.setAttribute("id", "followingPetText");
-        followingPetDiv.append(followingPetText);
-        followingPetDiv.setAttribute("id", "followingPetDiv");
-        followingPetDiv.style.left = myPetAct.style.left;
-        followingPetDiv.style.top = myPetAct.style.top;
-        actPetParent.append(followingPetDiv);
-
-        setTimeout(()=>{
-            followingPetDiv.remove();
-        }, 7000)
 
 })
 
@@ -95,11 +99,25 @@ stroll.addEventListener("click", ()=>{
                 modalImg.append(h4Two);
             
         })
+        .then((r)=>{
+            followingPetText.innerHTML = "행복해요";
+            followingPetText.setAttribute("id", "followingPetText");
+            followingPetDiv.append(followingPetText);
+            followingPetDiv.setAttribute("id", "followingPetDiv");
+            followingPetDiv.style.left = myPetAct.style.left;
+            followingPetDiv.style.top = myPetAct.style.top;
+            actPetParent.append(followingPetDiv);
+    
+            setTimeout(()=>{
+                followingPetDiv.remove();
+            }, 5000)
+
+        })
         .catch(()=>{
             alert("오류");
         })
         
-    }, 2000)
+    }, 1500)
     
 })
 
@@ -130,11 +148,25 @@ clean.addEventListener("click", ()=>{
                 modalImg.append(h4Two);
 
         })
+        .then((r)=>{
+            followingPetText.innerHTML = "깨끗하고 좋네요";
+            followingPetText.setAttribute("id", "followingPetText");
+            followingPetDiv.append(followingPetText);
+            followingPetDiv.setAttribute("id", "followingPetDiv");
+            followingPetDiv.style.left = myPetAct.style.left;
+            followingPetDiv.style.top = myPetAct.style.top;
+            actPetParent.append(followingPetDiv);
+    
+            setTimeout(()=>{
+                followingPetDiv.remove();
+            }, 5000)
+
+        })
         .catch(()=>{
             alert("오류");
         })
         
-    }, 2000)
+    }, 1500)
     
     
 })
