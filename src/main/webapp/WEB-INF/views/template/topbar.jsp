@@ -14,13 +14,17 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto h-100">
+                        <c:choose>
+	                    	<c:when test="${not empty users_info}">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                            <a class="nav-link active" href="ingame/ingame">
                                 <i class="fas fa-tachometer-alt"></i>
                                 게임시작
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
+                        </c:when>
+                        </c:choose>
                         <li class="nav-item dropdown">
 
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
