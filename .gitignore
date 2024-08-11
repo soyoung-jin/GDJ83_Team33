@@ -5,6 +5,12 @@
 DBConnection.java
 database.properties
 
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
 ### Eclipse ###
 .metadata
 bin/
@@ -147,5 +153,3 @@ database.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,eclipse,java,maven
 src/main/java/com/winter/spring/util/DBConnection.java
-src/.DS_Store
-.DS_Store
