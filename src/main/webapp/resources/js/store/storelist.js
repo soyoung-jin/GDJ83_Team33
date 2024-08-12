@@ -55,7 +55,7 @@ itemListdiv.addEventListener("click",(e)=>{
                 let check = confirm("찜목록으로 가시겠습니까?")
     
                 if(check){
-                    location.href="getwishList"
+                    location.href="getWishList"
                 }
             } else if(r<0){
                 alert ("로그인 ㄱㄱ")

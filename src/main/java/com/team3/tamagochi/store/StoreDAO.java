@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team3.tamagochi.boards.util.Pager;
+import com.team3.tamagochi.users.UsersDTO;
 
 @Repository
 public class StoreDAO {
@@ -16,6 +17,14 @@ public class StoreDAO {
 	SqlSession sqlSession;
 
 	private final String NAMESPACE = "com.team3.tamagochi.store.StoreDAO.";
+	
+	public int deleteWishList (WishListDTO wishListDTO) {
+		return sqlSession.delete(NAMESPACE+"deleteWishList", wishListDTO);
+	}
+	
+	public List<WishListDTO> getWishList(UsersDTO usersDTO) {
+		return sqlSession.selectList(NAMESPACE+"getWishList", usersDTO);
+	}
 
 	public List<ItemDTO> getItemList(Map<String, Object> map) {
 	
