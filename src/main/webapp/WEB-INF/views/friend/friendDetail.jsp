@@ -6,8 +6,9 @@
 <title>Home</title>
 <c:import url="../template/header.jsp"></c:import>
 <link rel="stylesheet" href="/resources/css/friend.css">
-
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 </head>
 <body id="reportsPage" class="font">
 	<div class="" id="home">
@@ -104,6 +105,12 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 <script src="/resources/js/friend/chat.js"></script>
+<script type="text/javascript">
+	const loginFriendId = "${usersDTO.friendDTO[0].friend_id}";
+	const loginUserId = "${usersDTO.friendDTO[0].user_id}";
+	console.log(loginFriendId);
+	console.log(loginUserId);
+</script>
 <c:import url="../template/boot-footer.jsp"></c:import>
 </body>
 </html>

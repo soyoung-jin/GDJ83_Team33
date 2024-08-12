@@ -21,13 +21,17 @@ public class InGameController {
 	
 	//<====================펫 정보======================>
 	@GetMapping("ingame")
-	public void getPetStatus(MyPetDTO myPetDTO, Model model, HttpSession session) throws Exception {
+	public String getPetStatus(MyPetDTO myPetDTO, Model model, HttpSession session) throws Exception {
 		UsersDTO tempDTO = (UsersDTO) session.getAttribute("users_info");
 		myPetDTO.setUser_id(tempDTO.getUser_id());
 		myPetDTO.setItem_num(4L);
 		myPetDTO = inGameService.getPetStatus(myPetDTO);
+		Long petExp = inGameService.getPetExp(myPetDTO);
+		System.out.println(petExp);
+		model.addAttribute("msg", petExp);
 		
 		model.addAttribute("myPetDTO", myPetDTO);
+		return "commons/result";
 		
 	}
 	
@@ -42,7 +46,7 @@ public class InGameController {
 		int result = inGameService.feedPet(myPetDTO);
 		//펫 상태 다시 불러오기
 		myPetDTO =inGameService.getPetStatus(myPetDTO);
-		model.addAttribute("msg", result);
+		
 		return myPetDTO;
 	}
 	
@@ -56,7 +60,7 @@ public class InGameController {
 		int result = inGameService.strollPet(myPetDTO);
 		//펫 상태 다시 불러오기
 		myPetDTO =inGameService.getPetStatus(myPetDTO);
-		model.addAttribute("msg", result);
+		
 		return myPetDTO;
 	}
 	
@@ -71,9 +75,24 @@ public class InGameController {
 		
 		//펫 상태 다시 불러오기
 		myPetDTO = inGameService.getPetStatus(myPetDTO);
-		model.addAttribute("msg", result);
+		
 		return myPetDTO;
 	}
+	
+	
+	//<====================펫 진화======================>
+//	public MyPetDTO evolvePet(Model model, MyPetDTO myPetDTO, HttpSession session) throws Exception {
+//		UsersDTO tempDTO = (UsersDTO) session.getAttribute("users_info");
+//		myPetDTO.setUser_id(tempDTO.getUser_id());
+//		myPetDTO.setItem_num(4L);
+//		Long petExp = inGameService.getPetExp(myPetDTO);
+//		System.out.println(petExp);
+//		
+//		myPetDTO = inGameService.getPetStatus(myPetDTO);
+//		
+//		return myPetDTO;
+//		
+//	}
 	
 	
 	

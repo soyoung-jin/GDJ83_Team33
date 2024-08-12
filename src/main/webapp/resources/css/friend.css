@@ -9,3 +9,11 @@
 h3 {
     text-align: end;
 }
+
+#yourMsg {
+    text-align: start;
+}
+
+#myMsg {
+    text-align: end;
+}

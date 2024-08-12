@@ -31,6 +31,10 @@ public class InGameDAO {
 		return sqlSession.update(NAMESPACE + "cleanPet", myPetDTO);
 	}
 	
+	public Long getPetExp(MyPetDTO myPetDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getPetExp", myPetDTO);
+	}
+	
 	
 	
 }
