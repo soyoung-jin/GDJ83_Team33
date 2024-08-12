@@ -21,4 +21,8 @@
   		UPDATE MY_PET SET PET_HP = PET_HP + 10 WHERE USER_ID = #{user_id} AND ITEM_NUM = #{item_num}
   	</update>
   	
+  	<select id="getPetExp" parameterType="MyPetDTO" resultType="java.lang.Long">
+  		SELECT PET_EXP FROM MY_PET WHERE USER_ID = #{user_id} AND ITEM_NUM = #{item_num}
+  	</select>
+  	
   </mapper>

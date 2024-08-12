@@ -19,7 +19,7 @@
 				  <div class="card">
 						<div class="card-body">
 							<h5 class="card-title">펫이름</h5>
-							<p class="card-text"><a href="#" id="petStatusBtn" data-bs-toggle="modal" data-bs-target="#petStatusModal">펫 상태 보기</a></p>
+							<p class="card-text"><a href="./checkPetStatus" id="petStatusBtn" data-bs-toggle="modal" data-bs-target="#petStatusModal">펫 상태 보기</a></p>
 								<div class="justify-content-center align-item-center">
 
 								<!-- 펫 상태 보기 모달 버튼 -->

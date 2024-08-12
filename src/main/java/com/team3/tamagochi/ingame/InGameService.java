@@ -27,4 +27,8 @@ public class InGameService {
 	public int cleanPet(MyPetDTO myPetDTO) throws Exception {
 		return inGameDAO.cleanPet(myPetDTO);
 	}
+	
+	public Long getPetExp(MyPetDTO myPetDTO) throws Exception {
+		return inGameDAO.getPetExp(myPetDTO);
+	}
 }

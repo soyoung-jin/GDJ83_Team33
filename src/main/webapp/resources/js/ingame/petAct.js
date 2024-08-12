@@ -171,6 +171,22 @@ clean.addEventListener("click", ()=>{
     
 })
 
+//=====================펫 진화하기======================
+petStatusBtn.addEventListener("click", ()=>{
+    fetch("./checkPetStatus",  {
+        method: "GET"
+    })
+    .then(r=>{return r.text()})
+    .then((r)=> {
+        r.trim;
+        if(r > 200) {
+            alert("레벨업 준비완료");
+        }
+        console.log(r);
+    })
+})
+
+
 
 
 
