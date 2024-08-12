@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.team3.tamagochi.mypet.MyPetDTO;
+import com.team3.tamagochi.store.ItemDTO;
 import com.team3.tamagochi.store.WeaponDTO;
 
 @Service
@@ -60,10 +62,32 @@ public class UsersService {
 	
 	// 인벤토리에서 내가 보유한 무기를 가져오는 메서드
 	// 무기 데이터를 가져와야 하므로 리턴 타입은 weaponDTO가 된다
-	public List<WeaponDTO> getInvenList(UsersDTO usersDTO) throws Exception{
+	public List<ItemDTO> getInvenList(UsersDTO usersDTO) throws Exception{
 		
 		return usersDAO.getInvenList(usersDTO);
 	}
+	
+	// 아이템 착용 메서드
+	// 1. 아이템 장착을 하기 위해선 현재 사용중인 pet_num이 필요
+	// pet_num을 구하는 메서드
+	public MyPetDTO getMyPetNum(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.getMyPetNum(usersDTO);
+	}
+	
+	// 2. 현재 사용중인 캐릭터에 선택한 아이템 능력치만큼 업데이트 해주는 메서드
+	public Integer equipItem(MyPetDTO myPetDTO) throws Exception{
+		
+		return usersDAO.equipItem(myPetDTO);
+	}
+	
+	// 3. 현재 사용중인 캐릭터가 장비한 아이템을 해제하는 메서드
+	public Integer takeOffItem(MyPetDTO myPetDTO) throws Exception{
+		
+		return usersDAO.takeOffItem(myPetDTO);
+	}
+	
+	
 	
 	// 회원가입시 입력한 id값이 중복인지 아닌지 검사하는 JS 이벤트 코드
 	public UsersDTO checkID(UsersDTO usersDTO) throws Exception{
