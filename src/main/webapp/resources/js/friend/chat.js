@@ -4,56 +4,62 @@ const chatContent = document.getElementById("chatContent");
 const startChat = document.getElementById("startChat");
 let div = document.createElement("div");
 
+
+
 //==================친구와 채팅 - 웹소켓===================
 
 
-let sock = new SockJS("http://localhost:80/friend/friendDetail");
+let sock = new SockJS("http://192.168.7.108/friend/friendDetail");
+
+
 sock.onmessage = onMessage;
 sock.onclose = onClose;
 
 // 메세지 전송
 function sendMessage(){
     sock.send(chatContent.value);
+    
 }
 
 // 서버로부터 메세지를 받았을 때
 function onMessage(msg) {
     let h3 = document.createElement("h3");
+    h3.setAttribute("id", "yourMsg");
+    if (loginYourId == msg.senderNo) {
+        h3.setAttribute("id", "myMsg");
+    }
+    console.log(msg);
     let data = msg.data;
     h3.append(data);
     div.append(h3);
     modalContent.append(div);
+    
+    
 }
 
-function onClose(e) {
+function onClose() {
     let h3 = document.createElement("h3");
     h3.append("연결 끊김");
     div.append(h3);
     modalContent.append(div);
 }
 
-function chatting () {
-    let h3 = document.createElement("h3");
-    h3.append(chatContent.value);
-    div.append(h3);
-    modalContent.append(div);
-}
 
 chatContent.addEventListener("keyup", (e)=>{
     if(e.key === 'Enter') {
-        chatting();
+        sendMessage();
+        console.log(chatContent.value);
         chatContent.value="";
+
 
     }
 })
 
 sendBtn.addEventListener("click", ()=>{
-    // chatting();
-    // chatContent.value="";
-
+    
     sendMessage();
-    chatContent.value="";
     console.log(chatContent.value);
+    chatContent.value="";
 
 })
 
