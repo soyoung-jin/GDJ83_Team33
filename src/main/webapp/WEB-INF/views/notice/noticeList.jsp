@@ -24,7 +24,7 @@
     	</thead>
     	
     	<tbody>
-    		<c:forEach items=${list} var="list">
+    		<c:forEach items="${list}" var="list">
     			<tr>
 	    			<th scopt="row">${list.board_num}></th>
 	    			<td><a href class="btn">${list.board_title}</a></td>

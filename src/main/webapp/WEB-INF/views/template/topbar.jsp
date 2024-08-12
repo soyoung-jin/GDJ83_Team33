@@ -35,7 +35,7 @@
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="notice/noticeList">공지사항</a>
+                                <a class="dropdown-item" href="/notice/noticeList">공지사항</a>
                                 <a class="dropdown-item" href="#">유저 게시판</a>
                                 <a class="dropdown-item" href="#">랭킹 게시판</a>
                                 <a class="dropdown-item" href="#">문의 게시판</a>

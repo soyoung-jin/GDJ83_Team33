@@ -5,6 +5,12 @@
 DBConnection.java
 database.properties
 
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
 ### Eclipse ###
 .metadata
 bin/
