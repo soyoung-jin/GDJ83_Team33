@@ -3,42 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-  <mapper namespace="com.team3.tamagochi.boards.notice.NoticeDAO">
-  	<sql id="searchSql">
-  		<where>
-			NOTICE_NUM>0
-			<choose>
-				<when test="kind=='title'">
-					AND NOTICE_TITLE 
-				</when>
-				<when test="kind=='contents'">
-					AND NOTICE_CONTENTS
-				</when>
-				<otherwise>
-					AND USER_ID
-				</otherwise>
-			</choose>
-			LIKE '%'||#{search}||'%'
-		</where>
+  <mapper namespace="com.team3.tamagochi.notice.NoticeDAO">
   	
-  	</sql>
-  
-  	<select id="list" parameterType="Pager" resultType="NoticeDTO">
-  	
-  		
-  		SELECT * FROM(
-			SELECT ROWNUM AS R,T.*FROM
-				(SELECT * FROM NOTICE
-				<include refid="searchSql"></include>
-			  		
-			  		ORDER BY NOTICE_NUM DESC) T)
-			WHERE R BETWEEN #{startRow} AND #{lastRow};
-  	</select>
-  	
-  	
-  	<select id="getTotalCount" parameterType="Pager" resultType="Long">
-  		SELECT COUNT(NOTICE_NUM) FROM NOTICE
-  		<include refid="searchSql"></include> 
-  	
-  	</select>
   </mapper>
