@@ -33,7 +33,7 @@
 											<h5 class="card-title">체력 증가 : ${dto.item_hp }</h5>
 											<h5 class="card-title">공격력 증가 : ${dto.item_atk }</h5>
 											<h5 class="card-title">회피력 증가 : ${dto.item_dod }</h5>
-											<a href="#" class="btn btn-primary">장착</a>
+											<button id="equip-item" type="button" class="btn btn-primary">장착</button>
 										</div>
 									</div>
 								</div>
@@ -50,6 +50,7 @@
 
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>
+	<script src="/resources/js/users/inventory.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>

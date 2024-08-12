@@ -8,37 +8,15 @@
 <body id="reportsPage" class="font">
 	<div class="" id="home">
 	<c:import url="./template/topbar.jsp"></c:import>
+	
+	<div class="container">
+        <div class="row">
+            <div class="col">
+                <p class="text-white mt-5 mb-5">Welcome, <b>Admin</b></p>
+            </div>
+        </div>
             <!-- row -->
     </div>
-    <div>
-    <table>
-    	<thead>
-    		<tr>
-    			<th scope="col">글 번호</th>
-    			<th scope="col">작성자</th>
-    			<th scope="col">제목</th>
-    			<th scope="col">작성일</th>
-    			<th scope="col">조회수</th>
-    			<th scope="col">내용</th>
-    		</tr>
-    	</thead>
-    	
-    	<tbody>
-    		<c:forEach items=${list} var="list">
-    			<tr>
-	    			<th scopt="row">${list.board_num}></th>
-	    			<td><a href class="btn">${list.board_title}</a></td>
-	    			<td><a href class="btn">${list.user_id}</a></td>
-	    			<td><a href class="btn">${list.board_hit}</a></td>
-	    			<td><a href class="btn">${list.board_create_date}</a></td>
-
-    			</tr>
-    		</c:forEach>
-    	</tbody>
-    </table>
-    </div>
-    
-    
 	<c:import url="./template/footer.jsp"></c:import>
 	<c:import url="./template/boot-footer.jsp"></c:import>
 	</div>
