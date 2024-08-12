@@ -33,7 +33,21 @@
 											<h5 class="card-title">체력 증가 : ${dto.item_hp }</h5>
 											<h5 class="card-title">공격력 증가 : ${dto.item_atk }</h5>
 											<h5 class="card-title">회피력 증가 : ${dto.item_dod }</h5>
-											<button id="equip-item" type="button" class="btn btn-primary">장착</button>
+											<c:choose>
+												<c:when test="${dto.inventoryDTO.inventory_num ne myPetDTO.equip_num}">
+													<button type="button" data-item-num="${dto.item_num }" data-item-hp="${dto.item_hp }"
+													data-item-atk="${dto.item_atk }" data-item-dod="${dto.item_dod }" data-inventory-num="${dto.inventoryDTO.inventory_num }"
+													class="btn btn-primary">장착</button>											
+												</c:when>
+												<c:otherwise>
+													<button type="button" data-item-num="${dto.item_num }" data-item-hp="${dto.item_hp }"
+													data-item-atk="${dto.item_atk }" data-item-dod="${dto.item_dod }" data-inventory-num="${dto.inventoryDTO.inventory_num }"
+													class="del btn-danger">해제</button>
+												</c:otherwise>
+											</c:choose>
+											
+											
+										
 										</div>
 									</div>
 								</div>

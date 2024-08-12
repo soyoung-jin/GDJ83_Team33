@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.team3.tamagochi.mypet.MyPetDTO;
+import com.team3.tamagochi.store.ItemDTO;
 import com.team3.tamagochi.store.WeaponDTO;
 
 @Controller
@@ -156,9 +158,54 @@ public class UsersController {
 		
 		usersDTO = (UsersDTO)session.getAttribute("users_info");
 		
-		List<WeaponDTO> list = usersService.getInvenList(usersDTO);
+		List<ItemDTO> list = usersService.getInvenList(usersDTO);
 		
 		model.addAttribute("list", list);
+		
+		// 인벤토리에서 '현재 캐릭터'가 착용한 장비 여부를 확인하는 메서드
+		// Mapper에서 만들어둔 getMyPetNum 쿼리를 재활용
+		MyPetDTO myPetDTO = new MyPetDTO();
+		myPetDTO = usersService.getMyPetNum(usersDTO);
+		model.addAttribute("myPetDTO", myPetDTO);
+	}
+	
+	@GetMapping("equipItem")
+	public String equipItem(ItemDTO itemDTO, HttpSession session, Model model, String inventory_num) throws Exception{
+		
+		// 아이템 착용 버튼 클릭시 '어느 캐릭터'에 아이템 값을 업데이트할건지 정하려면 현재 사용중인 캐릭터를 알아야 됨
+		// 현재 사용중인 Pet_num을 구하기 위해 session에서 user_id를 꺼내서 계산
+		UsersDTO usersDTO = (UsersDTO)session.getAttribute("users_info");
+		MyPetDTO myPetDTO = new MyPetDTO();
+		myPetDTO = usersService.getMyPetNum(usersDTO);
+		
+		
+		// 업데이트를 하려면 MyPetDTO의 Pet_num과 ItemDTO 총 2개의 parameter가 필요
+		// 때문에 MyPetDTO에 ItemDTO 값을 대입해서 parameter를 MyPetDTO 하나만 사용
+		myPetDTO.setEquip_num(Long.parseLong(inventory_num));
+		myPetDTO.setAdd_hp(itemDTO.getItem_hp());
+		myPetDTO.setAdd_atk(itemDTO.getItem_atk());
+		myPetDTO.setAdd_dod(itemDTO.getItem_dod());
+		int result = usersService.equipItem(myPetDTO);
+		
+		model.addAttribute("msg", result);
+		
+		return "commons/result";
+	}
+	
+	@GetMapping("takeOffItem")
+	public String takeOffItem(HttpSession session, Model model) throws Exception{
+		
+		// 아이템 해제 버튼 클릭시 '어느 캐릭터'에 아이템 값을 초기화할건지 정하려면 현재 사용중인 캐릭터를 알아야 됨
+		// 현재 사용중인 Pet_num을 구하기 위해 session에서 user_id를 꺼내서 계산
+		UsersDTO usersDTO = (UsersDTO)session.getAttribute("users_info");
+		MyPetDTO myPetDTO = new MyPetDTO();
+		myPetDTO = usersService.getMyPetNum(usersDTO);
+		
+		int result = usersService.takeOffItem(myPetDTO);
+		
+		model.addAttribute("msg", result);
+		
+		return "commons/result";
 	}
 	
 	
