@@ -4,6 +4,39 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.team3.tamagochi.store.StoreDAO">
+  	<delete id="deleteWishList" parameterType="wishListDTO">
+  	 DELETE WISHLIST
+  	 WHERE USER_ID = #{user_id} AND WISHLIST_NUM = #{wishlist_num}
+  	
+  	</delete>
+  
+  
+  	<select id="getWishList" parameterType="UsersDTO" resultMap="getItemDTO">
+  		SELECT W.*, I.*
+		FROM WISHLIST W
+			LEFT JOIN 
+			ITEM I
+			ON (W.ITEM_NUM = I.ITEM_NUM)
+		WHERE USER_ID = #{user_id} AND I.ITEM_DEL = 0
+		ORDER BY WISHLIST_NUM ASC
+  	</select>
+  	
+  	<resultMap type="WishListDTO" id="getItemDTO">
+  		<id column="WISHLIST_NUM" property="wishlist_num"/>
+  		<result column="USER_ID" property="user_id"/>
+  		<result column="ITEM_NUM" property="item_num"/>
+  		
+  		<association property="itemDTO" javaType="ItemDTO">
+  			<result column="CATEGORY_NUM" property="category_num"/>
+  			<result column="ITEM_NAME" property="item_name"/>
+  			<result column="ITEM_DESCRIPTION" property="item_description"/>
+  			<result column="ITEM_HP" property="item_hp"/>
+  			<result column="ITEM_ATK" property="item_atk"/>
+  			<result column="ITEM_DOD" property="item_dod"/>
+  			<result column="ITEM_PRICE" property="item_price"/>
+  		</association>
+  	
+  	</resultMap>
   
   	<insert id="addWishList" parameterType="WishListDTO">
   		INSERT INTO WISHLIST (WISHLIST_NUM, USER_ID, ITEM_NUM)

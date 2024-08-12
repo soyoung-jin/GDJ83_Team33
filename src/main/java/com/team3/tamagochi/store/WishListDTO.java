@@ -4,7 +4,14 @@ public class WishListDTO {
 	private Long wishlist_num;
 	private String user_id;
 	private Long item_num;
+	private ItemDTO itemDTO;
 	
+	public ItemDTO getItemDTO() {
+		return itemDTO;
+	}
+	public void setItemDTO(ItemDTO itemDTO) {
+		this.itemDTO = itemDTO;
+	}
 	public Long getItem_num() {
 		return item_num;
 	}

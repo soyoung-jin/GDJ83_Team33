@@ -8,12 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team3.tamagochi.boards.util.Pager;
+import com.team3.tamagochi.users.UsersDTO;
 
 @Service
 public class StoreService {
 
 	@Autowired
 	StoreDAO storeDAO;
+	
+	public List<WishListDTO> getWishList (UsersDTO usersDTO) {
+		return storeDAO.getWishList(usersDTO);
+	}
+	
+	public int deleteWishList (WishListDTO wishListDTO) {
+		return storeDAO.deleteWishList (wishListDTO);
+	}
 
 	public List<ItemDTO> getItemList(ItemDTO itemDTO, Pager pager) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();

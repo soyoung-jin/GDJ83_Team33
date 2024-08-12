@@ -27,6 +27,23 @@ public class StoreController {
 	//==============================위시리스트 관련 메소드=============================
 	//==============================위시리스트 관련 메소드=============================
 	
+	@GetMapping("deleteWishList")
+	public String deleteWishList (WishListDTO wishListDTO, HttpSession session, Model model) {
+		
+		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
+		wishListDTO.setUser_id(usersDTO.getUser_id());
+		
+		int result = storeService.deleteWishList(wishListDTO);
+		
+		if(result > 0) {
+			List<WishListDTO> list = storeService.getWishList(usersDTO);
+			model.addAttribute("wishlist", list);
+			return "store/wishListRefresh";
+		}
+		
+		return "/";
+	}
+	
 	@GetMapping("addWishList")
 	public String addWishList(WishListDTO wishListDTO, HttpSession session, Model model) throws Exception {
 		
@@ -49,8 +66,22 @@ public class StoreController {
 	
 	
 	@GetMapping("getWishList")
-	public void getWishList() throws Exception {
-		System.out.println("go");
+	public String getWishList(HttpSession session, Model model) throws Exception {
+		
+		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
+		
+		if(usersDTO == null) {
+			model.addAttribute("result", "로그인 후 이용하세요.");
+			model.addAttribute("url","/users/login");
+			
+			return "commons/message";
+		}
+		
+		List<WishListDTO> list = storeService.getWishList(usersDTO);
+		
+		model.addAttribute("wishlist", list);
+		
+		return "store/getWishList";
 	}
 	
 	
