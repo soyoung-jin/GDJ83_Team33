@@ -16,5 +16,87 @@
   		SELECT * FROM USERS
 		WHERE USER_ID = #{user_id}
   	</select>
+  	
+  	<update id="updateUsers" parameterType="UsersDTO">
+  		UPDATE USERS SET
+  		USER_PW = #{user_pw}, USER_NAME = #{user_name}, USER_NICKNAME = #{user_nickname},
+  		USER_PHONE = #{user_phone}, USER_EMAIL = #{user_email}
+		WHERE USER_ID = #{user_id}
+  	</update>
+  	
+  	<update id="deleteAccount" parameterType="UsersDTO">
+  		UPDATE USERS SET
+  		USER_RESIGN = 0
+  		WHERE USER_ID = #{user_id} AND USER_PW = #{user_pw}
+  	</update>
+  	
+  	<!-- 내 소지품에서 아이템 가져오는 쿼리문. JOIN을 사용했기 때문에 ResultMap이 필요하다 -->
+  	<select id="getInvenList" parameterType="UsersDTO" resultMap="invenResult">
+  		SELECT * FROM
+  		INVENTORY I
+		LEFT JOIN
+		ITEM IT
+		ON I.ITEM_NUM = IT.ITEM_NUM
+		WHERE I.user_id = #{user_id}
+  	</select>
+  	<resultMap type="ItemDTO" id="invenResult">
+  		<id column="ITEM_NUM" property="item_num"></id>
+  		<result column="ITEM_NAME" property="item_name"></result>
+  		<result column="ITEM_DESCRIPTION" property="item_description"></result>
+  		<result column="ITEM_HP" property="item_hp"></result>
+  		<result column="ITEM_ATK" property="item_atk"></result>
+  		<result column="ITEM_DOD" property="item_dod"></result>
+  		
+  		<association property="inventoryDTO" javaType="InventoryDTO">
+  			<id column="INVENTORY_NUM" property="inventory_num"></id>
+  			<result column="USER_ID" property="user_id"/>
+  		</association>
+  	</resultMap>
+  	
+  	<!-- 회원가입시 입력한 id가 중복인지 아닌지 검사하는 JS실행 코드 -->
+  	<select id="checkID" resultType="UsersDTO" parameterType="UsersDTO">
+  		SELECT USER_ID FROM USERS
+		WHERE USER_ID = #{user_id}
+  	</select>
+  	
+  	
+  	
+  	
+  	
+  	
+  	<!-- 회원가입시 기본 캐릭터 4개를 만들어주는 쿼리문 -->
+  	<!-- 캐릭터 하나당 쿼리문 하나를 작성했는데, 더 좋은 방법 알면 제보 바람 -->
+  	<insert id="setDefaultCharacter1" parameterType="UsersDTO">
+  		INSERT INTO MY_PET
+  		(PET_NUM, USER_ID, ITEM_NUM, PET_NAME, PET_SPC,
+  			PET_EXP,PET_LEVEL, PET_HP, PET_ATK, PET_DOD, PET_POP, PET_HUNGRY, PET_SELECTED)
+		VALUES
+		(PET_SEQ.NEXTVAL, #{user_id}, 1, '인간', '인간',
+			0, 1, 50, 20, 20, 0, 10, 1)
+  	</insert>
+  	<insert id="setDefaultCharacter2" parameterType="UsersDTO">
+  		INSERT INTO MY_PET
+  		(PET_NUM, USER_ID, ITEM_NUM, PET_NAME, PET_SPC,
+  			PET_EXP,PET_LEVEL, PET_HP, PET_ATK, PET_DOD, PET_POP, PET_HUNGRY)
+		VALUES
+		(PET_SEQ.NEXTVAL, #{user_id}, 2, '개발자', '개발자',
+			0, 1, 50, 20, 20, 0, 10)
+  	</insert>
+  	<insert id="setDefaultCharacter3" parameterType="UsersDTO">
+  		INSERT INTO MY_PET
+  		(PET_NUM, USER_ID, ITEM_NUM, PET_NAME, PET_SPC,
+  			PET_EXP,PET_LEVEL, PET_HP, PET_ATK, PET_DOD, PET_POP, PET_HUNGRY)
+		VALUES
+		(PET_SEQ.NEXTVAL, #{user_id}, 3, '오크', '오크',
+			0, 1, 50, 20, 20, 0, 10)
+  	</insert>
+  	<insert id="setDefaultCharacter4" parameterType="UsersDTO">
+  		INSERT INTO MY_PET
+  		(PET_NUM, USER_ID, ITEM_NUM, PET_NAME, PET_SPC,
+  			PET_EXP,PET_LEVEL, PET_HP, PET_ATK, PET_DOD, PET_POP, PET_HUNGRY)
+		VALUES
+		(PET_SEQ.NEXTVAL, #{user_id}, 4, '박쥐', '박쥐',
+			0, 1, 50, 20, 20, 0, 10)
+  	</insert>
   
   </mapper>

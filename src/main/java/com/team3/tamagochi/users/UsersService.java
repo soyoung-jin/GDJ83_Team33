@@ -1,7 +1,11 @@
 package com.team3.tamagochi.users;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.team3.tamagochi.store.WeaponDTO;
 
 @Service
 public class UsersService {
@@ -10,11 +14,13 @@ public class UsersService {
 	private UsersDAO usersDAO;
 	
 	
+	// 회원가입 메서드
 	public int registerUsers(UsersDTO usersDTO) throws Exception{
 		
 		return usersDAO.registerUsers(usersDTO);
 	}
 	
+	// 로그인 메서드
 	public UsersDTO loginUsers(UsersDTO usersDTO) throws Exception{
 		
 		UsersDTO result = usersDAO.loginUsers(usersDTO);
@@ -31,6 +37,51 @@ public class UsersService {
 		}
 		
 		return null; // id와 password 모두 일치하지 않을 경우 Null을 리턴
+	}
+	
+	// 회원정보 수정 메서드
+	public int updateUsers(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.updateUsers(usersDTO);
+	}
+	
+	// 수정된 회원 정보를 보여주는 메서드
+	// login 쿼리문을 재사용하여 service에서 updateData 메서드를 새로 만듬
+	public UsersDTO updateUsersData(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.loginUsers(usersDTO);
+	}
+	
+	// 회원 탈퇴 메서드(데이터는 남아있으나 resign값을 0으로 만들어 더이상 로그인 하지 못하게 만듬)
+	public int deleteAccount(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.deleteAccount(usersDTO);
+	}
+	
+	// 인벤토리에서 내가 보유한 무기를 가져오는 메서드
+	// 무기 데이터를 가져와야 하므로 리턴 타입은 weaponDTO가 된다
+	public List<WeaponDTO> getInvenList(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.getInvenList(usersDTO);
+	}
+	
+	// 회원가입시 입력한 id값이 중복인지 아닌지 검사하는 JS 이벤트 코드
+	public UsersDTO checkID(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.checkID(usersDTO);
+	}
+	
+	
+	
+	// 회원가입시 디폴트 캐릭터를 만들어주는 메서드 4개를 service에서 하나로 합침
+	public int setDefaultCharacter(UsersDTO usersDTO) throws Exception{
+		
+		int result = usersDAO.setDefaultCharacter1(usersDTO);
+		result = usersDAO.setDefaultCharacter2(usersDTO);
+		result = usersDAO.setDefaultCharacter3(usersDTO);
+		result = usersDAO.setDefaultCharacter4(usersDTO);
+		
+		return result;
 	}
 	
 

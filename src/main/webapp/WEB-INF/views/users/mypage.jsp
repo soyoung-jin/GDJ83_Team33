@@ -6,7 +6,6 @@
 	<c:import url="../template/header.jsp"></c:import>
 </head>
 <body id="reportsPage" class="font">
-	<div class="" id="home">
 		<c:import url="../template/topbar.jsp"></c:import>
 
 		<div class="container">
@@ -31,16 +30,16 @@
 					<div class="tm-block-col tm-col-account-settings">
 						<div class="tm-bg-primary-dark tm-block tm-block-settings">
 							<h2 class="tm-block-title">내 정보</h2>
-							<form action="" class="tm-signup-form row">
+							<form action="/users/update" method="post" class="tm-signup-form row">
 								<div class="form-group col-lg-6">
 									<label for="user_id">유저 아이디</label>
-									<input id="user_id" name="user_id"
-										value="${user_id }" type="text" class="form-control validate" />
+									<input id="user_id" name="user_id" value="${usersDTO.user_id }"
+									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 								</div>
 								<div class="form-group col-lg-6">
 									<label for="user_name">유저 이름</label>
-									<input id="user_name" name="user_name"
-										value="${user_name }" type="email" class="form-control validate" />
+									<input id="user_name" name="user_name" value="${usersDTO.user_name }"
+									type="text" class="form-control validate" />
 								</div>
 								<div class="form-group col-lg-6">
 									<label for="user_pw">비밀번호</label>
@@ -54,23 +53,24 @@
 								</div>
 								<div class="form-group col-lg-6">
 									<label for="user_nickname">닉네임</label>
-									<input id="user_nickname" name="user_nickname"
-										value="${user_nickname }" type="text" class="form-control validate" />
+									<input id="user_nickname" name="user_nickname" value="${usersDTO.user_nickname }"
+									type="text" class="form-control validate" />
 								</div>
 								<div class="form-group col-lg-6">
 									<label for="user_phone">전화번호</label>
-									<input id="user_phone" name="user_phone"
-										value="${user_phone }" type="tel" class="form-control validate" />
+									<input id="user_phone" name="user_phone" value="${usersDTO.user_phone }"
+									type="tel" class="form-control validate" />
 								</div>
 								<div class="form-group col-lg-6">
 									<label for="user_email">이메일</label>
-									<input id="user_email" name="user_email"
-										value="${user_email }" type="email" class="form-control validate" />
+									<input id="user_email" name="user_email" value="${usersDTO.user_email }"
+									type="email" class="form-control validate" />
 								</div>
 								<div class="form-group col-lg-6">
 									<label class="tm-hide-sm">&nbsp;</label>
-									<button type="submit" class="btn btn-danger btn-block text-uppercase">
-										회원 탈퇴</button>
+									<a type="button" class="btn btn-danger btn-block text-uppercase"
+									href="/users/deleteAccount">
+										회원 탈퇴</a>
 								</div>
 								<div class="col-12">
 									<button type="submit" class="btn btn-primary btn-block text-uppercase">
@@ -85,6 +85,5 @@
 		</div>
 		<c:import url="../template/footer.jsp"></c:import>
 		<c:import url="../template/boot-footer.jsp"></c:import>
-	</div>
 </body>
 </html>

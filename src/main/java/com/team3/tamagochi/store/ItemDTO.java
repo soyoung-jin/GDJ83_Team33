@@ -1,19 +1,50 @@
 package com.team3.tamagochi.store;
 
+import com.team3.tamagochi.users.InventoryDTO;
+
 public class ItemDTO {
 	
 	private Long item_num;
+	private Long category_num;
 	private String item_name;
+	private String item_description;
 	private Long item_hp;
 	private Long item_atk;
 	private Long item_dod;
 	private Long item_price;
+	private Long item_del;
+	private InventoryDTO inventoryDTO;
 	
+	
+	public String getItem_description() {
+		return item_description;
+	}
+	public void setItem_description(String item_description) {
+		this.item_description = item_description;
+	}
+	public InventoryDTO getInventoryDTO() {
+		return inventoryDTO;
+	}
+	public void setInventoryDTO(InventoryDTO inventoryDTO) {
+		this.inventoryDTO = inventoryDTO;
+	}
 	public Long getItem_num() {
 		return item_num;
 	}
 	public void setItem_num(Long item_num) {
 		this.item_num = item_num;
+	}
+	public Long getCategory_num() {
+		return category_num;
+	}
+	public void setCategory_num(Long category_num) {
+		this.category_num = category_num;
+	}
+	public Long getItem_del() {
+		return item_del;
+	}
+	public void setItem_del(Long item_del) {
+		this.item_del = item_del;
 	}
 	public String getItem_name() {
 		return item_name;

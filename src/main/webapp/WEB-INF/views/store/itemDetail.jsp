@@ -5,7 +5,7 @@
 	<title>Home</title>
 	<c:import url="../template/header.jsp"></c:import>
 </head>
-<body id="reportsPage" class="pixelify-sans-font">
+<body id="reportsPage" class="font">
 	<div class="" id="home">
 	<c:import url="../template/topbar.jsp"></c:import>
 	
@@ -13,30 +13,35 @@
         <div class="row">
             <div class="col">
                 <h1 class="text-white mt-5 mb-5">Item Detail</h1>
+		        <a class="btn btn-primary" href="updateItem?item_num=${dto.item_num}">수정</a>
+	            <a class="btn btn-primary" href="deleteItem?item_num=${dto.item_num}">삭제</a>
                 <img alt="" width="300" src="/resources/img/character/4.gif">
 				<table class="table">
 					<thead>
 						<tr>
-							<th>이름</th>
+						<c:choose>
+							<c:when test="${dto.category_num == 0}">
+								<th>종족</th>
+							</c:when>
+							<c:otherwise>
+								<th>무기이름</th>
+							</c:otherwise>
+						</c:choose>
 							<th>추가 체력</th>
 							<th>추가 공격력</th>
 							<th>추가 회피력</th>
-							<c:if test="${itemDTO.item_description ne null}">
-								<th>무기 설명</th>	
-							</c:if>
+							<th>무기 설명</th>
 							<th>가격</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>${itemDTO.item_name}</td>
-							<td>${itemDTO.item_hp}</td>
-							<td>${itemDTO.item_atk}</td>
-							<td>${itemDTO.item_dod}</td>
-							<c:if test="${itemDTO.item_description ne null}">
-								<td>${itemDTO.item_description}</td>
-							</c:if>
-							<td>${itemDTO.item_price}</td>
+							<td>${dto.item_name}</td>
+							<td>${dto.item_hp}</td>
+							<td>${dto.item_atk}</td>
+							<td>${dto.item_dod}</td>
+							<td>${dto.item_description}</td>
+							<td>${dto.item_price}</td>
 						</tr>
 					</tbody>
 				</table>

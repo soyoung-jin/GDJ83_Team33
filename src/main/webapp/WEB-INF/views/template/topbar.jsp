@@ -14,13 +14,17 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto h-100">
+                        <c:choose>
+	                    	<c:when test="${not empty users_info}">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#">
+                            <a class="nav-link active" href="ingame/ingame">
                                 <i class="fas fa-tachometer-alt"></i>
                                 게임시작
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
+                        </c:when>
+                        </c:choose>
                         <li class="nav-item dropdown">
 
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -38,7 +42,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="products.html">
+                            <a class="nav-link" href="/store/itemList?category_num=0">
                                 <i class="fas fa-shopping-cart"></i>
                                 상점
                             </a>
@@ -54,9 +58,9 @@
                                 </span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="#">Billing</a>
-                                <a class="dropdown-item" href="#">Customize</a>
+                                <a class="dropdown-item" href="/users/mypage">내 정보</a>
+                                <a class="dropdown-item" href="/mypet/mypetList">내 캐릭터</a>
+                                <a class="dropdown-item" href="/users/inventory">인벤토리</a>
                             </div>
                         </li>
                     </ul>

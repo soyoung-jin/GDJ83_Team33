@@ -21,41 +21,51 @@
 			<div class="row ">
 				<main class="form-signin w-100 m-auto">
 					<div class="col-6 login">
-						<form class="form" action="/users/register" method="post">
+						<form class="form" action="/users/register" method="post" id="form">
 							<h1 class="h3 mb-3 fw-normal">Please Register</h1>
 
 							<div class="form-floating">
-								<input type="text" class="form-control" id="floatingInput"
+								<input type="text" class="form-control" id="user_id"
 								name="user_id">
-								<label for="floatingInput">User ID</label>
+								<label for="user_id">아이디</label>
+								<div id="duplicate-check"></div>
 							</div>
 							<div class="form-floating">
-								<input type="password" class="form-control" id="floatingPassword"
+								<input type="password" class="form-control" id="user_pw"
 								name="user_pw">
-								<label for="floatingPassword">Password</label>
+								<label for="user_pw">비밀번호</label>
+								<div id="length-check"></div>
 							</div>
 							<div class="form-floating">
-								<input type="text" class="form-control" id="floatingInput"
+								<input type="password" class="form-control" id="user_pw2">
+								<label for="user_pw2">비밀번호 확인</label>
+								<div id="error-message"></div>
+							</div>
+							<div class="form-floating">
+								<input type="text" class="form-control" id="user_name"
 								name="user_name">
-								<label for="floatingInput">User Name</label>
+								<label for="user_name">이름</label>
+								<div id="regDivName"></div>
 							</div>
 							<div class="form-floating">
-								<input type="text" class="form-control" id="floatingInput"
+								<input type="text" class="form-control" id="user_nickname"
 								name="user_nickname">
-								<label for="floatingInput">User NickName</label>
+								<label for="user_nickname">닉네임</label>
 							</div>
 							<div class="form-floating">
-								<input type="text" class="form-control" id="floatingInput"
+								<input type="tel" class="form-control" id="user_phone"
 								name="user_phone">
-								<label for="floatingInput">Phone Number</label>
+								<label for="user_phone">전화 번호</label>
+								<div id="regDivPhone"></div>
 							</div>
 							<div class="form-floating">
-								<input type="email" class="form-control" id="floatingInput"
-								name="user_email" placeholder="name@example.com">
-								<label for="floatingInput">Email</label>
+								<input type="email" class="form-control" id="user_email"
+								name="user_email" placeholder="name@example.com" >
+								<label for="user_email">이메일</label>
+								<div id="regDivEmail"></div>
 							</div>
 							
-							<button class="btn btn-primary w-100 py-2" type="submit">Let's Register!!</button>
+							<button id="blankCheck" class="btn btn-primary w-100 py-2" type="button">회원 가입</button>
 
 						</form>
 					</div>
@@ -65,5 +75,6 @@
 		<c:import url="../template/footer.jsp"></c:import>
 		<c:import url="../template/boot-footer.jsp"></c:import>
 	</div>
+	<script src="/resources/js/users/register.js"></script>
 </body>
 </html>

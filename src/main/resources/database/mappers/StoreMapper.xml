@@ -5,19 +5,70 @@
   
   <mapper namespace="com.team3.tamagochi.store.StoreDAO">
   
-  	<select id="getItemList" parameterType="Integer" resultType="ItemDTO">
+  	<insert id="addWishList" parameterType="WishListDTO">
+  		INSERT INTO WISHLIST (WISHLIST_NUM, USER_ID, ITEM_NUM)
+  		VALUES (WISHLIST_SEQ.NEXTVAL, #{user_id}, #{item_num})
+  	</insert>
+  
+  	<select id="getItemList" parameterType="Map" resultType="ItemDTO">
   		SELECT *
-  		FROM
+  		FROM (SELECT ROWNUM R, C.*
+				FROM (SELECT *
+		  				FROM ITEM
+		  				WHERE CATEGORY_NUM = #{itemDTO.category_num} AND ITEM_DEL = 0
+		  				ORDER BY ITEM_NUM DESC) C
+		  		<where>
+  					<choose>
+  						<when test="kind='k1'">
+  							ITEM_NAME LIKE '%'||#{pager.search}||'%')
+  						</when>
+  						<otherwise>
+  							ITEM_PRICE LIKE '%'||#{pager.search}||'%')
+  						</otherwise>
+  					</choose>
+  				</where>
+  		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
+  	</select>
+  	
+  	<select id="getTotalCount" parameterType="Map" resultType="Integer">
+  		SELECT COUNT(C.ITEM_NUM)
+  		FROM (SELECT *
+  				FROM ITEM
+  				WHERE CATEGORY_NUM = #{itemDTO.category_num}) C
+  		<where>
   			<choose>
-  				<when test="value == 0"> CHARACTER </when>
-  				<otherwise> WEAPON </otherwise>
+  				<when test="kind='k1'">
+  					ITEM_NAME LIKE '%'||#{pager.search}||'%'
+  				</when>
+  				<otherwise>  				
+  					ITEM_PRICE LIKE '%'||#{pager.search}||'%'
+  				</otherwise>
   			</choose>
-  		ORDER BY ITEM_NUM ASC
+  		</where>
   	</select>
   	
   	<select id="getItemDetail" parameterType="ItemDTO" resultType="ItemDTO">
-  		SELECT * FROM CHARACTER
+  		SELECT *
+  		FROM ITEM
   		WHERE ITEM_NUM=#{item_num}
   	</select>
-  
+  	
+  	<insert id="addItem" parameterType="ItemDTO">
+  		INSERT INTO ITEM (ITEM_NUM, CATEGORY_NUM, ITEM_NAME, ITEM_DESCRIPTION, ITEM_HP, ITEM_ATK, ITEM_DOD, ITEM_PRICE)
+  		VALUES (ITEM_SEQ.NEXTVAL, #{category_num}, #{item_name}, #{item_description}, #{item_hp}, #{item_atk}, #{item_dod}, #{item_price})
+  	</insert>
+  	
+  	<update id="updateItem" parameterType="ItemDTO">
+  		UPDATE 
+  		ITEM SET
+  		ITEM_NAME=#{item_name}, ITEM_DESCRIPTION=#{item_description}, ITEM_HP=#{item_hp}, ITEM_ATK=#{item_atk}, ITEM_DOD=#{item_dod}, ITEM_PRICE=#{item_price}
+  		WHERE ITEM_NUM = #{item_num}
+  	</update>
+  	
+  	<update id="deleteItem" parameterType="ItemDTO">
+  		UPDATE 
+  		ITEM SET
+  		ITEM_DEL = 1
+  		WHERE ITEM_NUM=#{item_num}
+  	</update>
   </mapper>

@@ -2,6 +2,8 @@ package com.team3.tamagochi.friend;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +19,34 @@ public class FriendController {
 	@Autowired
 	private FriendService friendService;
 	
-	@GetMapping("getFriendList")
-	public void getFriendList(UsersDTO userDTO, Model model) {
-		List<FriendDTO> list = friendService.getFriendList(userDTO);
+	@GetMapping("friendList")
+	public void getFriendList(UsersDTO usersDTO, Model model, HttpSession session) throws Exception{
+		usersDTO = (UsersDTO) session.getAttribute("users_info");
+		
+		usersDTO = friendService.getFriendList(usersDTO);
+		
+		model.addAttribute("usersDTO", usersDTO);
+		
+	}
+	
+	@GetMapping("friendDetail")
+	public void	getFriendDetail(FriendDTO friendDTO, Model model, HttpSession session) throws Exception{
+		UsersDTO usersDTO = friendService.getFriendDetail(friendDTO);
+		model.addAttribute("usersDTO", usersDTO);
+	}
+	
+	@GetMapping("deleteFriend")
+	public String deleteFriend(FriendDTO friendDTO, Model model) throws Exception{
+		int result = friendService.deleteFriend(friendDTO);
+		
+		if(result>0) {
+			model.addAttribute("result", "친구를 끊었습니다.");
+			model .addAttribute("url", "./friendList");
+		} else {
+			model.addAttribute("result", "오류발생.");
+			model .addAttribute("url", "./friendList");
+		}
+		return "commons/message";
 	}
 	
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- namespace는 꼭 들어가야될 속성 -->
+  <mapper namespace="com.team3.tamagochi.ingame.InGameDAO">
+  	<select id="getPetStatus" parameterType="MyPetDTO" resultType="MyPetDTO">
+  		SELECT * FROM MY_PET WHERE USER_ID = #{user_id} AND ITEM_NUM = #{item_num}
+  	</select>
+  	
+  	<update id="feedPet" parameterType="MyPetDTO">
+  		UPDATE MY_PET SET PET_HUNGRY = PET_HUNGRY + 10, PET_EXP = PET_EXP + 20 WHERE USER_ID = #{user_id} AND ITEM_NUM = #{item_num}
+  	</update>
+  	
+  	<update id="strollPet" parameterType="MyPetDTO">
+  		UPDATE MY_PET SET PET_EXP = PET_EXP + 10, PET_HUNGRY = PET_HUNGRY - 20 WHERE USER_ID = #{user_id} AND ITEM_NUM = #{item_num}
+  	</update>
+  	
+  	<update id="cleanPet" parameterType="MyPetDTO">
+  		UPDATE MY_PET SET PET_HP = PET_HP + 10 WHERE USER_ID = #{user_id} AND ITEM_NUM = #{item_num}
+  	</update>
+  	
+  </mapper>

@@ -25,23 +25,22 @@
 							<h1 class="h3 mb-3 fw-normal">Please Sign In</h1>
 
 							<div class="form-floating">
-								<input type="text" class="form-control" id="floatingInput"
-									name="user_id" placeholder="User ID">
-								<label for="floatingInput">User ID</label>
+								<input type="text" class="form-control" id="user_id"
+									name="user_id" value="${remember }" placeholder="User ID">
+								<label for="user_id">아이디</label>
 							</div>
 							<div class="form-floating">
-								<input type="password" class="form-control" id="floatingPassword"
+								<input type="password" class="form-control" id="user_pw"
 									name="user_pw" placeholder="Password">
-								<label for="floatingPassword">Password</label>
+								<label for="user_pw">비밀번호</label>
 							</div>
 
 							<div class="form-check text-start my-3">
-								<input class="form-check-input" type="checkbox"
-									value="remember-me" id="flexCheckDefault"> <label
-									class="form-check-label" for="flexCheckDefault">
-									Remember me </label>
+								<input id="flexCheckDefault" class="form-check-input"
+									type="checkbox" name="remember" checked>
+								<label class="form-check-label" for="flexCheckDefault">아이디 저장</label>
 							</div>
-							<button class="btn btn-primary w-100 py-2" type="submit">Signin</button>
+							<button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
 
 						</form>
 					</div>

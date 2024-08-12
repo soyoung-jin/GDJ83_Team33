@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- namespace는 꼭 들어가야될 속성 -->
+  <mapper namespace="com.team3.tamagochi.mypet.MyPetDAO">
+  	
+  	<select id="getList" resultType="MyPetDTO" parameterType="UsersDTO">
+  		SELECT * FROM MY_PET
+  		WHERE USER_ID = #{user_id}
+  	</select>
+  	
+  	<select id="getDetail" resultType="MyPetDTO" parameterType="MyPetDTO">
+  		SELECT * FROM MY_PET
+		WHERE PET_NUM = #{pet_num}
+  	</select>
+  	
+  	<update id="updatePetName" parameterType="MyPetDTO">
+  		UPDATE MY_PET SET PET_NAME = #{pet_name}
+		WHERE PET_NUM = #{pet_num}
+  	</update>
+  
+  </mapper>
