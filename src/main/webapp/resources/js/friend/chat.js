@@ -18,22 +18,22 @@ sock.onclose = onClose;
 // 메세지 전송
 function sendMessage(){
     sock.send(chatContent.value);
-    
+    // console.log(loginUserId + ": " + chatContent.value);
 }
 
 // 서버로부터 메세지를 받았을 때
 function onMessage(msg) {
     let h3 = document.createElement("h3");
-    h3.setAttribute("id", "yourMsg");
-    if (loginYourId == msg.senderNo) {
-        h3.setAttribute("id", "myMsg");
-    }
-    console.log(msg);
+    // h3.setAttribute("id", "yourMsg");
+    // if (loginYourId == msg.senderNo) {
+    //     h3.setAttribute("id", "myMsg");
+    // }
+    
     let data = msg.data;
     h3.append(data);
     div.append(h3);
     modalContent.append(div);
-    
+    console.log(loginFriendId + ": " + data);
     
 }
 
@@ -48,7 +48,7 @@ function onClose() {
 chatContent.addEventListener("keyup", (e)=>{
     if(e.key === 'Enter') {
         sendMessage();
-        console.log(chatContent.value);
+        
         chatContent.value="";
 
 
@@ -58,7 +58,7 @@ chatContent.addEventListener("keyup", (e)=>{
 sendBtn.addEventListener("click", ()=>{
     
     sendMessage();
-    console.log(chatContent.value);
+    
     chatContent.value="";
 
 })

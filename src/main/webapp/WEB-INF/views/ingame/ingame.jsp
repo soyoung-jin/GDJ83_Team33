@@ -24,7 +24,7 @@
 								
 							</div>
 							
-							<div class="justify-content-center align-item-center">
+							<div class="justify-content-center align-item-center mt-3">
 								<!-- 펫 상태 보기 모달 버튼 -->
 								
 								<a href="./feed" id="feed" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#actModal">먹이주기</a>
@@ -39,7 +39,7 @@
 			<!-- 펫 행동 모달(진화, 식사,산책,화장실) -->
 			
 			<div id="petDiv">
-				<div class="modal fade" id="actModal" tabindex="-1" aria-labelledby="modalActLabel" aria-hidden="true">
+				<div class="modal fade" id="actModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modalActLabel" aria-hidden="true">
 					<div class="modal-dialog modal-dialog-scrollable">
 						<div class="modal-content">
 						<div class="modal-header">
@@ -48,7 +48,7 @@
 						</div>
 						<div class="modal-body">
 						<div class="form-floating" id="modalImg">
-							<img id="actImg" class="petAct" src="" alt="">
+							<img id="actImg" class="petAct" src="" alt="character image">
 							
 						</div>
 						</div>
@@ -68,7 +68,7 @@
 			  <!-- 펫 상태 보기 모달 -->
 			  
 			  <div id="petStatusDiv">
-				<div class="modal fade" id="petStatusModal" tabindex="-1" aria-labelledby="petStatusModal" aria-hidden="true">
+				<div class="modal fade" id="petStatusModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="petStatusModal" aria-hidden="true">
 					<div class="modal-dialog modal-dialog-scrollable">
 					  <div class="modal-content">
 
@@ -130,7 +130,8 @@
 						<div class="modal-footer">
 							<div class="input-group mb-3 justify-content-center">
 								
-								<a href="./levelUp" id="levelUp" class="btn btn-outline-secondary close" type="button" data-bs-dismiss="modal" aria-label="Close">레벨업 하기</a>
+								<a href="./levelUp" id="levelUp" class="btn btn-outline-secondary close btn-close" data-bs-dismiss="modal" aria-label="Close" data-bs-toggle="modal" data-bs-target="#actModal">
+									레벨업 하기</a>
 								
 							</div>
 							
@@ -150,7 +151,7 @@
 					<img id="myPet" src="/resources/img/ingame/ex1.gif" alt="moving cracked egg">
 					<div id="chatDiv">
 	
-						<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal fade" id="commentModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-dialog-scrollable">
 							  <div class="modal-content">
 
@@ -168,7 +169,7 @@
 								</div>
 								<div class="modal-footer">
 								  <div class="input-group mb-3">
-									  <input type="text" class="form-control" id="chatContent" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+									  <input type="text" class="form-control" id="chatContent" placeholder="다마고치에게 말을 걸어보세요" aria-label="다마고치에게 말을 걸어보세요" aria-describedby="button-addon2">
 									  <button class="btn btn-outline-secondary" type="button" id="sendBtn">보내기</button>
 									  
 									</div>

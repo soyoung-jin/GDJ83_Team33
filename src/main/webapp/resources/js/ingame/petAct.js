@@ -228,10 +228,16 @@ levelUpBtn.addEventListener("click", ()=>{
             modalActLabel.innerHTML = "레벨: " + r.pet_level;
             done.style.display = "inline";
             actCloseBtn.style.display = "inline";
-            h4One.innerHTML = "레벨업~~~~";
+            h4One.innerHTML = "~~~~레벨업 완료~~~~";
             
             modalImg.append(h4One);
             modalImg.append(h4Two);
+            actCloseBtn.addEventListener("click", ()=>{
+                document.querySelector(".modal-backdrop").remove();
+            })
+            done.addEventListener("click", ()=>{
+                document.querySelector(".modal-backdrop").remove();
+            })
         })
         .catch(()=>{
             alert("오류");

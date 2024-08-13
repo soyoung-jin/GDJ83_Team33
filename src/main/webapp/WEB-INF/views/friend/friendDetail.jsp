@@ -34,7 +34,7 @@
 			  <div class="modal-dialog modal-dialog-scrollable">
 			    <div class="modal-content">
 			      <div class="modal-header">
-			        <h1 class="modal-title fs-5" id="exampleModalLabel">To. ${usersDTO.friendDTO[0].friend_id}</h1>
+			        <h1 class="modal-title fs-5" id="exampleModalLabel">To. ${friendInfoDTO.user_id}</h1>
 			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
 			      </div>
 			      <div class="modal-body">
@@ -65,14 +65,14 @@
 									</div>
 								
 									<div class="mb-2">
-										<span class="display-5 fw-bold">${usersDTO.user_nickname}</span>
+										<span class="display-5 fw-bold">${friendInfoDTO.user_nickname}</span>
 									</div>
 									<ul class="list-unstyled mb-4">
 										<li class="mb-2">
-										<strong>${usersDTO.user_phone}</strong>
+										<strong>${friendInfoDTO.user_phone}</strong>
 										</li>
 										<li class="mb-2">
-										<strong>${usersDTO.user_email}</strong>
+										<strong>${friendInfoDTO.user_email}</strong>
 										</li>
 									</ul>
 							</div>
@@ -106,10 +106,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 <script src="/resources/js/friend/chat.js"></script>
 <script type="text/javascript">
-	const loginFriendId = "${usersDTO.friendDTO[0].friend_id}";
-	const loginUserId = "${usersDTO.friendDTO[0].user_id}";
-	console.log(loginFriendId);
-	console.log(loginUserId);
+	const loginUserId = "${myDTO.user_id}";
+	const loginFriendId = "${friendInfoDTO.user_id}";
+	console.log("친구: " + loginFriendId);
+	console.log("나: " + loginUserId);
+	
 </script>
 <c:import url="../template/boot-footer.jsp"></c:import>
 </body>

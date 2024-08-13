@@ -31,8 +31,10 @@ public class FriendController {
 	
 	@GetMapping("friendDetail")
 	public void	getFriendDetail(FriendDTO friendDTO, Model model, HttpSession session) throws Exception{
-		UsersDTO usersDTO = friendService.getFriendDetail(friendDTO);
-		model.addAttribute("usersDTO", usersDTO);
+		UsersDTO friendInfoDTO = friendService.getFriendDetail(friendDTO);
+		model.addAttribute("friendInfoDTO", friendInfoDTO);
+		UsersDTO myDTO = (UsersDTO) session.getAttribute("users_info");
+		model.addAttribute("myDTO", myDTO);
 	}
 	
 	@GetMapping("deleteFriend")
