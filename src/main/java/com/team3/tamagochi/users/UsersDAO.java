@@ -72,10 +72,21 @@ public class UsersDAO {
 	
 	
 	
-	// 회원가입시 입력한 id값이 중복인지 아닌지 검사하는 JS 이벤트 코드
+	// 회원가입시 입력한 id값이 중복인지 아닌지 검사하는 JS 이벤트 메서드
 	public UsersDTO checkID(UsersDTO usersDTO) throws Exception{
 		
 		return sqlSession.selectOne(NAMESPACE + "checkID", usersDTO);
+	}
+	// 회원 정보 수정시 입력한 패스워드가 올바른 패스워드인지 검사하는 JS 이벤트 메서드
+	public UsersDTO checkPW(UsersDTO usersDTO) throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE + "checkPW", usersDTO);
+	}
+	
+	// 이름, 이메일, 전화번호로 회원의 아이디를 찾는 메서드
+	public List<UsersDTO> findID(UsersDTO usersDTO) throws Exception{
+		
+		return sqlSession.selectList(NAMESPACE + "findID", usersDTO);
 	}
 	
 	

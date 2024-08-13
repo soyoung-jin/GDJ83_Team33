@@ -96,6 +96,6 @@
 	</div>
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>
-	<script src="/resources/js/selectPetDetail.js"></script>
+	<script src="/resources/js/users/selectPetDetail.js"></script>
 </body>
 </html>

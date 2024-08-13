@@ -20,7 +20,7 @@
 			FROM USERS u 
 			LEFT JOIN
 			FRIEND f 
-			ON u.USER_ID = f.FRIEND_ID
+			ON u.USER_ID = f.FRIEND_ID 
 		WHERE f.FRIEND_NUM = #{friend_num}
   	</select>
   	

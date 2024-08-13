@@ -20,5 +20,18 @@
   		UPDATE MY_PET SET PET_NAME = #{pet_name}
 		WHERE PET_NUM = #{pet_num}
   	</update>
+  	
+  	<!-- 캐릭터 선택 쿼리 -->
+  	<!-- 1. 해당 유저의 캐릭터 selected값을 전부 0으로 만든다 -->
+  	<update id="selectReset" parameterType="USersDTO">
+  		UPDATE MY_PET SET PET_SELECTED = 0
+		WHERE USER_ID = #{user_id}
+  	</update>
+  	
+  	<!-- 2. 선택한 캐릭터의 selected값을 1로 만든다 -->
+  	<update id="selectMyPet" parameterType="MyPetDTO">
+  		UPDATE MY_PET SET PET_SELECTED = 1
+		WHERE PET_NUM = #{pet_num}
+  	</update>
   
   </mapper>
