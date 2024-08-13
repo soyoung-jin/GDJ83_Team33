@@ -17,7 +17,7 @@
                         <c:choose>
 	                    	<c:when test="${not empty users_info}">
                         <li class="nav-item">
-                            <a class="nav-link active" href="ingame/ingame">
+                            <a class="nav-link active" href="/ingame/ingame">
                                 <i class="fas fa-tachometer-alt"></i>
                                 게임시작
                                 <span class="sr-only">(current)</span>
@@ -62,6 +62,7 @@
                                 <a class="dropdown-item" href="/mypet/mypetList">내 캐릭터</a>
                                 <a class="dropdown-item" href="/users/inventory">인벤토리</a>
                                 <a class="dropdown-item" href="/store/getWishList">위시리스트</a>
+                                <a class="dropdown-item" href="/friend/friendList">내 친구들</a>
                             </div>
                         </li>
                     </ul>
