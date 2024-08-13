@@ -2,6 +2,7 @@ package com.team3.tamagochi.users;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -89,12 +90,22 @@ public class UsersService {
 	
 	
 	
-	// 회원가입시 입력한 id값이 중복인지 아닌지 검사하는 JS 이벤트 코드
+	// 회원가입시 입력한 id값이 중복인지 아닌지 검사하는 JS 이벤트 메서드
 	public UsersDTO checkID(UsersDTO usersDTO) throws Exception{
 		
 		return usersDAO.checkID(usersDTO);
 	}
+	// 회원 정보 수정시 입력한 패스워드가 올바른 패스워드인지 검사하는 JS 이벤트 메서드
+	public UsersDTO checkPW(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.checkPW(usersDTO);
+	}
 	
+	// 이름, 이메일, 전화번호로 회원의 아이디를 찾는 메서드
+	public List<UsersDTO> findID(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.findID(usersDTO);
+	}
 	
 	
 	// 회원가입시 디폴트 캐릭터를 만들어주는 메서드 4개를 service에서 하나로 합침
