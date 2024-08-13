@@ -18,10 +18,10 @@
 				<div class="col-sm-4 col-lg-3 col-md-3 justify-content-center ">
 				  <div class="card">
 						<div class="card-body">
-							<h5 class="card-title">펫이름</h5>
+							<h5 class="card-title">${myPetDTO.pet_name}</h5>
 							<div>
 								<a style="display: inline;" href="./checkPetStatus" data-pet-status="${myPetDTO.pet_num}" id="petStatusBtn" data-bs-toggle="modal" data-bs-target="#petStatusModal">펫 상태 보기</a>
-								<a href="./levelUp" id="levelUp" data-bs-target="#actModal">레벨업하기!</a>
+								
 							</div>
 							
 							<div class="justify-content-center align-item-center">
@@ -73,7 +73,7 @@
 					  <div class="modal-content">
 
 						<div class="modal-header">
-						  <h1 class="modal-title fs-5" id="petStatusModal">마이펫</h1>
+						  <h1 class="modal-title fs-5" id="petReady">${myPetDTO.pet_name}</h1>
 						  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
 						</div>
 
@@ -126,6 +126,14 @@
 								</form>
 							</div>
 						  </div>
+						</div>
+						<div class="modal-footer">
+							<div class="input-group mb-3 justify-content-center">
+								
+								<a href="./levelUp" id="levelUp" class="btn btn-outline-secondary close" type="button" data-bs-dismiss="modal" aria-label="Close">레벨업 하기</a>
+								
+							</div>
+							
 						</div>
 					  </div>
 					</div>

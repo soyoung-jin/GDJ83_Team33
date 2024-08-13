@@ -11,6 +11,7 @@ const actCloseBtn = document.getElementById("actCloseBtn");
 const done = document.getElementById("done");
 const modalImg = document.getElementById("modalImg");
 const petStatusBtn = document.getElementById("petStatusBtn");
+const petReady = document.getElementById("petReady");
 
 const pet_exp = document.getElementById("pet_exp");
 const pet_hungry = document.getElementById("pet_hungry");
@@ -68,7 +69,7 @@ feed.addEventListener("click", ()=>{
     
             setTimeout(()=>{
                 followingPetDiv.remove();
-            }, 5000)
+            }, 7000)
 
         })
             .catch(()=>{
@@ -120,7 +121,7 @@ stroll.addEventListener("click", ()=>{
     
             setTimeout(()=>{
                 followingPetDiv.remove();
-            }, 5000)
+            }, 7000)
 
         })
         .catch(()=>{
@@ -171,7 +172,7 @@ clean.addEventListener("click", ()=>{
     
             setTimeout(()=>{
                 followingPetDiv.remove();
-            }, 5000)
+            }, 7000)
 
         })
         .catch(()=>{
@@ -185,6 +186,8 @@ clean.addEventListener("click", ()=>{
 
 //=====================펫 레벨업 체크======================
 petStatusBtn.addEventListener("click", ()=>{
+    levelUpBtn.style.display = "none";
+    
     fetch("./checkPetStatus?pet_num=" + petNum,  {
         method: "GET"
     })
@@ -192,9 +195,10 @@ petStatusBtn.addEventListener("click", ()=>{
     .then((r)=> {
         r.trim;
         if(r >= 200) {
-            alert("레벨업 준비완료");
             
+            pet_exp.style.border="solid 2px red";
             levelUpBtn.style.display = "inline";
+            petReady.innerHTML="레벨업 준비완료";
             
         }
         
