@@ -18,6 +18,14 @@ public class StoreDAO {
 
 	private final String NAMESPACE = "com.team3.tamagochi.store.StoreDAO.";
 	
+	public int addfile(ItemFileDTO itemFileDTO) {
+		return sqlSession.insert(NAMESPACE+"addfile", itemFileDTO);
+	}
+	
+	public Long getNum () {
+		return sqlSession.selectOne(NAMESPACE+"getNum");
+	}
+	
 	public int deleteWishList (WishListDTO wishListDTO) {
 		return sqlSession.delete(NAMESPACE+"deleteWishList", wishListDTO);
 	}

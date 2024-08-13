@@ -22,7 +22,7 @@
 			<div class="row">
 				<main class="form-signin w-100 m-auto">
 					<div class="col-6 login">
-						<form class="form" action="${dto eq null?'addItem':'updateItem'}" method="post">
+						<form class="form" action="${dto eq null?'addItem':'updateItem'}" method="post" enctype="multipart/form-data">
 							<div class="mb-2">
 								<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
 								<c:if test="${dto eq null}">

@@ -5,16 +5,23 @@
   <configuration>
   	<typeAliases>
   		<typeAlias type="com.team3.tamagochi.users.UsersDTO" alias="UsersDTO"/>
+  		<typeAlias type="com.team3.tamagochi.users.InventoryDTO" alias="InventoryDTO"/>
+  		
   		<typeAlias type="com.team3.tamagochi.friend.FriendDTO" alias="FriendDTO"/>
   		<typeAlias type="com.team3.tamagochi.friend.AlarmDTO" alias="AlarmDTO"/>
+  		
   		<typeAlias type="com.team3.tamagochi.record.RecordDTO" alias="RecordDTO"/>
+  		<typeAlias type="com.team3.tamagochi.record.RecordDTO" alias="RecordDTO"/>
+  		
   		<typeAlias type="com.team3.tamagochi.store.ItemDTO" alias="ItemDTO"/>
-  		<typeAlias type="com.team3.tamagochi.notice.NoticeDTO" alias="NoticeDTO"/>
-  		<typeAlias type="com.team3.tamagochi.mypet.MyPetDTO" alias="MyPetDTO"/>
-  		<typeAlias type="com.team3.tamagochi.users.InventoryDTO" alias="InventoryDTO"/>
-  		<typeAlias type="com.team3.tamagochi.record.RecordDTO" alias="RecordDTO"/>
-  		<typeAlias type="java.util.Map" alias="Map"/>
+  		<typeAlias type="com.team3.tamagochi.store.ItemFileDTO" alias="ItemFileDTO"/>
   		<typeAlias type="com.team3.tamagochi.store.WishListDTO" alias="WishListDTO"/>
+  		
+  		<typeAlias type="com.team3.tamagochi.notice.NoticeDTO" alias="NoticeDTO"/>
+  		
+  		<typeAlias type="com.team3.tamagochi.mypet.MyPetDTO" alias="MyPetDTO"/>
+  		
+  		<typeAlias type="java.util.Map" alias="Map"/>
   		
   	</typeAliases>
 
