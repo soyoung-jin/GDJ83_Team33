@@ -44,8 +44,8 @@
 											<td>${list.itemDTO.item_atk}</td>
 											<td>${list.itemDTO.item_dod}</td>
 											<td>${list.itemDTO.item_price}</td>
-											<td>
-												<a class="tm-product-delete-link delbtn">
+											<td class=" delbtn">
+												<a class="tm-product-delete-link atag" data-wnum="${list.wishlist_num}">
 												<i class="far fa-trash-alt tm-product-delete-icon" data-wnum="${list.wishlist_num}"></i>
 												</a>
 											</td>

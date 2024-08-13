@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.team3.tamagochi.boards.util.Pager;
 import com.team3.tamagochi.users.UsersDTO;
@@ -136,9 +137,9 @@ public class StoreController {
 
 	// weaponDTO의 변수에 무기설명 변수가 더 있어 매개변수로 받아옴
 	@PostMapping("addItem")
-	public String addItem(ItemDTO itemDTO, Model model) throws Exception {
+	public String addItem(ItemDTO itemDTO, MultipartFile attach, Model model, HttpSession session) throws Exception {
 
-		int result = storeService.addItem(itemDTO);
+		int result = storeService.addItem(itemDTO, attach, session);
 
 		if (result > 0) {
 			model.addAttribute("result", "추가 성공");
