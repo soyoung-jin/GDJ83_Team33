@@ -8,18 +8,25 @@ const clean = document.getElementById("clean");
 const modalActLabel = document.getElementById("modalActLabel");
 const actImg = document.getElementById("actImg");
 const actCloseBtn = document.getElementById("actCloseBtn");
-const doneFeeding = document.getElementById("doneFeeding");
+const done = document.getElementById("done");
 const modalImg = document.getElementById("modalImg");
 const petStatusBtn = document.getElementById("petStatusBtn");
+const petReady = document.getElementById("petReady");
 
 const pet_exp = document.getElementById("pet_exp");
 const pet_hungry = document.getElementById("pet_hungry");
 const pet_hp = document.getElementById("pet_hp")
+const pet_level = document.getElementById("pet_level");
+
+const levelUpBtn = document.getElementById("levelUp");
 
 let h4One = document.createElement("h4");
 let h4Two = document.createElement("h4");
 let followingPetDiv = document.createElement("div");
 let followingPetText = document.createElement("p");
+
+let petNum = petStatusBtn.getAttribute("data-pet-status");
+
 
 
 
@@ -29,10 +36,11 @@ feed.addEventListener("click", ()=>{
     actImg.src = "/resources/img/petAct/feed.gif";
     h4One.innerHTML = "";
     h4Two.innerHTML = "";
-    doneFeeding.style.display = "none";
+    done.style.display = "none";
+    actCloseBtn.style.display = "none";
     
     setTimeout(()=>{
-        fetch("./feed", {
+        fetch("./feed?pet_num=" + petNum, {
             method: "GET"
         })
         .then(r=>r.json())
@@ -42,7 +50,8 @@ feed.addEventListener("click", ()=>{
 
                 modalActLabel.innerHTML = "다 먹었어요";
                 actImg.src = "/resources/img/petAct/doneFeeding.gif";
-                doneFeeding.style.display = "inline";
+                done.style.display = "inline";
+                actCloseBtn.style.display = "inline";
                 h4One.innerHTML = "포만감 +10";
                 h4Two.innerHTML = "경험치 +10";
                 modalImg.append(h4One);
@@ -60,7 +69,7 @@ feed.addEventListener("click", ()=>{
     
             setTimeout(()=>{
                 followingPetDiv.remove();
-            }, 5000)
+            }, 7000)
 
         })
             .catch(()=>{
@@ -79,10 +88,11 @@ stroll.addEventListener("click", ()=>{
     actImg.src = "/resources/img/petAct/stroll.gif";
     h4One.innerHTML = "";
     h4Two.innerHTML = "";
-    doneFeeding.style.display = "none";
+    done.style.display = "none";
+    actCloseBtn.style.display = "none";
     
     setTimeout(()=>{
-        fetch("./stroll", {
+        fetch("./stroll?pet_num=" + petNum, {
             method: "GET"
         })
         .then(r=>r.json())
@@ -92,7 +102,8 @@ stroll.addEventListener("click", ()=>{
 
                 modalActLabel.innerHTML = "집으로 돌아왔어요";
                 actImg.src = "/resources/img/petAct/doneFeeding.gif";
-                doneFeeding.style.display = "inline";
+                done.style.display = "inline";
+                actCloseBtn.style.display = "inline";
                 h4One.innerHTML = "포만감 -20";
                 h4Two.innerHTML = "경험치 +10";
                 modalImg.append(h4One);
@@ -110,7 +121,7 @@ stroll.addEventListener("click", ()=>{
     
             setTimeout(()=>{
                 followingPetDiv.remove();
-            }, 5000)
+            }, 7000)
 
         })
         .catch(()=>{
@@ -129,10 +140,11 @@ clean.addEventListener("click", ()=>{
     actImg.src = "/resources/img/petAct/clean.gif";
     h4One.innerHTML = "";
     h4Two.innerHTML = "";
-    doneFeeding.style.display = "none";
+    done.style.display = "none";
+    actCloseBtn.style.display = "none";
     
     setTimeout(()=>{
-        fetch("./clean", {
+        fetch("./clean?pet_num=" + petNum, {
             method: "GET"
         })
         .then(r=>r.json())
@@ -141,7 +153,8 @@ clean.addEventListener("click", ()=>{
 
                 modalActLabel.innerHTML = "청소 끝";
                 actImg.src = "/resources/img/petAct/doneFeeding.gif";
-                doneFeeding.style.display = "inline";
+                done.style.display = "inline";
+                actCloseBtn.style.display = "inline";
                 h4One.innerHTML = "HP +10";
                 h4Two.innerHTML = "";
                 modalImg.append(h4One);
@@ -159,7 +172,7 @@ clean.addEventListener("click", ()=>{
     
             setTimeout(()=>{
                 followingPetDiv.remove();
-            }, 5000)
+            }, 7000)
 
         })
         .catch(()=>{
@@ -171,19 +184,59 @@ clean.addEventListener("click", ()=>{
     
 })
 
-//=====================펫 진화하기======================
+//=====================펫 레벨업 체크======================
 petStatusBtn.addEventListener("click", ()=>{
-    fetch("./checkPetStatus",  {
+    levelUpBtn.style.display = "none";
+    
+    fetch("./checkPetStatus?pet_num=" + petNum,  {
         method: "GET"
     })
     .then(r=>{return r.text()})
     .then((r)=> {
         r.trim;
-        if(r > 200) {
-            alert("레벨업 준비완료");
+        if(r >= 200) {
+            
+            pet_exp.style.border="solid 2px red";
+            levelUpBtn.style.display = "inline";
+            petReady.innerHTML="레벨업 준비완료";
+            
         }
-        console.log(r);
+        
     })
+
+})
+
+
+//=====================펫 진화하기======================
+levelUpBtn.addEventListener("click", ()=>{
+    modalActLabel.innerHTML = "진화 중";
+    actImg.src = "/resources/img/petAct/waiting.gif";
+    h4One.innerHTML = "";
+    h4Two.innerHTML = "";
+    done.style.display = "none";
+    actCloseBtn.style.display = "none";
+
+    setTimeout(()=>{
+        fetch("./levelUp?pet_num=" + petNum, {
+            method: "GET"
+        })
+        .then(r=>r.json())
+        .then((r)=>{
+            pet_exp.value = r.pet_exp;
+            pet_level.value = r.pet_level;
+            myPetAct.src = "/resources/img/ingame/ex2.gif";
+            modalActLabel.innerHTML = "레벨: " + r.pet_level;
+            done.style.display = "inline";
+            actCloseBtn.style.display = "inline";
+            h4One.innerHTML = "레벨업~~~~";
+            
+            modalImg.append(h4One);
+            modalImg.append(h4Two);
+        })
+        .catch(()=>{
+            alert("오류");
+        })
+    }, 1400)
 })
 
 

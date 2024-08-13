@@ -18,22 +18,25 @@
 				<div class="col-sm-4 col-lg-3 col-md-3 justify-content-center ">
 				  <div class="card">
 						<div class="card-body">
-							<h5 class="card-title">펫이름</h5>
-							<p class="card-text"><a href="./checkPetStatus" id="petStatusBtn" data-bs-toggle="modal" data-bs-target="#petStatusModal">펫 상태 보기</a></p>
-								<div class="justify-content-center align-item-center">
-
+							<h5 class="card-title">${myPetDTO.pet_name}</h5>
+							<div>
+								<a style="display: inline;" href="./checkPetStatus" data-pet-status="${myPetDTO.pet_num}" id="petStatusBtn" data-bs-toggle="modal" data-bs-target="#petStatusModal">펫 상태 보기</a>
+								
+							</div>
+							
+							<div class="justify-content-center align-item-center">
 								<!-- 펫 상태 보기 모달 버튼 -->
 								
 								<a href="./feed" id="feed" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#actModal">먹이주기</a>
 								<a href="./stroll" id="stroll" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#actModal">산책하기</a>
 								<a href="./clean" id="clean" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#actModal">청소하기</a>
-								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		
-			<!-- 펫 행동 모달(식사,산책,화장실) -->
+			<!-- 펫 행동 모달(진화, 식사,산책,화장실) -->
 			
 			<div id="petDiv">
 				<div class="modal fade" id="actModal" tabindex="-1" aria-labelledby="modalActLabel" aria-hidden="true">
@@ -52,7 +55,7 @@
 						<div class="modal-footer">
 							<div class="input-group mb-3 justify-content-center">
 								
-								<button id="doneFeeding" class="btn btn-outline-secondary close" type="button" data-bs-dismiss="modal" aria-label="Close">확인</button>
+								<button id="done" class="btn btn-outline-secondary close" type="button" data-bs-dismiss="modal" aria-label="Close">확인</button>
 								
 							</div>
 							
@@ -70,7 +73,7 @@
 					  <div class="modal-content">
 
 						<div class="modal-header">
-						  <h1 class="modal-title fs-5" id="petStatusModal">마이펫</h1>
+						  <h1 class="modal-title fs-5" id="petReady">${myPetDTO.pet_name}</h1>
 						  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
 						</div>
 
@@ -124,6 +127,14 @@
 							</div>
 						  </div>
 						</div>
+						<div class="modal-footer">
+							<div class="input-group mb-3 justify-content-center">
+								
+								<a href="./levelUp" id="levelUp" class="btn btn-outline-secondary close" type="button" data-bs-dismiss="modal" aria-label="Close">레벨업 하기</a>
+								
+							</div>
+							
+						</div>
 					  </div>
 					</div>
 				  </div>
@@ -136,7 +147,7 @@
 			
 			<div class="container">
 				<div id="petParent">
-					<img id="myPet" src="/resources/img/ingame/ex2.gif" alt="moving cracked egg">
+					<img id="myPet" src="/resources/img/ingame/ex1.gif" alt="moving cracked egg">
 					<div id="chatDiv">
 	
 						<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
