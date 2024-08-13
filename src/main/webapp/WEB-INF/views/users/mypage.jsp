@@ -30,7 +30,7 @@
 					<div class="tm-block-col tm-col-account-settings">
 						<div class="tm-bg-primary-dark tm-block tm-block-settings">
 							<h2 class="tm-block-title">내 정보</h2>
-							<form action="/users/update" method="post" class="tm-signup-form row">
+							<form action="/users/update" method="post" class="tm-signup-form row" id="form">
 								<div class="form-group col-lg-6">
 									<label for="user_id">유저 아이디</label>
 									<input id="user_id" name="user_id" value="${usersDTO.user_id }"
@@ -50,6 +50,7 @@
 									<label for="user_pw2">비밀번호 재확인</label>
 									<input id="user_pw2" name="user_pw2"
 										type="password" class="form-control validate" />
+										<div id="password-check"></div>
 								</div>
 								<div class="form-group col-lg-6">
 									<label for="user_nickname">닉네임</label>
@@ -73,8 +74,8 @@
 										회원 탈퇴</a>
 								</div>
 								<div class="col-12">
-									<button type="submit" class="btn btn-primary btn-block text-uppercase">
-										회원 정보 수정</button>
+									<button type="button" id="check"
+									class="btn btn-primary btn-block text-uppercase">회원 정보 수정</button>
 								</div>
 							</form>
 						</div>
@@ -85,5 +86,6 @@
 		</div>
 		<c:import url="../template/footer.jsp"></c:import>
 		<c:import url="../template/boot-footer.jsp"></c:import>
+		<script src="/resources/js/users/mypageUpdate.js"></script>
 </body>
 </html>

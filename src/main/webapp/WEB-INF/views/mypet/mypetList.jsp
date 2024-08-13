@@ -31,6 +31,16 @@
 											<!-- 카드 이미지 하단 아이템명, 가격 -->
 											<h5 class="card-title">이름 ${dto.pet_name }</h5>
 											<h5 class="card-title">레벨 ${dto.pet_level }</h5>
+											<c:choose>
+												<c:when test="${dto.pet_selected == 0 }">
+													<button type="button" class="btn btn-primary"
+													data-pet-num="${dto.pet_num}">데려가기</button>											
+												</c:when>
+												<c:otherwise>
+													<button type="button" class="del btn-danger">
+													함께 모험중!</button>
+												</c:otherwise>
+											</c:choose>
 										</div>
 									</div>
 								</div>							
@@ -48,5 +58,6 @@
 
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>
+	<script src="/resources/js/users/myPetList.js"></script>
 </body>
 </html>

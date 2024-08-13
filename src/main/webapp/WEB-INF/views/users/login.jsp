@@ -39,7 +39,10 @@
 								<input id="flexCheckDefault" class="form-check-input"
 									type="checkbox" name="remember" checked>
 								<label class="form-check-label" for="flexCheckDefault">아이디 저장</label>
+								<a href="/users/findID" class="col-lg-3">아이디 찾기</a>
+								<a href="#" class="col-lg-3">비밀번호 찾기</a>
 							</div>
+							
 							<button class="btn btn-primary w-100 py-2" type="submit">로그인</button>
 
 						</form>

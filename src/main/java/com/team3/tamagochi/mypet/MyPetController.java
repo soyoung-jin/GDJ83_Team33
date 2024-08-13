@@ -21,6 +21,7 @@ public class MyPetController {
 	private MyPetService myPetService;
 	
 	
+	// 내가 보유하고 있는 캐릭터 목록을 보여주는 메서드
 	@GetMapping("mypetList")
 	public void getList(Model model, HttpSession session) throws Exception{
 		
@@ -31,6 +32,7 @@ public class MyPetController {
 		model.addAttribute("list", list);
 	}
 	
+	// 캐릭터의 상세정보를 보여주는 메서드
 	@GetMapping("petDetail")
 	public void getDetail(MyPetDTO myPetDTO, Model model, HttpSession session) throws Exception{
 		
@@ -43,6 +45,7 @@ public class MyPetController {
 		this.getList(model, session);
 	}
 	
+	// 캐릭터 이름을 수정하는 메서드
 	@PostMapping("updateName")
 	public String updatePetName(MyPetDTO myPetDTO, Model model) throws Exception{
 		
@@ -58,6 +61,21 @@ public class MyPetController {
 		
 		return "commons/message";
 		
+	}
+	
+	// 게임에 사용할 캐릭터를 선택하는 메서드
+	@GetMapping("select")
+	public String selectMyPet(MyPetDTO myPetDTO, Model model, HttpSession session) throws Exception{
+		
+		UsersDTO usersDTO = (UsersDTO)session.getAttribute("users_info");
+		
+		int result = myPetService.selectMyPet(usersDTO, myPetDTO);
+		
+		if(result > 0) {
+			model.addAttribute("msg", result);
+		}
+		
+		return "commons/result";
 	}
 
 }
