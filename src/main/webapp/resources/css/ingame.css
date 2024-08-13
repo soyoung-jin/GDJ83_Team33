@@ -35,7 +35,7 @@ h3 {
     width: 100%;
 }
 
-#doneFeeding {
+#done {
     display: none;
     
 }
@@ -51,4 +51,16 @@ h3 {
     vertical-align: middle;
     left: 450px;
     top: 350px;
+}
+
+
+#levelUp {
+    display: none;
+    padding: 5px;
+    color: red;
+    border: solid 2px red;
+}
+
+#actCloseBtn {
+    display: none;
 }
