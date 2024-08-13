@@ -45,13 +45,20 @@
   			<result column="ITEM_DOD" property="item_dod"/>
   			<result column="ITEM_PRICE" property="item_price"/>
   		</association>
-  	
   	</resultMap>
+  	
   
   	<insert id="addWishList" parameterType="WishListDTO">
   		INSERT INTO WISHLIST (WISHLIST_NUM, USER_ID, ITEM_NUM)
   		VALUES (WISHLIST_SEQ.NEXTVAL, #{user_id}, #{item_num})
   	</insert>
+  	
+  	<select id="filedetail" parameterType="ItemDTO" resultType="ItemFileDTO">
+		SELECT *
+		FROM ITEMFILE
+		WHERE ITEM_NUM = #{item_num}
+  	</select>
+  	
   
   	<select id="getItemList" parameterType="Map" resultMap="itemlist">
   		SELECT *

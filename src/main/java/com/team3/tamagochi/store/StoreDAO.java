@@ -30,6 +30,11 @@ public class StoreDAO {
 		return sqlSession.delete(NAMESPACE+"deleteWishList", wishListDTO);
 	}
 	
+	public ItemFileDTO filedetail(ItemDTO itemDTO){
+		
+		return sqlSession.selectOne(NAMESPACE+"filedetail", itemDTO);
+	}
+	
 	public List<WishListDTO> getWishList(UsersDTO usersDTO) {
 		return sqlSession.selectList(NAMESPACE+"getWishList", usersDTO);
 	}

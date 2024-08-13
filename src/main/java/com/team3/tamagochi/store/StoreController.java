@@ -1,6 +1,8 @@
 package com.team3.tamagochi.store;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.team3.tamagochi.boards.util.Pager;
 import com.team3.tamagochi.users.UsersDTO;
@@ -89,6 +92,25 @@ public class StoreController {
 	//============================== 상점,아이템관련 메소드 =============================
 	//============================== 상점,아이템관련 메소드 =============================
 	//============================== 상점,아이템관련 메소드 =============================
+	
+	@GetMapping("fileDown") // void라면 url경로를 따라감
+	public String fileDown(ItemDTO itemDTO, Pager pager, Model model) throws Exception {
+		
+		pager.setPerPage(6);
+		
+		System.out.println(itemDTO.getCategory_num());
+
+		List<ItemDTO> list = storeService.getItemList(itemDTO, pager);
+		
+		List<ItemFileDTO> itemFileDTOList = storeService.filedetail(list);
+		
+		model.addAttribute("fileList", itemFileDTOList);
+		model.addAttribute("directory", "item");
+		
+		System.out.println("gogo");
+		
+		return "fileDownView";
+	}
 
 	@GetMapping("itemListRefresh")
 	public String getItemList(ItemDTO itemDTO, Pager pager, Model model) throws Exception {
@@ -97,15 +119,10 @@ public class StoreController {
 
 		List<ItemDTO> list = storeService.getItemList(itemDTO, pager);
 		
-		//나중에 return하면 itemListRefresh.jsp로 리턴됨 > 비동기식
-//		if(list.size()==0) {
-//			System.out.println("go");
-//			
-//			model.addAttribute("result","result");
-//			model.addAttribute("url", "/");
-//			
-//			return "commons/message";
-//		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("fin", list.get(0).getItem_num());
+		map.put("start", list.get(list.size()-1).getItem_num());
 		
 
 		model.addAttribute("itemList", list);
@@ -117,8 +134,7 @@ public class StoreController {
 	// ajax로 리스트 조회하기 위해 jsp 찾아가는 경로만 작성
 	// resources/js/storelist.js 스트립트 작성
 	@GetMapping("itemList")
-	public void getItemList(ItemDTO itemDTO, Model model) {
-		model.addAttribute("itemDTO", itemDTO);
+	public void getItemList() {
 	}
 
 	// Item 상세정보 조회

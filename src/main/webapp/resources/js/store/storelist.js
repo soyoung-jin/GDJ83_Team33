@@ -7,8 +7,9 @@ let search = document.getElementById("search").value;
 let kind = document.getElementById("kind").value;
 let page = 0;
 
+
+//리스트 불러오는 함수
 function getList(category_num, page, kind, search){
-    
     fetch("./itemListRefresh?category_num="+category_num+"&page="+page+"&kind="+kind+"&search="+search,{
         method:"get"
     }).then((res)=>res.text())
@@ -19,6 +20,7 @@ function getList(category_num, page, kind, search){
     }).catch(()=>{alert("리스트 조회 실패")})
 }
 
+//페이징
 itemListdiv.addEventListener("click", (e)=>{
 
     if(e.target.classList.contains("pagenum")){
@@ -29,6 +31,7 @@ itemListdiv.addEventListener("click", (e)=>{
 
 })
 
+//검색 
 searchbtn.addEventListener("click",()=>{
 
     search = document.getElementById("search").value;
@@ -38,8 +41,8 @@ searchbtn.addEventListener("click",()=>{
 
 })
 
-//wishlist
 
+//위시리스트
 itemListdiv.addEventListener("click",(e)=>{
     if(e.target.classList.contains("addwish")){
 

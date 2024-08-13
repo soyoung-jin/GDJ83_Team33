@@ -11,7 +11,7 @@
 						<!-- 디테일가기위한 a태그 -->
 							<a href="itemDetail?item_num=${itemDTO.item_num}">
 						<!-- 카드형 상부 이미지 -->
-						<img src="/resources/img/character/4.gif" class="card-img-top" alt="...">
+						<img src="/resources/img/item/${itemDTO.itemFileDTO.ori_name}" class="card-img-top" alt="...">
 					</a>
 						<div class="card-body">
 							<!-- 카드 이미지 하단 아이템명, 가격 -->
@@ -20,7 +20,7 @@
 								${itemDTO.item_price} 원
 							</p>
 							<a href="#" class="btn btn-primary">구매</a>
-							<button type="button" class="btn btn-info addwish" data-inum="${itemDTO.item_num}">장바구니</a>
+							<button type="button" class="btn btn-info addwish" data-inum="${itemDTO.item_num}">장바구니</button>
 						</div>
 					</div>
 				</div>

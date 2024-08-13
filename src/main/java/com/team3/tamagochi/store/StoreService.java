@@ -1,5 +1,6 @@
 package com.team3.tamagochi.store;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,18 @@ public class StoreService {
 	
 	public int deleteWishList (WishListDTO wishListDTO) {
 		return storeDAO.deleteWishList (wishListDTO);
+	}
+	
+	public List<ItemFileDTO> filedetail(List<ItemDTO> list) {
+		
+		List<ItemFileDTO> fileList = new ArrayList<ItemFileDTO>();
+		
+		for(ItemDTO dto:list) {
+			fileList.add(storeDAO.filedetail(dto));
+		}
+		
+		return fileList;
+		
 	}
 
 	public List<ItemDTO> getItemList(ItemDTO itemDTO, Pager pager) throws Exception {

@@ -69,7 +69,7 @@
             	
     		</div>
 		</div>
-	</div>
+	
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>
 	
