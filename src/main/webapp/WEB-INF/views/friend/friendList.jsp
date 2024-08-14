@@ -34,6 +34,13 @@
 								<div class="d-grid">
 									<a class="btn btn-outline-secondary"
 										href="./friendDetail?friend_num=${fDTO.friend_num}">자세히 보기</a>
+									<%-- <c:choose>
+										<c:when test="${connectedId eq fDTO.friend_id}">
+											
+												<h2 class="mt-3">접속 중</h2>
+											
+										</c:when>
+									</c:choose> --%>
 								</div>
 							</div>
 						</div>
@@ -45,5 +52,10 @@
 		<c:import url="../template/footer.jsp"></c:import>
 		<c:import url="../template/boot-footer.jsp"></c:import>
 	</div>
+ <script>
+	const userId = "${fDTO.user_id}";
+ </script>
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+ <script src="/resources/js/friend/chat.js"></script>
 </body>
 </html>

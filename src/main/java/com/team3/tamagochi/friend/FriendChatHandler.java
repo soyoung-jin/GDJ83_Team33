@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
@@ -15,8 +18,9 @@ import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
-@RequestMapping("/friend/*")
+
 public class FriendChatHandler extends TextWebSocketHandler{
+
 
 	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
 
@@ -30,9 +34,11 @@ public class FriendChatHandler extends TextWebSocketHandler{
     	UsersDTO usersDTO = (UsersDTO) map.get(("users_info"));
     	String id = usersDTO.getUser_id();
         sessionList.add(session);
-        logger.info("{} 연결됨", id); 
+        logger.info("{} 연결됨", id);
         
+        // model.addAttribute("connectedId", id);
     }
+    
 
     //클라이언트가 웹소켓 서버로 메시지를 전송했을 때 실행
     @Override
