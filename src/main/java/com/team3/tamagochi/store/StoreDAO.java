@@ -45,6 +45,8 @@ public class StoreDAO {
 	}
 
 	public Integer getTotalCount(Map<String, Object> map) {
+		
+		
 		return sqlSession.selectOne(NAMESPACE + "getTotalCount", map);
 	}
 

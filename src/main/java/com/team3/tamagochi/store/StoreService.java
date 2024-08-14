@@ -56,6 +56,10 @@ public class StoreService {
 		
 		Integer totalCount = storeDAO.getTotalCount(map);
 		
+		if (totalCount == 0) {
+			return null;
+		}
+		
 		pager.makeNum(totalCount);
 		
 		
@@ -78,12 +82,8 @@ public class StoreService {
 		}
 		ServletContext servletContext = session.getServletContext();
 		String path = servletContext.getRealPath("/resources/img/item");
-
-		System.out.println(path);
 		
 		String filename = fileManager.fileSave(file, path);
-		
-		System.out.println(filename);
 		
 		ItemFileDTO itemFileDTO = new ItemFileDTO();
 		

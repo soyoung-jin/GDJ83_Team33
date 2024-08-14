@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team3.tamagochi.boards.util.Pager;
+import com.team3.tamagochi.files.FileDown;
 import com.team3.tamagochi.users.UsersDTO;
 
 @RequestMapping("/store/*")
@@ -39,13 +40,10 @@ public class StoreController {
 		
 		int result = storeService.deleteWishList(wishListDTO);
 		
-		if(result > 0) {
-			List<WishListDTO> list = storeService.getWishList(usersDTO);
-			model.addAttribute("wishlist", list);
-			return "store/wishListRefresh";
-		}
+		model.addAttribute("msg", result);
 		
-		return "/";
+		
+		return "commons/result";
 	}
 	
 	@GetMapping("addWishList")
@@ -83,6 +81,16 @@ public class StoreController {
 		
 		List<WishListDTO> list = storeService.getWishList(usersDTO);
 		
+		//itemDTO의 itemfiledto를 추가하는 반복문
+		for(WishListDTO dto:list) {
+			ItemDTO itemDTO = new ItemDTO();
+			
+			itemDTO.setItem_num(dto.getItem_num());
+			
+			dto.setItemDTO(storeService.getItemDetail(itemDTO));
+		}
+		
+		
 		model.addAttribute("wishlist", list);
 		
 		return "store/getWishList";
@@ -93,24 +101,24 @@ public class StoreController {
 	//============================== 상점,아이템관련 메소드 =============================
 	//============================== 상점,아이템관련 메소드 =============================
 	
-	@GetMapping("fileDown") // void라면 url경로를 따라감
-	public String fileDown(ItemDTO itemDTO, Pager pager, Model model) throws Exception {
-		
-		pager.setPerPage(6);
-		
-		System.out.println(itemDTO.getCategory_num());
-
-		List<ItemDTO> list = storeService.getItemList(itemDTO, pager);
-		
-		List<ItemFileDTO> itemFileDTOList = storeService.filedetail(list);
-		
-		model.addAttribute("fileList", itemFileDTOList);
-		model.addAttribute("directory", "item");
-		
-		System.out.println("gogo");
-		
-		return "fileDownView";
-	}
+//	@GetMapping("fileDown") // void라면 url경로를 따라감
+//	public String fileDown(ItemDTO itemDTO, Pager pager, Model model) throws Exception {
+//		
+//		System.out.println("fileDown gogo");
+//		pager.setPerPage(6);
+//		
+//		System.out.println("fileDown 카테고리 : "+itemDTO.getCategory_num());
+//
+//		List<ItemDTO> list = storeService.getItemList(itemDTO, pager);
+//		
+//		List<ItemFileDTO> itemFileDTOList = storeService.filedetail(list);
+//		
+//		model.addAttribute("fileList", itemFileDTOList);
+//		model.addAttribute("directory", "item");
+//		
+//		
+//		return "fileDownView";
+//	}
 
 	@GetMapping("itemListRefresh")
 	public String getItemList(ItemDTO itemDTO, Pager pager, Model model) throws Exception {
@@ -119,12 +127,11 @@ public class StoreController {
 
 		List<ItemDTO> list = storeService.getItemList(itemDTO, pager);
 		
-		Map<String, Object> map = new HashMap<String, Object>();
+		if (list == null) {
+			model.addAttribute("msg", "<h2 class=\"text-white\">결과값이 없습니다.</h2>");
+			return "commons/result";
+		}
 		
-		map.put("fin", list.get(0).getItem_num());
-		map.put("start", list.get(list.size()-1).getItem_num());
-		
-
 		model.addAttribute("itemList", list);
 		model.addAttribute("pager", pager);
 

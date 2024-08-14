@@ -15,7 +15,7 @@
                 <h1 class="text-white mt-5 mb-5">Item Detail</h1>
 		        <a class="btn btn-primary" href="updateItem?item_num=${dto.item_num}">수정</a>
 	            <a class="btn btn-primary" href="deleteItem?item_num=${dto.item_num}">삭제</a>
-                <img alt="" width="300" src="/resources/img/character/4.gif">
+                <img alt="" width="300" src="/resources/img/item/${dto.itemFileDTO.file_name}">
 				<table class="table">
 					<thead>
 						<tr>

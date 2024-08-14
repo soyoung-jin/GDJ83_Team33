@@ -139,7 +139,6 @@ public class Pager {
 		long curBlock = 0;
 		curBlock = page / perBlock;
 		
-		System.out.println(page);
 
 		if (page % perBlock != 0) {
 			curBlock++;
@@ -148,8 +147,7 @@ public class Pager {
 		this.startNum = (curBlock - 1) * perBlock + 1;
 		this.lastNum = curBlock * perBlock;
 		
-		System.out.println(curBlock);
-		System.out.println(lastNum);
+	
 
 		// 이전 다음
 		this.pre = true;

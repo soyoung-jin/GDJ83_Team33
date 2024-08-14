@@ -58,6 +58,7 @@
 		FROM ITEMFILE
 		WHERE ITEM_NUM = #{item_num}
   	</select>
+
   	
   
   	<select id="getItemList" parameterType="Map" resultMap="itemlist">
@@ -72,7 +73,7 @@
 		  				ORDER BY I.ITEM_NUM DESC) C
 		  		<where>
   					<choose>
-  						<when test="kind='k1'">
+  						<when test="pager.kind=='k1'">
   							C.ITEM_NAME LIKE '%'||#{pager.search}||'%')
   						</when>
   						<otherwise>
@@ -105,23 +106,26 @@
   		SELECT COUNT(C.ITEM_NUM)
   		FROM (SELECT *
   				FROM ITEM
-  				WHERE CATEGORY_NUM = #{itemDTO.category_num}) C
+  				WHERE CATEGORY_NUM = #{itemDTO.category_num} AND ITEM_DEL = 0) C
   		<where>
   			<choose>
-  				<when test="kind='k1'">
-  					ITEM_NAME LIKE '%'||#{pager.search}||'%'
-  				</when>
+  				<when test="pager.kind=='k1'">
+  					C.ITEM_NAME LIKE '%'||#{pager.search}||'%'
+  				</when> 
   				<otherwise>  				
-  					ITEM_PRICE LIKE '%'||#{pager.search}||'%'
+  					C.ITEM_PRICE LIKE '%'||#{pager.search}||'%'
   				</otherwise>
   			</choose>
   		</where>
   	</select>
   	
-  	<select id="getItemDetail" parameterType="ItemDTO" resultType="ItemDTO">
-  		SELECT *
-  		FROM ITEM
-  		WHERE ITEM_NUM=#{item_num}
+  	<select id="getItemDetail" parameterType="ItemDTO" resultMap="itemlist">
+  		SELECT I.*, IF.*
+  		FROM ITEM I
+  			LEFT JOIN
+  			ITEMFILE IF
+  			ON (I.ITEM_NUM=IF.ITEM_NUM)
+  		WHERE I.ITEM_NUM=#{item_num}
   	</select>
   	
   	<insert id="addItem" parameterType="ItemDTO">

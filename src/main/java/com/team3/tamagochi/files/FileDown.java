@@ -25,9 +25,11 @@ public class FileDown extends AbstractView {
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
-		System.out.println("go");
+		System.out.println("FileDownView");
 		
 		List<ItemFileDTO> fileList = (List<ItemFileDTO>) model.get("fileList");
+		
+		System.out.println(fileList.get(0).getFile_name());
 
 		String directory = (String) model.get("directory");
 
@@ -35,10 +37,10 @@ public class FileDown extends AbstractView {
 		ServletContext servletContext = request.getSession().getServletContext();
 		String path = servletContext.getRealPath("/resources/img/"+directory);
 		
-		System.out.println(path);
 		
 		for(ItemFileDTO fileDTO:fileList) {
 			// 2. 파일준비
+			System.out.println(fileDTO);
 			File file = new File(path, fileDTO.getFile_name());
 			
 			if(!file.exists()) {

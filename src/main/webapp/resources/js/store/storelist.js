@@ -2,10 +2,19 @@ const category = document.getElementById("category");
 const itemListdiv = document.getElementById("itemListdiv");
 const option = document.getElementById("option");
 const searchbtn = document.getElementById("searchbtn");
+const getImage = document.getElementById("getImage");
 
 let search = document.getElementById("search").value;
 let kind = document.getElementById("kind").value;
 let page = 0;
+
+// //이미지 불러오기
+// function image(category_num, page, kind, search){
+//     getImage.setAttribute("href","fileDown?category_num="+category_num+"&page="+page+"&kind="+kind+"&search="+search)
+
+    
+// }
+
 
 
 //리스트 불러오는 함수
@@ -37,10 +46,18 @@ searchbtn.addEventListener("click",()=>{
     search = document.getElementById("search").value;
     kind = document.getElementById("kind").value;
 
+
     getList(category.value,page,kind,search)
 
 })
 
+category.addEventListener("change", ()=>{
+    if(category.value == 0 ){
+        option.innerHTML = "종족"
+    } else {
+        option.innerHTML = "무기 이름"
+    }
+})
 
 //위시리스트
 itemListdiv.addEventListener("click",(e)=>{
