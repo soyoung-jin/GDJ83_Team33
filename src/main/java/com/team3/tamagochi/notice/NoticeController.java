@@ -15,19 +15,19 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
-	@RequestMapping(value="List", method= RequestMethod.GET)
+	@RequestMapping(value="noticeList", method= RequestMethod.GET)
 	public String list(Model model) throws Exception {
 		List<NoticeDTO> list = noticeService.list();
-		model.addAttribute("List",list);
+		model.addAttribute("list",list);
 		
-		return "notice/list";
+		return "notice/noticeList";
 		
 	}
 	
 	
-	@RequestMapping(value="add", method= RequestMethod.POST)
+	@RequestMapping(value="noticeAdd", method= RequestMethod.GET)
 	public String add() {
-		return "notice/add";
+		return "notice/noticeAdd";
 	}
 
 }

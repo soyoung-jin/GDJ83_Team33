@@ -17,5 +17,9 @@ public class NoticeDAO {
 	public List<NoticeDTO> list() throws Exception{
 		return sqlSession.selectList(NAMESPACE + "list");
 	}
+	
+	public int add(NoticeDTO noticeDTO) {
+		return sqlSession.insert(NAMESPACE+"add",noticeDTO);
+	}
 
 }

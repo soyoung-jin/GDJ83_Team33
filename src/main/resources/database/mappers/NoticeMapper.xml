@@ -5,11 +5,16 @@
 
   <mapper namespace="com.team3.tamagochi.notice.NoticeDAO">
   
-  	<select id="list" resultType="NoticeDTO">
+  	<select id="list" resultType="NoticeDTO" parameterType="NoticeDTO">
   		SELECT
-  			*
+  			NOTICE_NUM
+  			,USER_ID
+  			,NOTICE_TITLE
+  			,NOTICE_CREATE_DATE
+  			,NOTICE_HIT
+  			,NOTICE_CONTENTS
   		FROM
-  			NOTICE;	
+  			NOTICE
   	
   	</select>
   	
