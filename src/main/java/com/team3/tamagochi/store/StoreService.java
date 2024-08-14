@@ -1,5 +1,6 @@
 package com.team3.tamagochi.store;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,18 @@ public class StoreService {
 	public int deleteWishList (WishListDTO wishListDTO) {
 		return storeDAO.deleteWishList (wishListDTO);
 	}
+	
+	public List<ItemFileDTO> filedetail(List<ItemDTO> list) {
+		
+		List<ItemFileDTO> fileList = new ArrayList<ItemFileDTO>();
+		
+		for(ItemDTO dto:list) {
+			fileList.add(storeDAO.filedetail(dto));
+		}
+		
+		return fileList;
+		
+	}
 
 	public List<ItemDTO> getItemList(ItemDTO itemDTO, Pager pager) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -42,6 +55,10 @@ public class StoreService {
 		pager.makerow();
 		
 		Integer totalCount = storeDAO.getTotalCount(map);
+		
+		if (totalCount == 0) {
+			return null;
+		}
 		
 		pager.makeNum(totalCount);
 		
@@ -65,12 +82,8 @@ public class StoreService {
 		}
 		ServletContext servletContext = session.getServletContext();
 		String path = servletContext.getRealPath("/resources/img/item");
-
-		System.out.println(path);
 		
 		String filename = fileManager.fileSave(file, path);
-		
-		System.out.println(filename);
 		
 		ItemFileDTO itemFileDTO = new ItemFileDTO();
 		
