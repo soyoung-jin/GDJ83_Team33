@@ -1,31 +1,37 @@
-const myPetAct = document.getElementById("myPet");
-const actPetParent = document.getElementById("petParent");
+//=====================이미지 관련======================
+const myPetAct = document.getElementById("myPet"); //다마고치 이미지
+const actPetParent = document.getElementById("petParent"); //다마고치 이미지 감싼 것
+const actImg = document.getElementById("actImg"); //모달 안의 이미지
+const modalImg = document.getElementById("modalImg"); //actImg 감싼 태그
 
-const feed = document.getElementById("feed");
-const stroll = document.getElementById("stroll");
-const clean = document.getElementById("clean");
 
-const modalActLabel = document.getElementById("modalActLabel");
-const actImg = document.getElementById("actImg");
-const actCloseBtn = document.getElementById("actCloseBtn");
-const done = document.getElementById("done");
-const modalImg = document.getElementById("modalImg");
-const petStatusBtn = document.getElementById("petStatusBtn");
-const petReady = document.getElementById("petReady");
+//=====================버튼 관련======================
+const petStatusBtn = document.getElementById("petStatusBtn"); //펫 상태보기 버튼
+const feed = document.getElementById("feed"); //먹이주기 버튼
+const stroll = document.getElementById("stroll"); //산책하기 버튼
+const clean = document.getElementById("clean"); //청소하기 버튼
+const levelUpBtn = document.getElementById("levelUp"); //레벨업하기 버튼
+const actCloseBtn = document.getElementById("actCloseBtn"); //모달 닫기 버튼
+const done = document.getElementById("done"); //모달 닫기 확인 버튼
 
-const pet_exp = document.getElementById("pet_exp");
-const pet_hungry = document.getElementById("pet_hungry");
-const pet_hp = document.getElementById("pet_hp")
-const pet_level = document.getElementById("pet_level");
+//=====================텍스트 관련======================
+const modalActLabel = document.getElementById("modalActLabel"); //모달 제목
+const petReady = document.getElementById("petReady"); //펫 이름 부분(제목)
+let h4One = document.createElement("h4"); //모달 안 하단 텍스트
+let h4Two = document.createElement("h4"); //모달 안 하단 텍스트
+let followingPetDiv = document.createElement("div"); //펫 옆에 뜨는 말풍선
+let followingPetText = document.createElement("p"); //펫 옆에 뜨는 말풍선 텍스트
 
-const levelUpBtn = document.getElementById("levelUp");
+//=====================펫 정보 관련======================
+let petNum = petStatusBtn.getAttribute("data-pet-status"); //펫 번호
+const pet_exp = document.getElementById("pet_exp"); //경험치
+const pet_hungry = document.getElementById("pet_hungry"); //포만감
+const pet_hp = document.getElementById("pet_hp"); //체력
+const pet_level = document.getElementById("pet_level"); //레벨
+const pet_name = document.getElementById("pet_name");
 
-let h4One = document.createElement("h4");
-let h4Two = document.createElement("h4");
-let followingPetDiv = document.createElement("div");
-let followingPetText = document.createElement("p");
 
-let petNum = petStatusBtn.getAttribute("data-pet-status");
+
 
 
 
@@ -184,18 +190,21 @@ clean.addEventListener("click", ()=>{
     
 })
 
-//=====================펫 레벨업 체크======================
+//=====================펫 상태보기======================
 petStatusBtn.addEventListener("click", ()=>{
     levelUpBtn.style.display = "none";
-    
+    petReady.innerHTML = pet_name.value;
+    pet_exp.style.border="";
+
     fetch("./checkPetStatus?pet_num=" + petNum,  {
         method: "GET"
     })
-    .then(r=>{return r.text()})
+    .then(r=>{return r.json()})
     .then((r)=> {
-        r.trim;
-        if(r >= 200) {
-            
+        
+        if(r.pet_exp >= 200) {
+            pet_exp.value = r.pet_exp;
+            pet_level.value = r.pet_level;
             pet_exp.style.border="solid 2px red";
             levelUpBtn.style.display = "inline";
             petReady.innerHTML="레벨업 준비완료";
@@ -232,12 +241,13 @@ levelUpBtn.addEventListener("click", ()=>{
             
             modalImg.append(h4One);
             modalImg.append(h4Two);
-            actCloseBtn.addEventListener("click", ()=>{
-                document.querySelector(".modal-backdrop").remove();
-            })
-            done.addEventListener("click", ()=>{
-                document.querySelector(".modal-backdrop").remove();
-            })
+
+            // actCloseBtn.addEventListener("click", ()=>{
+            //     document.querySelector(".modal-backdrop").remove();
+            // })
+            // done.addEventListener("click", ()=>{
+            //     document.querySelector(".modal-backdrop").remove();
+            // })
         })
         .catch(()=>{
             alert("오류");

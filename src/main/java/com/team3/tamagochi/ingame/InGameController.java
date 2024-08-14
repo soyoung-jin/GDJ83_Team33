@@ -32,11 +32,11 @@ public class InGameController {
 	
 	//<====================펫 경험치 가져오기, 펫 체크 다시 불러오기======================>
 	@GetMapping("checkPetStatus")
-	public String getPetExp(MyPetDTO myPetDTO, Model model) throws Exception {
+	@ResponseBody
+	public MyPetDTO getPetExp(MyPetDTO myPetDTO, Model model) throws Exception {
 		myPetDTO = inGameService.checkPetStatus(myPetDTO);
-		Long petExp = inGameService.getPetExp(myPetDTO);
-		model.addAttribute("msg", petExp);
-		return "commons/result";
+		
+		return myPetDTO;
 	}
 	
 	
