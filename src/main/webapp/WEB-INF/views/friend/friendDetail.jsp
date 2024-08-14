@@ -14,22 +14,21 @@
 	<div class="" id="home">
 		<c:import url="../template/topbar.jsp"></c:import>
 
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<p class="text-white mt-5 mb-5">
-						Welcome, <b>Admin</b>
-					</p>
-				</div>
-			</div>
-		<div class="container px-5 my-5">
-			<div class="row gx-5 justify-content-center">
-			
-		<button type="button" id="startChat" class="btn btn-outline-warning chatBtn" data-bs-toggle="modal" data-bs-target="#commentModal">
-		  채팅 시작
-		</button>
-		
-		<!-- 댓글 모달 창 -->
+<div class="container">
+			<!-- row -->
+			<div class="container mt-5">
+				<!-- row -->
+				<div class="row tm-content-row">
+					<div class="tm-block-col tm-col-avatar">
+						<div class="tm-bg-primary-dark tm-block tm-block-avatar">
+							<h2 id="friendStatus" data-friend-id="${friendInfoDTO.user_id}" class="tm-block-title">부재중</h2>
+							<div id="chatParent">
+							<a id="startChat" type="button" class="btn btn-outline-warning btn-block text-uppercase mb-3"
+									data-bs-toggle="modal" data-bs-target="#commentModal"
+									href="deleteFriend?friend_num=${usersDTO.friendDTO[0].friend_num}">
+										대화하기</a>
+										
+		<!-- 대화 모달 창 -->
 			<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog modal-dialog-scrollable">
 			    <div class="modal-content">
@@ -56,40 +55,63 @@
 			  </div>
 			</div>
 		
-				
-				<div class="col-lg-8 col-xl-8">
-					<div class="card mb-5 mb-xl-0 ">
-							<div class="card-body p-5">
-									<div>
-										<img style="width:20%"alt="mockImage" src="/resources/img/friendImage/chick.png">
-									</div>
-								
-									<div class="mb-2">
-										<span class="display-5 fw-bold">${friendInfoDTO.user_nickname}</span>
-									</div>
-									<ul class="list-unstyled mb-4">
-										<li class="mb-2">
-										<strong>${friendInfoDTO.user_phone}</strong>
-										</li>
-										<li class="mb-2">
-										<strong>${friendInfoDTO.user_email}</strong>
-										</li>
-									</ul>
 							</div>
+							<div class="tm-avatar-container">
+								<img src="/resources/img/friendImage/chick.png" alt="Avatar"
+									class="tm-avatar img-fluid mb-4" /> <a
+									href="#" class="tm-avatar-delete-link"> <i
+									class="far fa-trash-alt tm-product-delete-icon"></i>
+								</a>
+							</div>
+							
 						</div>
-						<div class="d-md-flex justify-content-md-end mt-5">
-							<a class="btn btn-secondary justify-content-end" href="./friendList" role="button">돌아가기</a>
-							<a class="btn btn-danger justify-content-end ml-2" href="deleteFriend?friend_num=${usersDTO.friendDTO[0].friend_num}" role="button">친구 끊기</a>
+					</div>
+					<div class="tm-block-col tm-col-account-settings">
+						<div class="tm-bg-primary-dark tm-block tm-block-settings">
+							<h2 class="tm-block-title">친구 정보</h2>
+							<form action="/users/update" method="post" class="tm-signup-form row" id="form">
+								<div class="form-group col-lg-6">
+									<label for="user_id">유저 아이디</label>
+									<input id="user_id" name="user_id" value="${friendInfoDTO.user_id}"
+									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
+								</div>
+								
+								<div class="form-group col-lg-6">
+									<label for="user_nickname">닉네임</label>
+									<input id="user_nickname" name="user_nickname" value="${friendInfoDTO.user_nickname}"
+									type="text" class="form-control validate" />
+								</div>
+								
+								<div class="form-group col-lg-6">
+									<label class="tm-hide-sm">&nbsp;</label>
+									<a type="button" class="btn btn-secondary btn-block text-uppercase chatBtn"
+									href="#">
+										선물보내기</a>
+								</div>
+								
+								<div class="form-group col-lg-6">
+									<label class="tm-hide-sm">&nbsp;</label>
+									<a type="button" class="btn btn-danger btn-block text-uppercase"
+									href="deleteFriend?friend_num=${usersDTO.friendDTO[0].friend_num}">
+										친구 끊기</a>
+								</div>
+								
+								<div class="form-group col-lg-12">
+									<label class="tm-hide-sm">&nbsp;</label>
+									<a type="button" class="btn btn-secondary btn-block text-uppercase"
+									href="./friendList">
+										돌아가기</a>
+								</div>
+							</form>
 						</div>
+					</div>
 				</div>
-				
-					<!-- 선물 보내기 버튼 -->
-					<button type="button" id="gift" class="btn btn-outline-warning ml-3 chatBtn">
-					  선물보내기
-					</button>
-	        	</div>
-	    	</div>  
+			</div>
+
 		</div>
+		
+		
+		
 	</div>
 
 		<footer class="tm-footer row tm-mt-small fixed-bottom">

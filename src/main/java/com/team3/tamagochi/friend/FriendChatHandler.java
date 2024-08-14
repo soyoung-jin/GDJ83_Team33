@@ -64,4 +64,6 @@ public class FriendChatHandler extends TextWebSocketHandler{
         logger.info("{} 연결 끊김.", id);
     }
     
+    
+    
 }

@@ -1,5 +1,6 @@
 package com.team3.tamagochi.friend;
 
+import java.net.http.WebSocket;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.socket.WebSocketSession;
 
 import com.team3.tamagochi.users.UsersDTO;
 
@@ -20,14 +22,21 @@ public class FriendController {
 	private FriendService friendService;
 	
 	
+	@Autowired
+	private FriendChatHandler chat;
+	
+	
 	
 	@GetMapping("friendList")
 	public void getFriendList(UsersDTO usersDTO, Model model, HttpSession session) throws Exception{
+		
 		usersDTO = (UsersDTO) session.getAttribute("users_info");
 		
 		usersDTO = friendService.getFriendList(usersDTO);
 		
 		model.addAttribute("usersDTO", usersDTO);
+		
+		
 		
 	}
 	
