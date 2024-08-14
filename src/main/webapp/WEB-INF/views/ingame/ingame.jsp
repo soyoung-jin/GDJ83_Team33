@@ -4,8 +4,6 @@
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" href="/resources/css/ingame.css">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 	<c:import url="../template/header.jsp"></c:import>
 </head>
 <body id="reportsPage" class="font">
@@ -44,7 +42,7 @@
 						<div class="modal-content">
 						<div class="modal-header">
 							<h1 class="modal-title fs-5" id="modalActLabel"></h1>
-							<button id="actCloseBtn" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+							<button id="actCloseBtn" type="button" class="btn-close" data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">X</button>
 						</div>
 						<div class="modal-body">
 						<div class="form-floating" id="modalImg">
@@ -55,7 +53,7 @@
 						<div class="modal-footer">
 							<div class="input-group mb-3 justify-content-center">
 								
-								<button id="done" class="btn btn-outline-secondary close" type="button" data-bs-dismiss="modal" aria-label="Close">확인</button>
+								<button id="done" class="btn btn-outline-secondary close" type="button" data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">확인</button>
 								
 							</div>
 							
@@ -87,6 +85,10 @@
 										<label for="pet_spc">종족</label>
 										<input id="pet_spc" name="pet_spc" value="${myPetDTO.pet_spc}"
 											type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
+											
+										<input id="pet_name" name="pet_name" value="${myPetDTO.pet_name}"
+										type="hidden" class="form-control validate" readonly style="background-color:#4e657a"/>
+
 									</div>
 									<div class="form-group col-lg-6">
 										<label for="pet_level">레벨</label>
@@ -130,7 +132,7 @@
 						<div class="modal-footer">
 							<div class="input-group mb-3 justify-content-center">
 								
-								<a href="./levelUp" id="levelUp" class="btn btn-outline-secondary close btn-close" data-bs-dismiss="modal" aria-label="Close" data-bs-toggle="modal" data-bs-target="#actModal">
+								<a href="./levelUp" id="levelUp" class="btn btn-outline-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#actModal">
 									레벨업 하기</a>
 								
 							</div>
@@ -156,7 +158,7 @@
 							  <div class="modal-content">
 
 								<div class="modal-header">
-								  <h1 class="modal-title fs-5" id="exampleModalLabel">마이펫</h1>
+								  <h1 class="modal-title fs-5" id="exampleModalLabel">${myPetDTO.pet_name}</h1>
 								  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
 								</div>
 

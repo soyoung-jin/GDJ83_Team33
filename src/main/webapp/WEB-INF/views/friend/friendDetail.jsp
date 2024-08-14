@@ -104,14 +104,14 @@
         
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-<script src="/resources/js/friend/chat.js"></script>
 <script type="text/javascript">
 	const loginUserId = "${myDTO.user_id}";
 	const loginFriendId = "${friendInfoDTO.user_id}";
-	console.log("친구: " + loginFriendId);
 	console.log("나: " + loginUserId);
+	console.log("친구: " + loginFriendId);
 	
 </script>
+<script src="/resources/js/friend/chat.js"></script>
 <c:import url="../template/boot-footer.jsp"></c:import>
 </body>
 </html>

@@ -19,6 +19,8 @@ public class FriendController {
 	@Autowired
 	private FriendService friendService;
 	
+	
+	
 	@GetMapping("friendList")
 	public void getFriendList(UsersDTO usersDTO, Model model, HttpSession session) throws Exception{
 		usersDTO = (UsersDTO) session.getAttribute("users_info");
