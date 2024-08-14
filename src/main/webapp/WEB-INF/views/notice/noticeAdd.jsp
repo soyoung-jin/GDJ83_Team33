@@ -9,9 +9,6 @@
 <body id="reportsPage" class="font">
 		<c:import url="../template/topbar.jsp"></c:import>
 
-
-<body>
-  
     <div class="container tm-mt-big tm-mb-big">
       <div class="row">
         <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
@@ -22,65 +19,25 @@
               </div>
             </div>
             <div class="row tm-edit-product-row">
-              <div class="col-xl-6 col-lg-6 col-md-12">
-                <form action="" class="tm-edit-product-form">
+              <div class="col-xl-12 col-lg-6 col-md-12">
+              <form action="noticeAdd" class="tm-edit-product-form" method="post">
+                <input type="hidden" value="${users_info.user_id}" name="user_id">
                   <div class="form-group mb-3">
                     <label
                       for="name"
                       >제목
                     </label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      class="form-control validate"
-                      required
-                    />
+                    <input id="notice_title" name="notice_title" type="text" class="form-control validate" required/>
                   </div>
                   <div class="form-group mb-3">
-                    <label
-                      for="description"
-                      >내용</label
-                    >
-                    <textarea
-                      class="form-control validate"
-                      rows="3"
-                      required
-                    ></textarea>
+                    <label for="contents">내용</label>
+                    <textarea 
+                      class="form-control validate" name="notice_contents" id="notice_contents"rows="10"required></textarea>
                   </div>
-                  </div>
-                  <div class="row">
-                      <div class="form-group mb-3 col-xs-12 col-sm-6">
-                          <label
-                            for="expire_date"
-                            >Expire Date
-                          </label>
-                          <input
-                            id="expire_date"
-                            name="expire_date"
-                            type="text"
-                            class="form-control validate"
-                            data-large-mode="true"
-                          />
-                        </div>
-                        <div class="form-group mb-3 col-xs-12 col-sm-6">
-                          <label
-                            for="stock"
-                            >Units In Stock
-                          </label>
-                          <input
-                            id="stock"
-                            name="stock"
-                            type="text"
-                            class="form-control validate"
-                            required
-                          />
-                        </div>
-                  </div>
-                  
-              </div>
-              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                <div class="tm-product-img-dummy mx-auto">
+                  <div class="form-group mb-3"></div>
+			</div>
+              <div class=" col-md-12 mx-auto mb-4">
+                <div style="height:60% " class="tm-product-img-dummy mx-auto">
                   <i
                     class="fas fa-cloud-upload-alt tm-upload-icon"
                     onclick="document.getElementById('fileInput').click();"
@@ -91,13 +48,13 @@
                   <input
                     type="button"
                     class="btn btn-primary btn-block mx-auto"
-                    value="UPLOAD PRODUCT IMAGE"
+                    value="파일 업로드"
                     onclick="document.getElementById('fileInput').click();"
                   />
                 </div>
               </div>
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
+                <button type="submit" name="noticeAdd" class="btn btn-primary btn-block text-uppercase">등록</button>
               </div>
             </form>
             </div>
@@ -105,13 +62,7 @@
         </div>
       </div>
     </div>
-    
-    <script>
-      $(function() {
-        $("#expire_date").datepicker();
-      });
-    </script>
-    
+   
 	
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>

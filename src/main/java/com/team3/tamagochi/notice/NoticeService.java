@@ -17,11 +17,14 @@ public class NoticeService {
 		return noticeDAO.list();
 	}
 	
-	public int add(NoticeDTO noticeDTO, HttpSession session) {
+	public int add(NoticeDTO noticeDTO, HttpSession session) throws Exception{
 		int result = noticeDAO.add(noticeDTO);
-		String path = session.getServletContext().getRealPath("resources/upload/Notice");
 		
 		return result;
+	}
+	
+	public NoticeDTO detail(NoticeDTO noticeDTO) throws Exception{
+		return noticeDAO.detail(noticeDTO);
 	}
 
 }

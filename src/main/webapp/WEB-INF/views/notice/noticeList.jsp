@@ -5,16 +5,18 @@
 <head>
 <title>NOTICE</title>
 <c:import url="../template/header.jsp"></c:import>
+<link rel="stylesheet" href="/resources/css/boardSY.css">
 </head>
 <body id="reportsPage" class="font">
 		<c:import url="../template/topbar.jsp"></c:import>
 
-
+<h1 >공지사항</h1>
 <div class="container mt-5">
       <div class="row tm-content-row">
         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
             <div class="tm-product-table-container">
+            
               <table class="table table-hover tm-table-small tm-product-table">
                 <thead>
                   <tr>
@@ -32,16 +34,12 @@
 					<c:forEach var="list" items="${list}">
                   <tr>
                     <th scope="row"><input type="checkbox" /></th>
-                    <td class="tm-product-name">${list.notice_num}</td>
+                    <td>${list.notice_num}</td>
                     <td>${list.user_id}</td>
-                    <td>>${list.notice_title}</td>
+                    <td><a href="noticeDetail?notice_num=${list.notice_num}" class="btn" >${list.notice_title}</a></td>
                     <td>${list.notice_create_date}</td>
                     <td>${list.notice_hit}</td>
-                    <td>
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
+                    
                   </tr>
                   </c:forEach>
                 </tbody>
@@ -63,24 +61,26 @@
               <table class="table table-hover tm-table-small tm-product-table">
                 <tbody>
                   <tr>
-                    <td class="tm-product-name">공지사항</td>
-                    <td class="text-center"></td>
-                    
+                    <td class="tm-notice-notice">공지사항</td>
+                    <td class="text-center">
+                      <a href="#" class="">
+                      </a>
+                    </td>
                   </tr>
                   <tr>
-                    <td class="tm-product-name">유저 게시판</td>
+                    <td class="tm-notice-user">유저 게시판</td>
                     <td class="text-center">
 
                     </td>
                   </tr>
                   <tr>
-                    <td class="tm-product-name">랭킹 게시판</td>
+                    <td class="tm-notice-lank">랭킹 게시판</td>
                     <td class="text-center">
 
                     </td>
                   </tr>
                   <tr>
-                    <td class="tm-product-name">문의 게시판</td>
+                    <td class="tm-notice-qna">문의 게시판</td>
                     <td class="text-center">
 
                     </td>
@@ -93,13 +93,42 @@
         </div>
       </div>
     </div>
-    <script>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+    
     $(function() {
-      $(".tm-product-name").on("click", function() {
-        window.location.href = "edit-product.html";
-      });
-    });	
-  </script>
+        $(".tm-notice-notice").on("click", function() {
+          window.location.href = "noticeList";
+        });
+      });</script>
+      
+      
+        <script type="text/javascript">
+    
+    $(function() {
+        $(".tm-notice-user").on("click", function() {
+          window.location.href = "userList";
+        });
+      });</script>
+      
+         <script type="text/javascript">
+    
+    $(function() {
+        $(".tm-notice-lank").on("click", function() {
+          window.location.href = "lankList";
+        });
+      });</script>
+      
+      
+         <script type="text/javascript">
+    
+    $(function() {
+        $(".tm-notice-qna").on("click", function() {
+          window.location.href = "qnaList";
+        });
+      });</script>
+
+   
 
 	
 	<c:import url="../template/footer.jsp"></c:import>

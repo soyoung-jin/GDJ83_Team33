@@ -18,8 +18,12 @@ public class NoticeDAO {
 		return sqlSession.selectList(NAMESPACE + "list");
 	}
 	
-	public int add(NoticeDTO noticeDTO) {
+	public int add(NoticeDTO noticeDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"add",noticeDTO);
+	}
+	
+	public NoticeDTO detail(NoticeDTO noticeDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"detail",noticeDTO);
 	}
 
 }

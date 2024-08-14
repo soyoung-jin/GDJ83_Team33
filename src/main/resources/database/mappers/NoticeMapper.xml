@@ -18,4 +18,34 @@
   	
   	</select>
   	
+  	<insert id="add" parameterType="NoticeDTO">
+  		INSERT INTO NOTICE
+  		(
+  		NOTICE_NUM,USER_ID,NOTICE_TITLE,NOTICE_CONTENTS
+  		)
+  		VALUES (BOARD_SEQ.NEXTVAL, #{user_id}, #{notice_title},#{notice_contents})
+  	
+  	
+  	</insert>
+  	
+  	
+  	<select id="detail" resultType="NoticeDTO" resultMap="detailResult">
+  		SELECT
+  		 	N.*
+  		FROM
+  			NOTICE N
+  		WHERE N.NOTICE_NUM =#{notice_num}
+  	
+  	</select>
+  	<resultMap type="NoticeDTO" id="detailResult">
+  		<id column="NOTICE_NUM" property="notice_num"/>
+  		<result column="USER_ID" property="user_id"/>
+  		<result column="NOTICE_TITLE" property="notice_title"/>
+  		<result column="NOTICE_CREATE_DATE" property="notice_create_date"/>
+  		<result column="NOTICE_HIT" property="notice_hit"/>
+  		<result column="NOTICE_CONTENTS" property="notice_contents"/>
+
+  	
+  	</resultMap>
+  	
   </mapper>
