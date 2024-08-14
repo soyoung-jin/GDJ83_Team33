@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-	<title>ResultID</title>
+	<title>ResultPW</title>
 	<c:import url="../template/header.jsp"></c:import>
 </head>
 <body id="reportsPage" class="font">
@@ -11,7 +11,7 @@
 	<div class="container">
         <div class="row">
             <div class="col">
-				<h1 class="text-white mt-5 mb-5">해당 정보로 가입된 아이디입니다</h1>
+				<h1 class="text-white mt-5 mb-5">입력한 아이디의 패스워드 입니다</h1>
             	<div class="container mt-5">
 					<div class="row tm-content-row">
 					  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
@@ -21,20 +21,18 @@
 							  <thead>
 								<tr>
 								  <th scope="col"></th>
-								  <th scope="col">이름</th>
 								  <th scope="col">아이디</th>
+								  <th scope="col">패스워드</th>
 								  <th scope="col"></th>
 								</tr>
 							  </thead>
-							  <tbody>
-									<c:forEach items="${usersDTOs}" var="dto">
-										<tr>
-											<td></td>
-											<td>${dto.user_name }</td>
-											<td>${dto.user_id }</td>
-											<td><a href="/users/findPW">비밀번호 찾기</a></td>
-										</tr>
-									</c:forEach>
+							  <tbody>	
+									<tr>
+										<td></td>
+										<td>${usersDTO.user_id }</td>
+										<td>${usersDTO.user_pw }</td>
+										<td><a href="/users/login">로그인 하러 가기!</a></td>
+									</tr>
 								</tbody>
 							</table>
 						  </div>

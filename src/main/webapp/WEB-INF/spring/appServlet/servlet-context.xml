@@ -47,6 +47,8 @@
 	
 	<context:component-scan base-package="com.team3.tamagochi" />
 	
+	<beans:bean id="naverLoginBO" class="com.team3.tamagochi.users.NaverLoginBO"/>
+	
 	
 	
 </beans:beans>

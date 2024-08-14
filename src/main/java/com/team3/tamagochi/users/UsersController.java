@@ -273,5 +273,25 @@ public class UsersController {
 		
 		return "commons/message";
 	}
+	
+	// 아이디, 이름, 이메일, 전화번호로 패스워드를 찾는 메서드
+	@GetMapping("findPW")
+	public void findPW() throws Exception{}
 
+	@PostMapping("findPW")
+	public String findPW(UsersDTO usersDTO, Model model) throws Exception{
+		
+		usersDTO = usersService.findPW(usersDTO);
+		
+		if(usersDTO == null) {
+			model.addAttribute("result", "입력하신 정보와 일치하는 패스워드가 없습니다. 올바르게 입력하였는지 다시 한 번 확인해 주세요.");
+			model.addAttribute("url", "/users/findPW");
+		}else if(usersDTO != null) {
+			model.addAttribute("usersDTO", usersDTO);
+			return "users/resultPW";
+		}
+		
+		return "commons/message";
+	}
+	
 }
