@@ -89,6 +89,12 @@ public class UsersDAO {
 		return sqlSession.selectList(NAMESPACE + "findID", usersDTO);
 	}
 	
+	// 아이디, 이름, 이메일, 전화번호로 회원의 패스워드를 찾는 메서드
+	public UsersDTO findPW(UsersDTO usersDTO) throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE + "findPW", usersDTO);
+	}
+	
 	
 	
 	

@@ -88,8 +88,6 @@ public class UsersService {
 		return usersDAO.takeOffItem(myPetDTO);
 	}
 	
-	
-	
 	// 회원가입시 입력한 id값이 중복인지 아닌지 검사하는 JS 이벤트 메서드
 	public UsersDTO checkID(UsersDTO usersDTO) throws Exception{
 		
@@ -105,6 +103,12 @@ public class UsersService {
 	public List<UsersDTO> findID(UsersDTO usersDTO) throws Exception{
 		
 		return usersDAO.findID(usersDTO);
+	}
+	
+	// 아이디, 이름, 이메일, 전화번호로 회원의 패스워드를 찾는 메서드
+	public UsersDTO findPW(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.findPW(usersDTO);
 	}
 	
 	
