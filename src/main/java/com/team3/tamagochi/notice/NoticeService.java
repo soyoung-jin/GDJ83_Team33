@@ -26,5 +26,15 @@ public class NoticeService {
 	public NoticeDTO detail(NoticeDTO noticeDTO) throws Exception{
 		return noticeDAO.detail(noticeDTO);
 	}
+	
+	public void hit(NoticeDTO noticeDTO) throws Exception {
+		noticeDAO.hit(noticeDTO);
+	}
+	
+	public int delete(NoticeDTO noticeDTO) throws Exception {
+		return noticeDAO.delete(noticeDTO);
+	}
+	
+
 
 }

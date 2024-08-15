@@ -48,4 +48,16 @@
   	
   	</resultMap>
   	
+  	
+  	<update id="hit" parameterType="NoticeDTO">
+  		UPDATE NOTICE
+		SET NOTICE_HIT = NOTICE_HIT +1
+		WHERE NOTICE_NUM = #{notice_num}
+  	
+  	</update>
+  	
+  	<delete id="delete" parameterType="NoticeDTO">
+  		DELETE FROM NOTICE WHERE NOTICE_NUM = #{notice_num}
+  	</delete>
+  	
   </mapper>

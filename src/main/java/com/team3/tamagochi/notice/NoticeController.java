@@ -47,11 +47,30 @@ public class NoticeController {
 	
 	@RequestMapping(value="noticeDetail", method=RequestMethod.GET)
 	public String detail(NoticeDTO noticeDTO, Model model) throws Exception{
-		
+		hit(noticeDTO);
 		noticeDTO = noticeService.detail(noticeDTO);
 		model.addAttribute("detail",noticeDTO);
 		return "notice/noticeDetail";
 		
+	}
+	
+	public void hit(NoticeDTO noticeDTO) throws Exception {
+		noticeService.hit(noticeDTO);
+	}
+	
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public String delete(NoticeDTO noticeDTO, Model model) throws Exception {
+		int num = noticeService.delete(noticeDTO);
+		
+		
+		String path = "commons/message";
+		if (num > 0) {
+			path = "redirect:./noticeList";
+		} else {
+			model.addAttribute("num", "게시물을 지우지 못했습니다.");
+			model.addAttribute("url", "./noticeList");
+		}
+		return path;
 	}
 
 }

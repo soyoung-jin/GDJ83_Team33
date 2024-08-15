@@ -25,5 +25,14 @@ public class NoticeDAO {
 	public NoticeDTO detail(NoticeDTO noticeDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"detail",noticeDTO);
 	}
+	
+	public void hit(NoticeDTO noticeDTO) throws Exception {
+		sqlSession.update(NAMESPACE + "hit", noticeDTO);
+	}
+	
+	public int delete(NoticeDTO noticeDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "delete", noticeDTO);
+
+	}
 
 }
