@@ -20,7 +20,7 @@ chatParent.style.display = "none";
 let sock = new SockJS("http://192.168.7.108/friend/friendDetail");
 
 // 연결이 되었을 때
-// sock.onopen = onOpen;
+sock.onopen = onOpen;
 
 // 웹소켓을 통해 메세지를 받았을 때 실행
 // 클라이언트가 서버로부터 메세지를 받았을 때 실행
@@ -29,9 +29,9 @@ sock.onmessage = onMessage;
 // 연결이 끊겼을 때 실행
 sock.onclose = onClose;
 
-// function onOpen(){
-//     sock.send(loginUserId);
-// }
+function onOpen(){
+    sock.send(loginUserId);
+}
 
 // 메세지 전송
 function sendMessage(){
@@ -48,11 +48,11 @@ function onMessage(msg) {
     // 메세지 내용
     let data = msg.data; 
     
-    // if(data == friendStatus.getAttribute("data-friend-id")) {
-    //     friendStatus.innerHTML = "접속중";
-    //     console.log("접속중");
-    //     chatParent.style.display = "inline";
-    // }
+    if(data == friendStatus.getAttribute("data-friend-id")) {
+        friendStatus.innerHTML = "접속중";
+        console.log("접속중");
+        chatParent.style.display = "inline";
+    }
 
     //한 줄 추가
     let h3 = document.createElement("h3");

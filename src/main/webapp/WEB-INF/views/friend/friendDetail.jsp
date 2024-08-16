@@ -22,43 +22,40 @@
 							<div id="chatParent">
 							<a id="startChat" type="button" class="btn btn-outline-warning btn-block text-uppercase mb-3"
 									data-bs-toggle="modal" data-bs-target="#commentModal"
-									href="deleteFriend?friend_num=${usersDTO.friendDTO[0].friend_num}">
+									href="chat?friend_num=${friendInfoDTO.friendDTO[0].friend_num}">
 										대화하기</a>
-										
-		<!-- 대화 모달 창 -->
-			<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			  <div class="modal-dialog modal-dialog-scrollable">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h1 class="modal-title fs-5" id="exampleModalLabel">To. ${friendInfoDTO.user_id}</h1>
-			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
-			      </div>
-			      <div class="modal-body">
-			       <div class="form-floating" id="modalContent">
-					  
-					  
-					  
-					</div>
-			      </div>
-			      <div class="modal-footer">
-					<div class="input-group mb-3">
-						<input type="text" class="form-control" id="chatContent" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-						<button class="btn btn-outline-secondary" type="button" id="sendBtn">보내기</button>
-						
-					  </div>
-			        
-			      </div>
-			    </div>
-			  </div>
-			</div>
+																
+								<!-- 대화 모달 창 -->
+									<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									  <div class="modal-dialog modal-dialog-scrollable">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h1 class="modal-title fs-5" id="exampleModalLabel">To. ${friendInfoDTO.user_id}</h1>
+									        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+									      </div>
+									      <div class="modal-body">
+									       <div class="form-floating" id="modalContent">
+											  
+											  
+											  
+											</div>
+									      </div>
+									      <div class="modal-footer">
+											<div class="input-group mb-3">
+												<input type="text" class="form-control" id="chatContent" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+												<button class="btn btn-outline-secondary" type="button" id="sendBtn">보내기</button>
+												
+											  </div>
+									        
+									      </div>
+									    </div>
+									  </div>
+									</div>
 		
 							</div>
 							<div class="tm-avatar-container">
 								<img src="/resources/img/friendImage/chick.png" alt="Avatar"
-									class="tm-avatar img-fluid mb-4" /> <a
-									href="#" class="tm-avatar-delete-link"> <i
-									class="far fa-trash-alt tm-product-delete-icon"></i>
-								</a>
+									class="tm-avatar img-fluid mb-4" /> 
 							</div>
 							
 						</div>
@@ -89,7 +86,7 @@
 								<div class="form-group col-lg-6">
 									<label class="tm-hide-sm">&nbsp;</label>
 									<a type="button" class="btn btn-danger btn-block text-uppercase"
-									href="deleteFriend?friend_num=${usersDTO.friendDTO[0].friend_num}">
+									href="deleteFriend?friend_num=${friendInfoDTO.friendDTO[0].friend_num}">
 										친구 끊기</a>
 								</div>
 								
