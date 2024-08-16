@@ -76,15 +76,16 @@ public class NoticeController {
 	public String delete(NoticeDTO noticeDTO, Model model) throws Exception {
 		int num = noticeService.delete(noticeDTO);
 		
-		
 		String path = "commons/message";
 		if (num > 0) {
 			path = "redirect:./noticeList";
 		} else {
-			model.addAttribute("num", "게시물을 지우지 못했습니다.");
+			model.addAttribute("result", "게시물을 지우지 못했습니다.");
 			model.addAttribute("url", "./noticeList");
 		}
 		return path;
 	}
+	
+
 
 }

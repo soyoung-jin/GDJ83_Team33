@@ -13,7 +13,7 @@
 <h1 >공지사항</h1>
 <div class="container mt-5">
       <div class="row tm-content-row">
-        <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
+        <div class="col-sm-12 col-md-12 col-lg-9 col-xl-9 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
             <div class="tm-product-table-container">
             
@@ -50,11 +50,11 @@
               href="./noticeAdd"
               class="btn btn-primary btn-block text-uppercase mb-3">공지사항 글쓰기</a>
            <a
-              href=""
+              href="./delete?notice_num=${list.notice_num}"
               class="btn btn-primary btn-block text-uppercase mb-3">공지사항 지우기</a>
           </div>
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
+        <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
             <h2 class="tm-block-title">게시판 카테고리</h2>
             <div class="tm-product-table-container">

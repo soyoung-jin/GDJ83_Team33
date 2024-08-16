@@ -30,13 +30,13 @@ public class NoticeDAO {
 		sqlSession.update(NAMESPACE + "hit", noticeDTO);
 	}
 	
-	public int delete(NoticeDTO noticeDTO) throws Exception {
-		return sqlSession.delete(NAMESPACE + "delete", noticeDTO);
+	public int update(NoticeDTO noticeDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "update", noticeDTO);
 
 	}
 	
-	public int update(NoticeDTO noticeDTO) throws Exception {
-		return sqlSession.update(NAMESPACE + "update", noticeDTO);
+	public int delete(NoticeDTO noticeDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "delete", noticeDTO);
 
 	}
 
