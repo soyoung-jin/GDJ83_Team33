@@ -22,10 +22,6 @@ public class FriendController {
 	private FriendService friendService;
 	
 	
-	@Autowired
-	private FriendChatHandler chat;
-	
-	
 	
 	@GetMapping("friendList")
 	public void getFriendList(UsersDTO usersDTO, Model model, HttpSession session) throws Exception{
