@@ -13,7 +13,7 @@
 
 	<websocket:handlers allowed-origins="*">
 	
-		<websocket:mapping handler="chatHandler" path="/friend/friendDetail"/>
+		<websocket:mapping handler="chatHandler" path="/friend"/>
 		
 		
 		<websocket:handshake-interceptors>

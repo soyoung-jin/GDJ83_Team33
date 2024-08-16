@@ -4,8 +4,17 @@ const startChat = document.getElementById("startChat"); //채팅하기 버튼
 const chatContent = document.getElementById("chatContent"); //보내는 메세지(input의 value)
 const modalContent = document.getElementById("modalContent"); //모달 안의 채팅 내용
 
-const friendStatus = document.getElementById("friendStatus");
-const chatParent = document.getElementById("chatParent");
+const friendStatus = document.getElementById("friendStatus"); //부재중? 접속중?
+const chatParent = document.getElementById("chatParent"); //대화하기+대화 모달창 부모 div
+
+const loginUserId = friendStatus.getAttribute("data-user-id"); //유저 아이디
+const loginFriendId = friendStatus.getAttribute("data-friend-id"); //친구 아이디
+console.log("친구: "+loginFriendId);
+console.log("나:" + loginUserId);
+
+const sendGiftBtn = document.getElementById("sendGiftBtn");
+
+
 
 let div = document.createElement("div"); //모달 안에 추가될 글들의 부모
 
@@ -13,11 +22,9 @@ let div = document.createElement("div"); //모달 안에 추가될 글들의 부
 
 //==================친구와 채팅===================
 
-//대화하기 버튼 안보이게
-chatParent.style.display = "none";
-
 // *********웹소켓 연결을 원하는 모든 jsp에 이 자바스크립트 파일을 넣어줘야 됨********
-let sock = new SockJS("http://192.168.7.108/friend/friendDetail");
+let sock = new SockJS("http://192.168.7.108/friend");
+
 
 // 연결이 되었을 때
 sock.onopen = onOpen;
@@ -30,6 +37,7 @@ sock.onmessage = onMessage;
 sock.onclose = onClose;
 
 function onOpen(){
+    //연결될 때 연결된 사람의 정보 전송
     sock.send(loginUserId);
 }
 
@@ -47,11 +55,16 @@ function onMessage(msg) {
     
     // 메세지 내용
     let data = msg.data; 
+    console.log("socket : ",data);
+    console.log("attr :" , loginFriendId);
     
-    if(data == friendStatus.getAttribute("data-friend-id")) {
+    if(data == loginFriendId) {
         friendStatus.innerHTML = "접속중";
         console.log("접속중");
         chatParent.style.display = "inline";
+    } else {
+        //대화하기 버튼 안보이게
+        chatParent.style.display = "none";
     }
 
     //한 줄 추가
@@ -74,7 +87,7 @@ function onClose() {
     modalContent.append(div);
 }
 
-//========================같은 기능: 채팅 보내기=========================
+//========================같은 기능: 채팅 보내기===============
 chatContent.addEventListener("keyup", (e)=>{
     if(e.key === 'Enter') {
         sendMessage();
@@ -95,4 +108,8 @@ startChat.addEventListener("click", ()=>{
     chatContent.value="";
     div.remove();
     div.innerHTML = "";
+
+    
 })
+
+

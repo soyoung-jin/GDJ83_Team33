@@ -6,7 +6,7 @@
   <!-- namespace는 꼭 들어가야될 속성 -->
   <mapper namespace="com.team3.tamagochi.ingame.InGameDAO">
   	<select id="getPetStatus" parameterType="MyPetDTO" resultType="MyPetDTO">
-  		SELECT * FROM MY_PET WHERE USER_ID = #{user_id} AND ITEM_NUM = #{item_num}
+  		SELECT * FROM MY_PET WHERE USER_ID = #{user_id} AND PET_SELECTED = 1
   	</select>
   	
   	<select id="checkPetStatus" parameterType="MyPetDTO" resultType="MyPetDTO">

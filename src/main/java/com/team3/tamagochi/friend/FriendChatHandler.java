@@ -26,6 +26,9 @@ public class FriendChatHandler extends TextWebSocketHandler{
 
     private static Logger logger = LoggerFactory.getLogger(FriendChatHandler.class);
     
+    //id가 키인 맵 만들기 -> 아이디
+    //1:1 이면 두 사람의 세션만 꺼내서 통신 
+    
   //클라이언트가 연결 되었을 때 실행
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -33,7 +36,8 @@ public class FriendChatHandler extends TextWebSocketHandler{
     	Map map = (Map)session.getAttributes();
     	UsersDTO usersDTO = (UsersDTO) map.get(("users_info"));
     	String id = usersDTO.getUser_id();
-        sessionList.add(session);
+        //id: key , session: value 인 MAP을 만들어서 
+    	sessionList.add(session);
         logger.info("{} 연결됨", id);
         
         // model.addAttribute("connectedId", id);

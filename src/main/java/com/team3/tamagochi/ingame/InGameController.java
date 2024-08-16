@@ -24,7 +24,6 @@ public class InGameController {
 	public void getPetStatus(MyPetDTO myPetDTO, Model model, HttpSession session) throws Exception {
 		UsersDTO tempDTO = (UsersDTO) session.getAttribute("users_info");
 		myPetDTO.setUser_id(tempDTO.getUser_id());
-		myPetDTO.setItem_num(4L);
 		myPetDTO = inGameService.getPetStatus(myPetDTO);
 		model.addAttribute("myPetDTO", myPetDTO);
 		

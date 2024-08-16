@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.socket.WebSocketSession;
 
+import com.team3.tamagochi.store.ItemDTO;
 import com.team3.tamagochi.users.UsersDTO;
 
 @Controller
@@ -20,6 +21,7 @@ public class FriendController {
 
 	@Autowired
 	private FriendService friendService;
+	
 	
 	
 	
@@ -42,7 +44,21 @@ public class FriendController {
 		model.addAttribute("friendInfoDTO", friendInfoDTO);
 		UsersDTO myDTO = (UsersDTO) session.getAttribute("users_info");
 		model.addAttribute("myDTO", myDTO);
+		
+		List<ItemDTO> inventoryList  = friendService.getInvenList(myDTO);
+		
+		model.addAttribute("inventoryList", inventoryList);
 	}
+	
+//	@GetMapping("sendGift")
+//	public void getInvenList(UsersDTO usersDTO, Model model, HttpSession session) throws Exception {
+//		usersDTO = (UsersDTO) session.getAttribute("users_info");
+//		
+//		List<ItemDTO> inventoryList  = friendService.getInvenList(usersDTO);
+//		
+//		model.addAttribute("inventoryList", inventoryList);
+//		System.out.println(inventoryList.get(0).getItem_name());
+//	}
 	
 	@GetMapping("deleteFriend")
 	public String deleteFriend(FriendDTO friendDTO, Model model) throws Exception{

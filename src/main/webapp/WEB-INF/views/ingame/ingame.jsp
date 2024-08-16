@@ -151,6 +151,7 @@
 			<div class="container">
 				<div id="petParent">
 					<img id="myPet" src="/resources/img/ingame/ex1.gif" alt="moving cracked egg">
+					<img id="rightArrow" src="/resources/img/ingame/rightArrow.png" alt="right Arrow">
 					<div id="chatDiv">
 	
 						<div class="modal fade" id="commentModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
