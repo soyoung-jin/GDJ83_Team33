@@ -60,4 +60,10 @@
   		DELETE FROM NOTICE WHERE NOTICE_NUM = #{notice_num}
   	</delete>
   	
+  	<update id="update" parameterType="NoticeDTO">
+		UPDATE	NOTICE
+		SET		NOTICE_TITLE = #{notice_title}, NOTICE_CONTENTS = #{notice_contents}
+		WHERE 	NOTICE_NUM = #{notice_num}
+	</update>
+  	
   </mapper>

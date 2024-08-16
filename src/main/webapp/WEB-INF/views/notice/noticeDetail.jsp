@@ -71,6 +71,9 @@
               <div class="col-12" id="detail_back">
                 <button type="submit" name="noticeAdd" onclick="location.href='noticeList.jsp'" class="btn btn-primary btn-block text-uppercase">목록</button>
               </div>
+              
+              <a href="./noticeUpdate?notice_num=${detail.notice_num}" class="btn btn-outline-success mb-3">수정</a>
+              
             </form>
             </div>
           </div>

@@ -3,8 +3,12 @@
 #anotice:visited { color:pink; }
 
 #noticetitle{display: inline-block; height:10%;}
-#noticehit{display: inline-block;;}
+#noticehit{display: inline-block;}
 
 #noticename{display: inline-block; height:10%;}
 #noticedate{display: inline-block;}
-#detail_back{display: inline-block; width:180px; padding-left: 10px 30px; float:right;} 
+#detail_back{display: inline-block; width:180px; padding-left: 10px 30px; float:right;}
+
+#updatebtn1{display: inline-block;}
+#updatebtn2{display: inline-block;}
+

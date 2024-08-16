@@ -58,6 +58,20 @@ public class NoticeController {
 		noticeService.hit(noticeDTO);
 	}
 	
+	@RequestMapping(value = "noticeUpdate", method = RequestMethod.GET)
+	public String update(Model model, NoticeDTO noticeDTO) throws Exception {
+		noticeDTO =noticeService.detail(noticeDTO);
+		model.addAttribute("detail", noticeDTO);
+		return "notice/noticeUpdate";
+	}
+
+	@RequestMapping(value = "noticeUpdate", method = RequestMethod.POST)
+	public String update(NoticeDTO noticeDTO) throws Exception {
+		int num = noticeService.update(noticeDTO);
+		return "redirect:./noticeDetail?notice_num=" + noticeDTO.getNotice_num();
+	}
+	
+	
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String delete(NoticeDTO noticeDTO, Model model) throws Exception {
 		int num = noticeService.delete(noticeDTO);
