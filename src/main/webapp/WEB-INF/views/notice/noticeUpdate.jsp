@@ -28,7 +28,7 @@
                       for="name"
                       >제목
                     </label>
-                    <input  value="${detail.notice_title }" id="notice_title" name="notice_title" type="text" class="form-control validate" required/>
+                    <input  value="${detail.notice_title}" id="notice_title" name="notice_title" type="text" class="form-control validate" required/>
                   </div>
                   <div class="form-group mb-3">
                     <label for="contents">내용</label>
@@ -56,10 +56,10 @@
               </div>
               
               <div id="updatebtn2" class="col-6">
-                <button  type="submit" onclick="location.href='noticeList.jsp'" class="btn btn-primary btn-block text-uppercase">뒤로가기</button>
+                <button onclick="location.href='noticeList.jsp'" class="btn btn-primary btn-block text-uppercase">뒤로가기</button>
               </div>
               <div id="updatebtn1" class="col-6">
-                <button type="submit" name="noticeAdd" class="btn btn-primary btn-block text-uppercase">수정</button>
+                <button class="btn btn-primary btn-block text-uppercase">수정</button>
               </div>
               
             </form>

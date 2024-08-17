@@ -72,8 +72,10 @@
                 <button type="submit" name="noticeAdd" onclick="location.href='noticeList.jsp'" class="btn btn-primary btn-block text-uppercase">목록</button>
               </div>
               
+              <c:if test="${users_info.user_id eq detail.user_id}">
               <a href="./noticeUpdate?notice_num=${detail.notice_num}" class="btn btn-outline-success mb-3">수정</a>
-              
+              <a href="./delete?notice_num=${detail.notice_num}" id="deletea" class="btn btn-outline-delete mb-3">삭제</a>
+              </c:if>
             </form>
             </div>
           </div>

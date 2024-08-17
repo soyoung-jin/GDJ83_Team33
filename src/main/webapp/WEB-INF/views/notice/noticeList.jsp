@@ -33,7 +33,7 @@
 				
 					<c:forEach var="list" items="${list}">
                   <tr>
-                    <th scope="row"><input type="checkbox" /></th>
+                    <th scope="row"></th>
                     <td>${list.notice_num}</td>
                     <td>${list.user_id}</td>
                     <td><a id= "anotice" href="noticeDetail?notice_num=${list.notice_num}" class="btn" >${list.notice_title}</a></td>
@@ -49,9 +49,7 @@
             <a
               href="./noticeAdd"
               class="btn btn-primary btn-block text-uppercase mb-3">공지사항 글쓰기</a>
-           <a
-              href="./delete?notice_num=${list.notice_num}"
-              class="btn btn-primary btn-block text-uppercase mb-3">공지사항 지우기</a>
+   
           </div>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 tm-block-col">
