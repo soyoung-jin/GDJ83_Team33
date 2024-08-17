@@ -5,6 +5,10 @@
   
   <!-- namespace는 꼭 들어가야될 속성 -->
   <mapper namespace="com.team3.tamagochi.friend.FriendDAO">
+  
+  	<insert id="makeFriends" parameterType="FriendDTO">
+  		INSERT INTO FRIEND VALUES (FRIEND_SEQ.NEXTVAL, #{user_id}, #{friend_id})
+  	</insert>
   	
   	<select id="getFriendList" parameterType="FriendDTO" resultMap="detailFriend">
   		SELECT u.*, f.*
@@ -20,7 +24,7 @@
 			FROM USERS u 
 			LEFT JOIN
 			FRIEND f 
-			ON u.USER_ID = f.FRIEND_ID
+			ON u.USER_ID = f.FRIEND_ID 
 		WHERE f.FRIEND_NUM = #{friend_num}
   	</select>
   	
@@ -44,5 +48,28 @@
   	<delete id="deleteFriend" parameterType="FriendDTO">
   		DELETE FROM FRIEND WHERE friend_num = #{friend_num}
   	</delete>
+  	
+  	<!-- 내 소지품에서 아이템 가져오는 쿼리문. JOIN을 사용했기 때문에 ResultMap이 필요하다 -->
+  	<select id="getInvenList" parameterType="UsersDTO" resultMap="invenResult">
+  		SELECT * FROM
+  		INVENTORY I
+		LEFT JOIN
+		ITEM IT
+		ON I.ITEM_NUM = IT.ITEM_NUM
+		WHERE I.user_id = #{user_id}
+  	</select>
+  	<resultMap type="ItemDTO" id="invenResult">
+  		<id column="ITEM_NUM" property="item_num"></id>
+  		<result column="ITEM_NAME" property="item_name"></result>
+  		<result column="ITEM_DESCRIPTION" property="item_description"></result>
+  		<result column="ITEM_HP" property="item_hp"></result>
+  		<result column="ITEM_ATK" property="item_atk"></result>
+  		<result column="ITEM_DOD" property="item_dod"></result>
+  		
+  		<association property="inventoryDTO" javaType="InventoryDTO">
+  			<id column="INVENTORY_NUM" property="inventory_num"></id>
+  			<result column="USER_ID" property="user_id"/>
+  		</association>
+  	</resultMap>
   	
   </mapper>

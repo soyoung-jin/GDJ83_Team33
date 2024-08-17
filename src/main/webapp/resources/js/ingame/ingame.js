@@ -3,6 +3,7 @@ const petParent = document.getElementById("petParent");
 const modalContent = document.getElementById("modalContent");
 const sendBtn = document.getElementById("sendBtn");
 const chatContent = document.getElementById("chatContent");
+const rightArrow = document.getElementById("rightArrow");
 
 
 /* =====================챗봇에 관련된 변수===================== */
@@ -34,7 +35,7 @@ document.addEventListener("keydown", (e)=>{
         currentPositionX = x-50 + "px";
         
         if(x>1600) {
-            myPet.style.left = "1550px";
+            myPet.style.left = "1500px";
         }
         
     } else if(e.key==='ArrowUp') {
@@ -55,6 +56,11 @@ document.addEventListener("keydown", (e)=>{
             myPet.style.top = "640px";
         }
     }
+
+    // if(x >= 1600 && y>=640) {
+    //     alert("싸우러 가시겠습니까?");
+    // }
+
 })
 
 
@@ -188,3 +194,9 @@ chatContent.addEventListener("keyup", (e)=>{
     
 })
 
+//<=================================================전투=====================================================>
+
+rightArrow.addEventListener("click", ()=>{
+    alert("전투하러 가기");
+    location.href="./ingame"
+})

@@ -6,19 +6,31 @@
   <!-- namespace는 꼭 들어가야될 속성 -->
   <mapper namespace="com.team3.tamagochi.ingame.InGameDAO">
   	<select id="getPetStatus" parameterType="MyPetDTO" resultType="MyPetDTO">
-  		SELECT * FROM MY_PET WHERE USER_ID = #{user_id} AND ITEM_NUM = #{item_num}
+  		SELECT * FROM MY_PET WHERE USER_ID = #{user_id} AND PET_SELECTED = 1
+  	</select>
+  	
+  	<select id="checkPetStatus" parameterType="MyPetDTO" resultType="MyPetDTO">
+  		SELECT * FROM MY_PET WHERE PET_NUM = #{pet_num}
   	</select>
   	
   	<update id="feedPet" parameterType="MyPetDTO">
-  		UPDATE MY_PET SET PET_HUNGRY = PET_HUNGRY + 10, PET_EXP = PET_EXP + 20 WHERE USER_ID = #{user_id} AND ITEM_NUM = #{item_num}
+  		UPDATE MY_PET SET PET_HUNGRY = PET_HUNGRY + 10, PET_EXP = PET_EXP + 20 WHERE PET_NUM = #{pet_num}
   	</update>
   	
   	<update id="strollPet" parameterType="MyPetDTO">
-  		UPDATE MY_PET SET PET_EXP = PET_EXP + 10, PET_HUNGRY = PET_HUNGRY - 20 WHERE USER_ID = #{user_id} AND ITEM_NUM = #{item_num}
+  		UPDATE MY_PET SET PET_EXP = PET_EXP + 10, PET_HUNGRY = PET_HUNGRY - 20 WHERE PET_NUM = #{pet_num}
   	</update>
   	
   	<update id="cleanPet" parameterType="MyPetDTO">
-  		UPDATE MY_PET SET PET_HP = PET_HP + 10 WHERE USER_ID = #{user_id} AND ITEM_NUM = #{item_num}
+  		UPDATE MY_PET SET PET_HP = PET_HP + 10 WHERE PET_NUM = #{pet_num}
+  	</update>
+  	
+  	<select id="getPetExp" parameterType="MyPetDTO" resultType="java.lang.Long">
+  		SELECT PET_EXP FROM MY_PET WHERE PET_NUM = #{pet_num}
+  	</select>
+  	
+  	<update id="levelUp" parameterType="MyPetDTO">
+  		UPDATE MY_PET SET PET_LEVEL = PET_LEVEL + 1, PET_EXP = 0 WHERE PET_NUM = #{pet_num}
   	</update>
   	
   </mapper>

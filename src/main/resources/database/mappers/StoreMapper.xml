@@ -5,57 +5,132 @@
   
   <mapper namespace="com.team3.tamagochi.store.StoreDAO">
   
+  	<insert id="addfile" parameterType="ItemFileDTO">
+  		INSERT INTO ITEMFILE (FILE_NUM, FILE_NAME, ORI_NAME, ITEM_NUM)
+  		VALUES (ITEMFILE_SEQ.NEXTVAL, #{file_name}, #{ori_name}, #{item_num})
+  	
+  	</insert>
+  	
+  	<select id="getNum" resultType="Long">
+  		SELECT ITEM_SEQ.NEXTVAL FROM DUAL
+  	</select>
+  
+  	<delete id="deleteWishList" parameterType="wishListDTO">
+  	 DELETE WISHLIST
+  	 WHERE USER_ID = #{user_id} AND WISHLIST_NUM = #{wishlist_num}
+  	
+  	</delete>
+  
+  	<select id="getWishList" parameterType="UsersDTO" resultMap="getItemDTO">
+  		SELECT W.*, I.*
+		FROM WISHLIST W
+			LEFT JOIN 
+			ITEM I
+			ON (W.ITEM_NUM = I.ITEM_NUM)
+		WHERE USER_ID = #{user_id} AND I.ITEM_DEL = 0
+		ORDER BY WISHLIST_NUM ASC
+  	</select>
+  	
+  	<resultMap type="WishListDTO" id="getItemDTO">
+  		<id column="WISHLIST_NUM" property="wishlist_num"/>
+  		<result column="USER_ID" property="user_id"/>
+  		<result column="ITEM_NUM" property="item_num"/>
+  		
+  		<association property="itemDTO" javaType="ItemDTO">
+  			<result column="CATEGORY_NUM" property="category_num"/>
+  			<result column="ITEM_NAME" property="item_name"/>
+  			<result column="ITEM_DESCRIPTION" property="item_description"/>
+  			<result column="ITEM_HP" property="item_hp"/>
+  			<result column="ITEM_ATK" property="item_atk"/>
+  			<result column="ITEM_DOD" property="item_dod"/>
+  			<result column="ITEM_PRICE" property="item_price"/>
+  		</association>
+  	</resultMap>
+  	
+  
   	<insert id="addWishList" parameterType="WishListDTO">
   		INSERT INTO WISHLIST (WISHLIST_NUM, USER_ID, ITEM_NUM)
   		VALUES (WISHLIST_SEQ.NEXTVAL, #{user_id}, #{item_num})
   	</insert>
+  	
+  	<select id="filedetail" parameterType="ItemDTO" resultType="ItemFileDTO">
+		SELECT *
+		FROM ITEMFILE
+		WHERE ITEM_NUM = #{item_num}
+  	</select>
+
+  	
   
-  	<select id="getItemList" parameterType="Map" resultType="ItemDTO">
+  	<select id="getItemList" parameterType="Map" resultMap="itemlist">
   		SELECT *
   		FROM (SELECT ROWNUM R, C.*
 				FROM (SELECT *
-		  				FROM ITEM
-		  				WHERE CATEGORY_NUM = #{itemDTO.category_num} AND ITEM_DEL = 0
-		  				ORDER BY ITEM_NUM DESC) C
+		  				FROM ITEM I
+		  					LEFT JOIN
+		  					ITEMFILE IF
+		  					ON (I.ITEM_NUM = IF.ITEM_NUM)
+		  				WHERE I.CATEGORY_NUM = #{itemDTO.category_num} AND I.ITEM_DEL = 0
+		  				ORDER BY I.ITEM_NUM DESC) C
 		  		<where>
   					<choose>
-  						<when test="kind='k1'">
-  							ITEM_NAME LIKE '%'||#{pager.search}||'%')
+  						<when test="pager.kind=='k1'">
+  							C.ITEM_NAME LIKE '%'||#{pager.search}||'%')
   						</when>
   						<otherwise>
-  							ITEM_PRICE LIKE '%'||#{pager.search}||'%')
+  							C.ITEM_PRICE LIKE '%'||#{pager.search}||'%')
   						</otherwise>
   					</choose>
   				</where>
   		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
   	</select>
   	
+  	<resultMap type="ItemDTO" id="itemlist">
+  		<id column="ITEM_NUM" property="item_num"/>
+  		<result column="CATEGORY_NUM" property="category_num"/>
+  		<result column="ITEM_NAME" property="item_name"/>
+  		<result column="ITEM_DESCRIPTION" property="item_description"/>
+  		<result column="ITEM_HP" property="item_hp"/>
+  		<result column="ITEM_ATK" property="item_atk"/>
+  		<result column="ITEM_DOD" property="item_dod"/>
+  		<result column="ITEM_PRICE" property="item_price"/>
+  		
+  		<association property="itemFileDTO" javaType="ItemFileDTO">
+  			<id column="FILE_NUM" property="file_num"/>
+  			<result column="FILE_NAME" property="file_name"/>
+  			<result column="ORI_NAME" property="ori_name"/>
+  		</association>
+  	
+  	</resultMap>
+  	
   	<select id="getTotalCount" parameterType="Map" resultType="Integer">
   		SELECT COUNT(C.ITEM_NUM)
   		FROM (SELECT *
   				FROM ITEM
-  				WHERE CATEGORY_NUM = #{itemDTO.category_num}) C
+  				WHERE CATEGORY_NUM = #{itemDTO.category_num} AND ITEM_DEL = 0) C
   		<where>
   			<choose>
-  				<when test="kind='k1'">
-  					ITEM_NAME LIKE '%'||#{pager.search}||'%'
-  				</when>
+  				<when test="pager.kind=='k1'">
+  					C.ITEM_NAME LIKE '%'||#{pager.search}||'%'
+  				</when> 
   				<otherwise>  				
-  					ITEM_PRICE LIKE '%'||#{pager.search}||'%'
+  					C.ITEM_PRICE LIKE '%'||#{pager.search}||'%'
   				</otherwise>
   			</choose>
   		</where>
   	</select>
   	
-  	<select id="getItemDetail" parameterType="ItemDTO" resultType="ItemDTO">
-  		SELECT *
-  		FROM ITEM
-  		WHERE ITEM_NUM=#{item_num}
+  	<select id="getItemDetail" parameterType="ItemDTO" resultMap="itemlist">
+  		SELECT I.*, IF.*
+  		FROM ITEM I
+  			LEFT JOIN
+  			ITEMFILE IF
+  			ON (I.ITEM_NUM=IF.ITEM_NUM)
+  		WHERE I.ITEM_NUM=#{item_num}
   	</select>
   	
   	<insert id="addItem" parameterType="ItemDTO">
   		INSERT INTO ITEM (ITEM_NUM, CATEGORY_NUM, ITEM_NAME, ITEM_DESCRIPTION, ITEM_HP, ITEM_ATK, ITEM_DOD, ITEM_PRICE)
-  		VALUES (ITEM_SEQ.NEXTVAL, #{category_num}, #{item_name}, #{item_description}, #{item_hp}, #{item_atk}, #{item_dod}, #{item_price})
+  		VALUES (#{item_num}, #{category_num}, #{item_name}, #{item_description}, #{item_hp}, #{item_atk}, #{item_dod}, #{item_price})
   	</insert>
   	
   	<update id="updateItem" parameterType="ItemDTO">

@@ -24,55 +24,62 @@ public class InGameController {
 	public void getPetStatus(MyPetDTO myPetDTO, Model model, HttpSession session) throws Exception {
 		UsersDTO tempDTO = (UsersDTO) session.getAttribute("users_info");
 		myPetDTO.setUser_id(tempDTO.getUser_id());
-		myPetDTO.setItem_num(4L);
 		myPetDTO = inGameService.getPetStatus(myPetDTO);
-		
 		model.addAttribute("myPetDTO", myPetDTO);
 		
 	}
 	
-	//<====================펫 행동======================>
+	//<====================펫 경험치 가져오기, 펫 체크 다시 불러오기======================>
+	@GetMapping("checkPetStatus")
+	@ResponseBody
+	public MyPetDTO getPetExp(MyPetDTO myPetDTO, Model model) throws Exception {
+		myPetDTO = inGameService.checkPetStatus(myPetDTO);
+		
+		return myPetDTO;
+	}
+	
+	
+	
+	//<====================펫 행동, 펫 체크 다시 불러오기======================>
 	//1. 밥
 	@GetMapping("feed")
 	@ResponseBody
-	public MyPetDTO feedPet(Model model, MyPetDTO myPetDTO, HttpSession session) throws Exception {
-		UsersDTO tempDTO = (UsersDTO) session.getAttribute("users_info");
-		myPetDTO.setUser_id(tempDTO.getUser_id());
-		myPetDTO.setItem_num(4L);
+	public MyPetDTO feedPet(MyPetDTO myPetDTO) throws Exception {
 		int result = inGameService.feedPet(myPetDTO);
 		//펫 상태 다시 불러오기
-		myPetDTO =inGameService.getPetStatus(myPetDTO);
-		model.addAttribute("msg", result);
+		myPetDTO =inGameService.checkPetStatus(myPetDTO);
 		return myPetDTO;
 	}
 	
 	//2. 산책
 	@GetMapping("stroll")
 	@ResponseBody
-	public MyPetDTO strollPet(Model model, MyPetDTO myPetDTO, HttpSession session) throws Exception {
-		UsersDTO tempDTO = (UsersDTO) session.getAttribute("users_info");
-		myPetDTO.setUser_id(tempDTO.getUser_id());
-		myPetDTO.setItem_num(4L);
+	public MyPetDTO strollPet(MyPetDTO myPetDTO) throws Exception {
 		int result = inGameService.strollPet(myPetDTO);
 		//펫 상태 다시 불러오기
-		myPetDTO =inGameService.getPetStatus(myPetDTO);
-		model.addAttribute("msg", result);
+		myPetDTO =inGameService.checkPetStatus(myPetDTO);
 		return myPetDTO;
 	}
 	
 	//3. 청소
 	@GetMapping("clean")
 	@ResponseBody
-	public MyPetDTO cleanPet(Model model, MyPetDTO myPetDTO, HttpSession session) throws Exception {
-		UsersDTO tempDTO = (UsersDTO) session.getAttribute("users_info");
-		myPetDTO.setUser_id(tempDTO.getUser_id());
-		myPetDTO.setItem_num(4L);
+	public MyPetDTO cleanPet(MyPetDTO myPetDTO) throws Exception {
 		int result = inGameService.cleanPet(myPetDTO);
-		
 		//펫 상태 다시 불러오기
-		myPetDTO = inGameService.getPetStatus(myPetDTO);
-		model.addAttribute("msg", result);
+		myPetDTO = inGameService.checkPetStatus(myPetDTO);
 		return myPetDTO;
+	}
+	
+	
+	//<====================펫 진화======================>
+	@GetMapping("levelUp")
+	@ResponseBody
+	public MyPetDTO levelUp(MyPetDTO myPetDTO) throws Exception {
+		int result = inGameService.levelUp(myPetDTO);
+		myPetDTO = inGameService.checkPetStatus(myPetDTO);
+		return myPetDTO;
+		
 	}
 	
 	

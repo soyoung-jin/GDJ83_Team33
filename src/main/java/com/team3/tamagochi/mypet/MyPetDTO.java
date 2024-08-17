@@ -15,9 +15,45 @@ public class MyPetDTO {
 	private Long pet_pop;
 	private Long pet_hungry;
 	private Integer pet_selected;
+	private Long pet_washroom;
+	private Long add_hp;
+	private Long add_atk;
+	private Long add_dod;
+	private Long equip_num;
 	
 	
-
+	
+	
+	public Long getEquip_num() {
+		return equip_num;
+	}
+	public void setEquip_num(Long equip_num) {
+		this.equip_num = equip_num;
+	}
+	public Long getPet_washroom() {
+		return pet_washroom;
+	}
+	public void setPet_washroom(Long pet_washroom) {
+		this.pet_washroom = pet_washroom;
+	}
+	public Long getAdd_hp() {
+		return add_hp;
+	}
+	public void setAdd_hp(Long add_hp) {
+		this.add_hp = add_hp;
+	}
+	public Long getAdd_atk() {
+		return add_atk;
+	}
+	public void setAdd_atk(Long add_atk) {
+		this.add_atk = add_atk;
+	}
+	public Long getAdd_dod() {
+		return add_dod;
+	}
+	public void setAdd_dod(Long add_dod) {
+		this.add_dod = add_dod;
+	}
 	public Integer getPet_selected() {
 		return pet_selected;
 	}

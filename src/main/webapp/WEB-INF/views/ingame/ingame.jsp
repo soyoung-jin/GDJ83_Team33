@@ -4,8 +4,6 @@
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" href="/resources/css/ingame.css">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 	<c:import url="../template/header.jsp"></c:import>
 </head>
 <body id="reportsPage" class="font">
@@ -18,41 +16,44 @@
 				<div class="col-sm-4 col-lg-3 col-md-3 justify-content-center ">
 				  <div class="card">
 						<div class="card-body">
-							<h5 class="card-title">펫이름</h5>
-							<p class="card-text"><a href="#" id="petStatusBtn" data-bs-toggle="modal" data-bs-target="#petStatusModal">펫 상태 보기</a></p>
-								<div class="justify-content-center align-item-center">
-
+							<h5 class="card-title">${myPetDTO.pet_name}</h5>
+							<div>
+								<a style="display: inline;" href="./checkPetStatus" data-pet-status="${myPetDTO.pet_num}" id="petStatusBtn" data-bs-toggle="modal" data-bs-target="#petStatusModal">펫 상태 보기</a>
+								
+							</div>
+							
+							<div class="justify-content-center align-item-center mt-3">
 								<!-- 펫 상태 보기 모달 버튼 -->
 								
 								<a href="./feed" id="feed" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#actModal">먹이주기</a>
 								<a href="./stroll" id="stroll" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#actModal">산책하기</a>
 								<a href="./clean" id="clean" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#actModal">청소하기</a>
-								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		
-			<!-- 펫 행동 모달(식사,산책,화장실) -->
+			<!-- 펫 행동 모달(진화, 식사,산책,화장실) -->
 			
 			<div id="petDiv">
-				<div class="modal fade" id="actModal" tabindex="-1" aria-labelledby="modalActLabel" aria-hidden="true">
+				<div class="modal fade" id="actModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modalActLabel" aria-hidden="true">
 					<div class="modal-dialog modal-dialog-scrollable">
 						<div class="modal-content">
 						<div class="modal-header">
 							<h1 class="modal-title fs-5" id="modalActLabel"></h1>
-							<button id="actCloseBtn" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+							<button id="actCloseBtn" type="button" class="btn-close" data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">X</button>
 						</div>
 						<div class="modal-body">
 						<div class="form-floating" id="modalImg">
-							<img id="actImg" class="petAct" src="" alt="">
+							<img id="actImg" class="petAct" src="" alt="character image">
 							
 						</div>
 						</div>
 						<div class="modal-footer">
 							<div class="input-group mb-3 justify-content-center">
 								
-								<button id="doneFeeding" class="btn btn-outline-secondary close" type="button" data-bs-dismiss="modal" aria-label="Close">확인</button>
+								<button id="done" class="btn btn-outline-secondary close" type="button" data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">확인</button>
 								
 							</div>
 							
@@ -65,12 +66,12 @@
 			  <!-- 펫 상태 보기 모달 -->
 			  
 			  <div id="petStatusDiv">
-				<div class="modal fade" id="petStatusModal" tabindex="-1" aria-labelledby="petStatusModal" aria-hidden="true">
+				<div class="modal fade" id="petStatusModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="petStatusModal" aria-hidden="true">
 					<div class="modal-dialog modal-dialog-scrollable">
 					  <div class="modal-content">
 
 						<div class="modal-header">
-						  <h1 class="modal-title fs-5" id="petStatusModal">마이펫</h1>
+						  <h1 class="modal-title fs-5" id="petReady">${myPetDTO.pet_name}</h1>
 						  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
 						</div>
 
@@ -84,6 +85,10 @@
 										<label for="pet_spc">종족</label>
 										<input id="pet_spc" name="pet_spc" value="${myPetDTO.pet_spc}"
 											type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
+											
+										<input id="pet_name" name="pet_name" value="${myPetDTO.pet_name}"
+										type="hidden" class="form-control validate" readonly style="background-color:#4e657a"/>
+
 									</div>
 									<div class="form-group col-lg-6">
 										<label for="pet_level">레벨</label>
@@ -124,6 +129,15 @@
 							</div>
 						  </div>
 						</div>
+						<div class="modal-footer">
+							<div class="input-group mb-3 justify-content-center">
+								
+								<a href="./levelUp" id="levelUp" class="btn btn-outline-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#actModal">
+									레벨업 하기</a>
+								
+							</div>
+							
+						</div>
 					  </div>
 					</div>
 				  </div>
@@ -136,15 +150,16 @@
 			
 			<div class="container">
 				<div id="petParent">
-					<img id="myPet" src="/resources/img/ingame/ex2.gif" alt="moving cracked egg">
+					<img id="myPet" src="/resources/img/ingame/ex1.gif" alt="moving cracked egg">
+					<img id="rightArrow" src="/resources/img/ingame/rightArrow.png" alt="right Arrow">
 					<div id="chatDiv">
 	
-						<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal fade" id="commentModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-dialog-scrollable">
 							  <div class="modal-content">
 
 								<div class="modal-header">
-								  <h1 class="modal-title fs-5" id="exampleModalLabel">마이펫</h1>
+								  <h1 class="modal-title fs-5" id="exampleModalLabel">${myPetDTO.pet_name}</h1>
 								  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
 								</div>
 
@@ -157,7 +172,7 @@
 								</div>
 								<div class="modal-footer">
 								  <div class="input-group mb-3">
-									  <input type="text" class="form-control" id="chatContent" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+									  <input type="text" class="form-control" id="chatContent" placeholder="다마고치에게 말을 걸어보세요" aria-label="다마고치에게 말을 걸어보세요" aria-describedby="button-addon2">
 									  <button class="btn btn-outline-secondary" type="button" id="sendBtn">보내기</button>
 									  
 									</div>

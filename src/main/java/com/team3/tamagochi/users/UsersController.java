@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.team3.tamagochi.mypet.MyPetDTO;
+import com.team3.tamagochi.store.ItemDTO;
 import com.team3.tamagochi.store.WeaponDTO;
 
 @Controller
@@ -156,14 +158,58 @@ public class UsersController {
 		
 		usersDTO = (UsersDTO)session.getAttribute("users_info");
 		
-		List<WeaponDTO> list = usersService.getInvenList(usersDTO);
+		List<ItemDTO> list = usersService.getInvenList(usersDTO);
 		
 		model.addAttribute("list", list);
+		
+		// 인벤토리에서 '현재 캐릭터'가 착용한 장비 여부를 확인하는 메서드
+		// Mapper에서 만들어둔 getMyPetNum 쿼리를 재활용
+		MyPetDTO myPetDTO = new MyPetDTO();
+		myPetDTO = usersService.getMyPetNum(usersDTO);
+		model.addAttribute("myPetDTO", myPetDTO);
+	}
+	
+	@GetMapping("equipItem")
+	public String equipItem(ItemDTO itemDTO, HttpSession session, Model model, String inventory_num) throws Exception{
+		
+		// 아이템 착용 버튼 클릭시 '어느 캐릭터'에 아이템 값을 업데이트할건지 정하려면 현재 사용중인 캐릭터를 알아야 됨
+		// 현재 사용중인 Pet_num을 구하기 위해 session에서 user_id를 꺼내서 계산
+		UsersDTO usersDTO = (UsersDTO)session.getAttribute("users_info");
+		MyPetDTO myPetDTO = new MyPetDTO();
+		myPetDTO = usersService.getMyPetNum(usersDTO);
+		
+		
+		// 업데이트를 하려면 MyPetDTO의 Pet_num과 ItemDTO 총 2개의 parameter가 필요
+		// 때문에 MyPetDTO에 ItemDTO 값을 대입해서 parameter를 MyPetDTO 하나만 사용
+		myPetDTO.setEquip_num(Long.parseLong(inventory_num));
+		myPetDTO.setAdd_hp(itemDTO.getItem_hp());
+		myPetDTO.setAdd_atk(itemDTO.getItem_atk());
+		myPetDTO.setAdd_dod(itemDTO.getItem_dod());
+		int result = usersService.equipItem(myPetDTO);
+		
+		model.addAttribute("msg", result);
+		
+		return "commons/result";
+	}
+	
+	@GetMapping("takeOffItem")
+	public String takeOffItem(HttpSession session, Model model) throws Exception{
+		
+		// 아이템 해제 버튼 클릭시 '어느 캐릭터'에 아이템 값을 초기화할건지 정하려면 현재 사용중인 캐릭터를 알아야 됨
+		// 현재 사용중인 Pet_num을 구하기 위해 session에서 user_id를 꺼내서 계산
+		UsersDTO usersDTO = (UsersDTO)session.getAttribute("users_info");
+		MyPetDTO myPetDTO = new MyPetDTO();
+		myPetDTO = usersService.getMyPetNum(usersDTO);
+		
+		int result = usersService.takeOffItem(myPetDTO);
+		
+		model.addAttribute("msg", result);
+		
+		return "commons/result";
 	}
 	
 	
-	// 회원가입시 입력한 id값이 중복인지 아닌지 검사하는 JS 이벤트 코드
-	// JS에서 비동기식 ajax를 사용해서 여기로 넘어옴
+	// 회원가입시 입력한 id값이 중복인지 아닌지 검사하는 JS 이벤트 메서드
 	@GetMapping("checkID")
 	public String checkID(UsersDTO usersDTO, Model model) throws Exception{
 		
@@ -181,7 +227,71 @@ public class UsersController {
 		model.addAttribute("msg", result);
 		
 		return "commons/result";
-		
 	}
+	
+	// 회원 정보 수정시 입력한 패스워드가 올바른 패스워드인지 검사하는 JS 이벤트 메서드
+	@GetMapping("checkPW")
+	public String checkPW(UsersDTO usersDTO, HttpSession session, Model model) throws Exception{
+		
+		UsersDTO tempDTO= (UsersDTO)session.getAttribute("users_info");
+		usersDTO.setUser_id(tempDTO.getUser_id());
+		System.out.println(usersDTO.getUser_pw());
+		System.out.println(usersDTO.getUser_id());
+		
+		usersDTO = usersService.checkPW(usersDTO);
+		int result;
+		
+		
+		if(usersDTO != null) {
+			result = 1;
+		}else {
+			result = 0;
+		}
+		
+		model.addAttribute("msg", result);
+		
+		return "commons/result";		
+	}
+	
+	// 이름, 이메일, 전화번호로 아이디를 찾는 메서드
+	@GetMapping("findID")
+	public void findID() throws Exception{}
+	
+	@PostMapping("findID")
+	public String findID(UsersDTO usersDTO, Model model) throws Exception{
+		
+		List<UsersDTO> usersDTOs = usersService.findID(usersDTO);
+		
+		
+		if(usersDTOs.size() == 0) {
+			model.addAttribute("result", "입력하신 정보로 가입된 아이디가 없습니다. 올바르게 입력하였는지 다시 한 번 확인해 주세요.");
+			model.addAttribute("url", "/users/findID");
+		}else if(usersDTOs.size() > 0){
+			model.addAttribute("usersDTOs", usersDTOs);
+			return "users/resultID";  // 주소는 findID그대로, 보여주는 창만 resultID JSP를 보여줌
+		}
+		
+		return "commons/message";
+	}
+	
+	// 아이디, 이름, 이메일, 전화번호로 패스워드를 찾는 메서드
+	@GetMapping("findPW")
+	public void findPW() throws Exception{}
 
+	@PostMapping("findPW")
+	public String findPW(UsersDTO usersDTO, Model model) throws Exception{
+		
+		usersDTO = usersService.findPW(usersDTO);
+		
+		if(usersDTO == null) {
+			model.addAttribute("result", "입력하신 정보와 일치하는 패스워드가 없습니다. 올바르게 입력하였는지 다시 한 번 확인해 주세요.");
+			model.addAttribute("url", "/users/findPW");
+		}else if(usersDTO != null) {
+			model.addAttribute("usersDTO", usersDTO);
+			return "users/resultPW";
+		}
+		
+		return "commons/message";
+	}
+	
 }

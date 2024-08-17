@@ -2,9 +2,12 @@ package com.team3.tamagochi.users;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.team3.tamagochi.mypet.MyPetDTO;
+import com.team3.tamagochi.store.ItemDTO;
 import com.team3.tamagochi.store.WeaponDTO;
 
 @Service
@@ -60,17 +63,53 @@ public class UsersService {
 	
 	// 인벤토리에서 내가 보유한 무기를 가져오는 메서드
 	// 무기 데이터를 가져와야 하므로 리턴 타입은 weaponDTO가 된다
-	public List<WeaponDTO> getInvenList(UsersDTO usersDTO) throws Exception{
+	public List<ItemDTO> getInvenList(UsersDTO usersDTO) throws Exception{
 		
 		return usersDAO.getInvenList(usersDTO);
 	}
 	
-	// 회원가입시 입력한 id값이 중복인지 아닌지 검사하는 JS 이벤트 코드
+	// 아이템 착용 메서드
+	// 1. 아이템 장착을 하기 위해선 현재 사용중인 pet_num이 필요
+	// pet_num을 구하는 메서드
+	public MyPetDTO getMyPetNum(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.getMyPetNum(usersDTO);
+	}
+	
+	// 2. 현재 사용중인 캐릭터에 선택한 아이템 능력치만큼 업데이트 해주는 메서드
+	public Integer equipItem(MyPetDTO myPetDTO) throws Exception{
+		
+		return usersDAO.equipItem(myPetDTO);
+	}
+	
+	// 3. 현재 사용중인 캐릭터가 장비한 아이템을 해제하는 메서드
+	public Integer takeOffItem(MyPetDTO myPetDTO) throws Exception{
+		
+		return usersDAO.takeOffItem(myPetDTO);
+	}
+	
+	// 회원가입시 입력한 id값이 중복인지 아닌지 검사하는 JS 이벤트 메서드
 	public UsersDTO checkID(UsersDTO usersDTO) throws Exception{
 		
 		return usersDAO.checkID(usersDTO);
 	}
+	// 회원 정보 수정시 입력한 패스워드가 올바른 패스워드인지 검사하는 JS 이벤트 메서드
+	public UsersDTO checkPW(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.checkPW(usersDTO);
+	}
 	
+	// 이름, 이메일, 전화번호로 회원의 아이디를 찾는 메서드
+	public List<UsersDTO> findID(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.findID(usersDTO);
+	}
+	
+	// 아이디, 이름, 이메일, 전화번호로 회원의 패스워드를 찾는 메서드
+	public UsersDTO findPW(UsersDTO usersDTO) throws Exception{
+		
+		return usersDAO.findPW(usersDTO);
+	}
 	
 	
 	// 회원가입시 디폴트 캐릭터를 만들어주는 메서드 4개를 service에서 하나로 합침

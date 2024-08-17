@@ -14,8 +14,17 @@ public class ItemDTO {
 	private Long item_price;
 	private Long item_del;
 	private InventoryDTO inventoryDTO;
+	private ItemFileDTO itemFileDTO;
 	
 	
+	
+	
+	public ItemFileDTO getItemFileDTO() {
+		return itemFileDTO;
+	}
+	public void setItemFileDTO(ItemFileDTO itemFileDTO) {
+		this.itemFileDTO = itemFileDTO;
+	}
 	public String getItem_description() {
 		return item_description;
 	}

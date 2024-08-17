@@ -31,5 +31,18 @@ public class MyPetDAO {
 		
 		return sqlSession.update(NAMESAPCE + "updatePetName", myPetDTO);
 	}
+	
+	// 캐릭터 선택 메서드
+	// 1. 해당 유저의 캐릭터 selected값을 전부 0으로 만든다
+	public int selectReset(UsersDTO usersDTO) throws Exception{
+		
+		return sqlSession.update(NAMESAPCE + "selectReset", usersDTO);
+	}
+	
+	// 2. 선택한 캐릭터의 selected값을 1로 만든다
+	public int selectMyPet(MyPetDTO myPetDTO) throws Exception{
+		
+		return sqlSession.update(NAMESAPCE + "selectMyPet", myPetDTO);
+	}
 
 }
