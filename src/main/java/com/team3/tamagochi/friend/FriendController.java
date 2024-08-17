@@ -1,6 +1,6 @@
 package com.team3.tamagochi.friend;
 
-import java.net.http.WebSocket;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
