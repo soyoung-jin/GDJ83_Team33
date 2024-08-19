@@ -26,6 +26,16 @@ public class Pager {
 	private boolean next;
 	// 나눌 페이저의 갯수
 	private long perPage = 10L;
+	//정렬
+	private Integer order;
+	
+	public Integer getOrder() {
+		return order;
+	}
+
+	public void setOrder(Integer order) {
+		this.order = order;
+	}
 
 	public String getKind() {
 		return kind;
@@ -150,13 +160,13 @@ public class Pager {
 	
 
 		// 이전 다음
-		this.pre = true;
+		this.pre = true; //true면 이전 블럭이 존재, false면 이전 블럭이 없음
 		this.next = true;
 		if (curBlock == 1) {
-			pre = false;
+			pre = false; //페이지 1번의 앞이 있을 수 없으니까
 		}
 		if (curBlock == totalBlock) {
-			next = false;
+			next = false; //다음이 없으면 마지막페이지일테니끼
 			lastNum = totalPage;
 		}
 
