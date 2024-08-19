@@ -16,6 +16,9 @@ public class QnaService {
 		pager.makerow();
 		pager.makeNum(qnaDAO.getTotalCount(pager));
 		return qnaDAO.list(pager);
+		
+		
 	}
+	
 
 }

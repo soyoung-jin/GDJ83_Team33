@@ -39,7 +39,7 @@
 							<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
 							<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
 							<div class="col-auto">
-							<label style="margin-top: 14px;" for="category">글 정렬</label>
+							<label style="margin-top: 14px;" for="category">정렬</label>
 							</div>
 							<div class="col-sm-2">
 							<select class="custom-select" name="order" id="category" data-cat-num="">
@@ -141,7 +141,7 @@
     
     $(function() {
         $(".tm-notice-notice").on("click", function() {
-          window.location.href = "noticeList";
+          window.location.href = "../notice/noticeList";
         });
       });</script>
       
@@ -150,7 +150,7 @@
     
     $(function() {
         $(".tm-notice-user").on("click", function() {
-          window.location.href = "userList";
+          window.location.href = "../user/userList";
         });
       });</script>
       
@@ -158,7 +158,7 @@
     
     $(function() {
         $(".tm-notice-lank").on("click", function() {
-          window.location.href = "lankList";
+          window.location.href = "../lank/lankList";
         });
       });</script>
       
@@ -167,7 +167,7 @@
     
     $(function() {
         $(".tm-notice-qna").on("click", function() {
-          window.location.href = "qnaList";
+          window.location.href = "../qna/qnaList";
         });
       });</script>
 
