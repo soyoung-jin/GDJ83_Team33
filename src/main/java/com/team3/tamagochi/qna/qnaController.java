@@ -1,5 +1,6 @@
 package com.team3.tamagochi.qna;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.team3.tamagochi.boards.util.Pager;
-
 
 @Controller
 @RequestMapping(value="/qna/*")
@@ -27,5 +27,4 @@ public class QnaController {
 		return "qna/qnaList";
 		
 	}
-
 }
