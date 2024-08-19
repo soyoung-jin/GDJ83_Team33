@@ -21,8 +21,8 @@
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-12 col-lg-6 col-md-12">
-              <form action="noticeAdd" class="tm-edit-product-form" method="post">
-                <input type="hidden" value="${users_info.user_id}" name="user_id">
+              <form action="./noticeUpdate" class="tm-edit-product-form" method="post">
+                <input type="hidden" value="${detail.notice_num}" name="notice_num">
                   <div class="form-group mb-3">
                     <label
                       for="name"
@@ -59,7 +59,7 @@
                 <button onclick="location.href='noticeList.jsp'" class="btn btn-primary btn-block text-uppercase">뒤로가기</button>
               </div>
               <div id="updatebtn1" class="col-6">
-                <button class="btn btn-primary btn-block text-uppercase">수정</button>
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">수정</button>
               </div>
               
             </form>

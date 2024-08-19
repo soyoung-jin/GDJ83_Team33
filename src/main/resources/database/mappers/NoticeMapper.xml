@@ -18,8 +18,12 @@
 							ORDER BY NOTICE_CREATE_DATE
 							DESC
 						</when>
-						<otherwise >
+						<when test="order == 2">
 							ORDER BY NOTICE_HIT
+							DESC
+						</when>
+						<otherwise >
+							ORDER BY NOTICE_NUM
 							DESC
 						</otherwise>
 					</choose>
@@ -27,6 +31,7 @@
 				)
 			WHERE r 
 			BETWEEN #{startRow} AND #{lastRow}
+			
 	  	
 	  </select>
   	

@@ -57,7 +57,7 @@ public class Pager {
 	}
 
 	public Long getPage() {
-		if (this.page == null || this.page < 1) {
+		if (this.page == null || this.page <= 1) {
 			this.page = 1L;
 		}
 		return page;

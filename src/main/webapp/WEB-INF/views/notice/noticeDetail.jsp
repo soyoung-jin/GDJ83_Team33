@@ -69,7 +69,7 @@
                   
               
               <div class="col-12" id="detail_back">
-                <button type="submit" name="noticeAdd" onclick="location.href='noticeList.jsp'" class="btn btn-primary btn-block text-uppercase">목록</button>
+                <a href="./noticeList" class="btn btn-primary btn-block text-uppercase">목록</a>
               </div>
               
               <c:if test="${users_info.user_id eq detail.user_id}">
