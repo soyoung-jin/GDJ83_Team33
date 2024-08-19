@@ -28,7 +28,8 @@ const pet_exp = document.getElementById("pet_exp"); //경험치
 const pet_hungry = document.getElementById("pet_hungry"); //포만감
 const pet_hp = document.getElementById("pet_hp"); //체력
 const pet_level = document.getElementById("pet_level"); //레벨
-const pet_name = document.getElementById("pet_name");
+const pet_name = document.getElementById("pet_name"); //이름
+const pet_washroom = document.getElementById("pet_washroom");//화장실
 
 
 
@@ -53,6 +54,7 @@ feed.addEventListener("click", ()=>{
         .then((r)=>{
                 pet_exp.value = r.pet_exp;
                 pet_hungry.value = r.pet_hungry;
+                pet_washroom.value = r.pet_washroom;
 
                 modalActLabel.innerHTML = "다 먹었어요";
                 actImg.src = "/resources/img/petAct/doneFeeding.gif";
@@ -209,6 +211,21 @@ petStatusBtn.addEventListener("click", ()=>{
             levelUpBtn.style.display = "inline";
             petReady.innerHTML="레벨업 준비완료";
             
+        } 
+
+        if(r.pet_washroom >= 100) {
+            followingPetText.innerHTML = "화장실 청소해주세요";
+            followingPetText.setAttribute("id", "followingPetText");
+            followingPetDiv.append(followingPetText);
+            followingPetDiv.setAttribute("id", "followingPetDiv");
+            followingPetDiv.style.left = myPetAct.style.left;
+            followingPetDiv.style.top = myPetAct.style.top;
+            actPetParent.append(followingPetDiv);
+    
+            setTimeout(()=>{
+                followingPetDiv.remove();
+            }, 10000)
+
         }
         
     })
