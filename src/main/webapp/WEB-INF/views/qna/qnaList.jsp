@@ -3,7 +3,7 @@
 <html>
 <head>
 	<title>Home</title>
-	<c:import url="../template/header.jsp"></c:import>
+	<c:import url="./template/header.jsp"></c:import>
 </head>
 <body id="reportsPage" class="font">
 	<div class="" id="home">
@@ -17,8 +17,8 @@
         </div>
             <!-- row -->
     </div>
-	<c:import url="../template/footer.jsp"></c:import>
-	<c:import url="../template/boot-footer.jsp"></c:import>
+	<c:import url="./template/footer.jsp"></c:import>
+	<c:import url="./template/boot-footer.jsp"></c:import>
 	</div>
 </body>
 </html>

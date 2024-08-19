@@ -9,12 +9,46 @@
 </head>
 <body id="reportsPage" class="font">
 		<c:import url="../template/topbar.jsp"></c:import>
-
-<h1 >공지사항</h1>
 <div class="container mt-5">
       <div class="row tm-content-row">
         <div class="col-sm-12 col-md-12 col-lg-9 col-xl-9 tm-block-col">
+				<h1 class="text-white mt-2 mb-2">공지사항</h1>
           <div class="tm-bg-primary-dark tm-block tm-block-products">
+          
+         <div class="form-group mb-3">
+						<!-- 검색기능 태그 -->
+						<!-- 검색기능 태그 -->
+							<div class="row">
+							<div class="col-auto">
+								<select id="kind" class="custom-select mr-sm-2">
+									<option value="user_id" ${pager.kind eq 'user_id' ? 'selected' : ''}>작성자</option>
+	              					<option value="notice_title" ${pager.kind eq 'notice_title' ? 'selected' : ''}>제목</option>
+	              					<option value="notice_contents" ${pager.kind eq 'notice_contents' ? 'selected' : ''}>내용</option>
+								</select>
+							</div>
+							<div class="col-sm-5">
+								<input size="20" type="text" class="form-control" id="search">
+							</div>
+							<div class="col-auto">
+								<button type="button" class="btn btn-primary" id="searchbtn">검색</button>
+							</div>
+							<!-- 검색기능 태그 -->
+							<!-- 검색기능 태그 -->
+							<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
+							<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
+							<div class="col-auto">
+							<label style="margin-top: 14px;" for="category">글 정렬</label>
+							</div>
+							<div class="col-sm-2">
+							<select class="custom-select" id="category" data-cat-num="">
+								<option value="0">조회수순</option>
+								<option value="1">최신순</option>
+							</select>
+							</div>
+							</div>
+					</div>
+ 
+  
             <div class="tm-product-table-container">
             
               <table class="table table-hover tm-table-small tm-product-table">
@@ -46,6 +80,15 @@
               </table>
             </div>
             <!-- table container -->
+   <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item ${pager.pre ? '' : 'disabled'}"><a class="page-link" href="./noticeList?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">Previous</a></li>
+            <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+              <li class="page-item"><a class="page-link ${pager.page == i ? 'active' : ''  }" href="./noticeList?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+            </c:forEach>
+            <li class="page-item ${pager.next ? '':'disabled'}"><a class="page-link" href="./noticeList?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">Next</a></li>
+          </ul>
+        </nav>         
             <a
               href="./noticeAdd"
               class="btn btn-primary btn-block text-uppercase mb-3">공지사항 글쓰기</a>

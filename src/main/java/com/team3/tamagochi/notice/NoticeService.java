@@ -7,14 +7,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.team3.tamagochi.boards.util.Pager;
+
 @Service
 public class NoticeService {
 	
 	@Autowired
 	private NoticeDAO noticeDAO;
 	
-	public List<NoticeDTO> list() throws Exception{
-		return noticeDAO.list();
+	public List<NoticeDTO> list(Pager pager) throws Exception{
+		pager.makerow();
+		pager.makeNum(noticeDAO.getTotalCount(pager));
+		return noticeDAO.list(pager);
 	}
 	
 	public int add(NoticeDTO noticeDTO, HttpSession session) throws Exception{

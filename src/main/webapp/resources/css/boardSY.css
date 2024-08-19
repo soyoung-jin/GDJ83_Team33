@@ -14,8 +14,13 @@
 
 #deletea:hover{color:white; text-decoration: underline;}
 
+#select{display:inline-block;}
+#search{display:inline-block;}
 
-.btn-outline-delete{color:white; background-color:transparent; background-image:none; border-color:red}
+#catagory{float:right;}
+
+
+.btn-outline-delete{color:red; background-color:transparent; background-image:none; border-color:red}
 .btn-outline-delete:hover{color:white; background-color:red; border-color:red}
 .btn-outline-delete.focus,.btn-outline-delete:focus{box-shadow:0 0 0 .2rem rgba(40,167,69,.5)}
 
