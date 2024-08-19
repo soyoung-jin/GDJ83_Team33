@@ -19,6 +19,8 @@ public class NoticeService {
 		pager.makerow();
 		pager.makeNum(noticeDAO.getTotalCount(pager));
 		return noticeDAO.list(pager);
+		
+		
 	}
 	
 	public int add(NoticeDTO noticeDTO, HttpSession session) throws Exception{

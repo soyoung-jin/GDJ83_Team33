@@ -57,7 +57,7 @@ public class Pager {
 	}
 
 	public Long getPage() {
-		if (this.page == null || this.page < 1) {
+		if (this.page == null || this.page < 1L) {
 			this.page = 1L;
 		}
 		return page;
@@ -68,6 +68,10 @@ public class Pager {
 	}
 
 	public Long getStartRow() {
+		
+		if (this.startRow == null || this.startRow < 1L) {
+			this.page = 1L;
+		}
 		return startRow;
 	}
 
@@ -122,6 +126,10 @@ public class Pager {
 	public void setPerPage(long perPage) {
 		this.perPage = perPage;
 	}
+	
+	public Pager(){
+		this.setPage(1L);
+	}
 
 	// rownum 계산
 	public void makerow() throws Exception {
@@ -137,7 +145,7 @@ public class Pager {
 			totalPage++;
 		}
 
-		long perBlock = 10L; // 한 페이지에 보여질 페이지 번호의 개수
+		long perBlock = 5L; // 한 페이지에 보여질 페이지 번호의 개수
 		long totalBlock = 0;
 
 		totalBlock = totalPage / perBlock;

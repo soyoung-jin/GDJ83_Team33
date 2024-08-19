@@ -23,6 +23,7 @@ public class QnaController {
 		List<QnaDTO> list = qnaService.list(pager);
 		model.addAttribute("list",list);
 		model.addAttribute("pager", pager);
+		System.out.println(qnaService.list(pager).size());
 		
 		return "qna/qnaList";
 		

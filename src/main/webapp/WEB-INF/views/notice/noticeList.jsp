@@ -18,36 +18,38 @@
          <div class="form-group mb-3">
 						<!-- 검색기능 태그 -->
 						<!-- 검색기능 태그 -->
+					<form method="get">
 							<div class="row">
 							<div class="col-auto">
-								<select id="kind" class="custom-select mr-sm-2">
+								<select id="kind" name="kind" class="custom-select mr-sm-2">
 									<option value="user_id" ${pager.kind eq 'user_id' ? 'selected' : ''}>작성자</option>
 	              					<option value="notice_title" ${pager.kind eq 'notice_title' ? 'selected' : ''}>제목</option>
 	              					<option value="notice_contents" ${pager.kind eq 'notice_contents' ? 'selected' : ''}>내용</option>
 								</select>
 							</div>
+							
 							<div class="col-sm-5">
-								<input size="20" type="text" class="form-control" id="search">
+								<input name="search" size="20" type="text" class="form-control" id="search">
 							</div>
 							<div class="col-auto">
-								<button type="button" class="btn btn-primary" id="searchbtn">검색</button>
+								<button type="submit" class="btn btn-primary" >검색</button>
 							</div>
 							<!-- 검색기능 태그 -->
 							<!-- 검색기능 태그 -->
 							<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
 							<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
 							<div class="col-auto">
-							<label style="margin-top: 14px;" for="category">글 정렬</label>
+							<label style="margin-top: 14px;" for="category">정렬</label>
 							</div>
 							<div class="col-sm-2">
-							<select class="custom-select" id="category" data-cat-num="">
-								<option value="0">조회수순</option>
-								<option value="1">최신순</option>
+							<select class="custom-select" name="order" id="category" data-cat-num="">
+								<option  value="1">조회수순</option>
+								<option value="2">최신순</option>
 							</select>
 							</div>
 							</div>
 					</div>
- 
+ 					</form>
   
             <div class="tm-product-table-container">
             
@@ -139,7 +141,7 @@
     
     $(function() {
         $(".tm-notice-notice").on("click", function() {
-          window.location.href = "noticeList";
+          window.location.href = "../notice/noticeList";
         });
       });</script>
       
@@ -148,7 +150,7 @@
     
     $(function() {
         $(".tm-notice-user").on("click", function() {
-          window.location.href = "userList";
+          window.location.href = "../user/userList";
         });
       });</script>
       
@@ -156,7 +158,7 @@
     
     $(function() {
         $(".tm-notice-lank").on("click", function() {
-          window.location.href = "lankList";
+          window.location.href = "../lank/lankList";
         });
       });</script>
       
@@ -165,7 +167,7 @@
     
     $(function() {
         $(".tm-notice-qna").on("click", function() {
-          window.location.href = "qnaList";
+          window.location.href = "../qna/qnaList";
         });
       });</script>
 
