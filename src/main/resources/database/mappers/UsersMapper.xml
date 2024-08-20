@@ -107,14 +107,14 @@
   	</insert>
   	
   	<!-- 해당 유저의 거래 내역 조회 쿼리 -->
-  	<select id="getTradeList" parameterType="com.team3.tamagochi.users.TransactionDTO" resultMap="TradeList">
+  	<select id="getTradeList" parameterType="TransactionDTO" resultMap="TradeList">
   		SELECT i.ITEM_NAME, t.TRANSACTION_DATE, t.TRANSACTION_AMOUNT, t.TRANSACTION_TYPE
   		FROM TRANSACTION t
 		INNER JOIN ITEM i
 		ON (t.ITEM_NUM = i.ITEM_NUM)
 		WHERE t.USER_ID =#{user_id}
   	</select>
-  	<resultMap type="com.team3.tamagochi.users.TransactionDTO" id="TradeList">
+  	<resultMap type="TransactionDTO" id="TradeList">
   		<id column="TRANSACTION_NUM" property="transaction_num"></id>
   		<result column="USER_ID" property="user_id"></result>
   		<result column="ITEM_NUM" property="item_num"></result>
@@ -128,12 +128,28 @@
   	</resultMap>
   	
   	<!-- transaction type에 따른 검색 리스트 -->
-  	<select id="selectType" parameterType="com.team3.tamagochi.users.TransactionDTO" resultMap="TradeList">
+  	<select id="selectType" parameterType="TransactionDTO" resultMap="TradeList">
   		SELECT i.ITEM_NAME, t.TRANSACTION_DATE, t.TRANSACTION_AMOUNT, t.TRANSACTION_TYPE
   		FROM TRANSACTION t
 		INNER JOIN ITEM i
 		ON (t.ITEM_NUM = i.ITEM_NUM)
 		WHERE t.USER_ID =#{user_id} AND t.TRANSACTION_TYPE = #{transaction_type}
+  	</select>
+  	<!-- transaction amount에 따른 검색 리스트 -->
+  	<select id="selectAmount" parameterType="TransactionDTO" resultMap="TradeList">
+  		SELECT i.ITEM_NAME, t.TRANSACTION_DATE, t.TRANSACTION_AMOUNT, t.TRANSACTION_TYPE
+  		FROM TRANSACTION t
+		INNER JOIN ITEM i
+		ON (t.ITEM_NUM = i.ITEM_NUM)
+		WHERE t.USER_ID =#{user_id}
+		<if test="transaction_amount == 1">
+			ORDER BY TRANSACTION_AMOUNT DESC
+		</if>
+		<if test="transaction_amount == 2">
+			ORDER BY TRANSACTION_AMOUNT ASC
+		</if>
+		
+		
   	</select>
   	
   	

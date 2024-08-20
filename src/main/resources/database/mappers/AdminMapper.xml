@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <!-- namespace는 꼭 들어가야될 속성 -->
+  <mapper namespace="com.team3.tamagochi.admin.AdminDAO">
+  	
+  	<select id="getUserList" resultType="UsersDTO">
+  		SELECT USER_ID, USER_AUTH
+  		FROM USERS
+  	</select>
+  	
+  	<select id="getUserDetail" resultType="UsersDTO" parameterType="UsersDTO">
+  		SELECT * FROM USERS
+  		WHERE USER_ID = #{user_id}
+  	</select>
+  	
+  
+  </mapper>
