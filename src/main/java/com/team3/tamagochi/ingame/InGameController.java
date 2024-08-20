@@ -19,6 +19,12 @@ public class InGameController {
 	@Autowired
 	private InGameService inGameService;
 	
+	@GetMapping("fight")
+	public void fight() throws Exception {
+		
+		
+	}
+	
 	//<====================펫 정보======================>
 	@GetMapping("ingame")
 	public void getPetStatus(MyPetDTO myPetDTO, Model model, HttpSession session) throws Exception {
