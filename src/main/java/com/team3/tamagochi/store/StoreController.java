@@ -1,5 +1,7 @@
 package com.team3.tamagochi.store;
 
+import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,8 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -152,6 +158,26 @@ public class StoreController {
 	//============================== 상점,아이템관련 메소드 =============================
 	//============================== 상점,아이템관련 메소드 =============================
 	//============================== 상점,아이템관련 메소드 =============================
+	
+	//캐릭터 이미지 가져오기
+	@GetMapping("getImage")
+	public ResponseEntity<byte[]> getImage(ItemFileDTO itemFileDTO, HttpSession session) throws Exception {
+		System.out.println(itemFileDTO);
+		
+		String realPath = session.getServletContext().getRealPath("/resources/img/item");
+		
+		File file = new File(realPath, itemFileDTO.getFile_name());
+		
+		ResponseEntity<byte[]> result = null;
+
+		HttpHeaders header = new HttpHeaders();
+			
+		header.add("Content-type", Files.probeContentType(file.toPath()));
+		
+		result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		
+		return result;
+	}
 
 	@GetMapping("itemListRefresh")
 	public String getItemList(ItemDTO itemDTO, Pager pager, Model model) throws Exception {
