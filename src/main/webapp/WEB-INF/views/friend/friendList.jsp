@@ -4,73 +4,68 @@
 <html>
 <head>
 <title>Home</title>
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 <c:import url="../template/header.jsp"></c:import>
-<link rel="stylesheet" href="/resources/css/friend.css">
+
 </head>
 <body id="reportsPage" class="font">
-	
+	<div class="" id="home">
 		<c:import url="../template/topbar.jsp"></c:import>
 
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<h1 class="text-white mt-5 mb-5">내 친구들</h1>
-
-					<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-						<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
-					<div class="row gx-5 justify-content-center">
-						<!-- Pricing card free-->
-						<c:choose>
-							<c:when test="${not empty usersDTO.friendDTO[0].friend_num}">
-								<c:forEach items="${usersDTO.friendDTO}" var="fDTO">
-									<div class="col-lg-6 col-xl-4 mb-5">
-										<a class="text-white"
-											href="./friendDetail?friend_num=${fDTO.friend_num}">
-											<div class="card cardBorder ">
-												<div class="card-body p-5">
-													<div class="small bold text-white">${fDTO.friend_num}</div>
-													<div class="tm-avatar-container">
-														<img class="tm-avatar img-fluid mb-4" alt="tamagochi" src="/resources/img/friendImage/chick.png">
-													</div>
-													<div class="mb-3">
-														<h2 class="display-5 fw-bold text-white">${fDTO.friend_id}</h2>
-													</div>
-
-												</div>
-											</div>
-										</a>
-									</div>
-									<br>
-								</c:forEach>
-
-							</c:when>
-						</c:choose>
-					</div>
+					<p class="text-white mt-5 mb-5">
+						Welcome, <b>Admin</b>
+					</p>
 				</div>
 			</div>
+			<div class="row gx-5 justify-content-center">
+				<!-- Pricing card free-->
+				<c:choose>
+					<c:when test="${not empty usersDTO.friendDTO[0].friend_num}">
+						<c:forEach items="${usersDTO.friendDTO}" var="fDTO">
+							<div class="col-lg-6 col-xl-4 mb-5">
+								<div class="card mb-5">
+									<div class="card-body p-5">
+										<div class="small text-uppercase fw-bold text-muted">${fDTO.friend_num}</div>
+										<div>
+											<img alt="tamagochi" src="/resources/img/tama.gif">
+										</div>
+										<div class="mb-3">
+											<span class="display-5 fw-bold">${fDTO.friend_id}</span> 
+										</div>
+										<div class="d-grid">
+											<a class="btn btn-outline-secondary"
+												href="./friendDetail?friend_num=${fDTO.friend_num}">자세히 보기</a>
+											<%-- <c:choose>
+												<c:when test="${connectedId eq fDTO.friend_id}">
+													
+														<h2 class="mt-3">접속 중</h2>
+													
+												</c:when>
+											</c:choose> --%>
+										</div>
+									</div>
+								</div>
+							</div>
+							<br>
+						</c:forEach>
+						
+					</c:when>
+				</c:choose>
+			</div>
 		</div>
+		<c:import url="../template/footer.jsp"></c:import>
 		<c:import url="../template/boot-footer.jsp"></c:import>
 	</div>
-	</div>
-	<script>
-		
-	</script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-		integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-		crossorigin="anonymous"></script>
-	<script type="text/javascript"
-		src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
-	<script src="/resources/js/friend/chat.js"></script>
+ <script>
+	
+ </script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+<script src="/resources/js/friend/chat.js"></script>
 </body>
 </html>
