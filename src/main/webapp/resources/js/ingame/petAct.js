@@ -160,6 +160,7 @@ clean.addEventListener("click", ()=>{
         .then((r)=>{
                 pet_hp.value = r.pet_hp;
                 pet_washroom.value = r.pet_washroom;
+                pet_hungry.value = r.pet_hungry;
 
                 modalActLabel.innerHTML = "청소 끝";
                 actImg.src = "/resources/img/petAct/doneFeeding.gif";

@@ -19,7 +19,7 @@
 				<div class="row tm-content-row">
 					<div class="tm-block-col tm-col-avatar">
 						<div class="tm-bg-primary-dark tm-block tm-block-avatar">
-							<h2 id="friendStatus" data-friend-id="${friendInfoDTO.user_id}" data-user-id="${myDTO.user_id}" class="tm-block-title">부재중</h2>
+							<h2 id="friendStatus" data-friend-id="${friendInfoDTO.user_id}" data-user-id="${users_info.user_id}" class="tm-block-title">부재중</h2>
 							<div id="chatParent">
 							<a id="startChat" type="button" class="btn btn-outline-warning btn-block text-uppercase mb-3"
 									data-bs-toggle="modal" data-bs-target="#commentModal"
@@ -79,7 +79,7 @@
 								
 								<div class="form-group col-lg-6">
 									<label class="tm-hide-sm">&nbsp;</label>
-									<a type="button" id="sendGiftBtn" class="btn btn-secondary btn-block text-uppercase chatBtn"
+									<a id="sendGiftBtn" type="button" class="btn text-white chatBtn btn-block"
 									href="sendGift?user_id=${myDTO.user_id}" data-bs-toggle="modal" data-bs-target="#sendGiftModal">
 										선물보내기</a>
 								</div>

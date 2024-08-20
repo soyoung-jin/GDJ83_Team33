@@ -36,6 +36,13 @@ document.addEventListener("keydown", (e)=>{
         
         if(x>1600) {
             myPet.style.left = "1500px";
+
+            document.addEventListener("keydown", (e)=>{
+                if(e.key='ArrowLeft') {
+                    myPet.style.left = "1500px";
+                    return;
+                }
+            })
         }
         
     } else if(e.key==='ArrowUp') {

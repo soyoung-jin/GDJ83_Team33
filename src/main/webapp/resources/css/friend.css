@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .chatBtn {
-    background-color: indigo;
+    background-color: maroon;
    
     
 }
@@ -18,5 +18,10 @@
 
 #inventoryList{
     width: 100%;
+}
+
+.cardBorder {
+    background-color: maroon;
+    border: 2px solid white;
 }
 

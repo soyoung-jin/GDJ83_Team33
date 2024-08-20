@@ -3,6 +3,7 @@ package com.team3.tamagochi.friend;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,9 @@ public class FriendChatHandler extends TextWebSocketHandler{
 	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
 
     private static Logger logger = LoggerFactory.getLogger(FriendChatHandler.class);
+    
+    private Map<String, Object> usersMap = new HashMap<String, Object>();
+    
     
     //id가 키인 맵 만들기 -> 아이디
     //1:1 이면 두 사람의 세션만 꺼내서 통신 

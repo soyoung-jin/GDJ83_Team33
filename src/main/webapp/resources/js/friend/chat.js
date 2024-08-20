@@ -1,5 +1,5 @@
 const sendBtn = document.getElementById("sendBtn"); //메세지 보내는 버튼
-const startChat = document.getElementById("startChat"); //채팅하기 버튼
+const startChat = document.getElementById("startChat"); //대화하기 버튼
 
 const chatContent = document.getElementById("chatContent"); //보내는 메세지(input의 value)
 const modalContent = document.getElementById("modalContent"); //모달 안의 채팅 내용
@@ -61,10 +61,10 @@ function onMessage(msg) {
     if(data == loginFriendId) {
         friendStatus.innerHTML = "접속중";
         console.log("접속중");
-        chatParent.style.display = "inline";
+        startChat.style.display = "inline";
     } else {
         //대화하기 버튼 안보이게
-        chatParent.style.display = "none";
+        startChat.style.display = "none";
     }
 
     //한 줄 추가
