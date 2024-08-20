@@ -13,9 +13,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<p class="text-white mt-5 mb-5">
-						Welcome, <b>Admin</b>
-					</p>
+					<p class="text-white mt-5 mb-5"></p>
 				</div>
 			</div>
 			<div class="row ">
