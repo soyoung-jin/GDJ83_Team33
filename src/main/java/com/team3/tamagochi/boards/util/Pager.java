@@ -143,7 +143,7 @@ public class Pager {
 		long totalPage = totalCount / perPage;
 		if (totalCount % perPage != 0) {
 			totalPage++;
-		}
+		} 
 
 		long perBlock = 5L; // 한 페이지에 보여질 페이지 번호의 개수
 		long totalBlock = 0;
