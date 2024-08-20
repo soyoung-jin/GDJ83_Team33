@@ -32,7 +32,7 @@
                   <div class="form-group mb-3">
                     <label for="contents">내용</label>
                     <textarea 
-                      class="form-control validate" name="notice_contents" id="notice_contents"rows="10"required></textarea>
+                      class="form-control validate" name="notice_contents" id="editor" rows="10"required></textarea>
                   </div>
                   <div class="form-group mb-3"></div>
 			</div>
@@ -66,5 +66,9 @@
 	
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>
+
+<!-- 	<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+	<script src="/resources/js/board/boardcontents.js"></script> -->
+
 </body>
 </html>

@@ -34,10 +34,7 @@
 							<div class="col-auto">
 								<button type="submit" class="btn btn-primary" >검색</button>
 							</div>
-							<!-- 검색기능 태그 -->
-							<!-- 검색기능 태그 -->
-							<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
-							<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
+							
 							<div class="col-auto">
 							<label style="margin-top: 14px;" for="category">정렬</label>
 							</div>
@@ -72,7 +69,7 @@
                     <th scope="row"></th>
                     <td>${list.question_num}</td>
                     <td>${list.user_id}</td>
-                    <td><a id= "aquestion" href="questionDetail?question_num=${list.question_num}" class="btn" >${list.question_title}</a></td>
+                    <td><a id= "anotice" href="qnaDetail?question_num=${list.question_num}" class="btn" >${list.question_title}</a></td>
                     <td>${list.question_create_date}</td>
                     <td>${list.question_hit}</td>
                     
@@ -92,7 +89,7 @@
           </ul>
         </nav>         
             <a
-              href="./questionAdd"
+              href="./qnaAdd"
               class="btn btn-primary btn-block text-uppercase mb-3">문의사항 글쓰기</a>
    
           </div>

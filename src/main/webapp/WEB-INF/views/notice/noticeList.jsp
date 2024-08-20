@@ -34,10 +34,7 @@
 							<div class="col-auto">
 								<button type="submit" class="btn btn-primary" >검색</button>
 							</div>
-							<!-- 검색기능 태그 -->
-							<!-- 검색기능 태그 -->
-							<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
-							<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
+							
 							<div class="col-auto">
 							<label style="margin-top: 14px;" for="category">정렬</label>
 							</div>
