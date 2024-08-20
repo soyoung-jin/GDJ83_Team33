@@ -129,6 +129,12 @@ public class UsersService {
 		return usersDAO.selectType(transactionDTO);
 	}
 	
+	// 거래내역 중 transaction amount 순으로 정렬 조회하는 메소드
+	public List<TransactionDTO> selectAmount(TransactionDTO transactionDTO) throws Exception{
+		
+		return usersDAO.selectAmount(transactionDTO);
+	}
+	
 	
 	
 	// 회원가입시 디폴트 캐릭터를 만들어주는 메서드 4개를 service에서 하나로 합침

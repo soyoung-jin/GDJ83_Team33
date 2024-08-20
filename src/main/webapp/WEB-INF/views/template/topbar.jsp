@@ -65,6 +65,22 @@
                                 <a class="dropdown-item" href="/friend/friendList">내 친구들</a>
                             </div>
                         </li>
+                        <!-- 관리자 권한이 있는 유저만 해당 탭을 볼 수 있음 -->
+                        <c:if test="${users_info.user_auth eq 0 }">
+	                        <li class="nav-item dropdown">
+	                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+	                                aria-haspopup="true" aria-expanded="false">
+	                                <i class="far fa-user"></i>
+	                                <span>
+	                                    관리자 페이지 <i class="fas fa-angle-down"></i>
+	                                </span>
+	                            </a>
+	                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	                                <a class="dropdown-item" href="/admin/adminMain">회원 정보</a>
+	                                <a class="dropdown-item" href="#">매출 내역</a>
+	                            </div>
+	                        </li>                        
+                        </c:if>
                     </ul>
                     <!-- session에 로그인 정보가 있으면 로그아웃을 출력, 로그인 정보가 없으면 로그인을 출력 -->
 		            <ul class="navbar-nav">

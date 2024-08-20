@@ -3,59 +3,148 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-  <mapper namespace="com.team3.tamagochi.qna.QnaDAO">
-  	<select id="list" resultType="QnaDTO">
-  		SELECT * 
-	  		FROM (	
-	  			SELECT ROWNUM r, n.*
-				FROM(SELECT *
-					FROM QUESTION
-					<include refid="searchSql"/>
-					
-					<choose>
-						<when test="order == 1">
-							ORDER BY QUESTION_CREATE_DATE
-							DESC
-						</when>
-						<when test="order == 2">
-							ORDER BY QUESTION_HIT
-							DESC
-						</when>
-						<otherwise >
-							ORDER BY QUESTION_NUM
-							DESC
-						</otherwise>
-					</choose>
-					) n
-				)
-			WHERE r 
-			BETWEEN #{startRow} AND #{lastRow}	
-  	</select>
-  
- 	  <sql id="searchSql">
-			<where>		
-				QUESTION_NUM > 0	
-				<choose>
-					<when test="kind == 'question_title'">
-						AND QUESTION_TITLE LIKE '%'||#{search}||'%'
-					</when>
-					<when test="kind == 'question_contents'">
-						AND QUESTION_CONTENTS LIKE '%'||#{search}||'%'
-					</when>
-					<otherwise>
-						AND USER_ID LIKE '%'||#{search}||'%'
-					</otherwise>
-				</choose>
-			</where>
+<mapper namespace="com.team3.tamagochi.qna.QnaDAO">
+	<select id="list" resultType="QnaDTO" parameterType="Pager">
+		SELECT *
+		FROM (
+			SELECT ROWNUM r, q.*
+			FROM(SELECT *
+				FROM QUESTION
+				<include refid="searchSql" />
+
+		<choose>
+			<when test="order == 1">
+				ORDER BY QUESTION_CREATE_DATE
+				DESC
+			</when>
+			<when test="order == 2">
+				ORDER BY QUESTION_HIT
+				DESC
+			</when>
+			<otherwise>
+				ORDER BY QUESTION_REF DESC,
+						QUESTION_STEP ASC
+			</otherwise>
+		</choose>
+		) q
+		)
+		WHERE r
+		BETWEEN #{startRow} AND #{lastRow}
+	</select>
+
+	<sql id="searchSql">
+		<where>
+			QUESTION_NUM > 0
+			<choose>
+				<when test="kind == 'question_title'">
+					AND QUESTION_TITLE LIKE '%'||#{search}||'%'
+				</when>
+				<when test="kind == 'question_contents'">
+					AND QUESTION_CONTENTS LIKE '%'||#{search}||'%'
+				</when>
+				<otherwise>
+					AND USER_ID LIKE '%'||#{search}||'%'
+				</otherwise>
+			</choose>
+		</where>
 	</sql>
-  	
-  	<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
-		SELECT 
+
+	<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
+		SELECT
 			COUNT(QUESTION_NUM)
 		FROM(
 			SELECT *
 			FROM QUESTION
-			<include refid="searchSql"/>)
+			<include refid="searchSql"/>
+		)
 	</select>
+
+	<select id="detail" resultType="QnaDTO" resultMap="qnaResult">
+		SELECT
+		Q.*
+		FROM
+		QUESTION Q
+		WHERE Q.QUESTION_NUM = #{question_num}
+
+	</select>
+	
+	<resultMap type="QnaDTO" id="qnaResult">
+		<id column="QUESTION_NUM" property="question_num" />
+		<result column="USER_ID" property="user_id" />
+		<result column="QUESTION_TITLE" property="question_title" />
+		<result column="QUESTION_CREATE_DATE" property="question_create_date"/>
+		<result column="QUESTION_HIT" property="question_hit" />
+		<result column="QUESTION_CONTENTS" property="question_contents" />
+		<result column="QUESTION_REF" property="question_ref" />
+		<result column="QUESTION_STEP" property="question_step" />
+		<result column="QUESTION_DEPTH" property="question_depth" />
+		<result column="QUESTION_DEL" property="question_del" />
+		
+
+
+	</resultMap>
+
+
+	<update id="hit" parameterType="QnaDTO">
+		UPDATE 
+			QUESTION
+			SET QUESTION_HIT = QUESTION_HIT +1
+		WHERE 
+			QUESTION_NUM =#{question_num}
+
+	</update>
+	
+	<insert id="add" parameterType="QnaDTO">
+		<selectKey order="BEFORE" resultType="Long" keyProperty="question_num">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		
+  		INSERT INTO QUESTION
+  		(
+  		BOARD_SEQ.NEXTVAL, USER_ID, QUESTION_TITLE,QUESTION_CONTENTS,QUESTION_REF,QUESTION_STEP, QUESTION_DEPTH
+  		)
+  		VALUES (#{question_num}, #{user_id}, #{question_title},#{question_contents},#{question_ref}, #{question_step}, #{question_depth})
+  	
+  	
+  	</insert>
+  	
+  	<update id="update" parameterType="QnaDTO">
+		UPDATE	QUESTION
+		SET		QUESTION_TITLE = #{question_title}, QUESTION_CONTENTS = #{question_contents}
+		WHERE 	QUESTION_NUM = #{question_num}
+	</update>
+	
+	<delete id="delete" parameterType="QnaDTO">
+  		UPDATE 
+  			QUESTION 
+  		SET 
+  			QUESTION_DEL=1 
+  		WHERE 
+  			QUESTION_NUM = #{question_num}
+  	</delete>
+  	
+  	<insert id="reply" parameterType="QnaDTO">
+  		<selectKey order="BEFORE" resultType="Long" keyProperty="question_num">
+  			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO QUESTION
+  		(
+	  		BOARD_SEQ.NEXTVAL, USER_ID, QUESTION_TITLE,QUESTION_CONTENTS,QUESTION_REF,QUESTION_STEP, QUESTION_DEPTH
+  		) 
+  		VALUES 
+  		(
+  			#{question_num}, #{user_id}, #{question_title},#{question_contents},#{question_ref}, #{question_step}, #{question_depth}
+  		)
+  	</insert>
+  	
+  	<update id="replyUpdate" parameterType="QnaDTO">
+  		UPDATE 
+  			QUESTION 
+  		SET 
+  			QUESTION_STEP = STEP + 1 WHERE QUESTION_REF= #{question_ref} AND QUESTION_STEP>#{question_step}
+  	</update>
+  	
+
+
 
 </mapper>
