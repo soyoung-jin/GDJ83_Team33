@@ -89,7 +89,7 @@
 		  					ITEMFILE IF
 		  					ON (I.ITEM_NUM = IF.ITEM_NUM)
 		  				WHERE I.CATEGORY_NUM = #{itemDTO.category_num} AND I.ITEM_DEL = 0
-		  				ORDER BY I.ITEM_NUM DESC) C
+		  				ORDER BY I.ITEM_NUM DESC, IF.FILE_NUM ASC) C
 		  		<where>
   					<choose>
   						<when test="pager.kind=='k1'">
@@ -113,11 +113,11 @@
   		<result column="ITEM_DOD" property="item_dod"/>
   		<result column="ITEM_PRICE" property="item_price"/>
   		
-  		<association property="itemFileDTO" javaType="ItemFileDTO">
-  			<id column="FILE_NUM" property="file_num"/>
+  		<collection property="itemFileDTOs" javaType="java.util.List" ofType="ItemFileDTO">
+  		  	<id column="FILE_NUM" property="file_num"/>
   			<result column="FILE_NAME" property="file_name"/>
   			<result column="ORI_NAME" property="ori_name"/>
-  		</association>
+  		</collection>
   	
   	</resultMap>
   	

@@ -61,9 +61,17 @@
 								<input type="text" class="form-control" id="item_price" name="item_price" value="${dto.item_price}">
 							</div>
 							<div class="form-floating mt-1">
-								<label for="imgFile" class="form-label">이미지</label>
+								<label for="imgFile1" class="form-label">1</label>
 								<br>
-								<input type="file" id="imgFile" name="attach">
+								<input type="file" id="imgFile1" name="attach">
+								<br>
+								<label for="imgFile2" class="form-label">2</label>
+								<br>
+								<input type="file" id="imgFile2" name="attach">
+								<br>
+								<label for="imgFile3" class="form-label">3</label>
+								<br>
+								<input type="file" id="imgFile3" name="attach">
 							</div>
 							<div class="mt-3">
 								<button class="btn btn-primary w-100 py-2" type="submit"> ${dto eq null?'아이템 추가':'아이템 수정'} </button>

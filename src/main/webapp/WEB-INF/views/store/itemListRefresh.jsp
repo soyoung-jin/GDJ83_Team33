@@ -11,7 +11,7 @@
 						<!-- 디테일가기위한 a태그 -->
 						<a href="itemDetail?item_num=${itemDTO.item_num}">
 						<!-- 카드형 상부 이미지 -->
-						<img src="getImage?file_name=${itemDTO.itemFileDTO.file_name}" class="card-img-top" alt="...">
+						<img src="getImage?file_name=${itemDTO.itemFileDTOs[1].file_name}" class="card-img-top" alt="...">
 					</a>
 						<div class="card-body">
 							<!-- 카드 이미지 하단 아이템명, 가격 -->
