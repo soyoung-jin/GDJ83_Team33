@@ -1,0 +1,72 @@
+
+
+#reportsPage {
+    background-image: url("/resources/img/ingame/arena.png");
+    background-repeat: none;
+    background-size: cover;
+}
+
+#weaponImg {
+    position: absolute;
+    width: 20%;
+    left: 30%;
+    top: 40%;
+}
+
+#enemyWeaponImg {
+    position: absolute;
+    width: 15%;
+    left: 60%;
+    top: 50%;
+}
+
+#petImg {
+    width: 15%;
+    position: absolute; /*부모 태그를 기준으로 한 위치 - petParent div*/
+    left: 25%;
+    top: 40%;
+    cursor: pointer;
+}
+
+#enemyImg {
+    width: 20%;
+    position: absolute; /*부모 태그를 기준으로 한 위치 - petParent div*/
+    left: 65%;
+    top: 40%;
+    cursor: pointer;
+}
+
+#lineParent {
+    position: absolute;
+    width: 120px;
+    
+    border: solid 2px black;
+    background-color: white;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    left: 23%;
+    top: 35%;
+}
+
+#lineEnemyParent {
+    position: absolute;
+    width: 120px;
+    
+    border: solid 2px black;
+    background-color: white;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    left: 65%;
+    top: 35%;
+}
+
+#fightBtn {
+    padding-top: 10px;
+    text-align: center;
+}
+
+#clickMe {
+    color: white;
+}
