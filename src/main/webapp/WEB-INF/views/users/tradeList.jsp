@@ -25,7 +25,7 @@
 								  <th scope="col">거래 날짜</th>
 								  <th scope="col">
 								  	<select id="category-amount" class="custom-select">
-								  		<option>거래 금액</option>
+								  		<option value="0">거래 금액</option>
 								  		<option value="1">높은 순</option>
 								  		<option value="2">낮은 순</option>
 								  	</select>

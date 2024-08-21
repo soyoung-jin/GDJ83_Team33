@@ -4,6 +4,7 @@ const option = document.getElementById("option");
 const searchbtn = document.getElementById("searchbtn");
 const getImage = document.getElementById("getImage");
 
+
 let search = document.getElementById("search").value;
 let kind = document.getElementById("kind").value;
 let page = 0;
@@ -17,6 +18,7 @@ let page = 0;
 
 
 
+ 
 //리스트 불러오는 함수
 function getList(category_num, page, kind, search){
     fetch("./itemListRefresh?category_num="+category_num+"&page="+page+"&kind="+kind+"&search="+search,{

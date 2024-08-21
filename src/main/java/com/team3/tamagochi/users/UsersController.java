@@ -373,7 +373,7 @@ public class UsersController {
 		return "redirect:/";
 	}
 	
-	/*  거래 관련 메서드들 (이렇게 많을 줄 알았으면 패키지를 따로 만드는건데 실수함)  */
+	/*  거래 관련 메서드들  */
 	// 유저의 거래 내역 조회 메서드
 	@GetMapping("tradeList")
 	public void getTradeList(Model model, TransactionDTO transactionDTO, HttpSession session) throws Exception{
@@ -387,8 +387,8 @@ public class UsersController {
 		model.addAttribute("list", list);
 	}
 	
-	// transaction_type에 따른 거래 내역 정렬 메서드
-	@GetMapping("tradeList/select")
+	// transaction type에 따른 거래 내역 정렬 메서드
+	@GetMapping("tradeList/selectType")
 	public String selectType(Model model, TransactionDTO transactionDTO, HttpSession session) throws Exception{
 		
 		UsersDTO usersDTO = new UsersDTO();
@@ -396,6 +396,24 @@ public class UsersController {
 		transactionDTO.setUser_id(usersDTO.getUser_id());
 		
 		List<TransactionDTO> list = usersService.selectType(transactionDTO);
+		
+		model.addAttribute("list", list);
+		
+		return "users/selectTypeForm"; 
+	}
+	
+	// 거래내역 중 transaction amount 순으로 정렬 조회하는 메소드
+	// 검색 필터 메서드 하나로 합칠 수 있을것 같은데 일단 보류
+	@GetMapping("tradeList/selectAmount")
+	public String selectAmount(Model model, TransactionDTO transactionDTO, HttpSession session) throws Exception{
+		
+		UsersDTO usersDTO = new UsersDTO();
+		usersDTO = (UsersDTO)session.getAttribute("users_info");
+		transactionDTO.setUser_id(usersDTO.getUser_id());
+		
+		System.out.println(transactionDTO.getTransaction_amount());
+		
+		List<TransactionDTO> list = usersService.selectAmount(transactionDTO);
 		
 		model.addAttribute("list", list);
 		

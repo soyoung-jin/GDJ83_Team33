@@ -1,15 +1,23 @@
 package com.team3.tamagochi.ingame;
 
+import java.io.File;
+import java.nio.file.Files;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team3.tamagochi.mypet.MyPetDTO;
+import com.team3.tamagochi.store.ItemFileDTO;
 import com.team3.tamagochi.users.UsersDTO;
 
 @Controller
@@ -18,6 +26,49 @@ public class InGameController {
 	
 	@Autowired
 	private InGameService inGameService;
+	
+	// 캐릭터 이미지 가져오기
+//	@GetMapping("getImage")
+//	public ResponseEntity<byte[]> getImage(ItemFileDTO itemFileDTO, HttpSession session) throws Exception {
+//		System.out.println(itemFileDTO);
+//
+//		String realPath = session.getServletContext().getRealPath("/resources/img/item");
+//
+//		File file = new File(realPath, itemFileDTO.getFile_name());
+//
+//		ResponseEntity<byte[]> result = null;
+//
+//		HttpHeaders header = new HttpHeaders();
+//
+//		header.add("Content-type", Files.probeContentType(file.toPath()));
+//
+//		result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+//
+//		return result;
+//	}
+	
+	@GetMapping("fight")
+	public void fight() throws Exception{
+		
+	}
+	
+//	@GetMapping("fight")
+//	public ResponseEntity<byte[]> fight(ItemFileDTO itemFileDTO, HttpSession session) throws Exception {
+//		String realPath = session.getServletContext().getRealPath("/resources/img/item");
+//		
+//				File file = new File(realPath, itemFileDTO.getFile_name());
+//		
+//				ResponseEntity<byte[]> result = null;
+//		
+//				HttpHeaders header = new HttpHeaders();
+//		
+//				header.add("Content-type", Files.probeContentType(file.toPath()));
+//		
+//				result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+//		
+//				return result;
+//		
+//	}
 	
 	//<====================펫 정보======================>
 	@GetMapping("ingame")

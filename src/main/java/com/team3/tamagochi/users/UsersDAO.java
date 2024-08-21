@@ -113,6 +113,12 @@ public class UsersDAO {
 		return sqlSession.selectList(NAMESPACE + "selectType", transactionDTO);
 	}
 	
+	// 거래내역 중 transaction amount 순으로 정렬 조회하는 메소드
+	public List<TransactionDTO> selectAmount(TransactionDTO transactionDTO) throws Exception{
+		
+		return sqlSession.selectList(NAMESPACE + "selectAmount", transactionDTO);
+	}
+	
 	
 	
 	
