@@ -22,7 +22,7 @@
 			  <c:forEach items="${wishlist}" var="list">
 				  <tr>
 					  <td scope="row"><input type="checkbox"/></td>
-					  <td><div class="tm-gray-circle"><img src="/resources/img/character/4.gif" width="80" alt="Avatar Image" class="rounded-circle"></div></td>
+					  <td><div class="tm-gray-circle"><img src="getImage?file_name=${not empty list.itemDTO.itemFileDTOs?list.itemDTO.itemFileDTOs[0].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div></td>
 					  <td class="tm-product-name">${list.itemDTO.item_name}</td>
 					  <td>${list.itemDTO.item_description}</td>
 					  <td>${list.itemDTO.item_hp}</td>

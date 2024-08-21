@@ -13,7 +13,7 @@
 	<div class="container">
         <div class="row">
             <div class="col">
-                <h1 class="text-white mt-5 mb-5">WISHLIST</h1>
+                <h1 class="text-white mt-5 mb-5">결제목록</h1>
             	<div class="container mt-5">
 					<div class="row tm-content-row">
 					  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
@@ -35,7 +35,7 @@
 							  <tbody id="checkdiv">
 									<c:forEach items="${purchaseList}" var="list">
 										<tr>
-											<td><div class="tm-gray-circle"><img src="/resources/img/item/${list.itemFileDTO.file_name}" width="80" alt="Avatar Image" class="rounded-circle"></div></td>
+											<td><div class="tm-gray-circle"><img src="getImage?file_name=${not empty list.itemFileDTOs?list.itemFileDTOs[0].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div></td>
 											<td class="tm-product-name itemName" id="${list.item_name}" data-inum="${list.item_num}">${list.item_name}</td>
 											<td>${list.item_description}</td>
 											<td>${list.item_hp}</td>

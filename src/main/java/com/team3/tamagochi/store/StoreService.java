@@ -59,17 +59,17 @@ public class StoreService {
 		return storeDAO.deleteWishList(wishListDTO);
 	}
 
-	public List<ItemFileDTO> filedetail(List<ItemDTO> list) {
-
-		List<ItemFileDTO> fileList = new ArrayList<ItemFileDTO>();
-
-		for (ItemDTO dto : list) {
-			fileList.add(storeDAO.filedetail(dto));
-		}
-
-		return fileList;
-
-	}
+//	public List<ItemFileDTO> filedetail(List<ItemDTO> list) {
+//
+//		List<ItemFileDTO> fileList = new ArrayList<ItemFileDTO>();
+//
+//		for (ItemDTO dto : list) {
+//			fileList.add(storeDAO.filedetail(dto));
+//		}
+//
+//		return fileList;
+//
+//	}
 
 	public List<ItemDTO> getItemList(ItemDTO itemDTO, Pager pager) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -86,8 +86,15 @@ public class StoreService {
 		}
 
 		pager.makeNum(totalCount);
+		
+		List<ItemDTO> result = storeDAO.getItemList(map);
+		
+		//아이템 이미지 파일 정보를 따로 조회 가져옴
+		for(ItemDTO dto: result) {
+			dto.setItemFileDTOs(storeDAO.filedetail(dto));
+		}
 
-		return storeDAO.getItemList(map);
+		return result;
 	}
 
 	public ItemDTO getItemDetail(ItemDTO itemDTO) throws Exception {
@@ -124,9 +131,47 @@ public class StoreService {
 		return result;
 	}
 
-	public int updateItem(ItemDTO itemDTO) {
-
-		return storeDAO.updateItem(itemDTO);
+	public int updateItem(ItemDTO itemDTO, MultipartFile[] files, HttpSession session) throws Exception {
+		
+		int result = storeDAO.updateItem(itemDTO);
+		
+		//위의 아이템 내용 업데이트 완료 > 이미지 파일 처리
+		if(result>0) {
+			
+			//이미지 저장될 실제 경로
+			String path = session.getServletContext().getRealPath("/resources/img/item");
+			
+			//수정할 아이템의 이미지파일 경로 가져오기
+			List<ItemFileDTO> itemFileDTO = storeDAO.filedetail(itemDTO);
+			System.out.println(files.length);
+			
+			//매개변수로 받아온 이미지 파일 개수만큼 반복
+			for(int i=0;i<files.length;i++) {
+				String filename="";
+				ItemFileDTO dto = new ItemFileDTO();
+				
+				filename = fileManager.fileSave(files[i], path);
+				
+				dto.setOri_name(files[i].getOriginalFilename());
+				dto.setFile_name(filename);
+				dto.setItem_num(itemDTO.getItem_num());
+			
+				//매개변수로 받아오는 이미지 개수와 파일테이블의 개수가 다르면 새로 추가 같으면 업데이트
+				if(itemFileDTO.size()!= files.length) {
+					result = storeDAO.addfile(dto);
+					System.out.println("test");
+				} else {
+					dto.setFile_num(itemFileDTO.get(i).getFile_num());
+					fileManager.fileDelete(itemFileDTO.get(i), path);
+					result = storeDAO.updateItemFile(dto);
+				}
+				
+			}
+			//매개변수로 받아온 이미지 파일 개수만큼 반복
+		}
+		//위의 아이템 내용 업데이트 완료 > 이미지 파일 처리
+		
+		return result;
 	}
 
 	public int deleteItem(ItemDTO itemDTO) {

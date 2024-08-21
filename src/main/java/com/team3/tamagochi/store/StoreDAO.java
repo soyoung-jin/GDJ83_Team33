@@ -39,9 +39,9 @@ public class StoreDAO {
 		return sqlSession.delete(NAMESPACE+"deleteWishList", wishListDTO);
 	}
 	
-	public ItemFileDTO filedetail(ItemDTO itemDTO){
+	public List<ItemFileDTO> filedetail(ItemDTO itemDTO){
 		
-		return sqlSession.selectOne(NAMESPACE+"filedetail", itemDTO);
+		return sqlSession.selectList(NAMESPACE+"filedetail", itemDTO);
 	}
 	
 	public List<WishListDTO> getWishList(UsersDTO usersDTO) {
@@ -54,8 +54,6 @@ public class StoreDAO {
 	}
 
 	public Integer getTotalCount(Map<String, Object> map) {
-		
-		
 		return sqlSession.selectOne(NAMESPACE + "getTotalCount", map);
 	}
 
@@ -69,6 +67,10 @@ public class StoreDAO {
 
 	public int updateItem(ItemDTO itemDTO) {
 		return sqlSession.update(NAMESPACE + "updateItem", itemDTO);
+	}
+	
+	public int updateItemFile(ItemFileDTO itemFileDTO) {
+		return sqlSession.update(NAMESPACE+"updateItemFile", itemFileDTO);
 	}
 
 	public int deleteItem(ItemDTO itemDTO) {

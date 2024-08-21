@@ -7,15 +7,17 @@ const getImage = document.getElementById("getImage");
 
 let search = document.getElementById("search").value;
 let kind = document.getElementById("kind").value;
-let page = 0;
+let page = 1;
 
-// //이미지 불러오기
-// function image(category_num, page, kind, search){
-//     getImage.setAttribute("href","fileDown?category_num="+category_num+"&page="+page+"&kind="+kind+"&search="+search)
+itemListdiv.addEventListener("click", (e)=>{
 
-    
-// }
+    if(e.target.classList.contains("purchaseItem")){
+        let itemnum= e.target.getAttribute("data-inum");
 
+        e.target.href="purchaseItem?ar="+itemnum;
+    }
+
+})
 
 
  
@@ -47,7 +49,7 @@ searchbtn.addEventListener("click",()=>{
 
     search = document.getElementById("search").value;
     kind = document.getElementById("kind").value;
-
+    page=1
 
     getList(category.value,page,kind,search)
 

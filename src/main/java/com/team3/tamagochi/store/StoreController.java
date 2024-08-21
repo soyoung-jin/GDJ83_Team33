@@ -152,7 +152,6 @@ public class StoreController {
 	// 캐릭터 이미지 가져오기
 	@GetMapping("getImage")
 	public ResponseEntity<byte[]> getImage(ItemFileDTO itemFileDTO, HttpSession session) throws Exception {
-		System.out.println(itemFileDTO);
 
 		String realPath = session.getServletContext().getRealPath("/resources/img/item");
 
@@ -175,6 +174,8 @@ public class StoreController {
 		pager.setPerPage(6);
 
 		List<ItemDTO> list = storeService.getItemList(itemDTO, pager);
+		
+		System.out.println(list.size());
 
 		if (list == null) {
 			model.addAttribute("msg", "<h2 class=\"text-white\">결과값이 없습니다.</h2>");
@@ -210,6 +211,14 @@ public class StoreController {
 	// weaponDTO의 변수에 무기설명 변수가 더 있어 매개변수로 받아옴
 	@PostMapping("addItem")
 	public String addItem(ItemDTO itemDTO, MultipartFile[] attach, Model model, HttpSession session) throws Exception {
+		model.addAttribute("url", "addItem");
+		
+		for(MultipartFile mf:attach) {
+			if(mf.isEmpty()) {
+				model.addAttribute("result", "이미지 파일을 전부 추가해주세요.");
+				return"commons/message";
+			}
+		}
 
 		int result = storeService.addItem(itemDTO, attach, session);
 
@@ -218,34 +227,43 @@ public class StoreController {
 		} else {
 			model.addAttribute("result", "추가 실패");
 		}
-
-		model.addAttribute("url", "addItem");
 		return "commons/message";
 	}
 
 	@GetMapping("updateItem")
-	public String updateItem(ItemDTO itemDTO, Model model) throws Exception {
+	public String updateItem(ItemDTO itemDTO, Model model, HttpSession session) throws Exception {
 
 		itemDTO = storeService.getItemDetail(itemDTO);
+		
+		String path = session.getServletContext().getRealPath("/resources/img/item");
 
 		model.addAttribute("dto", itemDTO);
+		model.addAttribute("path", path);
 
 		return "store/addItem";
 	}
 
 	@PostMapping("updateItem")
-	public String updateItem(ItemDTO itemDTO, HttpServletRequest request) throws Exception {
-
-		int result = storeService.updateItem(itemDTO);
+	public String updateItem(ItemDTO itemDTO, MultipartFile[] attach, Model model, HttpSession session) throws Exception {
+		
+		for(MultipartFile mf:attach) {
+			if(mf.isEmpty()) {
+				model.addAttribute("result", "이미지 파일을 전부 추가해주세요.");
+				return"commons/message";
+			}
+		}
+		
+		int result = storeService.updateItem(itemDTO, attach, session);
 
 		if (result == 1) {
-			request.setAttribute("result", "수정 성공");
-		} else {
-			request.setAttribute("result", "수정 실패");
-			;
+			model.addAttribute("result", "수정 성공");
+		} else if(result == 0){
+			model.addAttribute("result", "수정 실패");
+		} else if(result == -1){
+			model.addAttribute("result", "이미지 등록이 안되어있음");
 		}
 
-		request.setAttribute("url", "itemDetail?item_num=" + itemDTO.getItem_num());
+		model.addAttribute("url", "itemDetail?item_num=" + itemDTO.getItem_num());
 
 		return "commons/message";
 	}

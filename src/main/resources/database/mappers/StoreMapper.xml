@@ -76,20 +76,16 @@
 		SELECT *
 		FROM ITEMFILE
 		WHERE ITEM_NUM = #{item_num}
+		ORDER BY FILE_NUM ASC
   	</select>
-
-  	
   
-  	<select id="getItemList" parameterType="Map" resultMap="itemlist">
+  	<select id="getItemList" parameterType="Map" resultType="ItemDTO">
   		SELECT *
   		FROM (SELECT ROWNUM R, C.*
 				FROM (SELECT *
 		  				FROM ITEM I
-		  					LEFT JOIN
-		  					ITEMFILE IF
-		  					ON (I.ITEM_NUM = IF.ITEM_NUM)
 		  				WHERE I.CATEGORY_NUM = #{itemDTO.category_num} AND I.ITEM_DEL = 0
-		  				ORDER BY I.ITEM_NUM DESC, IF.FILE_NUM ASC) C
+		  				ORDER BY I.ITEM_NUM DESC) C
 		  		<where>
   					<choose>
   						<when test="pager.kind=='k1'">
@@ -101,6 +97,15 @@
   					</choose>
   				</where>
   		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
+  	</select>
+  	
+  	<select id="getItemDetail" parameterType="ItemDTO" resultMap="itemlist">
+  		SELECT I.*, IF.*
+  		FROM ITEM I
+  			LEFT JOIN
+  			ITEMFILE IF
+  			ON (I.ITEM_NUM=IF.ITEM_NUM)
+  		WHERE I.ITEM_NUM=#{item_num}
   	</select>
   	
   	<resultMap type="ItemDTO" id="itemlist">
@@ -138,14 +143,6 @@
   		</where>
   	</select>
   	
-  	<select id="getItemDetail" parameterType="ItemDTO" resultMap="itemlist">
-  		SELECT I.*, IF.*
-  		FROM ITEM I
-  			LEFT JOIN
-  			ITEMFILE IF
-  			ON (I.ITEM_NUM=IF.ITEM_NUM)
-  		WHERE I.ITEM_NUM=#{item_num}
-  	</select>
   	
   	<insert id="addItem" parameterType="ItemDTO">
   		INSERT INTO ITEM (ITEM_NUM, CATEGORY_NUM, ITEM_NAME, ITEM_DESCRIPTION, ITEM_HP, ITEM_ATK, ITEM_DOD, ITEM_PRICE)
@@ -157,6 +154,20 @@
   		ITEM SET
   		ITEM_NAME=#{item_name}, ITEM_DESCRIPTION=#{item_description}, ITEM_HP=#{item_hp}, ITEM_ATK=#{item_atk}, ITEM_DOD=#{item_dod}, ITEM_PRICE=#{item_price}
   		WHERE ITEM_NUM = #{item_num}
+  	</update>
+  	
+  	<sql id="selectItemFileSql">
+  		SELECT ROWNUM R,IF.*
+  		FROM ITEMFILE IF
+  		WHERE ITEM_NUM=#{item_num}
+  		ORDER BY ITEM_NUM DESC, FILE_NUM ASC
+  	</sql>
+  	
+  	<update id="updateItemFile" parameterType="ItemFileDTO">
+  		UPDATE
+  		ITEMFILE SET
+  		FILE_NAME=#{file_name}, ORI_NAME=#{ori_name}
+  		WHERE FILE_NUM = #{file_num}
   	</update>
   	
   	<update id="deleteItem" parameterType="ItemDTO">
