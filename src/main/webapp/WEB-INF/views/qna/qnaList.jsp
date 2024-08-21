@@ -73,7 +73,7 @@
                     <c:choose>
                     	<c:when test="${list.question_del ne 1}">
                     		<td><a id= "anotice" href="qnaDetail?question_num=${list.question_num}"class="btn">
-                    			<c:forEach begin="1" end="${list.question_depth}">"--"</c:forEach>
+                    			<c:forEach begin="1" end="${list.question_depth}">↳ Re:</c:forEach>
                     			${list.question_title}</a>
                     		</td>
                     	</c:when>

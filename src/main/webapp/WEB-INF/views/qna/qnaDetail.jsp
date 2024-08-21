@@ -21,7 +21,7 @@
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-12 col-lg-12 col-md-12">
-              <form action="qnaAdd" class="tm-edit-product-form" method="post">
+              <form class="tm-edit-product-form" method="post">
                 <input type="hidden" value="${users_info.user_id}" name="user_id">
                 <div>
                   <div id="noticetitle"class="form-group mb-10">
@@ -62,12 +62,7 @@
                     <textarea 
                       class="form-control validate" name="question_contents" id="question_contents"rows="10" readonly style="background-color:#4e657a">${detail.question_contents}</textarea>
                   </div>
-                  
-                  
-                  
-                  
-                  
-              
+
               <div class="col-12" id="detail_back">
                 <a href="./qnaList" class="btn btn-primary btn-block text-uppercase">목록</a>
               </div>

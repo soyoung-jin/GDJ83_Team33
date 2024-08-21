@@ -20,7 +20,7 @@
             </div>
             <div class="row tm-edit-product-row">
               <div class="col-xl-12 col-lg-6 col-md-12">
-              <form action="qnaAdd" class="tm-edit-product-form" method="post">
+              <form  class="tm-edit-product-form" method="post">
                 <input type="hidden" value="${users_info.user_id}" name="user_id">
                   <div class="form-group mb-3">
                     <label
@@ -54,7 +54,7 @@
                 </div>
               </div>
               <div class="col-12">
-                <button type="submit" name="qnaAdd" class="btn btn-primary btn-block text-uppercase">등록</button>
+                <button class="btn btn-primary btn-block text-uppercase">등록</button>
               </div>
             </form>
             </div>

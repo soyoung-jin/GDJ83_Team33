@@ -50,15 +50,19 @@ public class QnaService {
 	}
 	
 	public int reply(QnaDTO qnaDTO, HttpSession session) throws Exception {
-		QnaDTO origin = (QnaDTO) qnaDAO.detail(qnaDTO);
+		QnaDTO origin = (QnaDTO)detail(qnaDTO);
 		// 부모를 가져와야 답글에서 insert할 수 있음
 		// 1. step에 1씩 업데이트
 		int result = qnaDAO.replyUpdate(origin);
 
 		// 2. 답글의 ref, step, depth를 세팅
-		System.out.println(origin.getQuestion_ref());
-		qnaDTO.setQuestion_step(origin.getQuestion_step() + 1);
-		qnaDTO.setQuestion_depth(origin.getQuestion_depth() + 1);
+		qnaDTO.setQuestion_ref(origin.getQuestion_ref());
+		qnaDTO.setQuestion_step(origin.getQuestion_step() + 1L);
+		qnaDTO.setQuestion_depth(origin.getQuestion_depth() + 1L);
+		
+		if(qnaDTO.getQuestion_contents() == null) {
+			qnaDTO.setQuestion_contents("");
+		}
 		result = qnaDAO.reply(qnaDTO);
 		
 		return result;
