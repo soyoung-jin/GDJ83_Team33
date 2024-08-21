@@ -29,7 +29,7 @@
 							</div>
 							
 							<div class="col-sm-5">
-								<input name="search" size="20" type="text" class="form-control" id="search">
+								<input name="search" size="20" type="text" class="form-control" id="search" placeholder="검색어를 입력하세요.">
 							</div>
 							<div class="col-auto">
 								<button type="submit" class="btn btn-primary" >검색</button>
@@ -67,31 +67,40 @@
 					<c:forEach var="list" items="${list}">
                   <tr>
                     <th scope="row"></th>
-                    <td>${list.question_num}</td>
-                    <td>${list.user_id}</td>
-                    <td><a id= "anotice" href="qnaDetail?question_num=${list.question_num}" class="btn" >${list.question_title}</a></td>
-                    <td>${list.question_create_date}</td>
-                    <td>${list.question_hit}</td>
-                    
+		              <td>${list.question_num}</td>
+		              <td>${list.user_id}</td>
+		                    
+                    <c:choose>
+                    	<c:when test="${list.question_del ne 1}">
+                    		<td><a id= "anotice" href="qnaDetail?question_num=${list.question_num}"class="btn">
+                    			<c:forEach begin="1" end="${list.question_depth}">"--"</c:forEach>
+                    			${list.question_title}</a>
+                    		</td>
+                    	</c:when>
+                    	<c:otherwise><td><a id="adelete" href="javascript:void(0)" class="btn">삭제된 글입니다.</a></td></c:otherwise>
+                    </c:choose>
+		                    <td>${list.question_create_date}</td>
+		                    <td>${list.question_hit}</td>
                   </tr>
                   </c:forEach>
                 </tbody>
               </table>
             </div>
             <!-- table container -->
-   <nav aria-label="Page navigation example">
+   		<nav aria-label="Page navigation example">
           <ul class="pagination justify-content-center">
-            <li class="page-item ${pager.pre ? '' : 'disabled'}"><a class="page-link" href="./questionList?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">Previous</a></li>
+            <li class="page-item ${pager.pre ? '' : 'disabled'}"><a class="page-link" href="./qnaList?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">Previous</a></li>
             <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-              <li class="page-item"><a class="page-link ${pager.page == i ? 'active' : ''  }" href="./questionList?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+              <li class="page-item"><a class="page-link ${pager.page == i ? 'active' : ''  }" href="./qnaList?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
             </c:forEach>
-            <li class="page-item ${pager.next ? '':'disabled'}"><a class="page-link" href="./questionList?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">Next</a></li>
+            <li class="page-item ${pager.next ? '':'disabled'}"><a class="page-link" href="./qnaList?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">Next</a></li>
           </ul>
-        </nav>         
+        </nav>  
+        	   
             <a
               href="./qnaAdd"
               class="btn btn-primary btn-block text-uppercase mb-3">문의사항 글쓰기</a>
-   
+   			
           </div>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 tm-block-col">

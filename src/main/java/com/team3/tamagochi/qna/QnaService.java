@@ -56,7 +56,7 @@ public class QnaService {
 		int result = qnaDAO.replyUpdate(origin);
 
 		// 2. 답글의 ref, step, depth를 세팅
-		qnaDTO.setQuestion_ref(origin.getQuestion_ref());
+		System.out.println(origin.getQuestion_ref());
 		qnaDTO.setQuestion_step(origin.getQuestion_step() + 1);
 		qnaDTO.setQuestion_depth(origin.getQuestion_depth() + 1);
 		result = qnaDAO.reply(qnaDTO);

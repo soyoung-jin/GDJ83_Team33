@@ -29,7 +29,7 @@
 							</div>
 							
 							<div class="col-sm-5">
-								<input name="search" size="20" type="text" class="form-control" id="search">
+								<input name="search" size="20" type="text" class="form-control" id="search" placeholder="검색어를 입력하세요.">
 							</div>
 							<div class="col-auto">
 								<button type="submit" class="btn btn-primary" >검색</button>
