@@ -5,6 +5,25 @@
   
   <mapper namespace="com.team3.tamagochi.store.StoreDAO">
   
+  	<insert id="addBag" parameterType="java.util.Map">
+  		INSERT INTO
+  		<choose>
+  			<when test="itemDTO.category_num == 0">
+  				MY_PET (PET_NUM, USER_ID, ITEM_NUM, PET_NAME, PET_SPC, PET_EXP, PET_LEVEL, PET_HP, PET_ATK, PET_DOD, PET_POP, PET_HUNGRY, PET_WASHROOM)
+  				VALUES (PET_SEQ.NEXTVAL, #{id}, #{itemDTO.item_num}, #{itemDTO.item_name}, #{itemDTO.item_name}, 0, 1, #{itemDTO.item_hp}, #{itemDTO.item_atk}, #{itemDTO.item_dod}, 0, 0, 0)
+  			</when>
+  			<otherwise>
+  				INVENTORY (INVENTORY_NUM, ITEM_NUM, USER_ID)
+  				VALUES (INVEN_SEQ.NEXTVAL, #{itemDTO.item_num}, #{id})
+  			</otherwise>
+  		</choose>
+  	</insert>
+  
+  	<insert id="addTransaction" parameterType="com.team3.tamagochi.users.TransactionDTO">
+  		INSERT INTO TRANSACTION (TRANSACTION_NUM, USER_ID, ITEM_NUM, TRANSACTION_AMOUNT, TRANSACTION_TYPE, TRANSACTION_ORDER)
+  		VALUES (TRANSACTION_SEQ.NEXTVAL, #{user_id}, #{item_num}, #{transaction_amount}, #{transaction_type}, #{transaction_order})
+  	</insert>
+  
   	<insert id="addfile" parameterType="ItemFileDTO">
   		INSERT INTO ITEMFILE (FILE_NUM, FILE_NAME, ORI_NAME, ITEM_NUM)
   		VALUES (ITEMFILE_SEQ.NEXTVAL, #{file_name}, #{ori_name}, #{item_num})
@@ -70,7 +89,7 @@
 		  					ITEMFILE IF
 		  					ON (I.ITEM_NUM = IF.ITEM_NUM)
 		  				WHERE I.CATEGORY_NUM = #{itemDTO.category_num} AND I.ITEM_DEL = 0
-		  				ORDER BY I.ITEM_NUM DESC) C
+		  				ORDER BY I.ITEM_NUM DESC, IF.FILE_NUM ASC) C
 		  		<where>
   					<choose>
   						<when test="pager.kind=='k1'">
@@ -94,11 +113,11 @@
   		<result column="ITEM_DOD" property="item_dod"/>
   		<result column="ITEM_PRICE" property="item_price"/>
   		
-  		<association property="itemFileDTO" javaType="ItemFileDTO">
-  			<id column="FILE_NUM" property="file_num"/>
+  		<collection property="itemFileDTOs" javaType="java.util.List" ofType="ItemFileDTO">
+  		  	<id column="FILE_NUM" property="file_num"/>
   			<result column="FILE_NAME" property="file_name"/>
   			<result column="ORI_NAME" property="ori_name"/>
-  		</association>
+  		</collection>
   	
   	</resultMap>
   	
