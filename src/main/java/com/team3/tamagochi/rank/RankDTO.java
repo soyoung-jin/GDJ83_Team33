@@ -1,5 +1,7 @@
 package com.team3.tamagochi.rank;
 
-public class RankDTO {
+import com.team3.tamagochi.users.UsersDTO;
+
+public class RankDTO extends UsersDTO {
 
 }
