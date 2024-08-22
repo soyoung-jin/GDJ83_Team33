@@ -148,6 +148,33 @@ public class UsersController {
 		return "commons/message";
 	}
 	
+	@GetMapping("changePW")
+	public void changePassword() throws Exception{}
+	
+	@PostMapping("changePW")
+	public String changePassword(Model model, HttpSession session, UsersDTO usersDTO, String new_pw) throws Exception{
+		
+		UsersDTO tempDTO = (UsersDTO)session.getAttribute("users_info");
+		usersDTO.setUser_id(tempDTO.getUser_id());
+		
+		usersDTO = usersService.checkPW(usersDTO);
+		
+		if(usersDTO != null) {
+			usersDTO.setUser_pw(new_pw);
+			int result = usersService.changePassword(usersDTO);
+			
+			if(result > 0) {
+				model.addAttribute("result", "비밀번호 변경이 완료되었습니다.");
+				model.addAttribute("url", "/users/mypage");
+			}
+		}else {
+			model.addAttribute("result", "입력하신 현재 비밀번호가 올바르지 않습니다.");
+			model.addAttribute("url", "/users/changePW");
+		}
+		
+		return "commons/message";
+	}
+	
 	
 	@GetMapping("deleteAccount")
 	public void deleteAccount() throws Exception{}

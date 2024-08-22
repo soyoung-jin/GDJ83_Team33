@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.team3.tamagochi.users.TransactionDTO;
 import com.team3.tamagochi.users.UsersDTO;
 
 @Repository
@@ -26,5 +27,11 @@ public class AdminDAO {
 	public UsersDTO getUserDetail(UsersDTO usersDTO) throws Exception{
 		
 		return sqlSession.selectOne(NAMESPACE + "getUserDetail", usersDTO);
+	}
+	
+	// 선택한 유저의 거래 내역 조회 메서드
+	public List<TransactionDTO> getUserTradeList(UsersDTO usersDTO) throws Exception{
+		
+		return sqlSession.selectList(NAMESPACE + "getUserTradeList", usersDTO);
 	}
 }

@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.team3.tamagochi.users.TransactionDTO;
 import com.team3.tamagochi.users.UsersDTO;
 
 @Controller
@@ -32,5 +34,13 @@ public class AdminController {
 		usersDTO = adminService.getUserDetail(usersDTO);
 		
 		model.addAttribute("usersDTO", usersDTO);
+	}
+	
+	@GetMapping("tradeList")
+	public void getUserTradeList(Model model, UsersDTO usersDTO) throws Exception{
+		
+		List<TransactionDTO> list = adminService.getUserTradeList(usersDTO);
+		
+		model.addAttribute("list", list);
 	}
 }

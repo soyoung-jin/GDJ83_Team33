@@ -87,7 +87,7 @@ user_id.addEventListener("blur", ()=>{
 
     // 아이디 정규식 검증 코드
     if(!regId.test(user_id.value)){
-        duplicate_check.innerHTML="아이디의 첫글자는 영문만 가능하며, 4자 이상 16자 미만의 영문/숫자/특수문자만 사용 가능합니다"
+        duplicate_check.innerHTML="아이디 첫 글자는 영문만 가능하며, 4~16자의 영문/숫자/특수문자만 사용 가능합니다"
         duplicate_check.classList="text-danger";
         user_id.value="";
         return;
