@@ -37,6 +37,12 @@ public class UsersDAO {
 		return sqlSession.update(NAMESPACE + "updateUsers", usersDTO);
 	}
 	
+	// 패스워드 변경 메서드
+	public int changePassword(UsersDTO usersDTO) throws Exception{
+		
+		return sqlSession.update(NAMESPACE + "changePassword", usersDTO);
+	}
+	
 	// 회원 탈퇴 메서드(데이터는 남아있으나 resign값을 0으로 만들어 더이상 로그인 하지 못하게 만듬)
 	public int deleteAccount(UsersDTO usersDTO) throws Exception{
 		

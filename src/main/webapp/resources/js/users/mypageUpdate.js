@@ -1,6 +1,5 @@
 const check = document.getElementById("check");
 const user_pw = document.getElementById("user_pw");
-const user_pw2 = document.getElementById("user_pw2");
 const user_name = document.getElementById("user_name");
 const user_nickname = document.getElementById("user_nickname");
 const user_phone = document.getElementById("user_phone");
@@ -19,13 +18,7 @@ const regEmail = /^[A-Za-z-0-9\-\.]+@[A-Za-z-0-9\-\.]+\.[A-Za-z-0-9]+$/;
 // 비밀번호가 맞는지 ajax를 통해 DB에서 검색을 실시
 check.addEventListener("click", ()=>{
 
-    if(user_pw.value != user_pw2.value){
-        user_pw.value="";
-        user_pw2.value="";
-        return;
-    }
-
-    if(user_pw.value=="" || user_pw2.value=="" || user_name.value=="" || user_nickname.value=="" ||
+    if(user_name.value=="" || user_nickname.value=="" ||
         user_phone.value=="" || user_email.value ==""){
             alert("입력하지 않은 칸이 존재합니다.");
             return;
@@ -45,6 +38,11 @@ check.addEventListener("click", ()=>{
         return;
     }
 
+    // 소셜 연동 계정은 패스워드 입력 없이 수정이 가능
+    if(user_pw.value=="소셜 연동 계정입니다"){
+        form.submit();
+        return;
+    }
     // 입력한 패스워드가 올바른지 DB에 검색해서 확인하는 코드
     let pw = user_pw.value;
     fetch("/users/checkPW?user_pw=" + pw, {
@@ -57,21 +55,6 @@ check.addEventListener("click", ()=>{
         }else{
             alert("해당 계정의 비밀번호를 정확히 입력해주세요.")
             user_pw.value="";
-            user_pw2.value="";
         }
     })
-})
-
-
-// 1차 비밀번호와 2차 비밀번호가 같은지 비교하는 이벤트
-user_pw2.addEventListener("blur", ()=>{
-
-    if(user_pw.value != user_pw2.value){
-        password_check.innerHTML="비밀번호를 일치시켜 주세요";
-        password_check.classList="text-danger";
-        user_pw2.value="";
-    }else{
-        password_check.innerHTML="비밀번호가 동일합니다.";
-        password_check.classList="text-primary";
-    }
 })

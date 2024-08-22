@@ -12,22 +12,8 @@
 			<!-- row -->
 			<div class="container mt-5">
 				<!-- row -->
-				<div class="row tm-content-row">
-					<div class="tm-block-col tm-col-avatar">
-						<div class="tm-bg-primary-dark tm-block tm-block-avatar">
-							<h2 class="tm-block-title">Change Avatar</h2>
-							<div class="tm-avatar-container">
-								<img src="img/avatar.png" alt="Avatar"
-									class="tm-avatar img-fluid mb-4" /> <a
-									href="#" class="tm-avatar-delete-link"> <i
-									class="far fa-trash-alt tm-product-delete-icon"></i>
-								</a>
-							</div>
-							<button class="btn btn-primary btn-block text-uppercase">
-								Upload New Photo</button>
-						</div>
-					</div>
-					<div class="tm-block-col tm-col-account-settings">
+				<div class="row tm-content-row justify-content-center">
+					<div class="tm-block-col tm-col-account-settings ">
 						<div class="tm-bg-primary-dark tm-block tm-block-settings">
 							<h2 class="tm-block-title">내 정보</h2>
 							<form action="/users/update" method="post" class="tm-signup-form row" id="form">
@@ -41,17 +27,7 @@
 									<input id="user_name" name="user_name" value="${usersDTO.user_name }"
 									type="text" class="form-control validate" />
 								</div>
-								<div class="form-group col-lg-6">
-									<label for="user_pw">비밀번호</label>
-									<input id="user_pw" name="user_pw"
-										type="password" class="form-control validate" />
-								</div>
-								<div class="form-group col-lg-6">
-									<label for="user_pw2">비밀번호 재확인</label>
-									<input id="user_pw2" name="user_pw2"
-										type="password" class="form-control validate" />
-										<div id="password-check"></div>
-								</div>
+								
 								<div class="form-group col-lg-6">
 									<label for="user_nickname">닉네임</label>
 									<input id="user_nickname" name="user_nickname" value="${usersDTO.user_nickname }"
@@ -68,6 +44,20 @@
 									type="email" class="form-control validate" />
 								</div>
 								<div class="form-group col-lg-6">
+									<label for="user_pw">현재 비밀번호</label>
+									<c:if test="${empty usersDTO.user_pw}">
+										<input id="user_pw" name="user_pw" value="소셜 연동 계정입니다"
+											type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
+									</c:if>
+									<c:if test="${not empty usersDTO.user_pw}">
+										<input id="user_pw" name="user_pw"
+											type="password" class="form-control validate" />
+									</c:if>
+								</div>
+								<c:if test="${not empty usersDTO.user_pw}">
+									<div class="col-3"><a href="/users/changePW">비밀번호 변경</a></div>
+								</c:if>
+								<div class="form-group col-12">
 									<label class="tm-hide-sm">&nbsp;</label>
 									<a type="button" class="btn btn-danger btn-block text-uppercase"
 									href="/users/deleteAccount">

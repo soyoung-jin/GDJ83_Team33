@@ -13,16 +13,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col">
-					<p class="text-white mt-5 mb-5">
-						Welcome, <b>Admin</b>
-					</p>
+					<p class="text-white mt-5 mb-5"></p>
 				</div>
 			</div>
 			<div class="row ">
 				<main class="form-signin w-100 m-auto">
 					<div class="col-6 login">
 						<form class="form" action="/users/register" method="post" id="form">
-							<h1 class="h3 mb-3 fw-normal">Please Register</h1>
+							<h1 class="h3 mb-3 fw-normal">회원가입 후 게임을 즐겨보세요!</h1>
 
 							<div class="form-floating">
 								<input type="text" class="form-control" id="user_id"
@@ -32,7 +30,7 @@
 							</div>
 							<div class="form-floating">
 								<input type="password" class="form-control" id="user_pw"
-								name="user_pw">
+								name="user_pw" placeholder="6자 이상 입력">
 								<label for="user_pw">비밀번호</label>
 								<div id="length-check"></div>
 							</div>
@@ -43,7 +41,7 @@
 							</div>
 							<div class="form-floating">
 								<input type="text" class="form-control" id="user_name"
-								name="user_name">
+								name="user_name" placeholder="한글만 입력">
 								<label for="user_name">이름</label>
 								<div id="regDivName"></div>
 							</div>
@@ -54,13 +52,13 @@
 							</div>
 							<div class="form-floating">
 								<input type="tel" class="form-control" id="user_phone"
-								name="user_phone">
+								name="user_phone" placeholder="010-1234-5678">
 								<label for="user_phone">전화 번호</label>
 								<div id="regDivPhone"></div>
 							</div>
 							<div class="form-floating">
 								<input type="email" class="form-control" id="user_email"
-								name="user_email" placeholder="name@example.com" >
+								name="user_email" placeholder="email@example.com" >
 								<label for="user_email">이메일</label>
 								<div id="regDivEmail"></div>
 							</div>
