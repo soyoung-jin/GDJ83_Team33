@@ -11,22 +11,11 @@
 			FROM(SELECT *
 				FROM QUESTION
 				<include refid="searchSql" />
-
-		<choose>
-			<when test="order == 1">
-				ORDER BY QUESTION_CREATE_DATE
-				DESC
-			</when>
-			<when test="order == 2">
-				ORDER BY QUESTION_HIT
-				DESC
-			</when>
-			<otherwise>
-				ORDER BY QUESTION_REF DESC,
+				
+			ORDER BY QUESTION_REF DESC,
 						QUESTION_STEP ASC
-			</otherwise>
-		</choose>
-		) q
+
+				) q
 		)
 		WHERE r
 		BETWEEN #{startRow} AND #{lastRow}
@@ -101,9 +90,9 @@
 		
   		INSERT INTO QUESTION
   		(
-  		BOARD_SEQ.NEXTVAL, USER_ID, QUESTION_TITLE,QUESTION_CONTENTS,QUESTION_REF,QUESTION_STEP, QUESTION_DEPTH
+  		QUESTION_NUM, USER_ID, QUESTION_TITLE,QUESTION_CONTENTS,QUESTION_REF,QUESTION_STEP, QUESTION_DEPTH, QUESTION_DEL
   		)
-  		VALUES (#{question_num}, #{user_id}, #{question_title},#{question_contents},#{question_ref}, #{question_step}, #{question_depth})
+  		VALUES (#{question_num}, #{user_id}, #{question_title},#{question_contents},#{question_num}, 0,0,0)
   	
   	
   	</insert>
@@ -129,7 +118,7 @@
   		</selectKey>
   		INSERT INTO QUESTION
   		(
-	  		BOARD_SEQ.NEXTVAL, USER_ID, QUESTION_TITLE,QUESTION_CONTENTS,QUESTION_REF,QUESTION_STEP, QUESTION_DEPTH
+	  		QUESTION_NUM, USER_ID, QUESTION_TITLE,QUESTION_CONTENTS,QUESTION_REF,QUESTION_STEP, QUESTION_DEPTH
   		) 
   		VALUES 
   		(
@@ -141,7 +130,9 @@
   		UPDATE 
   			QUESTION 
   		SET 
-  			QUESTION_STEP = STEP + 1 WHERE QUESTION_REF= #{question_ref} AND QUESTION_STEP>#{question_step}
+  			QUESTION_STEP = QUESTION_STEP + 1 
+  		WHERE 
+  			QUESTION_REF= #{question_ref} AND QUESTION_STEP>#{question_step}
   	</update>
   	
 
