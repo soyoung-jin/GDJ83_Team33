@@ -23,5 +23,10 @@ public class RankService {
 		
 		return rankDAO.detail(myPetDTO);
 	}
+	
+	public int clickLike(MyPetDTO myPetDTO) throws Exception{
+		
+		return rankDAO.clickLike(myPetDTO);
+	}
 
 }

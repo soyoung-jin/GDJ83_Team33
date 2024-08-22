@@ -15,7 +15,7 @@
 
 					<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 						<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
-							<div class="row justify-content-center">
+							<div class="row justify-content-center" id="go">
 
 							<c:forEach items="${list}" var="list">
 								<!-- 브라우저 사이즈에 따라 column 길이 변화 -->
@@ -34,12 +34,12 @@
 											<h5 class="card-title">닉네임: ${list.usersDTO.user_nickname}</h5>
 											<h5 class="card-title">펫 이름: ${list.pet_name }</h5>
 											<h5 class="card-title">레벨: ${list.pet_level }</h5>
-											<h5 class="card-title">인기도: ${list.pet_pop }</h5>
+											<h5 class="card-title">인기도: <p style="display:inline-block;"> ${list.pet_pop }</p></h5>
 												</c:when>
 											</c:choose>
-													<a id="arankboard" href="../ingame/fight?item_num=${list.item_num}"><img style="width:40%" src="/resources/img/rankboard/playimg.png"></a> 
-													<a id="arankboard2" href="#"><img style="width:40%;" src="/resources/img/rankboard/likeimg.png"></a> 
-																							
+													<a id="rankplay" href="../ingame/fight?item_num=${list.item_num}"><img style="width:40%" src="/resources/img/rankboard/playimg.png"></a> 
+													<a id="ranklike" href="javascript:void(0);" class="pop_btn" data-pet-num="${list.pet_num}"><img class="pop_btn" style="width:40%;" src="/resources/img/rankboard/likeimg.png"></a> 
+																								
 												
 										</div>
 									</div>
@@ -59,6 +59,7 @@
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>
 	<script src="/resources/js/users/myPetList.js"></script>
+	<script src="/resources/js/rank/rankboard.js"></script>
 </body>
 </html>
 	

@@ -6,10 +6,12 @@
 	<c:import url="../template/header.jsp"></c:import>
 </head>
 <body id="reportsPage" class="font">
-	<div class="" id="home">
+	
 		<c:import url="../template/topbar.jsp"></c:import>
-
-
+<div class="container">
+<div class="row">
+	<div class="col">
+				<h3 class="text-white mt-5 mb-5">${myPetDTO.user_id}님의 캐릭터 정보</h3>
 		<div class="container mt-5">		
 					<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 
@@ -81,6 +83,8 @@
 		</div>
 	</div>
 		<!-- row -->
+	</div>
+	</div>
 	</div>
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>
