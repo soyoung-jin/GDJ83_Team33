@@ -25,7 +25,7 @@
     position: absolute; /*부모 태그를 기준으로 한 위치 - petParent div*/
     left: 25%;
     top: 40%;
-    cursor: pointer;
+    
 }
 
 #enemyImg {
@@ -33,7 +33,7 @@
     position: absolute; /*부모 태그를 기준으로 한 위치 - petParent div*/
     left: 65%;
     top: 40%;
-    cursor: pointer;
+    
 }
 
 #lineParent {
@@ -62,11 +62,14 @@
     top: 35%;
 }
 
-#fightBtn {
-    padding-top: 10px;
-    text-align: center;
-}
+
 
 #clickMe {
     color: white;
+    text-align: center;
+}
+
+
+#fightBtnParent {
+    text-align: center;
 }

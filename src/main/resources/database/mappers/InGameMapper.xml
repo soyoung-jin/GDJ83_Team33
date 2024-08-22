@@ -33,4 +33,86 @@
   		UPDATE MY_PET SET PET_LEVEL = PET_LEVEL + 1, PET_EXP = 0 WHERE PET_NUM = #{pet_num}
   	</update>
   	
+  	<select id="getPetImg" parameterType="UsersDTO" resultMap="petImage">
+  		SELECT * FROM 
+			MY_PET mp 
+			LEFT JOIN 
+			ITEMFILE ITF
+			ON mp.ITEM_NUM = itf.ITEM_NUM 
+		WHERE mp.PET_SELECTED =1 AND mp.USER_ID = #{user_id}
+  	</select>
+  	
+  	<resultMap type="MyPetDTO" id="petImage">
+  		<id column="PET_NUM" property="pet_num"/>
+  		<result column="USER_ID" property="user_id"></result>
+  		<result column="ITEM_NUM" property="item_num"></result>
+  		<result column="PET_NAME" property="pet_name"></result>
+  		<result column="PET_SPC" property="pet_spc"></result>
+  		<result column="PET_EXP" property="pet_exp"></result>
+  		<result column="PET_LEVEL" property="pet_level"></result>
+  		<result column="PET_HP" property="pet_hp"></result>
+  		<result column="PET_ATK" property="pet_atk"></result>
+  		<result column="PET_DOD" property="pet_dod"></result>
+  		<result column="PET_POP" property="pet_pop"></result>
+  		<result column="PET_HUNGRY" property="pet_hungry"></result>
+  		<result column="PET_SELECTED" property="pet_selected"></result>
+  		<result column="PET_WASHROOM" property="pet_washroom"></result>
+  		<result column="ADD_HP" property="add_hp"></result>
+  		<result column="ADD_ATK" property="add_atk"></result>
+  		<result column="ADD_DOD" property="add_dod"></result>
+  		<result column="EQUIP_NUM" property="equip_num"></result>
+  		
+  		
+  		<association property="itemFileDTO" javaType="ItemFileDTO">
+  			<id column="FILE_NUM" property="file_num"/>
+  			<result column="FILE_NAME" property="file_name"/>
+  			<result column="ORI_NAME" property="ori_name"/>
+  		</association>
+  		
+  	</resultMap>
+  	
+  	<select id="getWeaponImg" parameterType="UsersDTO" resultMap="weaponImage">
+  		SELECT * FROM 
+			MY_PET mp 
+			LEFT JOIN 
+			INVENTORY i 
+			ON mp.EQUIP_NUM = i.INVENTORY_NUM 
+			LEFT JOIN 
+			ITEMFILE itf 
+			ON i.ITEM_NUM = itf.ITEM_NUM 
+		WHERE mp.PET_SELECTED =1 AND mp.USER_ID = #{user_id}
+  	</select>
+  	
+  	<resultMap type="MyPetDTO" id="weaponImage">
+  		<id column="PET_NUM" property="pet_num"/>
+  		<result column="USER_ID" property="user_id"></result>
+  		<result column="ITEM_NUM" property="item_num"></result>
+  		<result column="PET_NAME" property="pet_name"></result>
+  		<result column="PET_SPC" property="pet_spc"></result>
+  		<result column="PET_EXP" property="pet_exp"></result>
+  		<result column="PET_LEVEL" property="pet_level"></result>
+  		<result column="PET_HP" property="pet_hp"></result>
+  		<result column="PET_ATK" property="pet_atk"></result>
+  		<result column="PET_DOD" property="pet_dod"></result>
+  		<result column="PET_POP" property="pet_pop"></result>
+  		<result column="PET_HUNGRY" property="pet_hungry"></result>
+  		<result column="PET_SELECTED" property="pet_selected"></result>
+  		<result column="PET_WASHROOM" property="pet_washroom"></result>
+  		<result column="ADD_HP" property="add_hp"></result>
+  		<result column="ADD_ATK" property="add_atk"></result>
+  		<result column="ADD_DOD" property="add_dod"></result>
+  		<result column="EQUIP_NUM" property="equip_num"></result>
+  		
+  		<association property="inventoryDTO" javaType="InventoryDTO">
+  			<id column="INVENTORY_NUM" property="inventory_num"></id>
+  		</association>
+  		
+  		<association property="itemFileDTO" javaType="ItemFileDTO">
+  			<id column="FILE_NUM" property="file_num"/>
+  			<result column="FILE_NAME" property="file_name"/>
+  			<result column="ORI_NAME" property="ori_name"/>
+  		</association>
+  		
+  	</resultMap>
+  	
   </mapper>

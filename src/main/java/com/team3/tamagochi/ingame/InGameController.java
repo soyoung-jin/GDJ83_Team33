@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team3.tamagochi.mypet.MyPetDTO;
+import com.team3.tamagochi.store.ItemDTO;
 import com.team3.tamagochi.store.ItemFileDTO;
+import com.team3.tamagochi.store.StoreService;
 import com.team3.tamagochi.users.UsersDTO;
 
 @Controller
@@ -26,6 +28,9 @@ public class InGameController {
 	
 	@Autowired
 	private InGameService inGameService;
+	
+	@Autowired
+	private StoreService storeService;
 	
 	// 캐릭터 이미지 가져오기
 //	@GetMapping("getImage")
@@ -48,8 +53,12 @@ public class InGameController {
 //	}
 	
 	@GetMapping("fight")
-	public void fight() throws Exception{
+	@ResponseBody
+	public void fight(HttpSession session, ItemDTO itemDTO) throws Exception{
 		
+		itemDTO = storeService.getItemDetail(itemDTO);
+		
+		System.out.println(itemDTO.getItemFileDTOs().get(1).getOri_name());
 	}
 	
 //	@GetMapping("fight")
