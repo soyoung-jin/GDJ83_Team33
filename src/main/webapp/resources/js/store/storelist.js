@@ -11,22 +11,18 @@ let kind = document.getElementById("kind").value;
 let page = 1;
 
 //디테일 모달 요청
-itemListdiv.addEventListener("click", (e)=>{
-    if(e.target.classList.contains("imgSize")){
-        let itemnum= e.target.getAttribute("data-inum");
+function getItemNum(itemnum){
 
-        fetch("itemDetail?item_num="+itemnum,{
-            method:"get"
-        }).then(r=>r.text())
-        .then(r=>{
-            console.log(r)
+    fetch("itemDetail?item_num="+itemnum,{
+        method:"get"
+    }).then(r=>r.text())
+    .then(r=>{
+        modalContents.innerHTML=r
 
-            modalContents.innerHTML=r
+        modalBtn.click()
+    })
 
-            modalBtn.click()
-        })
-    }
-})
+}
 
 //결제 버튼
 itemListdiv.addEventListener("click", (e)=>{

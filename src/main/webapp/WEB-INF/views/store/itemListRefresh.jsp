@@ -18,7 +18,8 @@
 						    <li data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide-to="2"></li>
 						    <li data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide-to="3"></li>
 						  </ol>
-						  <div class="carousel-inner">
+						  <a onclick="getItemNum('${itemDTO.item_num}')" style="cursor:pointer;">
+						  <div class="carousel-inner" >
 						    <div class="carousel-item active">
 						      <img src="getImage?file_name=${not empty itemDTO.itemFileDTOs[0]?itemDTO.itemFileDTOs[0].file_name:'default.gif'}" data-inum="${itemDTO.item_num}" class="d-block w-100 imgSize" alt="...">
 						    </div>
@@ -32,6 +33,7 @@
 						      <img src="getImage?file_name=${not empty itemDTO.itemFileDTOs[3]?itemDTO.itemFileDTOs[3].file_name:'default.gif'}" data-inum="${itemDTO.item_num}" class="d-block w-100 imgSize" alt="...">
 						    </div>
 						  </div>
+						</a>
 						  <c:if test="${itemDTO.category_num eq 0}">
 							  <a class="carousel-control-prev atime" type="button" data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide="prev">
 							    <span class="carouselIcon" aria-hidden="true"><img src="/resources/img/item/arrow-pre.png"></span>
