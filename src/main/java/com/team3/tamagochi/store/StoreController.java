@@ -156,6 +156,10 @@ public class StoreController {
 		String realPath = session.getServletContext().getRealPath("/resources/img/item");
 
 		File file = new File(realPath, itemFileDTO.getFile_name());
+		
+		if(!file.exists()) {
+			file = new File(realPath, "default.gif");
+		}
 
 		ResponseEntity<byte[]> result = null;
 
@@ -164,7 +168,6 @@ public class StoreController {
 		header.add("Content-type", Files.probeContentType(file.toPath()));
 
 		result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-
 		return result;
 	}
 

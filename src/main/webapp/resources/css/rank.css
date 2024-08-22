@@ -1,0 +1,14 @@
+@charset "UTF-8";
+#arankboard{
+	display: inline-block;
+}
+#arankboard2{
+	display: inline-block;
+	
+}
+
+#arankboard2 >img{
+	display: inline-block;
+	width:20%;
+	height:20%;
+}

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+
+
 		<div class="row col-12">
 	        <!-- List<WeaponDTO>에서 DTO 하나씩 꺼내옴 -->
 			<c:forEach items="${itemList}" var="itemDTO">
@@ -9,35 +11,40 @@
 					<!-- 카드형 태그 -->
 					<div class="card h-10" >
 						<!-- 이미지 리스트 -->
-						<div id="carouselExampleIndicators${itemDTO.item_name}" class="carousel slide" data-ride="carousel">
+						<div id="carouselExampleIndicators${itemDTO.item_num}" class="carousel slide" data-ride="carousel" data-interval="false">
 						  <ol class="carousel-indicators">
-						    <li data-target="#carouselExampleIndicators${itemDTO.item_name}" data-slide-to="0" class="active"></li>
-						    <li data-target="#carouselExampleIndicators${itemDTO.item_name}" data-slide-to="1"></li>
-						    <li data-target="#carouselExampleIndicators${itemDTO.item_name}" data-slide-to="2"></li>
-						    <li data-target="#carouselExampleIndicators${itemDTO.item_name}" data-slide-to="3"></li>
+						    <li data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide-to="0" class="active"></li>
+						    <li data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide-to="1"></li>
+						    <li data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide-to="2"></li>
+						    <li data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide-to="3"></li>
 						  </ol>
 						  <div class="carousel-inner">
+						  <a href="itemDetail?item_num=${itemDTO.item_num}" onmouseover="detailModal()">
 						    <div class="carousel-item active">
-						      <img src="getImage?file_name=${not empty itemDTO.itemFileDTOs?itemDTO.itemFileDTOs[0].file_name:'default.gif'}" class="d-block w-100" alt="...">
+						      <img src="getImage?file_name=${not empty itemDTO.itemFileDTOs[0]?itemDTO.itemFileDTOs[0].file_name:'default.gif'}" class="d-block w-100 imgSize" alt="...">
 						    </div>
 						    <div class="carousel-item">
-						      <img src="getImage?file_name=${not empty itemDTO.itemFileDTOs?itemDTO.itemFileDTOs[1].file_name:'default.gif'}" class="d-block w-100" alt="...">
+						      <img src="getImage?file_name=${not empty itemDTO.itemFileDTOs[1]?itemDTO.itemFileDTOs[1].file_name:'default.gif'}" class="d-block w-100 imgSize" alt="...">
 						    </div>
 						    <div class="carousel-item">
-						      <img src="getImage?file_name=${not empty itemDTO.itemFileDTOs?itemDTO.itemFileDTOs[2].file_name:'default.gif'}" class="d-block w-100" alt="...">
+						      <img src="getImage?file_name=${not empty itemDTO.itemFileDTOs[2]?itemDTO.itemFileDTOs[2].file_name:'default.gif'}" class="d-block w-100 imgSize" alt="...">
 						    </div>
 						    <div class="carousel-item">
-						      <img src="getImage?file_name=${not empty itemDTO.itemFileDTOs?itemDTO.itemFileDTOs[3].file_name:'default.gif'}" class="d-block w-100" alt="...">
+						      <img src="getImage?file_name=${not empty itemDTO.itemFileDTOs[3]?itemDTO.itemFileDTOs[3].file_name:'default.gif'}" class="d-block w-100 imgSize" alt="...">
 						    </div>
+						   </a>
 						  </div>
-						  <button class="btn btn-primary carousel-control-prev" type="button" data-target="#carouselExampleIndicators${itemDTO.item_name}" data-slide="prev">
-						    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						    <!-- <span class="sr-only">Previous</span -->>
-						  </button>
-						  <button class="btn btn-primary carousel-control-next" type="button" data-target="#carouselExampleIndicators${itemDTO.item_name}" data-slide="next">
-						    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-						    <!-- <span class="sr-only">Next</span> -->
-						  </button>
+						  <c:if test="${itemDTO.category_num eq 0}">
+							  <a class="carousel-control-prev atime" type="button" data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide="prev">
+							    <span class="carouselIcon" aria-hidden="true"><img src="/resources/img/item/arrow-pre.png"></span>
+							    <!-- <span class="sr-only">Previous</span -->
+							  </a>
+							  
+							  <a class="carousel-control-next atime" type="button" data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide="next">
+							    <span class="carouselIcon" aria-hidden="true"><img src="/resources/img/item/arrow-next.png"></span>
+							    <!-- <span class="sr-only">Next</span> -->
+							  </a>
+							</c:if>
 						</div>
 						<!-- 이미지 리스트 -->
 					
@@ -74,3 +81,4 @@
 		</div>
 			<!-- /페이징 -->
 			<!-- /페이징 -->
+

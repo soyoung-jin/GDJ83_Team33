@@ -4,18 +4,48 @@
 <head>
 	<title>Home</title>
 	<c:import url="../template/header.jsp"></c:import>
+	<style type="text/css">
+		.imgSize {
+			height: 270px;
+		}
+	
+	</style>
 </head>
 <body id="reportsPage" class="font">
 	<div class="" id="home">
 	<c:import url="../template/topbar.jsp"></c:import>
 	
 	<div class="container">
+		        <a class="btn btn-primary" href="updateItem?item_num=${dto.item_num}">수정</a>
+	            <a class="btn btn-primary" href="deleteItem?item_num=${dto.item_num}">삭제</a>
         <div class="row">
             <div class="col">
                 <h1 class="text-white mt-5 mb-5">Item Detail</h1>
-		        <a class="btn btn-primary" href="updateItem?item_num=${dto.item_num}">수정</a>
-	            <a class="btn btn-primary" href="deleteItem?item_num=${dto.item_num}">삭제</a>
-                <img alt="" width="300" src="/resources/img/item/${dto.itemFileDTOs[0].file_name}">
+                <div class="row justify-content-center">
+                <c:forEach begin="0" end="${dto.category_num==0?'3':'0'}" step="1" var="i">
+                	<div class="${dto.category_num==0?'col':'col-3'}">
+		                <div class="card">
+						  <img src="getImage?file_name=${not empty dto.itemFileDTOs[i]?dto.itemFileDTOs[i].file_name:'default.gif'}" class="card-img-top imgSize" alt="아이템 이미지">
+						  <div class="card-body">
+							  <c:choose>
+							  	<c:when test="${i==0}">
+							  		<h5 class="card-title">${dto.category_num==0?'알':''}</h5>		  	
+							  	</c:when>
+							  	<c:when test="${i==1}">
+							  		<h5 class="card-title">성장기</h5>		  	
+							  	</c:when>
+							  	<c:when test="${i==2}">
+							  		<h5 class="card-title">반항기</h5>		  	
+							  	</c:when>
+							  	<c:when test="${i==3}">
+							  		<h5 class="card-title">으른</h5>		  	
+							  	</c:when>
+							  </c:choose>
+						  </div>
+						</div>
+					</div>
+				</c:forEach>
+				</div>
 				<table class="table">
 					<thead>
 						<tr>
