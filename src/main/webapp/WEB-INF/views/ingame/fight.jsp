@@ -4,6 +4,7 @@
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" href="/resources/css/fight.css">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 	<c:import url="../template/header.jsp"></c:import>
 </head>
 <body id="reportsPage" class="font">
@@ -24,7 +25,8 @@
 					<h3 id="line">준비됐다</h3>
 				</div>
 				
-				<img src="/resources/img/ingame/ex2.gif" alt="" id="petImg" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="공격~">
+				<img src="/resources/img/ingame/ex2.gif" alt="" id="petImg" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="무기를 드래그해서 공격하세요">
+				
 				<img src="/resources/img/ingame/weapon3.png" alt="" id="weaponImg">
 				
 				
@@ -32,7 +34,7 @@
 
 			<div id="enemyParent">
 				<%-- <img src="getImage?file_name=${itemDTO.itemFileDTOs[1].file_name}" alt="..."> --%>
-				<div id="lineEnemyParent">
+				<div id="lineEnemyParent" class="droppable">
 					<h3 id="enemyLine">나도 준비됐다</h3>
 				</div>
 				<img src="/resources/img/character/Character4_4.gif" alt="" id="enemyImg">

@@ -21,7 +21,7 @@ const clickMe = document.getElementById("clickMe");
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
-
+//함수로 fetch만들어서 
 
 fightBtn.addEventListener("click", ()=>{
     lineParent.remove();
@@ -35,5 +35,60 @@ petImg.addEventListener("click", ()=>{
     
 })
 
+let currentDroppable = null;
+
+weaponImg.onmousedown = function(e) {
+    let x = e.clientX - weaponImg.getBoundingClientRect().left;
+    let y = e.clientY - weaponImg.getBoundingClientRect().top;
+
+    moveAt(e.pageX, e.pageY);
+
+    function moveAt(pageX, pageY) {
+        weaponImg.style.left = pageX - x + 'px';
+        weaponImg.style.top = pageY - y + 'px';
+     }
+
+     function onMouseMove(event) {
+        moveAt(event.pageX, event.pageY);
+     
+        weaponImg.hidden = true;
+        let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+        weaponImg.hidden = false;
+     
+        
+        if (!elemBelow) return;
+     
+        let droppableBelow = elemBelow.closest('.droppable');
+       
+        if (currentDroppable != droppableBelow) {
+           if (currentDroppable) { 
+              
+              leaveDroppable(currentDroppable);
+           }
+           currentDroppable = droppableBelow;
+           if (currentDroppable) { 
+              enterDroppable(currentDroppable);
+           }
+        }
+    }
+        document.addEventListener('mousemove', onMouseMove);
+       
+        weaponImg.onmouseup = function () {
+           document.removeEventListener('mousemove', onMouseMove);
+           weaponImg.onmouseup = null;
+        };
+     
+     }
 
 
+function enterDroppable(elem) {
+ elem.style.background = 'pink';
+}
+
+function leaveDroppable(elem) {
+ elem.style.background = '';
+}
+
+weaponImg.ondragstart = function () {
+ return false;
+};
