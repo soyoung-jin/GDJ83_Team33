@@ -20,6 +20,11 @@
   		
   		<typeAlias type="com.team3.tamagochi.notice.NoticeDTO" alias="NoticeDTO"/>
   		<typeAlias type="com.team3.tamagochi.qna.QnaDTO" alias="QnaDTO"/>
+  		<typeAlias type="com.team3.tamagochi.rank.RankDTO" alias="RankDTO"/>
+  		<typeAlias type="com.team3.tamagochi.userboard.UserBoardDTO" alias="UserBoardDTO"/>
+  		<typeAlias type="com.team3.tamagochi.userboard.UserBoardCommentDTO" alias="UserBoardCommentDTO"/>
+  		
+  		
   		
   		
   		<typeAlias type="com.team3.tamagochi.mypet.MyPetDTO" alias="MyPetDTO"/>

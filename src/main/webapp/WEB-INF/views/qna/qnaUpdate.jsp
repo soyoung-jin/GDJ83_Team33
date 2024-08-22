@@ -22,7 +22,7 @@
             <div class="row tm-edit-product-row">
               <div class="col-xl-12 col-lg-6 col-md-12">
               <form action="./qnaUpdate" class="tm-edit-product-form" method="post">
-                <input type="hidden" value="${detail_question_num}" name="question_num">
+                <input type="hidden" value="${detail.question_num}" name="question_num">
                   <div class="form-group mb-3">
                     <label
                       for="name"
