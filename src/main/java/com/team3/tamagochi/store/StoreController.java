@@ -200,11 +200,13 @@ public class StoreController {
 	// Item 상세정보 조회
 	@GetMapping("itemDetail")
 	// category 리스트 조회 때 생긴 parameter 재사용
-	public void getItemDetail(ItemDTO itemDTO, Model model) throws Exception {
+	public String getItemDetail(ItemDTO itemDTO, Model model) throws Exception {
 
 		itemDTO = storeService.getItemDetail(itemDTO);
 
 		model.addAttribute("dto", itemDTO);
+		
+		return "store/itemDetail";
 	}
 
 	@GetMapping("addItem")
