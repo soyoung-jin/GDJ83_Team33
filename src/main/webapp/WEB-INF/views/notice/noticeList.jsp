@@ -155,7 +155,7 @@
     
     $(function() {
         $(".tm-notice-lank").on("click", function() {
-          window.location.href = "../lank/lankList";
+          window.location.href = "../rank/rankList";
         });
       });</script>
       

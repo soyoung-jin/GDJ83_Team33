@@ -14,7 +14,7 @@
 					<h1 class="text-white mt-5 mb-5">랭킹 게시판</h1>
 
 					<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-						<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
+						<div class="col-sm-5 col-md-5 col-lg-5 col-xl-12 tm-block-col">
 							<div class="row justify-content-center" id="go">
 
 							<c:forEach items="${list}" var="list">
@@ -55,6 +55,82 @@
 				</div>
 			</div>
 		</div>
+		<div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 tm-block-col">
+          <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
+            <h2 class="tm-block-title">게시판 카테고리</h2>
+            <div class="tm-product-table-container">
+              <table class="table table-hover tm-table-small tm-product-table">
+                <tbody>
+                  <tr>
+                    <td class="tm-notice-notice">공지사항</td>
+                    <td class="text-center">
+                      <a href="#" class="">
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tm-notice-user">유저 게시판</td>
+                    <td class="text-center">
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tm-notice-lank">랭킹 게시판</td>
+                    <td class="text-center">
+
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tm-notice-qna">문의 게시판</td>
+                    <td class="text-center">
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+       
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+    
+    $(function() {
+        $(".tm-notice-notice").on("click", function() {
+          window.location.href = "../notice/noticeList";
+        });
+      });</script>
+      
+      
+        <script type="text/javascript">
+    
+    $(function() {
+        $(".tm-notice-user").on("click", function() {
+          window.location.href = "../user/userList";
+        });
+      });</script>
+      
+         <script type="text/javascript">
+    
+    $(function() {
+        $(".tm-notice-lank").on("click", function() {
+          window.location.href = "../rank/rankList";
+        });
+      });</script>
+      
+      
+         <script type="text/javascript">
+    
+    $(function() {
+        $(".tm-notice-qna").on("click", function() {
+          window.location.href = "../qna/qnaList";
+        });
+      });</script>
+
+   
+		
 
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>
