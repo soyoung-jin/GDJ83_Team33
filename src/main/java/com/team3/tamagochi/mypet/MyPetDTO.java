@@ -1,5 +1,7 @@
 package com.team3.tamagochi.mypet;
 
+import com.team3.tamagochi.users.UsersDTO;
+
 public class MyPetDTO {
 	
 	private Long pet_num;
@@ -20,6 +22,7 @@ public class MyPetDTO {
 	private Long add_atk;
 	private Long add_dod;
 	private Long equip_num;
+	private UsersDTO usersDTO;
 	
 	
 	
@@ -132,6 +135,14 @@ public class MyPetDTO {
 	public void setPet_hungry(Long pet_hungry) {
 		this.pet_hungry = pet_hungry;
 	}
+	public UsersDTO getUsersDTO() {
+		return usersDTO;
+	}
+	public void setUsersDTO(UsersDTO usersDTO) {
+		this.usersDTO = usersDTO;
+	}
+	
+	
 	
 	
 
