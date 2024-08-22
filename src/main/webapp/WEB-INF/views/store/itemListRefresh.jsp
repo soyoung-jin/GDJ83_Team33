@@ -18,7 +18,7 @@
 						    <li data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide-to="2"></li>
 						    <li data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide-to="3"></li>
 						  </ol>
-						  <a onclick="getItemNum('${itemDTO.item_num}')" style="cursor:pointer;">
+						  <a onclick="getItemNum('${itemDTO.item_num}')" style="cursor:pointer;" >
 						  <div class="carousel-inner" >
 						    <div class="carousel-item active">
 						      <img src="getImage?file_name=${not empty itemDTO.itemFileDTOs[0]?itemDTO.itemFileDTOs[0].file_name:'default.gif'}" data-inum="${itemDTO.item_num}" class="d-block w-100 imgSize" alt="...">
