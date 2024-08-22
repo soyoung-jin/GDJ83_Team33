@@ -4,10 +4,16 @@ const option = document.getElementById("option");
 const searchbtn = document.getElementById("searchbtn");
 const getImage = document.getElementById("getImage");
 
-
 let search = document.getElementById("search").value;
 let kind = document.getElementById("kind").value;
 let page = 1;
+
+
+function detailModal(){
+    const slide = document.getElementsByClassName("slide");
+
+    
+}
 
 itemListdiv.addEventListener("click", (e)=>{
 
@@ -18,8 +24,6 @@ itemListdiv.addEventListener("click", (e)=>{
     }
 
 })
-
-
  
 //리스트 불러오는 함수
 function getList(category_num, page, kind, search){
