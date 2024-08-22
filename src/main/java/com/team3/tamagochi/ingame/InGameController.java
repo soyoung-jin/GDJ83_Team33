@@ -53,11 +53,12 @@ public class InGameController {
 //	}
 	
 	@GetMapping("fight")
+	@ResponseBody
 	public void fight(HttpSession session, ItemDTO itemDTO) throws Exception{
 		
 		itemDTO = storeService.getItemDetail(itemDTO);
 		
-		System.out.println(itemDTO.getItem_name());
+		System.out.println(itemDTO.getItemFileDTOs().get(1).getOri_name());
 	}
 	
 //	@GetMapping("fight")

@@ -205,5 +205,5 @@ chatContent.addEventListener("keyup", (e)=>{
 
 rightArrow.addEventListener("click", ()=>{
     alert("전투하러 가기");
-    location.href="./fight"
+    location.href="../rank/rankList"
 })
