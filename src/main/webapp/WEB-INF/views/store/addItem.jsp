@@ -14,7 +14,7 @@
 				<div class="col">
 					<div class="row justify-content-center">
 						<h2 class="text-white mt-3 mb-3">
-							Add <b>Item</b>
+							${dto eq null?'ADD':'Update'} <b>Item</b>
 						</h2>
 					</div>
 				</div>
@@ -60,18 +60,35 @@
 								<label for="item_price">가격</label>
 								<input type="text" class="form-control" id="item_price" name="item_price" value="${dto.item_price}">
 							</div>
-							<div class="form-floating mt-1">
-								<label for="imgFile1" class="form-label">1</label>
-								<br>
-								<input type="file" id="imgFile1" name="attach">
-								<br>
-								<label for="imgFile2" class="form-label">2</label>
-								<br>
-								<input type="file" id="imgFile2" name="attach">
-								<br>
-								<label for="imgFile3" class="form-label">3</label>
-								<br>
-								<input type="file" id="imgFile3" name="attach">
+							<div class="form-floating mt-1" id="fileUpload">
+								<c:if test="${dto eq null}">
+									<label class="form-label">기본 이미지</label>
+									<input type="file" id="imgFile" name="attach">
+									<label class="form-label">2단계 이미지</label>
+									<input type="file" id="imgFile" name="attach">
+									<label class="form-label">3단계 이미지</label>
+									<input type="file" id="imgFile" name="attach">
+									<label class="form-label">4단계 이미지</label>
+									<input type="file" id="imgFile" name="attach">
+								</c:if>
+							</div>
+							<div>
+								<c:if test="${dto ne null}">
+									<label class="form-label">기본 이미지</label>
+									<input type="file" id="imgFile" name="attach">
+									<div class="tm-gray-circle"><img src="getImage?file_name=${dto.itemFileDTOs[0] ne null?dto.itemFileDTOs[0].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div>
+									<c:if test="${dto.category_num == 0}">
+										<label class="form-label">2단계 이미지</label>
+										<input type="file" id="imgFile" name="attach">
+										<div class="tm-gray-circle"><img src="getImage?file_name=${dto.itemFileDTOs[1] ne null?dto.itemFileDTOs[1].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div>
+										<label class="form-label">3단계 이미지</label>
+										<input type="file" id="imgFile" name="attach">
+										<div class="tm-gray-circle"><img src="getImage?file_name=${dto.itemFileDTOs[2] ne null?dto.itemFileDTOs[2].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div>
+										<label class="form-label">4단계 이미지</label>
+										<input type="file" id="imgFile" name="attach">
+										<div class="tm-gray-circle"><img src="getImage?file_name=${dto.itemFileDTOs[3] ne null?dto.itemFileDTOs[3].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div>
+									</c:if>
+								</c:if>
 							</div>
 							<div class="mt-3">
 								<button class="btn btn-primary w-100 py-2" type="submit"> ${dto eq null?'아이템 추가':'아이템 수정'} </button>
