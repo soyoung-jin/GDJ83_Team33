@@ -4,11 +4,32 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.team3.tamagochi.rank.RankDAO">
-
-	<select id="List" resultType="RankDTO" parameterType="UsersDTO">
-  		SELECT * FROM MY_PET
-  		WHERE USER_ID = #{user_id}
+<!-- 내 소지품에서 아이템 가져오는 쿼리문. JOIN을 사용했기 때문에 ResultMap이 필요하다 -->
+	<select id="list" resultMap="mypetResult">
+  		SELECT 
+	  *
+		FROM
+			MY_PET mp
+		LEFT JOIN 
+			USERS u 
+		ON 
+			mp.USER_ID = u.USER_ID
+		WHERE 
+			mp.PET_SELECTED = 1
   	</select>
+  	<resultMap type="MyPetDTO" id="mypetResult">
+  		<id column="PET_NUM" property="pet_num"></id>
+  		<result column="USER_ID" property="user_id"></result>
+  		<result column="PET_NAME" property="pet_name"></result>
+  		<result column="PET_LEVEL" property="pet_level"></result>
+  		<result column="PET_POP" property="pet_pop"></result>
+  		<result column="PET_SELECTED" property="pet_selected"></result>
+  		<result column="ITEM_NUM" property="item_num"></result>
+  		
+  		<association property="usersDTO" javaType="UsersDTO">
+  			<result column="USER_NICKNAME" property="user_nickname"/>
+  		</association>
+  	</resultMap>
   	
   	<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
 		SELECT
@@ -19,5 +40,10 @@
 			
 		)
 	</select>
+	
+	<select id="detail" resultType="MyPetDTO" parameterType="MyPetDTO">
+  		SELECT * FROM MY_PET
+		WHERE PET_NUM = #{pet_num}
+  	</select>
  
  </mapper>
