@@ -3,18 +3,28 @@ const itemListdiv = document.getElementById("itemListdiv");
 const option = document.getElementById("option");
 const searchbtn = document.getElementById("searchbtn");
 const getImage = document.getElementById("getImage");
+const modalContents =document.getElementById("modalContents");
+const modalBtn = document.getElementById("modalBtn");
 
 let search = document.getElementById("search").value;
 let kind = document.getElementById("kind").value;
 let page = 1;
 
+//디테일 모달 요청
+function getItemNum(itemnum){
 
-function detailModal(){
-    const slide = document.getElementsByClassName("slide");
+    fetch("itemDetail?item_num="+itemnum,{
+        method:"get"
+    }).then(r=>r.text())
+    .then(r=>{
+        modalContents.innerHTML=r
 
-    
+        modalBtn.click()
+    })
+
 }
 
+//결제 버튼
 itemListdiv.addEventListener("click", (e)=>{
 
     if(e.target.classList.contains("purchaseItem")){

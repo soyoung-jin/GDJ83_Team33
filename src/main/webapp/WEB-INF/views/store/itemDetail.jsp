@@ -2,30 +2,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-	<title>Home</title>
+	<title>Wish List</title>
 	<c:import url="../template/header.jsp"></c:import>
-	<style type="text/css">
-		.imgSize {
-			height: 270px;
-		}
-	
-	</style>
 </head>
 <body id="reportsPage" class="font">
-	<div class="" id="home">
-	<c:import url="../template/topbar.jsp"></c:import>
-	
 	<div class="container">
 		        <a class="btn btn-primary" href="updateItem?item_num=${dto.item_num}">수정</a>
 	            <a class="btn btn-primary" href="deleteItem?item_num=${dto.item_num}">삭제</a>
         <div class="row">
             <div class="col">
-                <h1 class="text-white mt-5 mb-5">Item Detail</h1>
                 <div class="row justify-content-center">
                 <c:forEach begin="0" end="${dto.category_num==0?'3':'0'}" step="1" var="i">
                 	<div class="${dto.category_num==0?'col':'col-3'}">
 		                <div class="card">
-						  <img src="getImage?file_name=${not empty dto.itemFileDTOs[i]?dto.itemFileDTOs[i].file_name:'default.gif'}" class="card-img-top imgSize" alt="아이템 이미지">
+						  <img src="getImage?file_name=${not empty dto.itemFileDTOs[i]?dto.itemFileDTOs[i].file_name:'default.gif'}" style="height:150px;" class="card-img-top imgSize" alt="아이템 이미지">
 						  <div class="card-body">
 							  <c:choose>
 							  	<c:when test="${i==0}">
@@ -79,8 +69,7 @@
         </div>
             <!-- row -->
     </div>
-	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>
 	</div>
-</body>
-</html>
+	</body>
+	</html>
