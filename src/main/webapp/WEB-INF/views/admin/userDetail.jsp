@@ -16,7 +16,7 @@
 					<div class="tm-block-col tm-col-account-settings">
 						<div class="tm-bg-primary-dark tm-block tm-block-settings">
 							<h2 class="tm-block-title">${param.user_id }님의 정보</h2>
-							<form action="/users/update" method="post" class="tm-signup-form row" id="form">
+							<form action="/admin/userUpdate" method="post" class="tm-signup-form row" id="form">
 								<div class="form-group col-lg-6">
 									<label for="user_id">유저 아이디</label>
 									<input id="user_id" name="user_id" value="${usersDTO.user_id }"
@@ -27,17 +27,7 @@
 									<input id="user_name" name="user_name" value="${usersDTO.user_name }"
 									type="text" class="form-control validate" />
 								</div>
-								<div class="form-group col-lg-6">
-									<label for="user_pw">비밀번호</label>
-									<input id="user_pw" name="user_pw"
-										type="password" class="form-control validate" />
-								</div>
-								<div class="form-group col-lg-6">
-									<label for="user_pw2">비밀번호 재확인</label>
-									<input id="user_pw2" name="user_pw2"
-										type="password" class="form-control validate" />
-										<div id="password-check"></div>
-								</div>
+								
 								<div class="form-group col-lg-6">
 									<label for="user_nickname">닉네임</label>
 									<input id="user_nickname" name="user_nickname" value="${usersDTO.user_nickname }"
@@ -55,7 +45,7 @@
 								</div>
 								<div class="form-group col-lg-6">
 									<label for="user_auth">회원 등급</label>
-									<select class="form-control validate" style="padding: 5px">
+									<select name="user_auth" class="form-control validate" style="padding: 5px">
 										<c:if test="${usersDTO.user_auth eq 1 }">
 											<option value="1" selected> 일반 유저</option>
 											<option value="0"> 관리자</option>										
@@ -68,8 +58,14 @@
 								</div>
 								<div class="form-group col-12">
 									<label class="tm-hide-sm">&nbsp;</label>
-									<a type="button" class="btn btn-danger btn-block text-uppercase"
-									href="/users/deleteAccount">회원 탈퇴</a>
+									<c:if test="${usersDTO.user_resign eq 1 }">
+										<button id="resign_zero" type="button" class="btn btn-danger btn-block text-uppercase">
+										회원 정지</button>
+									</c:if>
+									<c:if test="${usersDTO.user_resign eq 0 }">
+										<button id="resign_one" type="button" class="btn btn-info btn-block text-uppercase">
+										회원 복구</button>
+									</c:if>
 								</div>
 								<div class="col-12">
 									<button type="button" id="check"
@@ -88,6 +84,6 @@
 		</div>
 		<c:import url="../template/footer.jsp"></c:import>
 		<c:import url="../template/boot-footer.jsp"></c:import>
-		<script src="/resources/js/users/mypageUpdate.js"></script>
+		<script src="/resources/js/users/adminUserUpdate.js"></script>
 </body>
 </html>

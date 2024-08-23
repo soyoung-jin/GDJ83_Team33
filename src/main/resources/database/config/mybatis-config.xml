@@ -7,6 +7,7 @@
   		<typeAlias type="com.team3.tamagochi.users.UsersDTO" alias="UsersDTO"/>
   		<typeAlias type="com.team3.tamagochi.users.InventoryDTO" alias="InventoryDTO"/>
   		<typeAlias type="com.team3.tamagochi.users.TransactionDTO" alias="TransactionDTO"/>
+  		<typeAlias type="com.team3.tamagochi.admin.SalesDTO" alias="SalesDTO"/>
   		
   		<typeAlias type="com.team3.tamagochi.friend.FriendDTO" alias="FriendDTO"/>
   		<typeAlias type="com.team3.tamagochi.friend.AlarmDTO" alias="AlarmDTO"/>

@@ -13,6 +13,30 @@
             <div class="col">
 				<div class="container mt-5">
 					<div class="row tm-content-row">
+						<div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+							<div class="tm-bg-primary-dark tm-block">
+								<h2 class="tm-block-title">연 매출</h2>
+								<input type="hidden" id="sp1" value="${salesDTO.m1 }">
+								<input type="hidden" id="sp2" value="${salesDTO.m2 }">
+								<input type="hidden" id="sp3" value="${salesDTO.m3 }">
+								<input type="hidden" id="sp4" value="${salesDTO.m4 }">
+								<input type="hidden" id="sp5" value="${salesDTO.m5 }">
+								<input type="hidden" id="sp6" value="${salesDTO.m6 }">
+								<input type="hidden" id="sp7" value="${salesDTO.m7 }">
+								<input type="hidden" id="sp8" value="${salesDTO.m8 }">
+								<input type="hidden" id="sp9" value="${salesDTO.m9 }">
+								<input type="hidden" id="sp10" value="${salesDTO.m10 }">
+								<input type="hidden" id="sp11" value="${salesDTO.m11 }">
+								<input type="hidden" id="sp12" value="${salesDTO.m12 }">
+								<canvas id="lineChart"></canvas>
+							</div>
+						</div>
+						<div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+							<div class="tm-bg-primary-dark tm-block">
+								<h2 class="tm-block-title">월 매출</h2>
+								<canvas id="barChart"></canvas>
+							</div>
+						</div>
 						<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
 							<div class="tm-bg-primary-dark tm-block tm-block-products">
 								<div class="tm-product-table-container">
