@@ -24,8 +24,8 @@ const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstra
 //함수로 fetch만들어서 
 
 fightBtn.addEventListener("click", ()=>{
-    lineParent.remove();
-    lineEnemyParent.remove();
+    lineParent.style.display="none";
+    lineEnemyParent.style.display="none";
     fightBtn.remove();
     clickMe.remove();
     petImg.style.cursor="pointer";
@@ -61,13 +61,16 @@ weaponImg.onmousedown = function(e) {
         let droppableBelow = elemBelow.closest('.droppable');
        
         if (currentDroppable != droppableBelow) {
-           if (currentDroppable) { 
-              
+           if (currentDroppable) {
               leaveDroppable(currentDroppable);
+
            }
            currentDroppable = droppableBelow;
            if (currentDroppable) { 
               enterDroppable(currentDroppable);
+              lineEnemyParent.style.display="inline";
+              lineEnemyParent.style.border="solid 2px red";
+              enemyLine.innerHTML="으악!";
            }
         }
     }
@@ -83,6 +86,7 @@ weaponImg.onmousedown = function(e) {
 
 function enterDroppable(elem) {
  elem.style.background = 'pink';
+ 
 }
 
 function leaveDroppable(elem) {
