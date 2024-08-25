@@ -12,3 +12,7 @@
 	width:20%;
 	height:20%;
 }
+
+.tm-bg-primary-dark tm-block tm-block-h-auto{
+	display:inline-block;
+}

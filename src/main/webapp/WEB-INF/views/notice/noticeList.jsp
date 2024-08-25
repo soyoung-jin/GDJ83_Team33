@@ -147,7 +147,7 @@
     
     $(function() {
         $(".tm-notice-user").on("click", function() {
-          window.location.href = "../user/userList";
+          window.location.href = "../userboard/userboardList";
         });
       });</script>
       
