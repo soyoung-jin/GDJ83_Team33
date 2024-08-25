@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.team3.tamagochi.userboard.UserBoardDAO">
+	<select id="list" resultType="UserBoardDTO" parameterType="Pager">
+		SELECT *
+		FROM (
+			SELECT ROWNUM r, u.*
+			FROM(SELECT *
+				FROM USERBOARD
+				<include refid="searchSql" />
+				
+			ORDER BY USERBOARD_REF DESC,
+						USERBOARD_STEP ASC
+
+				) u
+		)
+		WHERE r
+		BETWEEN #{startRow} AND #{lastRow}
+	</select>
+
+	<sql id="searchSql">
+		<where>
+			USERBOARD_NUM > 0
+			<choose>
+				<when test="kind == 'userboard_title'">
+					AND USERBOARD_TITLE LIKE '%'||#{search}||'%'
+				</when>
+				<when test="kind == 'userboard_contents'">
+					AND USERBOARD_CONTENTS LIKE '%'||#{search}||'%'
+				</when>
+				<otherwise>
+					AND USER_ID LIKE '%'||#{search}||'%'
+				</otherwise>
+			</choose>
+		</where>
+	</sql>
+
+	<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
+		SELECT
+			COUNT(USERBOARD_NUM)
+		FROM(
+			SELECT *
+			FROM USERBOARD
+			<include refid="searchSql"/>
+		)
+	</select>
+
+	<select id="detail" resultType="UserBoardDTO" resultMap="userboardResult">
+		SELECT
+		U.*
+		FROM
+		USERBOARD U
+		WHERE U.USERBOARD_NUM = #{userboard_num}
+
+	</select>
+	
+	<resultMap type="UserBoardDTO" id="userboardResult">
+		<id column="USERBOARD_NUM" property="userboard_num" />
+		<result column="USER_ID" property="user_id" />
+		<result column="USERBOARD_TITLE" property="userboard_title" />
+		<result column="USERBOARD_CREATE_DATE" property="userboard_create_date"/>
+		<result column="USERBOARD_HIT" property="userboard_hit" />
+		<result column="USERBOARD_CONTENTS" property="userboard_contents" />
+		<result column="USERBOARD_REF" property="userboard_ref" />
+		<result column="USERBOARD_STEP" property="userboard_step" />
+		<result column="USERBOARD_DEPTH" property="userboard_depth" />
+		<result column="USERBOARD_DEL" property="userboard_del" />
+		
+
+
+	</resultMap>
+
+
+	<update id="hit" parameterType="UserBoardDTO">
+		UPDATE 
+			USERBOARD
+			SET USERBOARD_HIT = USERBOARD_HIT +1
+		WHERE 
+			USERBOARD_NUM =#{userboard_num}
+
+	</update>
+	
+	<insert id="add" parameterType="UserBoardDTO">
+		<selectKey order="BEFORE" resultType="Long" keyProperty="userboard_num">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		
+  		INSERT INTO USERBOARD
+  		(
+  		USERBOARD_NUM, USER_ID, USERBOARD_TITLE,USERBOARD_CONTENTS,USERBOARD_REF,USERBOARD_STEP, USERBOARD_DEPTH, USERBOARD_DEL
+  		)
+  		VALUES (#{userboard_num}, #{user_id}, #{userboard_title},#{userboard_contents},#{userboard_num}, 0,0,0)
+  	
+  	
+  	</insert>
+  	
+  	<update id="update" parameterType="UserBoardDTO">
+		UPDATE	USERBOARD
+		SET		USERBOARD_TITLE = #{userboard_title}, USERBOARD_CONTENTS = #{userboard_contents}
+		WHERE 	USERBOARD_NUM = #{userboard_num}
+	</update>
+	
+	<delete id="delete" parameterType="UserBoardDTO">
+  		UPDATE 
+  			USERBOARD
+  		SET 
+  			USERBOARD_DEL=1 
+  		WHERE 
+  			USERBOARD_NUM = #{userboard_num}
+  	</delete>
+  	
+  	<insert id="reply" parameterType="UserBoardDTO">
+  		<selectKey order="BEFORE" resultType="Long" keyProperty="userboard_num">
+  			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+  		</selectKey>
+  		INSERT INTO USERBOARD
+  		(
+	  		USERBOARD_NUM, USER_ID, USERBOARD_TITLE,USERBOARD_CONTENTS,USERBOARD_REF,USERBOARD_STEP, USERBOARD_DEPTH
+  		) 
+  		VALUES 
+  		(
+  			#{userboard_num}, #{user_id}, #{userboard_title},#{userboard_contents},#{userboard_ref}, #{userboard_step}, #{userboard_depth}
+  		)
+  	</insert>
+  	
+  	<update id="replyUpdate" parameterType="UserBoardDTO">
+  		UPDATE 
+  			USERBOARD
+  		SET 
+  			USERBOARD_STEP = USERBOARD_STEP + 1 
+  		WHERE 
+  			USERBOARD_REF= #{userboard_ref} AND USERBOARD_STEP>#{userboard_step}
+  	</update>
+  	
+
+
+
+</mapper>
