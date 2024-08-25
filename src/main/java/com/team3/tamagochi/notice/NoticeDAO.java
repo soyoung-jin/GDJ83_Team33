@@ -22,7 +22,6 @@ public class NoticeDAO {
 	
 	public Long getTotalCount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getTotalCount",pager);
-		
 	}
 	
 	public int add(NoticeDTO noticeDTO) throws Exception{
@@ -39,12 +38,10 @@ public class NoticeDAO {
 	
 	public int update(NoticeDTO noticeDTO) throws Exception {
 		return sqlSession.update(NAMESPACE + "update", noticeDTO);
-
 	}
 	
 	public int delete(NoticeDTO noticeDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE + "delete", noticeDTO);
-
 	}
 
 }
