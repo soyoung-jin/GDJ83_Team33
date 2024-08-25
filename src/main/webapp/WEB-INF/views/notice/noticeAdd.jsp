@@ -4,63 +4,59 @@
 <html>
 <head>
 <title>NOTICE</title>
-<c:import url="../template/header.jsp"></c:import>
+	<c:import url="../template/header.jsp"></c:import>
 </head>
 <body id="reportsPage" class="font">
-		<c:import url="../template/topbar.jsp"></c:import>
+	<c:import url="../template/topbar.jsp"></c:import>
 
     <div class="container tm-mt-big tm-mb-big">
-      <div class="row">
-        <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
-          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-            <div class="row">
-              <div class="col-12">
-                <h2 class="tm-block-title d-inline-block">공지사항 새 글쓰기</h2>
-              </div>
-            </div>
-            <div class="row tm-edit-product-row">
-              <div class="col-xl-12 col-lg-6 col-md-12">
-              <form action="noticeAdd" class="tm-edit-product-form" method="post">
-                <input type="hidden" value="${users_info.user_id}" name="user_id">
-                  <div class="form-group mb-3">
-                    <label
-                      for="name"
-                      >제목
-                    </label>
-                    <input id="notice_title" name="notice_title" type="text" class="form-control validate" required/>
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="contents">내용</label>
-                    <textarea 
-                      class="form-control validate" name="notice_contents" id="editor" rows="10"required></textarea>
-                  </div>
-                  <div class="form-group mb-3"></div>
-			</div>
-              <div class=" col-md-12 mx-auto mb-4">
-                <div style="height:60% " class="tm-product-img-dummy mx-auto">
-                  <i
-                    class="fas fa-cloud-upload-alt tm-upload-icon"
-                    onclick="document.getElementById('fileInput').click();"
-                  ></i>
-                </div>
-                <div class="custom-file mt-3 mb-3">
-                  <input id="fileInput" type="file" style="display:none;" />
-                  <input
-                    type="button"
-                    class="btn btn-primary btn-block mx-auto"
-                    value="파일 업로드"
-                    onclick="document.getElementById('fileInput').click();"
-                  />
-                </div>
-              </div>
-              <div class="col-12">
-                <button type="submit" name="noticeAdd" class="btn btn-primary btn-block text-uppercase">등록</button>
-              </div>
-            </form>
-            </div>
-          </div>
-        </div>
-      </div>
+    	<div class="row">
+        	<div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+          		<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+          			<!-- 타이틀 -->
+            		<div class="row">
+              			<div class="col-12">
+                			<h2 class="tm-block-title d-inline-block">공지사항 새 글쓰기</h2>
+              			</div>
+            		</div>
+            		<!-- 게시글 -->
+            		<div class="row tm-edit-product-row">
+          				<div class="col-xl-12 col-lg-6 col-md-12">
+	              			<form action="noticeAdd" class="tm-edit-product-form" method="post">
+	                			<input type="hidden" value="${users_info.user_id}" name="user_id">
+			   					<!-- 제목 -->
+	               				<div class="form-group mb-3">
+	                 				<label for="name">제목</label>
+					                    <input id="notice_title" name="notice_title" type="text" class="form-control validate" required/>
+	                			 	</div>
+			   					<!-- 컨텐츠 -->
+			                  	<div class="form-group mb-3">
+			                    	<label for="contents">내용</label>
+			                    	<textarea class="form-control validate" name="notice_contents" id="editor" rows="10"required></textarea>
+			                  	</div>
+			   					<!-- 구분선 -->
+	                 			<div class="form-group mb-3"></div>
+			   					<!-- 첨부파일 -->
+				              	<div class=" col-md-12 mx-auto mb-4">
+				              		<!-- 첨부파일 등록 버튼-->
+				                	<div style="height:60% " class="tm-product-img-dummy mx-auto">
+				                 		<i class="fas fa-cloud-upload-alt tm-upload-icon" onclick="document.getElementById('fileInput').click();"></i>
+				                	</div>
+					                <div class="custom-file mt-3 mb-3">
+					                 	<input id="fileInput" type="file" style="display:none;" />
+					                  	<input type="button" class="btn btn-primary btn-block mx-auto" value="파일 업로드" onclick="document.getElementById('fileInput').click();"/>
+					                </div>
+				              	</div>
+							   	<!-- 등록버튼 -->
+				              	<div class="col-12">
+				                	<button type="submit" name="noticeAdd" class="btn btn-primary btn-block text-uppercase">등록</button>
+				             	</div>
+	            			</form>
+						</div>
+            		</div>
+          		</div>
+       		</div>
+		</div>
     </div>
    
 	

@@ -59,7 +59,7 @@
                 <button onclick="location.href='qnaList.jsp'" class="btn btn-primary btn-block text-uppercase">뒤로가기</button>
               </div>
               <div id="updatebtn1" class="col-6">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase">수정</button>
+                <button id="editbtn" type="submit" class="btn btn-primary btn-block text-uppercase">수정</button>
               </div>
               
             </form>
@@ -72,5 +72,6 @@
 	
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>
+	
 </body>
 </html>

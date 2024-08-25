@@ -22,7 +22,9 @@ public class NoticeController {
 	
 	@RequestMapping(value="noticeList", method= RequestMethod.GET)
 	public String list(Model model, Pager pager) throws Exception {
+		
 		List<NoticeDTO> list = noticeService.list(pager);
+
 		model.addAttribute("list",list);
 		model.addAttribute("pager", pager);
 		
@@ -38,10 +40,12 @@ public class NoticeController {
 	
 	@RequestMapping(value="noticeAdd", method= RequestMethod.POST)
 	public String add(NoticeDTO noticeDTO, HttpSession session, Model model) throws Exception{
-			UsersDTO usersDTO = (UsersDTO)session.getAttribute("users_info");
-			noticeDTO.setUser_id(usersDTO.getUser_id());
-			int result = noticeService.add(noticeDTO, session);
-			
+		
+		UsersDTO usersDTO = (UsersDTO)session.getAttribute("users_info");
+		
+		noticeDTO.setUser_id(usersDTO.getUser_id());
+		
+		int result = noticeService.add(noticeDTO, session);
 			
 		return "redirect:./noticeList";
 	}
@@ -61,14 +65,19 @@ public class NoticeController {
 	
 	@RequestMapping(value = "noticeUpdate", method = RequestMethod.GET)
 	public String update(Model model, NoticeDTO noticeDTO) throws Exception {
+		
 		noticeDTO =noticeService.detail(noticeDTO);
+		
 		model.addAttribute("detail", noticeDTO);
+		
 		return "notice/noticeUpdate";
 	}
 
 	@RequestMapping(value = "noticeUpdate", method = RequestMethod.POST)
 	public String update(NoticeDTO noticeDTO) throws Exception {
+		
 		int num = noticeService.update(noticeDTO);
+		
 		return "redirect:./noticeDetail?notice_num=" + noticeDTO.getNotice_num();
 	}
 	

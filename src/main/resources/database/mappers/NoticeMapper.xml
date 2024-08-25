@@ -3,56 +3,63 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-  <mapper namespace="com.team3.tamagochi.notice.NoticeDAO">
-  
-	  <select id="list" resultType="NoticeDTO" parameterType="Pager">
-	  		SELECT * 
-	  		FROM (	
-	  			SELECT ROWNUM r, n.*
-				FROM(SELECT *
-					FROM NOTICE
-					<include refid="searchSql"/>
-					
-					<choose>
-						<when test="order == 1">
-							ORDER BY NOTICE_CREATE_DATE
-							DESC
-						</when>
-						<when test="order == 2">
-							ORDER BY NOTICE_HIT
-							DESC
-						</when>
-						<otherwise >
-							ORDER BY NOTICE_NUM
-							DESC
-						</otherwise>
-					</choose>
-					) n
+<mapper namespace="com.team3.tamagochi.notice.NoticeDAO">
+
+	<!--  -->
+	<select id="list" resultType="NoticeDTO" parameterType="Pager">
+		SELECT 
+				* 
+			FROM 
+				(
+					SELECT 
+						ROWNUM r, n.*
+					FROM
+						(
+							SELECT 
+									*
+							FROM 
+								NOTICE
+							<include refid="searchSql"/>
+							<choose>
+								<when test="order == 1">
+									ORDER BY NOTICE_CREATE_DATE
+									DESC
+								</when>
+								<when test="order == 2">
+									ORDER BY NOTICE_HIT
+									DESC
+								</when>
+								<otherwise >
+									ORDER BY NOTICE_NUM
+									DESC
+								</otherwise>
+							</choose>
+						) n
 				)
-			WHERE r 
-			BETWEEN #{startRow} AND #{lastRow}
-			
-	  	
-	  </select>
-  	
-	  <sql id="searchSql">
-			<where>		
-				NOTICE_NUM > 0	
-				<choose>
-					<when test="kind == 'notice_title'">
-						AND NOTICE_TITLE LIKE '%'||#{search}||'%'
-					</when>
-					<when test="kind == 'notice_contents'">
-						AND NOTICE_CONTENTS LIKE '%'||#{search}||'%'
-					</when>
-					<otherwise>
-						AND USER_ID LIKE '%'||#{search}||'%'
-					</otherwise>
-				</choose>
-			</where>
+		WHERE r 
+		BETWEEN #{startRow} AND #{lastRow}
+	</select>
+ 	
+ 	<!--  -->
+	<sql id="searchSql">
+		<where>		
+			NOTICE_NUM > 0	
+			<choose>
+				<when test="kind == 'notice_title'">
+					AND NOTICE_TITLE LIKE '%'||#{search}||'%'
+				</when>
+				<when test="kind == 'notice_contents'">
+					AND NOTICE_CONTENTS LIKE '%'||#{search}||'%'
+				</when>
+				<otherwise>
+					AND USER_ID LIKE '%'||#{search}||'%'
+				</otherwise>
+			</choose>
+		</where>
 	</sql>
-  	
-  	 <select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
+ 	
+ 	<!--  -->
+ 	<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
 		SELECT 
 			COUNT(ROWNUM)
 		FROM(
@@ -60,53 +67,51 @@
 			FROM NOTICE
 			<include refid="searchSql"/>)
 	</select>
-  	
-  	<insert id="add" parameterType="NoticeDTO">
-  		INSERT INTO NOTICE
-  		(
-  		NOTICE_NUM,USER_ID,NOTICE_TITLE,NOTICE_CONTENTS
-  		)
-  		VALUES (BOARD_SEQ.NEXTVAL, #{user_id}, #{notice_title},#{notice_contents})
-  	
-  	
-  	</insert>
-  	
-  	
-  	<select id="detail" resultType="NoticeDTO" resultMap="detailResult">
-  		SELECT
-  		 	N.*
-  		FROM
-  			NOTICE N
-  		WHERE N.NOTICE_NUM =#{notice_num}
-  	
-  	</select>
-  	<resultMap type="NoticeDTO" id="detailResult">
-  		<id column="NOTICE_NUM" property="notice_num"/>
-  		<result column="USER_ID" property="user_id"/>
-  		<result column="NOTICE_TITLE" property="notice_title"/>
-  		<result column="NOTICE_CREATE_DATE" property="notice_create_date"/>
-  		<result column="NOTICE_HIT" property="notice_hit"/>
-  		<result column="NOTICE_CONTENTS" property="notice_contents"/>
+ 	
+ 	<!--  -->
+ 	<insert id="add" parameterType="NoticeDTO">
+ 		INSERT INTO NOTICE
+ 		(
+ 		NOTICE_NUM,USER_ID,NOTICE_TITLE,NOTICE_CONTENTS
+ 		)
+ 		VALUES (BOARD_SEQ.NEXTVAL, #{user_id}, #{notice_title},#{notice_contents})
+ 	</insert>
+ 	
+ 	
+ 	<!--  -->
+ 	<resultMap type="NoticeDTO" id="detailResult">
+ 		<id column="NOTICE_NUM" property="notice_num"/>
+ 		<result column="USER_ID" property="user_id"/>
+ 		<result column="NOTICE_TITLE" property="notice_title"/>
+ 		<result column="NOTICE_CREATE_DATE" property="notice_create_date"/>
+ 		<result column="NOTICE_HIT" property="notice_hit"/>
+ 		<result column="NOTICE_CONTENTS" property="notice_contents"/>
+ 	</resultMap>
+ 	<select id="detail" resultType="NoticeDTO" resultMap="detailResult">
+ 		SELECT
+ 		 	N.*
+ 		FROM
+ 			NOTICE N
+ 		WHERE N.NOTICE_NUM =#{notice_num}
+ 	</select>
 
-  	
-  	</resultMap>
-  	
-  	
-  	<update id="hit" parameterType="NoticeDTO">
-  		UPDATE NOTICE
+ 	 	
+ 	<!--  -->
+ 	<update id="hit" parameterType="NoticeDTO">
+ 		UPDATE NOTICE
 		SET NOTICE_HIT = NOTICE_HIT +1
 		WHERE NOTICE_NUM = #{notice_num}
-  	
-  	</update>
-  	
-  	<delete id="delete" parameterType="NoticeDTO">
-  		DELETE FROM NOTICE WHERE NOTICE_NUM = #{notice_num}
-  	</delete>
-  	
-  	<update id="update" parameterType="NoticeDTO">
+ 	</update>
+ 	
+ 	<!--  -->
+ 	<delete id="delete" parameterType="NoticeDTO">
+ 		DELETE FROM NOTICE WHERE NOTICE_NUM = #{notice_num}
+ 	</delete>
+ 	<!--  -->
+	<update id="update" parameterType="NoticeDTO">
 		UPDATE	NOTICE
 		SET		NOTICE_TITLE = #{notice_title}, NOTICE_CONTENTS = #{notice_contents}
 		WHERE 	NOTICE_NUM = #{notice_num}
 	</update>
   	
-  </mapper>
+</mapper>

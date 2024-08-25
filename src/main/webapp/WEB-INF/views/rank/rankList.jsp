@@ -34,7 +34,7 @@
 											<h5 class="card-title">닉네임: ${list.usersDTO.user_nickname}</h5>
 											<h5 class="card-title">펫 이름: ${list.pet_name }</h5>
 											<h5 class="card-title">레벨: ${list.pet_level }</h5>
-											<h5 class="card-title">인기도: <p style="display:inline-block;"> ${list.pet_pop }</p></h5>
+											<h5 class="card-title">인기도: <p style="display:inline-block;"> ${list.pet_pop}</p></h5>
 												</c:when>
 											</c:choose>
 													<a id="rankplay" href="../ingame/fight?item_num=${list.item_num}"><img style="width:40%" src="/resources/img/rankboard/playimg.png"></a> 
