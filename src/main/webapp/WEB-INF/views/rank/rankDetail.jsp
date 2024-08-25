@@ -4,6 +4,7 @@
 <head>
 	<title>Home</title>
 	<c:import url="../template/header.jsp"></c:import>
+	<link rel="stylesheet" href="/resources/css/boardSY.css">
 </head>
 <body id="reportsPage" class="font">
 	
@@ -76,6 +77,9 @@
 								<input id="pet_hungry" name="pet_hungry" value="${myPetDTO.pet_hungry }"
 									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 							</div>
+							
+							<a href="../friend/friendAdd?user_id=${myPetDTO.user_id}" class="btn btn-outline-success mb-3">친구추가</a>
+							
 						</form>
 					</div>
 				</div>

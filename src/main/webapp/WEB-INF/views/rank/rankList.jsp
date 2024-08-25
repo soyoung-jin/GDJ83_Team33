@@ -38,7 +38,7 @@
 												</c:when>
 											</c:choose>
 													<a id="rankplay" href="../ingame/fight?item_num=${list.item_num}"><img style="width:40%" src="/resources/img/rankboard/playimg.png"></a> 
-													<a id="ranklike" href="javascript:void(0);" class="pop_btn" data-pet-num="${list.pet_num}"><img class="pop_btn" style="width:40%;" src="/resources/img/rankboard/likeimg.png"></a> 
+													<a id="ranklike" href="javascript:void(0);" class="pop_btn" data-pet-num="${list.pet_num}"><img class="pop_btn" style="width:20%; float:right;" src="/resources/img/rankboard/likeimg.png"></a> 
 																								
 												
 										</div>
