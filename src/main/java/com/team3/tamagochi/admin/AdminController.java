@@ -25,7 +25,10 @@ public class AdminController {
 		
 		List<UsersDTO> list = adminService.getUserList();
 		
+		 SalesDTO salesDTO = adminService.getSales();
+		
 		model.addAttribute("list", list);
+		model.addAttribute("salesDTO", salesDTO);
 	}
 	
 	@GetMapping("userDetail")
@@ -42,5 +45,31 @@ public class AdminController {
 		List<TransactionDTO> list = adminService.getUserTradeList(usersDTO);
 		
 		model.addAttribute("list", list);
+	}
+	
+	@PostMapping("userUpdate")
+	public String updateUserDetail(Model model, UsersDTO usersDTO) throws Exception{
+		
+		int result = adminService.updateUserDetail(usersDTO);
+		
+		String id = usersDTO.getUser_id();
+		
+		if(result > 0) {
+			model.addAttribute("result", "회원 정보가 수정되었습니다.");
+			model.addAttribute("url", "/admin/userDetail?user_id=" + id);
+		}
+		
+		return "commons/message";
+	}
+	
+	@GetMapping("userResign")
+	public String updateUserResign(Model model, UsersDTO usersDTO) throws Exception{
+	
+		System.out.println(usersDTO.getUser_resign());
+		int result = adminService.updateUserResign(usersDTO);
+	
+		model.addAttribute("msg", result);
+		
+		return "commons/result";
 	}
 }
