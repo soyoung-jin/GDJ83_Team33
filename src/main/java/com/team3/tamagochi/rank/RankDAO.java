@@ -30,5 +30,10 @@ public class RankDAO {
 		
 		return sqlSession.selectOne(NAMESPACE + "detail", myPetDTO);
 	}
+	
+	public int clickLike(MyPetDTO myPetDTO) throws Exception{
+		
+		return sqlSession.update(NAMESPACE + "clickLike", myPetDTO);
+	}
 
 }
