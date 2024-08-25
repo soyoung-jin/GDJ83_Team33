@@ -24,20 +24,18 @@ const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstra
 //함수로 fetch만들어서 
 
 fightBtn.addEventListener("click", ()=>{
-    lineParent.remove();
-    lineEnemyParent.remove();
+    lineParent.style.display="none";
+    lineEnemyParent.style.display="none";
     fightBtn.remove();
     clickMe.remove();
     petImg.style.cursor="pointer";
 })
 
-petImg.addEventListener("click", ()=>{
-    
-})
+
 
 let currentDroppable = null;
 
-weaponImg.onmousedown = function(e) {
+weaponImg.addEventListener("mousedown", (e)=>{
     let x = e.clientX - weaponImg.getBoundingClientRect().left;
     let y = e.clientY - weaponImg.getBoundingClientRect().top;
 
@@ -52,12 +50,14 @@ weaponImg.onmousedown = function(e) {
         moveAt(event.pageX, event.pageY);
      
         weaponImg.hidden = true;
+        //좌표를 element로 가져오기
         let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
         weaponImg.hidden = false;
      
         
         if (!elemBelow) return;
      
+        //elemen에에서가장장 가까운 조상 찾아서 droppable 클래스 넣기
         let droppableBelow = elemBelow.closest('.droppable');
        
         if (currentDroppable != droppableBelow) {
@@ -78,11 +78,14 @@ weaponImg.onmousedown = function(e) {
            weaponImg.onmouseup = null;
         };
      
-     }
+     })
 
 
 function enterDroppable(elem) {
  elem.style.background = 'pink';
+ lineEnemyParent.style.display="inline";
+ lineEnemyParent.style.border="solid 2px red";
+ enemyLine.innerHTML="으악!";
 }
 
 function leaveDroppable(elem) {
