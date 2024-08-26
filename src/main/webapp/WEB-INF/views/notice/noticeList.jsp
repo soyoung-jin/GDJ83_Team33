@@ -45,8 +45,8 @@
 							</select>
 							</div>
 							</div>
-					</div>
  					</form>
+					</div>
   
             <div class="tm-product-table-container">
             
