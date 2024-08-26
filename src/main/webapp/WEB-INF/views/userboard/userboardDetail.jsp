@@ -55,8 +55,8 @@
 					            <c:if test="${users_info.user_id eq detail.user_id}">
 					            	<a href="./userboardUpdate?userboard_num=${detail.userboard_num}" class="btn btn-outline-success mb-3">수정</a>
 					              	<a href="./delete?userboard_num=${detail.userboard_num}" id="deletea" class="btn btn-outline-delete mb-3">삭제</a>
-					              	<a href="./reply?userboard_num=${detail.userboard_num}" class="btn btn-outline-success mb-3">답글 쓰기</a>
 					            </c:if>
+					              	<a href="./reply?userboard_num=${detail.userboard_num}" class="btn btn-outline-success mb-3">답글 쓰기</a>
             			</form>
 					</div>	
 				</div>
