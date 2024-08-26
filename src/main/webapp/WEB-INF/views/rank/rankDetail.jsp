@@ -24,7 +24,7 @@
 							<h2 class="tm-block-title">캐릭터 이름</h2>
 							<input name="pet_name" value="${myPetDTO.pet_name }" type="text"
 								class="form-control validate" />
-							<input name="pet_num" value="${myPetDTO.pet_num }" type="hidden"/>
+							<input id="pet_num" name="pet_num" value="${myPetDTO.pet_num }" type="hidden"/>
 							<div class="tm-avatar-container">
 								<img src="/resources/img/character/4.gif" alt="Avatar"
 									class="tm-avatar img-fluid mb-4" />
@@ -78,7 +78,22 @@
 									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 							</div>
 							
-							<a href="../friend/friendAdd?user_id=${myPetDTO.user_id}" class="btn btn-outline-success mb-3">친구추가</a>
+							<c:forEach items="${usersDTO.friendDTO}" var="friendList">
+							<c:choose>
+								<c:when test="${myPetDTO.user_id == friendList.friend_id}">
+								<a href="../friend/friendDetail?friend_num=${friendList.friend_num}" id="friendDetail" class="btn btn-outline-warning mb-3">친구보기</a>
+								</c:when>
+								
+								<c:when test="${myPetDTO.user_id == friendList.user_id}">
+								<input class="userId" value="${friendList.user_id}"
+									type="hidden">
+								</c:when>
+								
+								
+							</c:choose>
+							</c:forEach>
+							
+								<a href="/friend/makeFriend?user_id=${myPetDTO.user_id}&pet_num=${myPetDTO.pet_num}" data-user-id="${myPetDTO.user_id}" id="makeFriendBtn" class="btn btn-outline-success mb-3">친구추가</a>
 							
 						</form>
 					</div>
@@ -92,6 +107,10 @@
 	</div>
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>
+	<script type="text/javascript">
+	const userId = "${users_info.user_id}"
+	</script>
 	<script src="/resources/js/users/selectPetDetail.js"></script>
+	<script src="/resources/js/rank/rankDetail.js"></script>
 </body>
 </html>

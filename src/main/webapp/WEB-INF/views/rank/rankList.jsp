@@ -18,11 +18,19 @@
 						<div class="col-sm-4 col-md-4 col-lg-12 col-xl-12 tm-block-col">
 							<div class="row justify-content-center" id="go">
 
-							<c:forEach items="${list}" var="list">
+							<c:forEach items="${list}" var="list" varStatus="status">
 								<!-- 브라우저 사이즈에 따라 column 길이 변화 -->
 								<div class="col-sm-8 col-md-8 col-lg-6 col-xl-6 tm-block-col">
 									<!-- 카드형 태그 -->
 									<div class="card h-10">
+										<c:choose>
+											<c:when test="${users_info.user_id == list.user_id}">
+											<h1>내 순위: ${status.count}위</h1>	
+											</c:when>
+											<c:otherwise>
+											<h1>${status.count}위</h1>	
+											</c:otherwise>
+										</c:choose>
 										<!-- 디테일가기위한 a태그 -->
 										<a href="/rank/rankDetail?pet_num=${list.pet_num }">
 											<!-- 카드형 상부 이미지 -->
@@ -31,7 +39,10 @@
 										<div class="card-body">
 											<!-- 카드 이미지 하단 아이템명, 가격 -->
 											<c:choose>
+												
 												<c:when test="${list.pet_selected == 1 }">
+												
+												
 											<h5 class="card-title">닉네임: ${list.usersDTO.user_nickname}</h5>
 											<h5 class="card-title">펫 이름: ${list.pet_name }</h5>
 											<h5 class="card-title">레벨: ${list.pet_level }</h5>
