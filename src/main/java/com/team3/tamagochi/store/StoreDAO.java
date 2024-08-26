@@ -47,6 +47,10 @@ public class StoreDAO {
 	public List<WishListDTO> getWishList(UsersDTO usersDTO) {
 		return sqlSession.selectList(NAMESPACE+"getWishList", usersDTO);
 	}
+	
+	public WishListDTO getWishListDetail(WishListDTO wishListDTO) {
+		return sqlSession.selectOne(NAMESPACE+"getWishListDetail", wishListDTO);
+	}
 
 	public List<ItemDTO> getItemList(Map<String, Object> map) {
 	

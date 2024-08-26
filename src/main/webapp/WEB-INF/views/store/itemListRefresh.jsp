@@ -54,7 +54,7 @@
 							<p class="card-text">
 								${itemDTO.item_price} 원
 							</p>
-							<a type="button" class="btn btn-info purchaseItem" data-inum="${itemDTO.item_num}">구매</a>
+							<a type="button" class="btn btn-info purchaseItem" data-inum="${itemDTO.item_num}" href="/store/purchaseItem?ar=${itemDTO.item_num}">구매</a>
 							<a type="button" class="btn btn-info addwish" data-inum="${itemDTO.item_num}">장바구니</a>
 						</div>
 					</div>

@@ -54,22 +54,25 @@ public class StoreService {
 	public List<WishListDTO> getWishList(UsersDTO usersDTO) {
 		return storeDAO.getWishList(usersDTO);
 	}
+	
+	public WishListDTO getWishListDetail(WishListDTO wishListDTO) {
+		
+	    wishListDTO = storeDAO.getWishListDetail(wishListDTO);
+	    ItemDTO itemDTO =  new ItemDTO();
+	    
+	    itemDTO.setItem_num(wishListDTO.getItem_num());
+	    
+	    itemDTO = storeDAO.getItemDetail(itemDTO);
+	    
+	    wishListDTO.setItemDTO(itemDTO);
+		
+		return wishListDTO;
+	}
 
 	public int deleteWishList(WishListDTO wishListDTO) {
 		return storeDAO.deleteWishList(wishListDTO);
 	}
 
-//	public List<ItemFileDTO> filedetail(List<ItemDTO> list) {
-//
-//		List<ItemFileDTO> fileList = new ArrayList<ItemFileDTO>();
-//
-//		for (ItemDTO dto : list) {
-//			fileList.add(storeDAO.filedetail(dto));
-//		}
-//
-//		return fileList;
-//
-//	}
 
 	public List<ItemDTO> getItemList(ItemDTO itemDTO, Pager pager) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -136,14 +139,12 @@ public class StoreService {
 		int result = storeDAO.updateItem(itemDTO);
 		
 		//위의 아이템 내용 업데이트 완료 > 이미지 파일 처리
-		if(result>0) {
 			
 			//이미지 저장될 실제 경로
 			String path = session.getServletContext().getRealPath("/resources/img/item");
 			
 			//수정할 아이템의 이미지파일 경로 가져오기
 			List<ItemFileDTO> itemFileDTO = storeDAO.filedetail(itemDTO);
-			System.out.println(files.length);
 			
 			//매개변수로 받아온 이미지 파일 개수만큼 반복
 			for(int i=0;i<files.length;i++) {
@@ -157,9 +158,14 @@ public class StoreService {
 				dto.setItem_num(itemDTO.getItem_num());
 			
 				//매개변수로 받아오는 이미지 개수와 파일테이블의 개수가 다르면 새로 추가 같으면 업데이트
+				
 				if(itemFileDTO.size()!= files.length) {
-					result = storeDAO.addfile(dto);
-					System.out.println("test");
+					if(!itemFileDTO.isEmpty()) {
+						dto.setFile_num(itemFileDTO.get(i).getFile_num());
+						result = storeDAO.updateItemFile(dto);
+					} else {
+						result = storeDAO.addfile(dto);
+					}
 				} else {
 					dto.setFile_num(itemFileDTO.get(i).getFile_num());
 					fileManager.fileDelete(itemFileDTO.get(i), path);
@@ -168,7 +174,6 @@ public class StoreService {
 				
 			}
 			//매개변수로 받아온 이미지 파일 개수만큼 반복
-		}
 		//위의 아이템 내용 업데이트 완료 > 이미지 파일 처리
 		
 		return result;

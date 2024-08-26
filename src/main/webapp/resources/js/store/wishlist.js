@@ -6,25 +6,31 @@ const ch = document.getElementsByClassName("ch")
 const delAll = document.getElementById("delAll")
 const purchasebtn = document.getElementById("purchasebtn")
 const arr = document.getElementById("arr")
+const warr = document.getElementById("warr")
 const frm = document.getElementById("frm")
 
 let wishnum = 0;
-let itemnum = 0;
 
 purchasebtn.addEventListener("click",()=>{
     let ar = [];
     
     for(check of ch){
-        itemnum = check.getAttribute("data-inum")
+        wishnum = check.getAttribute("data-wnum");
         if(check.checked){
-            ar.push(itemnum)
+            ar.push(wishnum);
         } else {
             for(i=0;i<ar.length;i++){
-                if(ar[i]===itemnum){
-                    ar.splice(i,1)
+
+                if(ar[i]===wishnum){
+                    ar.splice(i,1);
                 }
             }
         }
+    }
+
+    if(ar.length==0){
+        alert("결제할 상품의 체크 박스에 체크해주세요.")
+        return;
     }
 
     arr.value = ar
@@ -40,7 +46,6 @@ checkdiv.addEventListener("click", (e)=>{
 
     if(e.target.classList.contains("ch")){
         for(check of ch){
-            console.log(check.checked)
 
             if(!check.checked){
                 flag = false;

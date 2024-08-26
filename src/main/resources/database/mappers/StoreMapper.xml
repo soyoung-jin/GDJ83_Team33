@@ -66,6 +66,15 @@
   		</association>
   	</resultMap>
   	
+  	<select id="getWishListDetail" parameterType="WishListDTO" resultMap="getItemDTO">
+  		SELECT W.*, I.*
+  		FROM WISHLIST W
+  			LEFT JOIN
+  			ITEM I
+  			ON (W.ITEM_NUM = I.ITEM_NUM)
+  		WHERE W.WISHLIST_NUM=#{wishlist_num} AND I.ITEM_DEL =0
+  	</select>
+  	
   
   	<insert id="addWishList" parameterType="WishListDTO">
   		INSERT INTO WISHLIST (WISHLIST_NUM, USER_ID, ITEM_NUM)

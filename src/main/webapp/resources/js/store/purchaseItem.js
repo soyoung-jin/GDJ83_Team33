@@ -24,8 +24,8 @@ kakaodelbtn.addEventListener("click",()=>{
 
 //카카오 결제 취소 함수
 async function kakaoDel() {
-    uuid = "6d8667f6-2fc6-4955-8e94-c829a9c42f46";
-    const del = await fetch(`https://api.portone.io/payments/payment-`+uuid+`/cancel`,{ 
+    uuid = "payment-6d8667f6-2fc6-4955-8e94-c829a9c42f46";
+    const del = await fetch(`https://api.portone.io/payments/`+uuid+`/cancel`,{ 
         method: 'post',
         headers: {Authorization: `PortOne i68oGkSudVRHtsQtbxZitbS7DPq99kDGH6xS2tz5l9W7w8ppV6xKcAioepMEyyYiW2Ae0mUGZ0NgUguK`, headers: {'Content-Type': 'application/json'}},
         body: '{"reason":"그냥"}'
@@ -84,21 +84,24 @@ async function kakaoRequestPayment() {
         switch (payment.status) {
             //결제성공 시
             case "PAID": {
-                alert("결제 성공")
-                //DB에 저장
+                //DB에 저장, 위시리스트 삭제
                 for(i=0;i<itemPrice.length;i++){
                     fetch("/store/purchaseComplete", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         // paymentId와 주문 정보를 서버에 전달합니다
                         body: JSON.stringify({
-                        item_num: itemName[i].getAttribute("data-inum"),
-                        transaction_amount: payment.amount.paid,
-                        transaction_order: payment.id,
-                        // 주문 정보...
+                            item_num: itemName[i].id,
+                            transaction_amount: payment.amount.paid,
+                            transaction_order: payment.id,
                         }),
-                    });
+                    })
+                    
+                    fetch("/store/deleteWishList?wishlist_num="+itemName[i].getAttribute("data-wnum"),{
+                        method:"get"
+                    }).then(r=>{r.text})
                 }
+                alert("결제 성공")
                 break;
             }
             default : {

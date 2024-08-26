@@ -62,8 +62,9 @@
 					<!-- list 비동기식 조회될 div -->
 					<!-- list 비동기식 조회될 div -->
 						<div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
-							<div id="itemListdiv" class="row justify-content-center">
+							<div id="itemListdiv" class="row justify-content-center" data-idto="${dto.category_num}">
 								<h2 class="text-white">아이템명을 입력하고 검색해주세요.</h2>
+
 							</div>
 						</div>
 				</div>
