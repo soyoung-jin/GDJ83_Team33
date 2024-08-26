@@ -70,6 +70,27 @@ public class FriendController {
 		return "commons/message";
 	}
 	
+	@GetMapping("friendAdd")
+	public String addFriend(FriendDTO friendDTO, Model model, HttpSession session) throws Exception {
+		// friend to user(친구가 유저를 추가)
+		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
+		friendDTO.setFriend_id(usersDTO.getUser_id());
+		int result = friendService.makeFriends(friendDTO);
+		
+		// user to friend(유저가 친구를 추가)
+		FriendDTO friendDTOReversed = new FriendDTO();
+		friendDTOReversed.setUser_id(usersDTO.getUser_id());
+		friendDTOReversed.setFriend_id(friendDTO.getUser_id());
+		result = friendService.makeFriends(friendDTOReversed);
+		
+		// 친구 불러오기
+		usersDTO = friendService.getFriendList(usersDTO);
+		
+		model.addAttribute("friendCheck", usersDTO);
+		model.addAttribute("msg", result);
+		return "commons/result";
+	}
+	
 	@GetMapping("deleteFriend")
 	public String deleteFriend(FriendDTO friendDTO, Model model) throws Exception{
 		int result = friendService.deleteFriend(friendDTO);

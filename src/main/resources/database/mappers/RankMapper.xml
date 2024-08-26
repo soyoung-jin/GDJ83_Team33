@@ -45,5 +45,15 @@
   		SELECT * FROM MY_PET
 		WHERE PET_NUM = #{pet_num}
   	</select>
+  	
+  	<update id="clickLike" parameterType="MyPetDTO">
+  		UPDATE 
+  			MY_PET
+  		SET
+  			PET_POP = PET_POP + 1
+  		WHERE
+  			PET_NUM = #{pet_num}
+  	
+  	</update>
  
  </mapper>

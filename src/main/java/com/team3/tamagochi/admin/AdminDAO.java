@@ -29,9 +29,27 @@ public class AdminDAO {
 		return sqlSession.selectOne(NAMESPACE + "getUserDetail", usersDTO);
 	}
 	
+	// 선택한 유저 상세 정보 수정 메서드
+	public int updateUserDetail(UsersDTO usersDTO) throws Exception{
+		
+		return sqlSession.update(NAMESPACE + "updateUserDetail", usersDTO);
+	}
+	
+	// 유저 정지 및 복구 메서드
+	public int updateUserResign(UsersDTO usersDTO) throws Exception{
+		
+		return sqlSession.update(NAMESPACE + "updateUserResign", usersDTO);
+	}
+	
 	// 선택한 유저의 거래 내역 조회 메서드
 	public List<TransactionDTO> getUserTradeList(UsersDTO usersDTO) throws Exception{
 		
 		return sqlSession.selectList(NAMESPACE + "getUserTradeList", usersDTO);
+	}
+	
+	// 월별 매출 조회 메서드
+	public SalesDTO getSales()throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE + "getSales");
 	}
 }

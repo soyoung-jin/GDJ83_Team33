@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>QUESTION</title>
+<title>USERBOARD</title>
 <c:import url="../template/header.jsp"></c:import>
 <link rel="stylesheet" href="/resources/css/boardSY.css">
 </head>
@@ -16,7 +16,7 @@
 			<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 				<div class="row">
 					<div class="col-12">
-						<h1 class="tm-block-title d-inline-block">문의사항 상세정보</h1>
+						<h1 class="tm-block-title d-inline-block">글 상세정보</h1>
 					</div>
 				</div>
 				<div class="row tm-edit-product-row">
@@ -26,11 +26,11 @@
 								<div>
 									<div id="noticetitle"class="form-group mb-10">
 					                    <label for="name">제목</label>
-					                    <input size= "50" id="question_title" name="question_title" type="text" class="form-control validate" value="${detail.question_title }" readonly style="background-color:#4e657a"/>
+					                    <input size= "50" id="userboard_title" name="userboard_title" type="text" class="form-control validate" value="${detail.userboard_title }" readonly style="background-color:#4e657a"/>
 		                 			</div> 
 	 								<div id="noticehit" class="form-group mb-3">
 								        <label for="name">조회수</label>
-								        <input size= "10"id="question_hit" name="question_hit" type="text" class="form-control validate" value="${detail.question_hit}"readonly style="background-color:#4e657a"/>
+								        <input size= "10"id="userboard_hit" name="userboard_hit" type="text" class="form-control validate" value="${detail.userboard_hit}"readonly style="background-color:#4e657a"/>
 				      				</div> 
                 				</div>
                 				<div>
@@ -40,22 +40,22 @@
 				                	</div>
 				                	<div id="noticedate" class="form-group mb-3">
 					                    <label for="name">등록일</label>
-					                    <input size= "30"id="question_create_date" name="question_create_date" type="text" class="form-control validate" value="${detail.question_create_date}"readonly style="background-color:#4e657a"/>
+					                    <input size= "30"id="userboard_create_date" name="userboard_create_date" type="text" class="form-control validate" value="${detail.userboard_create_date}"readonly style="background-color:#4e657a"/>
 				                  	</div>
                 				</div>
                 				<div>
 				                	<div class="form-group mb-3">
 				                    	<label for="contents">내용</label>
-				                    	<textarea class="form-control validate" name="question_contents" id="question_contents"rows="10" readonly style="background-color:#4e657a">${detail.question_contents}</textarea>
+				                    	<textarea class="form-control validate" name="userboard_contents" id="userboard_contents"rows="10" readonly style="background-color:#4e657a">${detail.userboard_contents}</textarea>
 				                  	</div>
 			                  	</div>
 								<div class="col-12" id="detail_back">
-				                	<a href="./qnaList" class="btn btn-primary btn-block text-uppercase">목록</a>
+				                	<a href="./userboardList" class="btn btn-primary btn-block text-uppercase">목록</a>
 				              	</div>
 					            <c:if test="${users_info.user_id eq detail.user_id}">
-					            	<a href="./qnaUpdate?question_num=${detail.question_num}" class="btn btn-outline-success mb-3">수정</a>
-					              	<a href="./delete?question_num=${detail.question_num}" id="deletea" class="btn btn-outline-delete mb-3">삭제</a>
-					              	<a href="./reply?question_num=${detail.question_num}" class="btn btn-outline-success mb-3">답글 쓰기</a>
+					            	<a href="./userboardUpdate?userboard_num=${detail.userboard_num}" class="btn btn-outline-success mb-3">수정</a>
+					              	<a href="./delete?userboard_num=${detail.userboard_num}" id="deletea" class="btn btn-outline-delete mb-3">삭제</a>
+					              	<a href="./reply?userboard_num=${detail.userboard_num}" class="btn btn-outline-success mb-3">답글 쓰기</a>
 					            </c:if>
             			</form>
 					</div>	

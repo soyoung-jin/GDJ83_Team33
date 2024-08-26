@@ -4,12 +4,15 @@
 <head>
 	<title>Home</title>
 	<c:import url="../template/header.jsp"></c:import>
+	<link rel="stylesheet" href="/resources/css/boardSY.css">
 </head>
 <body id="reportsPage" class="font">
-	<div class="" id="home">
+	
 		<c:import url="../template/topbar.jsp"></c:import>
-
-
+<div class="container">
+<div class="row">
+	<div class="col">
+				<h3 class="text-white mt-5 mb-5">${myPetDTO.user_id}님의 캐릭터 정보</h3>
 		<div class="container mt-5">		
 					<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 
@@ -74,6 +77,9 @@
 								<input id="pet_hungry" name="pet_hungry" value="${myPetDTO.pet_hungry }"
 									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 							</div>
+							
+							<a href="../friend/friendAdd?user_id=${myPetDTO.user_id}" class="btn btn-outline-success mb-3">친구추가</a>
+							
 						</form>
 					</div>
 				</div>
@@ -81,6 +87,8 @@
 		</div>
 	</div>
 		<!-- row -->
+	</div>
+	</div>
 	</div>
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>

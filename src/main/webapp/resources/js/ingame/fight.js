@@ -21,19 +21,80 @@ const clickMe = document.getElementById("clickMe");
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
-
+//함수로 fetch만들어서 
 
 fightBtn.addEventListener("click", ()=>{
-    lineParent.remove();
-    lineEnemyParent.remove();
+    lineParent.style.display="none";
+    lineEnemyParent.style.display="none";
     fightBtn.remove();
     clickMe.remove();
     petImg.style.cursor="pointer";
 })
 
-petImg.addEventListener("click", ()=>{
-    
-})
 
 
+let currentDroppable = null;
 
+weaponImg.addEventListener("mousedown", (e)=>{
+    let x = e.clientX - weaponImg.getBoundingClientRect().left;
+    let y = e.clientY - weaponImg.getBoundingClientRect().top;
+
+    moveAt(e.pageX, e.pageY);
+
+    function moveAt(pageX, pageY) {
+        weaponImg.style.left = pageX - x + 'px';
+        weaponImg.style.top = pageY - y + 'px';
+     }
+
+     function onMouseMove(event) {
+        moveAt(event.pageX, event.pageY);
+     
+        weaponImg.hidden = true;
+        //좌표를 element로 가져오기
+        let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
+        weaponImg.hidden = false;
+     
+        
+        if (!elemBelow) return;
+     
+        //elemen에에서가장장 가까운 조상 찾아서 droppable 클래스 넣기
+        let droppableBelow = elemBelow.closest('.droppable');
+       
+        if (currentDroppable != droppableBelow) {
+           if (currentDroppable) { 
+              
+              leaveDroppable(currentDroppable);
+           }
+           currentDroppable = droppableBelow;
+           if (currentDroppable) { 
+              enterDroppable(currentDroppable);
+
+              
+           }
+        }
+    }
+        document.addEventListener('mousemove', onMouseMove);
+       
+        weaponImg.onmouseup = function () {
+           document.removeEventListener('mousemove', onMouseMove);
+           weaponImg.onmouseup = null;
+        };
+     
+     })
+
+
+function enterDroppable(elem) {
+ elem.style.background = 'pink';
+ lineEnemyParent.style.display="inline";
+ lineEnemyParent.style.backgroundColor="red";
+ enemyLine.innerHTML="으악!";
+ enemyLine.style.color="white";
+}
+
+function leaveDroppable(elem) {
+ elem.style.background = '';
+}
+
+weaponImg.ondragstart = function () {
+ return false;
+};

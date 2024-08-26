@@ -1,14 +1,18 @@
 @charset "UTF-8";
-#arankboard{
+#rankplay{
 	display: inline-block;
 }
-#arankboard2{
+#ranklike{
 	display: inline-block;
 	
 }
 
-#arankboard2 >img{
+#ranklike > .pop_btn{
 	display: inline-block;
 	width:20%;
 	height:20%;
+}
+
+.tm-bg-primary-dark tm-block tm-block-h-auto{
+	display:inline-block;
 }

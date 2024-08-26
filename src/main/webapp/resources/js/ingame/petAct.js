@@ -78,7 +78,7 @@ feed.addEventListener("click", ()=>{
     
             setTimeout(()=>{
                 followingPetDiv.remove();
-            }, 7000)
+            }, 10000)
 
         })
             .catch(()=>{
@@ -130,7 +130,7 @@ stroll.addEventListener("click", ()=>{
     
             setTimeout(()=>{
                 followingPetDiv.remove();
-            }, 7000)
+            }, 10000)
 
         })
         .catch(()=>{
@@ -184,7 +184,7 @@ clean.addEventListener("click", ()=>{
     
             setTimeout(()=>{
                 followingPetDiv.remove();
-            }, 7000)
+            }, 10000)
 
         })
         .catch(()=>{
@@ -234,7 +234,7 @@ petStatusBtn.addEventListener("click", ()=>{
     
             setTimeout(()=>{
                 followingPetDiv.remove();
-            }, 10000)
+            }, 20000)
 
         }
         

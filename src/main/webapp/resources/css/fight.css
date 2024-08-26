@@ -73,3 +73,11 @@
 #fightBtnParent {
     text-align: center;
 }
+
+#weaponDiv {
+    display: inline;
+}
+
+#enemyDiv {
+    display: inline;
+}

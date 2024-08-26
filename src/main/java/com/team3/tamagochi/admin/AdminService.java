@@ -25,8 +25,23 @@ public class AdminService {
 		return adminDAO.getUserDetail(usersDTO);
 	}
 	
+	public int updateUserDetail(UsersDTO usersDTO) throws Exception{
+		
+		return adminDAO.updateUserDetail(usersDTO);
+	}
+	
+	public int updateUserResign(UsersDTO usersDTO) throws Exception{
+		
+		return adminDAO.updateUserResign(usersDTO);
+	}
+	
 	public List<TransactionDTO> getUserTradeList(UsersDTO usersDTO) throws Exception{
 		
 		return adminDAO.getUserTradeList(usersDTO);
+	}
+	
+	public SalesDTO getSales()throws Exception{
+		
+		return adminDAO.getSales();
 	}
 }

@@ -1,4 +1,16 @@
 const width_threshold = 480;
+const sp1 = document.getElementById("sp1");
+const sp2 = document.getElementById("sp2");
+const sp3 = document.getElementById("sp3");
+const sp4 = document.getElementById("sp4");
+const sp5 = document.getElementById("sp5");
+const sp6 = document.getElementById("sp6");
+const sp7 = document.getElementById("sp7");
+const sp8 = document.getElementById("sp8");
+const sp9 = document.getElementById("sp9");
+const sp10 = document.getElementById("sp10");
+const sp11 = document.getElementById("sp11");
+const sp12 = document.getElementById("sp12");
 
 function drawLineChart() {
   if ($("#lineChart").length) {
@@ -24,25 +36,31 @@ function drawLineChart() {
       type: "line",
       data: {
         labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July"
+          "1월",
+          "2월",
+          "3월",
+          "4월",
+          "5월",
+          "6월",
+          "7월",
+          "8월",
+          "9월",
+          "10월",
+          "11월",
+          "12월"
         ],
         datasets: [
           {
-            label: "Latest Hits",
-            data: [88, 68, 79, 57, 50, 55, 70],
+            label: "판매",
+            data: [sp1.value, sp2.value, sp3.value, sp4.value, sp5.value, sp6.value, sp7.value, sp8.value,
+              sp9.value, sp10.value, sp11.value, sp12.value],
             fill: false,
             borderColor: "rgb(75, 192, 192)",
             cubicInterpolationMode: "monotone",
             pointRadius: 0
           },
           {
-            label: "Popular Hits",
+            label: "환불",
             data: [33, 45, 37, 21, 55, 74, 69],
             fill: false,
             borderColor: "rgba(255,99,132,1)",
@@ -50,7 +68,7 @@ function drawLineChart() {
             pointRadius: 0
           },
           {
-            label: "Featured",
+            label: "매출 총액(구입-환불)",
             data: [44, 19, 38, 46, 85, 66, 79],
             fill: false,
             borderColor: "rgba(153, 102, 255, 1)",
@@ -105,19 +123,15 @@ function drawBarChart() {
     configBar = {
       type: "horizontalBar",
       data: {
-        labels: ["Red", "Aqua", "Green", "Yellow", "Purple", "Orange", "Blue"],
+        labels: ["판매", "환불", "총액"],
         datasets: [
           {
             label: "# of Hits",
-            data: [33, 40, 28, 49, 58, 38, 44],
+            data: [33, 40, 28],
             backgroundColor: [
-              "#F7604D",
               "#4ED6B8",
-              "#A8D582",
-              "#D7D768",
-              "#9D66CC",
-              "#DB9C3F",
-              "#3889FC"
+              "#F7604D",
+              "#9D66CC"
             ],
             borderWidth: 0
           }
