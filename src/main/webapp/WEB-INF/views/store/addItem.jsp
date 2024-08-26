@@ -25,12 +25,17 @@
 						<form class="form" action="${dto eq null?'addItem':'updateItem'}" method="post" enctype="multipart/form-data">
 							<div class="mb-2">
 								<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
-								<c:if test="${dto eq null}">
-									<select class="custom-select" id="category_num" name="category_num">
-										<option value="0">캐릭터</option>
-										<option value="1">무기</option>
-									</select>
-								</c:if>
+								<c:choose>
+									<c:when test="${dto eq null}">
+										<select class="custom-select" id="category_num" name="category_num">
+											<option value="0">캐릭터</option>
+											<option value="1">무기</option>
+										</select>
+									</c:when>
+									<c:otherwise>
+										<input type="hidden" id="category_num" name="category_num" value="${dto.category_num}">
+									</c:otherwise>
+								</c:choose>
 							</div>
 							
 							<!-- update 때 item num으로 수정할 아이템 번호 찾아가야함 -->

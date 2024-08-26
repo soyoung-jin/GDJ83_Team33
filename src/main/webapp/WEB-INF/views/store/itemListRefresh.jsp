@@ -18,7 +18,7 @@
 						    <li data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide-to="2"></li>
 						    <li data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide-to="3"></li>
 						  </ol>
-						  <a onclick="getItemNum('${itemDTO.item_num}')" style="cursor:pointer;">
+						  <a onclick="getItemNum('${itemDTO.item_num}')" style="cursor:pointer;" >
 						  <div class="carousel-inner" >
 						    <div class="carousel-item active">
 						      <img src="getImage?file_name=${not empty itemDTO.itemFileDTOs[0]?itemDTO.itemFileDTOs[0].file_name:'default.gif'}" data-inum="${itemDTO.item_num}" class="d-block w-100 imgSize" alt="...">
@@ -54,7 +54,7 @@
 							<p class="card-text">
 								${itemDTO.item_price} 원
 							</p>
-							<a type="button" class="btn btn-info purchaseItem" data-inum="${itemDTO.item_num}">구매</a>
+							<a type="button" class="btn btn-info purchaseItem" data-inum="${itemDTO.item_num}" href="/store/purchaseItem?ar=${itemDTO.item_num}">구매</a>
 							<a type="button" class="btn btn-info addwish" data-inum="${itemDTO.item_num}">장바구니</a>
 						</div>
 					</div>

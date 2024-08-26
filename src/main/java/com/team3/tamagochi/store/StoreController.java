@@ -40,25 +40,23 @@ public class StoreController {
 	// 결제할 제품을 결제창으로 가져오는 메소드
 	@GetMapping("purchaseItem")
 	public void purchaseItem(@RequestParam List<Long> ar, Model model) throws Exception {
-		List<ItemDTO> list = new ArrayList<ItemDTO>();
-
-		for (Long a : ar) {
-
-			ItemDTO itemDTO = new ItemDTO();
-			itemDTO.setItem_num(a);
-
-			itemDTO = storeService.getItemDetail(itemDTO);
-
-			list.add(itemDTO);
-		}
-
-		model.addAttribute("purchaseList", list);
+			List<WishListDTO> list = new ArrayList<WishListDTO>();
+			for (Long a : ar) {
+				WishListDTO wishListDTO = new WishListDTO();
+				wishListDTO.setWishlist_num(a);
+				wishListDTO = storeService.getWishListDetail(wishListDTO);
+				
+				list.add(wishListDTO);
+				
+			}
+				
+				model.addAttribute("purchaseList", list);
 
 	}
 
 	// 카카오페이 결제 후 DB 저장
 	@PostMapping("purchaseComplete")
-	public String purchaseComplete(@RequestBody TransactionDTO transactionDTO, HttpSession session, Model model)
+	public void purchaseComplete(@RequestBody TransactionDTO transactionDTO, HttpSession session, Model model)
 			throws Exception {
 
 		System.out.println(transactionDTO.getItem_num());
@@ -69,15 +67,13 @@ public class StoreController {
 		transactionDTO.setUser_id(usersDTO.getUser_id());
 		transactionDTO.setTransaction_type("구입");
 
+		//결제내역 생성
 		int result = storeService.addTransaction(transactionDTO);
-
+	
 		if (result == 0) {
 			model.addAttribute("result", "DB저장 실패");
 			model.addAttribute("url", "/");
-			return "commons/message";
 		}
-
-		return "store/purchaseComplete";
 	}
 
 	// ==============================위시리스트 관련 메소드=============================
@@ -86,6 +82,7 @@ public class StoreController {
 
 	@GetMapping("deleteWishList")
 	public String deleteWishList(WishListDTO wishListDTO, HttpSession session, Model model) {
+		
 
 		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
 		wishListDTO.setUser_id(usersDTO.getUser_id());
@@ -194,7 +191,8 @@ public class StoreController {
 	// ajax로 리스트 조회하기 위해 jsp 찾아가는 경로만 작성
 	// resources/js/storelist.js 스트립트 작성
 	@GetMapping("itemList")
-	public void getItemList() {
+	public void getItemList(ItemDTO itemDTO, Model model) {
+		model.addAttribute("dto", itemDTO);
 	}
 
 	// Item 상세정보 조회
@@ -251,6 +249,9 @@ public class StoreController {
 	@PostMapping("updateItem")
 	public String updateItem(ItemDTO itemDTO, MultipartFile[] attach, Model model, HttpSession session) throws Exception {
 		
+		
+		model.addAttribute("url", "itemList?category_num="+itemDTO.getCategory_num());
+		
 		for(MultipartFile mf:attach) {
 			if(mf.isEmpty()) {
 				model.addAttribute("result", "이미지 파일을 전부 추가해주세요.");
@@ -268,7 +269,6 @@ public class StoreController {
 			model.addAttribute("result", "이미지 등록이 안되어있음");
 		}
 
-		model.addAttribute("url", "itemDetail?item_num=" + itemDTO.getItem_num());
 
 		return "commons/message";
 	}
