@@ -8,8 +8,8 @@
 <link rel="stylesheet" href="/resources/css/boardSY.css">
 </head>
 <body id="reportsPage" class="font">
-<div class="container mt-5">
 		<c:import url="../template/topbar.jsp"></c:import>
+<div class="container mt-5">
       <div class="row tm-content-row">
         <div class="col-sm-12 col-md-12 col-lg-9 col-xl-9 tm-block-col">
 				<h1 class="text-white mt-2 mb-2">문의 게시판</h1>
