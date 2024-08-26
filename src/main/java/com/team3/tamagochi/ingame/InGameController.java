@@ -87,6 +87,7 @@ public class InGameController {
 		myPetDTO.setUser_id(tempDTO.getUser_id());
 		myPetDTO = inGameService.getPetStatus(myPetDTO);
 		model.addAttribute("myPetDTO", myPetDTO);
+		
 		ItemDTO itemDTO = new ItemDTO();
 		itemDTO.setItem_num(myPetDTO.getItem_num());
 		itemDTO = storeService.getItemDetail(itemDTO);
