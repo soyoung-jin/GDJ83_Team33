@@ -44,4 +44,19 @@ public class AdminService {
 		
 		return adminDAO.getSales();
 	}
+	
+	public SalesDTO getRefund() throws Exception{
+		
+		return adminDAO.getRefund();
+	}
+	
+	public Long getMonthSales() throws Exception{
+		
+		return adminDAO.getMonthSales();
+	}
+	
+	public Long getMonthRefund() throws Exception{
+		
+		return adminDAO.getMonthRefund();
+	}
 }

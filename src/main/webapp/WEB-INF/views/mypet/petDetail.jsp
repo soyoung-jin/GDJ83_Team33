@@ -63,18 +63,24 @@
 									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 							</div>
 							<div class="form-group col-lg-6">
-								<label for="pet_hp">체력</label>
-								<input id="pet_hp" name="pet_hp" value="${myPetDTO.pet_hp }"
+								<div class="text-danger">
+									<label for="pet_hp">체력</label> + ${myPetDTO.add_hp }
+								</div>
+								<input id="pet_hp" name="pet_hp" value="${myPetDTO.pet_hp + myPetDTO.add_hp}"
 									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 							</div>
 							<div class="form-group col-lg-6">
-								<label for="pet_atk">공격력</label>
-								<input id="pet_atk" name="pet_atk" value="${myPetDTO.pet_atk }"
+								<div class="text-danger">
+									<label for="pet_atk">공격력</label> + ${myPetDTO.add_atk }
+								</div>
+								<input id="pet_atk" name="pet_atk" value="${myPetDTO.pet_atk + myPetDTO.add_atk}"
 									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 							</div>
 							<div class="form-group col-lg-6">
-								<label for="pet_dod">회피력</label>
-								<input id="pet_dod" name="pet_dod" value="${myPetDTO.pet_dod }"
+								<div class="text-danger">
+									<label for="pet_dod">회피력</label> + ${myPetDTO.add_dod }
+								</div>
+								<input id="pet_dod" name="pet_dod" value="${myPetDTO.pet_dod + myPetDTO.add_dod}"
 									type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 							</div>
 							<div class="form-group col-lg-6">

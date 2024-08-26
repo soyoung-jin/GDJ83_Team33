@@ -11,6 +11,20 @@ const sp9 = document.getElementById("sp9");
 const sp10 = document.getElementById("sp10");
 const sp11 = document.getElementById("sp11");
 const sp12 = document.getElementById("sp12");
+const sr1 = document.getElementById("sr1");
+const sr2 = document.getElementById("sr2");
+const sr3 = document.getElementById("sr3");
+const sr4 = document.getElementById("sr4");
+const sr5 = document.getElementById("sr5");
+const sr6 = document.getElementById("sr6");
+const sr7 = document.getElementById("sr7");
+const sr8 = document.getElementById("sr8");
+const sr9 = document.getElementById("sr9");
+const sr10 = document.getElementById("sr10");
+const sr11 = document.getElementById("sr11");
+const sr12 = document.getElementById("sr12");
+const mp = document.getElementById("mp");
+const mr = document.getElementById("mr");
 
 function drawLineChart() {
   if ($("#lineChart").length) {
@@ -61,7 +75,8 @@ function drawLineChart() {
           },
           {
             label: "환불",
-            data: [33, 45, 37, 21, 55, 74, 69],
+            data: [sr1.value, sr2.value, sr3.value, sr4.value, sr5.value, sr6.value, sr7.value, sr8.value,
+              sr9.value, sr10.value, sr11.value, sr12.value],
             fill: false,
             borderColor: "rgba(255,99,132,1)",
             cubicInterpolationMode: "monotone",
@@ -69,7 +84,9 @@ function drawLineChart() {
           },
           {
             label: "매출 총액(구입-환불)",
-            data: [44, 19, 38, 46, 85, 66, 79],
+            data: [sp1.value-sr1.value, sp2.value-sr2.value, sp3.value-sr3.value, sp4.value-sr4.value,
+              sp5.value-sr5.value, sp6.value-sr6.value, sp7.value-sr7.value, sp8.value-sr8.value,
+              sp9.value-sr9.value, sp10.value-sr10.value, sp11.value-sr11.value, sp12.value-sr12.value],
             fill: false,
             borderColor: "rgba(153, 102, 255, 1)",
             cubicInterpolationMode: "monotone",
@@ -127,7 +144,7 @@ function drawBarChart() {
         datasets: [
           {
             label: "# of Hits",
-            data: [33, 40, 28],
+            data: [mp.value, mr.value, mp.value-mr.value],
             backgroundColor: [
               "#4ED6B8",
               "#F7604D",
