@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.socket.WebSocketSession;
 
+import com.team3.tamagochi.mypet.MyPetDTO;
 import com.team3.tamagochi.store.ItemDTO;
 import com.team3.tamagochi.users.InventoryDTO;
 import com.team3.tamagochi.users.UsersDTO;
@@ -70,10 +71,11 @@ public class FriendController {
 		return "commons/message";
 	}
 	
-	@GetMapping("friendAdd")
-	public String addFriend(FriendDTO friendDTO, Model model, HttpSession session) throws Exception {
+	@GetMapping("makeFriend")
+	public String addFriend(FriendDTO friendDTO, Model model, HttpSession session, MyPetDTO myPetDTO) throws Exception {
 		// friend to user(친구가 유저를 추가)
 		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
+		
 		friendDTO.setFriend_id(usersDTO.getUser_id());
 		int result = friendService.makeFriends(friendDTO);
 		
@@ -84,16 +86,25 @@ public class FriendController {
 		result = friendService.makeFriends(friendDTOReversed);
 		
 		// 친구 불러오기
-		usersDTO = friendService.getFriendList(usersDTO);
+		//usersDTO = friendService.getFriendList(usersDTO);
 		
-		model.addAttribute("friendCheck", usersDTO);
-		model.addAttribute("msg", result);
-		return "commons/result";
+		model.addAttribute("result", "친구가 되었어요");
+		model.addAttribute("url", "/rank/rankDetail?pet_num=" + myPetDTO.getPet_num());
+		return "commons/message";
 	}
 	
 	@GetMapping("deleteFriend")
-	public String deleteFriend(FriendDTO friendDTO, Model model) throws Exception{
+	public String deleteFriend(FriendDTO friendDTO, Model model, HttpSession session) throws Exception{
+		// 친구가 유저를 삭제
+		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
+		friendDTO.setFriend_id(usersDTO.getUser_id());
 		int result = friendService.deleteFriend(friendDTO);
+		
+		// 유저가 친구를 삭제
+		FriendDTO friendDTOReversed = new FriendDTO();
+		friendDTOReversed.setUser_id(usersDTO.getUser_id());
+		friendDTOReversed.setFriend_id(friendDTO.getUser_id());
+		result = friendService.deleteFriend(friendDTOReversed);
 		
 		if(result>0) {
 			model.addAttribute("result", "친구를 끊었습니다.");

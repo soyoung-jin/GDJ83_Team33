@@ -50,7 +50,7 @@
   	
   	<!-- 친구 삭제 -->
   	<delete id="deleteFriend" parameterType="FriendDTO">
-  		DELETE FROM FRIEND WHERE friend_num = #{friend_num}
+  		DELETE FROM FRIEND WHERE USER_ID = #{user_id} AND FRIEND_ID=#{friend_id}
   	</delete>
   	
   	<!-- 내 소지품에서 아이템 가져오는 쿼리문. JOIN을 사용했기 때문에 ResultMap이 필요하다 -->

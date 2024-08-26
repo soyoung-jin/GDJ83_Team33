@@ -133,7 +133,7 @@
 								<div class="form-group col-lg-6">
 									<label class="tm-hide-sm">&nbsp;</label>
 									<a type="button" class="btn btn-danger btn-block text-uppercase"
-									href="deleteFriend?friend_num=${friendInfoDTO.friendDTO[0].friend_num}">
+									href="deleteFriend?user_id=${friendInfoDTO.user_id}">
 										친구 끊기</a>
 								</div>
 								
