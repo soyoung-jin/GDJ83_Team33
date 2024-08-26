@@ -47,16 +47,18 @@
 							</c:if>
 						</div>
 						<!-- 이미지 리스트 -->
-					
-						<div class="card-body">
-							<!-- 카드 이미지 하단 아이템명, 가격 -->
-							<h5 class="card-title">${itemDTO.item_name}</h5>
-							<p class="card-text">
-								${itemDTO.item_price} 원
-							</p>
-							<a type="button" class="btn btn-info purchaseItem" data-inum="${itemDTO.item_num}" href="/store/purchaseItem?ar=${itemDTO.item_num}">구매</a>
-							<a type="button" class="btn btn-info addwish" data-inum="${itemDTO.item_num}">장바구니</a>
-						</div>
+						<form action="purchaseItem" method="post">
+							<div class="card-body">
+								<!-- 카드 이미지 하단 아이템명, 가격 -->
+								<h5 class="card-title">${itemDTO.item_name}</h5>
+								<p class="card-text">
+									${itemDTO.item_price} 원
+								</p>
+								<input type="hidden" name="item_num" value="${itemDTO.item_num}">
+								<a type="submit" class="btn btn-info purchaseItem" data-inum="${itemDTO.item_num}">구매</a>
+								<a type="button" class="btn btn-info addwish" data-inum="${itemDTO.item_num}">장바구니</a>
+							</div>
+						</form>
 					</div>
 				</div>
 			</c:forEach>

@@ -61,7 +61,7 @@
                                 <a class="dropdown-item" href="/users/mypage">내 정보</a>
                                 <a class="dropdown-item" href="/mypet/mypetList">내 캐릭터</a>
                                 <a class="dropdown-item" href="/users/inventory">인벤토리</a>
-                                <a class="dropdown-item" href="/store/getWishList">위시리스트</a>
+                                <a class="dropdown-item" href="/store/getWishList">장바구니</a>
                                 <a class="dropdown-item" href="/friend/friendList">내 친구들</a>
                             </div>
                         </li>

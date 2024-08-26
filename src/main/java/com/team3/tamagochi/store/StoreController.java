@@ -42,6 +42,7 @@ public class StoreController {
 	public void purchaseItem(@RequestParam List<Long> ar, Model model) throws Exception {
 			List<WishListDTO> list = new ArrayList<WishListDTO>();
 			for (Long a : ar) {
+				System.out.println(a);
 				WishListDTO wishListDTO = new WishListDTO();
 				wishListDTO.setWishlist_num(a);
 				wishListDTO = storeService.getWishListDetail(wishListDTO);
@@ -52,6 +53,11 @@ public class StoreController {
 				
 				model.addAttribute("purchaseList", list);
 
+	}
+	
+	@PostMapping("purchaseItem")
+	public void purchaseItem(ItemDTO itemDTO) throws Exception {
+		System.out.println("go");
 	}
 
 	// 카카오페이 결제 후 DB 저장
