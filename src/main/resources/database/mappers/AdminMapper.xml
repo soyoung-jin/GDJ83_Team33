@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <!-- namespace는 꼭 들어가야될 속성 -->
-  <mapper namespace="com.team3.tamagochi.admin.AdminDAO">
+    <mapper namespace="com.team3.tamagochi.admin.AdminDAO">
   	
   	<select id="getUserList" resultType="UsersDTO">
   		SELECT USER_ID, USER_AUTH
@@ -82,7 +82,7 @@
 		 SUM(DECODE(TO_CHAR(TRANSACTION_DATE, 'MM'), '12', TRANSACTION_AMOUNT)) AS "M12"
 		 FROM TRANSACTION
 		 WHERE TRANSACTION_DATE BETWEEN TO_DATE('2024-01-01') AND TO_DATE('2024-12-31') AND TRANSACTION_TYPE ='환불'
-  	</select> -->
+  	</select>
   	
   
   </mapper>
