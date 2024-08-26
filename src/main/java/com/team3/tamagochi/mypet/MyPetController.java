@@ -34,15 +34,27 @@ public class MyPetController {
 	
 	// 캐릭터의 상세정보를 보여주는 메서드
 	@GetMapping("petDetail")
-	public void getDetail(MyPetDTO myPetDTO, Model model, HttpSession session) throws Exception{
+	public String getDetail(MyPetDTO myPetDTO, Model model, HttpSession session) throws Exception{
 		
 		myPetDTO = myPetService.getDetail(myPetDTO);
 		
-		model.addAttribute("myPetDTO", myPetDTO);
+		// 캐릭터 디테일 페이지에서 타인의 캐릭터 번호로 캐릭터를 조회할 수 있는 문제 발생
+		// 따라서 session의 id와 조회한 캐릭터의 id가 동일할 경우에만 조회가 가능하도록 처리
+		UsersDTO tempDTO = (UsersDTO)session.getAttribute("users_info");
+		if(myPetDTO.getUser_id().equals(tempDTO.getUser_id())) {
+			
+			model.addAttribute("myPetDTO", myPetDTO);
+		}else {			
+			model.addAttribute("result", "잘못된 접근입니다.");
+			model.addAttribute("url", "/mypet/petDetail?pet_num=" + myPetDTO.getPet_num()); // 아직 다 못함
+			return "commons/message";
+		}
 		
 		// detail 페이지에서 select바로 내가 가진 캐릭터 목록을 보여주는 코드
 		// 위에서 만들어둔 getList 메서드를 호출해서 내가 보유하고 있는 캐릭터 list를 가져옴
 		this.getList(model, session);
+		
+		return "mypet/petDetail";
 	}
 	
 	// 캐릭터 이름을 수정하는 메서드

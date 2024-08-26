@@ -71,9 +71,9 @@
 		WHERE PET_NUM = #{pet_num}
   	</update>
   	
-  	<!-- 3. 해제 버튼 클릭시 해당 컬럼을 null값으로 업데이트 해주는 쿼리문 -->
+  	<!-- 3. 해제 버튼 클릭시 해당 컬럼을 0으로 업데이트 해주는 쿼리문 -->
   	<update id="takeOffItem" parameterType="MyPetDTO">
-  		UPDATE MY_PET SET ADD_HP= null, ADD_ATK= null, ADD_DOD= null, EQUIP_NUM = null
+  		UPDATE MY_PET SET ADD_HP= 0, ADD_ATK= 0, ADD_DOD= 0, EQUIP_NUM = null
 		WHERE PET_NUM = #{pet_num}
   	</update>
   	
