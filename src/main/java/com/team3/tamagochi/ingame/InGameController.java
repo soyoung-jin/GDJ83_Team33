@@ -2,6 +2,7 @@ package com.team3.tamagochi.ingame;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -33,24 +34,24 @@ public class InGameController {
 	private StoreService storeService;
 	
 	// 캐릭터 이미지 가져오기
-//	@GetMapping("getImage")
-//	public ResponseEntity<byte[]> getImage(ItemFileDTO itemFileDTO, HttpSession session) throws Exception {
-//		System.out.println(itemFileDTO);
-//
-//		String realPath = session.getServletContext().getRealPath("/resources/img/item");
-//
-//		File file = new File(realPath, itemFileDTO.getFile_name());
-//
-//		ResponseEntity<byte[]> result = null;
-//
-//		HttpHeaders header = new HttpHeaders();
-//
-//		header.add("Content-type", Files.probeContentType(file.toPath()));
-//
-//		result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
-//
-//		return result;
-//	}
+	@GetMapping("getImage")
+	public ResponseEntity<byte[]> getImage(ItemFileDTO itemFileDTO, HttpSession session) throws Exception {
+		System.out.println(itemFileDTO);
+
+		String realPath = session.getServletContext().getRealPath("/resources/img/item");
+
+		File file = new File(realPath, itemFileDTO.getFile_name());
+
+		ResponseEntity<byte[]> result = null;
+
+		HttpHeaders header = new HttpHeaders();
+
+		header.add("Content-type", Files.probeContentType(file.toPath()));
+
+		result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+
+		return result;
+	}
 	
 	@GetMapping("fight")
 	public void fight(HttpSession session, ItemDTO itemDTO) throws Exception{
@@ -60,6 +61,7 @@ public class InGameController {
 		
 	}
 	
+//	
 //	@GetMapping("fight")
 //	public ResponseEntity<byte[]> fight(ItemFileDTO itemFileDTO, HttpSession session) throws Exception {
 //		String realPath = session.getServletContext().getRealPath("/resources/img/item");
@@ -85,6 +87,11 @@ public class InGameController {
 		myPetDTO.setUser_id(tempDTO.getUser_id());
 		myPetDTO = inGameService.getPetStatus(myPetDTO);
 		model.addAttribute("myPetDTO", myPetDTO);
+		ItemDTO itemDTO = new ItemDTO();
+		itemDTO.setItem_num(myPetDTO.getItem_num());
+		itemDTO = storeService.getItemDetail(itemDTO);
+		model.addAttribute("itemFile", itemDTO);
+		
 		
 	}
 	
