@@ -68,6 +68,8 @@ weaponImg.addEventListener("mousedown", (e)=>{
            currentDroppable = droppableBelow;
            if (currentDroppable) { 
               enterDroppable(currentDroppable);
+
+              
            }
         }
     }
@@ -84,8 +86,9 @@ weaponImg.addEventListener("mousedown", (e)=>{
 function enterDroppable(elem) {
  elem.style.background = 'pink';
  lineEnemyParent.style.display="inline";
- lineEnemyParent.style.border="solid 2px red";
+ lineEnemyParent.style.backgroundColor="red";
  enemyLine.innerHTML="으악!";
+ enemyLine.style.color="white";
 }
 
 function leaveDroppable(elem) {

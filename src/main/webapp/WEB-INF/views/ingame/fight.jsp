@@ -34,7 +34,7 @@
 
 			<div id="enemyParent">
 				<%-- <img src="getImage?file_name=${itemDTO.itemFileDTOs[1].file_name}" alt="..."> --%>
-				<div id="lineEnemyParent">
+				<div id="lineEnemyParent" class="mb-2">
 					<h3 id="enemyLine">나도 준비됐다</h3>
 				</div>
 				<img src="/resources/img/character/Character4_4.gif"  class="droppable" alt="" id="enemyImg">
