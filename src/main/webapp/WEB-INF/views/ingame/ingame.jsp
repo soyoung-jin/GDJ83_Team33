@@ -155,7 +155,7 @@
 			
 			<div class="container">
 				<div id="petParent">
-					<img id="myPet" src="/resources/img/ingame/ex1.gif" alt="moving cracked egg">
+					<img id="myPet" src="getImage?file_name=${not empty itemFile.itemFileDTOs[1]?itemFile.itemFileDTOs[1].file_name:'default.gif'}" alt="moving cracked egg">
 					<img id="rightArrow" src="/resources/img/ingame/rightArrow.png" alt="right Arrow">
 					<div id="chatDiv">
 	

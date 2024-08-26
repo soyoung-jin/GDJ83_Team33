@@ -47,4 +47,9 @@ public class FriendService {
 	public int sendGift (InventoryDTO inventoryDTO) throws Exception {
 		return friendDAO.sendGift(inventoryDTO);
 	}
+	
+	// 알람 보내기
+	public int sendAlarm(AlarmDTO alarmDTO) throws Exception {
+		return friendDAO.sendAlarm(alarmDTO);
+	}
 }

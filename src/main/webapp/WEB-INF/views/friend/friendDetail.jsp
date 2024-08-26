@@ -116,7 +116,7 @@
 																	<h5 class="card-title">공격력 증가 : ${invenItem.item_atk }</h5>
 																	<h5 class="card-title">회피력 증가 : ${invenItem.item_dod }</h5>
 																	<a href="./sendGift?item_num=${invenItem.item_num}&user_id=${friendInfoDTO.user_id}" 
-																	id="sendSelectedGift" type="button" class="btn btn-primary chatBtn">선물 보내기</a>	
+																	id="sendSelectedGift" type="button" class="btn btn-primary giftBtn">선물 보내기</a>	
 																</div>
 															</div>
 														</div>
@@ -133,7 +133,7 @@
 								<div class="form-group col-lg-6">
 									<label class="tm-hide-sm">&nbsp;</label>
 									<a type="button" class="btn btn-danger btn-block text-uppercase"
-									href="deleteFriend?friend_num=${friendInfoDTO.friendDTO[0].friend_num}">
+									href="deleteFriend?user_id=${friendInfoDTO.user_id}">
 										친구 끊기</a>
 								</div>
 								

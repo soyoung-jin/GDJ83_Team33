@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.team3.tamagochi.boards.util.Pager;
+import com.team3.tamagochi.friend.FriendService;
 import com.team3.tamagochi.mypet.MyPetDTO;
+import com.team3.tamagochi.users.UsersDTO;
 
 @Controller
 @RequestMapping(value = "/rank/*")
@@ -23,6 +25,9 @@ public class RankController {
 
 	@Autowired
 	private RankService rankService;
+	
+	@Autowired
+	private FriendService friendService;
 
 	@GetMapping("rankList")
 	public ModelAndView list(ModelAndView mv, Pager pager) throws Exception {
@@ -40,6 +45,12 @@ public class RankController {
 			
 		myPetDTO = rankService.detail(myPetDTO);		
 		model.addAttribute("myPetDTO", myPetDTO);
+		
+		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
+		
+		usersDTO = friendService.getFriendList(usersDTO);
+		
+		model.addAttribute("usersDTO", usersDTO);
 		
 
 		return "rank/rankDetail";

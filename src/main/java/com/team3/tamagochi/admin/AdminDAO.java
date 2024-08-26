@@ -47,9 +47,27 @@ public class AdminDAO {
 		return sqlSession.selectList(NAMESPACE + "getUserTradeList", usersDTO);
 	}
 	
-	// 월별 매출 조회 메서드
+	// 연간 매출 조회 메서드
 	public SalesDTO getSales()throws Exception{
 		
 		return sqlSession.selectOne(NAMESPACE + "getSales");
+	}
+	
+	// 연간 환불 조회 메서드
+	public SalesDTO getRefund() throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE + "getRefund");
+	}
+	
+	// 월 매출 조회 메서드
+	public Long getMonthSales() throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE + "getMonthSales");	
+	}
+	
+	// 월 환불 조회 메서드
+	public Long getMonthRefund() throws Exception{
+			
+		return sqlSession.selectOne(NAMESPACE + "getMonthRefund");	
 	}
 }
