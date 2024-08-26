@@ -50,7 +50,9 @@
   		</association>
   	</resultMap>
   	
-  	<!-- 월별 매출과 환불 구하는 쿼리문 -->
+  	
+  	
+  	<!-- 연갈 매출과 환불 구하는 쿼리문 + 월별 매출과 환불 구하는 쿼리문 -->
   	<select id="getSales" resultType="SalesDTO">
 		SELECT SUM(DECODE(TO_CHAR(TRANSACTION_DATE, 'MM'), '01', TRANSACTION_AMOUNT)) AS "M1",
 		 SUM(DECODE(TO_CHAR(TRANSACTION_DATE, 'MM'), '02', TRANSACTION_AMOUNT)) AS "M2",
@@ -82,6 +84,16 @@
 		 SUM(DECODE(TO_CHAR(TRANSACTION_DATE, 'MM'), '12', TRANSACTION_AMOUNT)) AS "M12"
 		 FROM TRANSACTION
 		 WHERE TRANSACTION_DATE BETWEEN TO_DATE('2024-01-01') AND TO_DATE('2024-12-31') AND TRANSACTION_TYPE ='환불'
+  	</select>
+  	<select id="getMonthSales" resultType="Long">
+  		SELECT SUM(TRANSACTION_AMOUNT) AS "M0" FROM TRANSACTION
+		WHERE TO_CHAR(TRANSACTION_DATE, 'MM') = TO_CHAR(SYSDATE, 'MM') AND TRANSACTION_TYPE = '구입'
+		GROUP BY TO_CHAR(TRANSACTION_DATE, 'MM')
+  	</select>
+  	<select id="getMonthRefund" resultType="Long">
+  		SELECT SUM(TRANSACTION_AMOUNT) AS "M0" FROM TRANSACTION
+		WHERE TO_CHAR(TRANSACTION_DATE, 'MM') = TO_CHAR(SYSDATE, 'MM') AND TRANSACTION_TYPE = '환불'
+		GROUP BY TO_CHAR(TRANSACTION_DATE, 'MM')
   	</select>
   	
   

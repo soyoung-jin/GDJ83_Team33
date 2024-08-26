@@ -48,6 +48,7 @@
 											<td>${dto.transaction_date }</td>
 											<td>${dto.transaction_amount }</td>
 											<td>${dto.transaction_type }</td>
+											<td><button class="btn btn-danger">환불</button></td>
 										</tr>
 									</c:forEach>
 								</tbody>

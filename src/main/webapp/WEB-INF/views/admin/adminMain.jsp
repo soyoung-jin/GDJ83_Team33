@@ -28,6 +28,20 @@
 								<input type="hidden" id="sp10" value="${salesDTO.m10 }">
 								<input type="hidden" id="sp11" value="${salesDTO.m11 }">
 								<input type="hidden" id="sp12" value="${salesDTO.m12 }">
+								<input type="hidden" id="sr1" value="${refundDTO.m1 }">
+								<input type="hidden" id="sr2" value="${refundDTO.m2 }">
+								<input type="hidden" id="sr3" value="${refundDTO.m3 }">
+								<input type="hidden" id="sr4" value="${refundDTO.m4 }">
+								<input type="hidden" id="sr5" value="${refundDTO.m5 }">
+								<input type="hidden" id="sr6" value="${refundDTO.m6 }">
+								<input type="hidden" id="sr7" value="${refundDTO.m7 }">
+								<input type="hidden" id="sr8" value="${refundDTO.m8 }">
+								<input type="hidden" id="sr9" value="${refundDTO.m9 }">
+								<input type="hidden" id="sr10" value="${refundDTO.m10 }">
+								<input type="hidden" id="sr11" value="${refundDTO.m11 }">
+								<input type="hidden" id="sr12" value="${refundDTO.m12 }">
+								<input type="hidden" id="mp" value="${monthSales }">
+								<input type="hidden" id="mr" value="${monthRefund }">
 								<canvas id="lineChart"></canvas>
 							</div>
 						</div>

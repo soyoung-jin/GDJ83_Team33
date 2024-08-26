@@ -29,8 +29,38 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	<interceptors>
 		<interceptor> <!-- 로그인 인터셉터 -->
+			<mapping path="/users/logout"/>
 			<mapping path="/users/mypage"/>
+			<mapping path="/users/update"/>
+			<mapping path="/users/changePW"/>
+			<mapping path="/users/deleteAccount"/>
+			<mapping path="/users/inventory"/>
+			<mapping path="/users/equipItem"/>
+			<mapping path="/users/takeOffItem"/>
+			<mapping path="/users/checkPW"/>
+			<mapping path="/users/tradeList"/>
+			<mapping path="/mypet/*"/>
+			<mapping path="/store/*"/>
+			<mapping path="/friend/*"/>
+			<mapping path="/ingame/*"/>
+			<mapping path="/userboard/userboardAdd"/>
+			<mapping path="/userboard/userboardUpdate"/>
+			<mapping path="/userboard/delete"/>
+			<mapping path="/userboard/reply"/>
+			<mapping path="/qna/*"/>
+			<mapping path="/rank/*"/>
 			<beans:bean class="com.team3.tamagochi.interceptor.LoginInterceptor"></beans:bean>
+		</interceptor>
+		<interceptor> <!-- 관리자 인터셉터 -->
+			<mapping path="/admin/*"/>
+			<mapping path="/store/addItem"/>
+			<mapping path="/store/updateItem"/>
+			<mapping path="/store/deleteItem"/>
+			<mapping path="/notice/noticeAdd"/>
+			<mapping path="/notice/noticeUpdate"/>
+			<mapping path="/notice/noticeDelete"/>
+			<mapping path="/qna/reply"/>
+			<beans:bean class="com.team3.tamagochi.interceptor.AdminInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
 	

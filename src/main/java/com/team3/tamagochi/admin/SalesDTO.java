@@ -17,7 +17,6 @@ public class SalesDTO {
 	private Long m12;
 	
 	
-	
 	public Long getM1() {
 		return m1;
 	}

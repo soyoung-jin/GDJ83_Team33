@@ -8,7 +8,7 @@
 <body id="reportsPage" class="font">
 	<div class="container">
 		        <a class="btn btn-primary" href="updateItem?item_num=${dto.item_num}">수정</a>
-	            <a class="btn btn-primary" href="deleteItem?item_num=${dto.item_num}">삭제</a>
+	            <a class="btn btn-primary" href="deleteItem?item_num=${dto.item_num}">판매 중지</a>
         <div class="row">
             <div class="col">
                 <div class="row justify-content-center">
@@ -19,7 +19,7 @@
 						  <div class="card-body">
 							  <c:choose>
 							  	<c:when test="${i==0}">
-							  		<h5 class="card-title">${dto.category_num==0?'알':''}</h5>		  	
+							  		<h5 class="card-title">${dto.category_num==0?'알':'무기'}</h5>		  	
 							  	</c:when>
 							  	<c:when test="${i==1}">
 							  		<h5 class="card-title">성장기</h5>		  	
@@ -28,7 +28,7 @@
 							  		<h5 class="card-title">반항기</h5>		  	
 							  	</c:when>
 							  	<c:when test="${i==3}">
-							  		<h5 class="card-title">으른</h5>		  	
+							  		<h5 class="card-title">최종</h5>		  	
 							  	</c:when>
 							  </c:choose>
 						  </div>

@@ -10,6 +10,10 @@ let search = document.getElementById("search").value;
 let kind = document.getElementById("kind").value;
 let page = 1;
 
+if(itemListdiv.getAttribute("data-idto")){
+    getList(itemListdiv.getAttribute("data-idto"),1,'','')
+}
+
 //디테일 모달 요청
 function getItemNum(itemnum){
 
@@ -24,16 +28,16 @@ function getItemNum(itemnum){
 
 }
 
-//결제 버튼
-itemListdiv.addEventListener("click", (e)=>{
+// //결제 버튼
+// itemListdiv.addEventListener("click", (e)=>{
 
-    if(e.target.classList.contains("purchaseItem")){
-        let itemnum= e.target.getAttribute("data-inum");
+//     if(e.target.classList.contains("purchaseItem")){
+//         let itemnum= e.target.getAttribute("data-inum");
 
-        e.target.href="purchaseItem?ar="+itemnum;
-    }
+//         e.target.href="purchaseItem?ar="+itemnum;
+//     }
 
-})
+// })
  
 //리스트 불러오는 함수
 function getList(category_num, page, kind, search){
