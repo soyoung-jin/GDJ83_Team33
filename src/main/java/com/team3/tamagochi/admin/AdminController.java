@@ -25,10 +25,20 @@ public class AdminController {
 		
 		List<UsersDTO> list = adminService.getUserList();
 		
-		 SalesDTO salesDTO = adminService.getSales();
+		// 연간 매출 조회 메서드
+		SalesDTO salesDTO = adminService.getSales();
+		// 연간 환불 조회 메서드
+		SalesDTO refundDTO = adminService.getRefund();
+		// 월간 매출 조회 메서드
+		Long monthSales = adminService.getMonthSales();
+		// 월간 환불 조회 메서드
+		Long monthRefund = adminService.getMonthRefund();
 		
 		model.addAttribute("list", list);
 		model.addAttribute("salesDTO", salesDTO);
+		model.addAttribute("refundDTO", refundDTO);
+		model.addAttribute("monthSales", monthSales);
+		model.addAttribute("monthRefund", monthRefund);
 	}
 	
 	@GetMapping("userDetail")
