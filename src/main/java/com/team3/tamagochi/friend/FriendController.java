@@ -53,23 +53,38 @@ public class FriendController {
 	}
 	
 	@GetMapping("sendGift")
-	public String getInvenList(InventoryDTO inventoryDTO, HttpSession session, Model model) throws Exception {
+	public String getInvenList(AlarmDTO alarmDTO, InventoryDTO inventoryDTO, HttpSession session, Model model) throws Exception {
 		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
+		
+		// 유저 인벤토리 리스트
 		InventoryDTO userInventoryDTO = new InventoryDTO();
 		userInventoryDTO.setUser_id(usersDTO.getUser_id());
 		userInventoryDTO.setItem_num(inventoryDTO.getItem_num());
+		
+		// 선물보낼 때 알림 보내기, 보내는 이의 아이디가 로그인한 유저 아이디
+		alarmDTO.setAlarm_sender(usersDTO.getUser_id());
+		
 		int result = friendService.takeGift(inventoryDTO);
 		
 		result = friendService.sendGift(userInventoryDTO);
 		if(result > 0) {
+			result = friendService.sendAlarm(alarmDTO);
 			model.addAttribute("result", "선물을 보냈습니다");
 			model .addAttribute("url", "./friendList");
+			
+			
 		}else {
 			model.addAttribute("result", "오류발생.");
 			model .addAttribute("url", "./friendList");
 		}
+		
+		
+		
 		return "commons/message";
 	}
+	
+	
+	
 	
 	@GetMapping("makeFriend")
 	public String addFriend(FriendDTO friendDTO, Model model, HttpSession session, MyPetDTO myPetDTO) throws Exception {

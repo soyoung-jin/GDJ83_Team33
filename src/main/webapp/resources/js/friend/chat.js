@@ -12,12 +12,21 @@ const loginFriendId = friendStatus.getAttribute("data-friend-id"); //친구 아�
 console.log("친구: "+loginFriendId);
 console.log("나:" + loginUserId);
 
-
-
-
+const giftBtn = document.getElementsByClassName("giftBtn"); // 선물 보내기 버튼
 
 let div = document.createElement("div"); //모달 안에 추가될 글들의 부모
 
+
+//==================선물 알람 보내기===================
+for(let btn of giftBtn) {
+    btn.addEventListener("click", (e)=>{
+        if(e.target.classList.contains("giftBtn")) {
+            sock.send(loginUserId + "가 선물을 보냈습니다.");
+            return;
+        }
+
+    })
+}
 
 
 //==================친구와 채팅===================
@@ -27,7 +36,7 @@ let sock = new SockJS("http://192.168.7.108/friend");
 
 
 // 연결이 되었을 때
-sock.onopen = onOpen;
+//sock.onopen = onOpen;
 
 // 웹소켓을 통해 메세지를 받았을 때 실행
 // 클라이언트가 서버로부터 메세지를 받았을 때 실행
@@ -36,10 +45,10 @@ sock.onmessage = onMessage;
 // 연결이 끊겼을 때 실행
 sock.onclose = onClose;
 
-function onOpen(){
-    //연결될 때 연결된 사람의 정보 전송
-    sock.send(loginUserId);
-}
+// function onOpen(){
+//     //연결될 때 연결된 사람의 정보 전송
+//     sock.send(loginUserId);
+// }
 
 // 메세지 전송
 function sendMessage(){
@@ -55,6 +64,7 @@ function onMessage(msg) {
     
     // 메세지 내용
     let data = msg.data; 
+    alert(data);
     console.log("socket : ",data);
     console.log("attr :" , loginFriendId);
     
@@ -75,6 +85,8 @@ function onMessage(msg) {
     
     // 친구: 보낸내용
     console.log(loginFriendId + ": " + data);
+
+
     
 }
 

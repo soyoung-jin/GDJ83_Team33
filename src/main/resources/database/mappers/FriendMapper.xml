@@ -76,12 +76,24 @@
   		</association>
   	</resultMap>
   	
+  	<!-- 선물 받는 쪽 -->
   	<insert id="takeGift" parameterType="InventoryDTO">
   		INSERT INTO INVENTORY VALUES (INVEN_SEQ.NEXTVAL, #{item_num}, #{user_id})
   	</insert>
   	
+  	<!-- 선물 주는 쪽 -->
   	<delete id="sendGift" parameterType="InventoryDTO">
   		DELETE INVENTORY WHERE ITEM_NUM = #{item_num} AND USER_ID = #{user_id}
   	</delete>
+  	
+  	<!-- 선물 받는 쪽에서 알람 -->
+  	<insert id="sendAlarm" parameterType="AlarmDTO">
+  		INSERT INTO ALARM VALUES (ALARM_SEQ.NEXTVAL, #{user_id}, #{item_num}, #{alarm_sender}, SYSDATE, '선물이 도착했습니다.', 0)
+  	</insert>
+  	
+  	<!-- 알람 확인 -->
+  	<update id="checkAlarm" parameterType="AlarmDTO">
+  		UPDATE ALARM SET CHECKED = 1 WHERE ALARM_NUM = #{alarm_num}
+  	</update>
   	
   </mapper>
