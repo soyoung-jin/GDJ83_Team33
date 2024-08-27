@@ -125,4 +125,8 @@
   		SELECT * FROM INVENTORY i WHERE INVENTORY_NUM = #{inventory_num}
   	</select>
   	
+  	<insert id="fightResult" parameterType="RecordDTO">
+  		INSERT INTO RECORD (RECORD_SEQ.NEXTVAL, #{pet_num}, #{record_outcome}, #{record_enemy_num}, SYSDATE)
+  	</insert>
+  	
   </mapper>

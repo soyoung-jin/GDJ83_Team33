@@ -14,9 +14,13 @@ const enemyLine = document.getElementById("enemyLine");
 const lineParent = document.getElementById("lineParent");
 const lineEnemyParent = document.getElementById("lineEnemyParent");
 
-//싸우기 버튼
+// 싸우기 버튼
 const fightBtn = document.getElementById("fightBtn");
 const clickMe = document.getElementById("clickMe");
+
+// 싸우기 종료 모달
+const fightResultImg = document.getElementById("fightResultImg");
+const doneBtn = document.getElementById("done");
 
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
@@ -68,7 +72,7 @@ weaponImg.addEventListener("mousedown", (e)=>{
            currentDroppable = droppableBelow;
            if (currentDroppable) { 
               enterDroppable(currentDroppable);
-
+              
               
            }
         }
@@ -89,6 +93,9 @@ function enterDroppable(elem) {
  lineEnemyParent.style.backgroundColor="red";
  enemyLine.innerHTML="으악!";
  enemyLine.style.color="white";
+
+ 
+
 }
 
 function leaveDroppable(elem) {
@@ -98,3 +105,9 @@ function leaveDroppable(elem) {
 weaponImg.ondragstart = function () {
  return false;
 };
+
+doneBtn.addEventListener("click", ()=>{
+
+   alert("heyyyy");
+   location.href = "./ingame";
+})
