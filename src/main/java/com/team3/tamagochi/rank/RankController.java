@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.team3.tamagochi.boards.util.Pager;
 import com.team3.tamagochi.friend.FriendService;
 import com.team3.tamagochi.mypet.MyPetDTO;
+import com.team3.tamagochi.mypet.MyPetService;
 import com.team3.tamagochi.store.ItemDTO;
 import com.team3.tamagochi.store.ItemFileDTO;
 import com.team3.tamagochi.store.StoreDAO;
@@ -36,23 +37,17 @@ public class RankController {
 	private FriendService friendService;
 	
 	@Autowired
-	private StoreService storeService;
+	private MyPetService myPetService;
 
 	@GetMapping("rankList")
 	public ModelAndView list(ModelAndView mv, Pager pager) throws Exception {
 		
 		List<MyPetDTO> ar = rankService.list(pager);
-
-		for(MyPetDTO a: ar) {
-			ItemDTO itemDTO = new ItemDTO();
-			itemDTO.setItem_num(a.getItem_num());
-			System.out.println(itemDTO.getItem_num());
-			itemDTO = storeService.getItemDetail(itemDTO);
-			System.out.println(itemDTO.getItem_num());
-			a.setItemDTO(itemDTO);
+		
+		for(int i=0;i<ar.size();i++) {
+			MyPetDTO myPetDTO = myPetService.getDetail(ar.get(i));
+			ar.set(i, myPetDTO);
 		}
-		
-		
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
 		mv.setViewName("rank/rankList");
@@ -64,11 +59,8 @@ public class RankController {
 	@GetMapping("rankDetail")
 	public String detail(MyPetDTO myPetDTO, Model model, HttpSession session, Pager pager) throws Exception{
 			
-		myPetDTO = rankService.detail(myPetDTO);
-		ItemDTO itemDTO = new ItemDTO();
-		itemDTO.setItem_num(myPetDTO.getItem_num());
-		itemDTO = storeService.getItemDetail(itemDTO);
-		myPetDTO.setItemDTO(itemDTO);
+		myPetDTO = myPetService.getDetail(myPetDTO);
+				
 		model.addAttribute("myPetDTO", myPetDTO);
 		
 		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");

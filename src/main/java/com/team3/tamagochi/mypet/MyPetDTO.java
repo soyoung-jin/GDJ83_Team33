@@ -1,6 +1,8 @@
 package com.team3.tamagochi.mypet;
 
-import com.team3.tamagochi.store.ItemDTO;
+import java.util.List;
+
+import com.team3.tamagochi.store.ItemFileDTO;
 import com.team3.tamagochi.users.UsersDTO;
 
 public class MyPetDTO {
@@ -25,16 +27,13 @@ public class MyPetDTO {
 	private Long equip_num;
 	private Long pet_evolution;
 	private UsersDTO usersDTO;
-	private ItemDTO itemDTO;
+	private List<ItemFileDTO> itemFileDTOs;
 	
-	
-	
-	
-	public ItemDTO getItemDTO() {
-		return itemDTO;
+	public List<ItemFileDTO> getItemFileDTOs() {
+		return itemFileDTOs;
 	}
-	public void setItemDTO(ItemDTO itemDTO) {
-		this.itemDTO = itemDTO;
+	public void setItemFileDTOs(List<ItemFileDTO> itemFileDTOs) {
+		this.itemFileDTOs = itemFileDTOs;
 	}
 	public Long getPet_evolution() {
 		return pet_evolution;

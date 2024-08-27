@@ -11,10 +11,42 @@
   		WHERE USER_ID = #{user_id}
   	</select>
   	
-  	<select id="getDetail" resultType="MyPetDTO" parameterType="MyPetDTO">
-  		SELECT * FROM MY_PET
+  	<select id="getDetail" resultMap="itemlist" parameterType="MyPetDTO">
+  		SELECT *
+  		FROM MY_PET MP
+  			LEFT JOIN
+  			ITEMFILE IF
+  			ON (MP.ITEM_NUM = IF.ITEM_NUM)
 		WHERE PET_NUM = #{pet_num}
   	</select>
+  	
+  	 <resultMap type="MyPetDTO" id="itemlist">
+  		<id column="PET_NUM" property="pet_num"></id>
+  		<result column="USER_ID" property="user_id"></result>
+  		<result column="PET_NAME" property="pet_name"></result>
+  		<result column="PET_SPC" property="pet_spc"></result>
+  		<result column="PET_EXP" property="pet_exp"></result>
+  		<result column="PET_LEVEL" property="pet_level"></result>
+  		<result column="PET_HP" property="pet_hp"></result>
+  		<result column="PET_ATK" property="pet_atk"></result>
+  		<result column="PET_DOD" property="pet_dod"></result>
+  		<result column="PET_POP" property="pet_pop"></result>
+  		<result column="PET_SELECTED" property="pet_selected"></result>
+  		<result column="PET_WASHROOM" property="pet_washroom"></result>
+  		<result column="ADD_HP" property="add_hp"></result>
+  		<result column="ADD_ATK" property="add_atk"></result>
+  		<result column="ADD_DOD" property="add_dod"></result>
+  		<result column="EQUIP_NUM" property="equip_num"></result>
+  		<result column="PET_EVOLUTION" property="pet_evolution"></result>
+  		<result column="ITEM_NUM" property="item_num"></result>
+  		
+  		<collection property="itemFileDTOs" javaType="java.util.List" ofType="ItemFileDTO">
+  		  	<id column="FILE_NUM" property="file_num"/>
+  			<result column="FILE_NAME" property="file_name"/>
+  			<result column="ORI_NAME" property="ori_name"/>
+  		</collection>
+  	
+  	</resultMap>
   	
   	<update id="updatePetName" parameterType="MyPetDTO">
   		UPDATE MY_PET SET PET_NAME = #{pet_name}
