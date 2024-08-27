@@ -33,6 +33,10 @@
   		UPDATE MY_PET SET PET_LEVEL = PET_LEVEL + 1, PET_EXP = 0 WHERE PET_NUM = #{pet_num}
   	</update>
   	
+  	<update id="evolutionUp" parameterType="MyPetDTO">
+  		UPDATE MY_PET SET PET_EVOLUTION = PET_EVOLUTION + 1 WHERE PET_NUM = #{pet_num}
+  	</update>
+  	
   	<select id="getPetImg" parameterType="UsersDTO" resultMap="petImage">
   		SELECT * FROM 
 			MY_PET mp 
@@ -61,6 +65,7 @@
   		<result column="ADD_ATK" property="add_atk"></result>
   		<result column="ADD_DOD" property="add_dod"></result>
   		<result column="EQUIP_NUM" property="equip_num"></result>
+  		<result column="PET_EVOLUTION" property="pet_evolution"></result>
   		
   		
   		<association property="itemFileDTO" javaType="ItemFileDTO">
@@ -102,6 +107,7 @@
   		<result column="ADD_ATK" property="add_atk"></result>
   		<result column="ADD_DOD" property="add_dod"></result>
   		<result column="EQUIP_NUM" property="equip_num"></result>
+  		<result column="PET_EVOLUTION" property="pet_evolution"></result>
   		
   		<association property="inventoryDTO" javaType="InventoryDTO">
   			<id column="INVENTORY_NUM" property="inventory_num"></id>

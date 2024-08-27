@@ -22,6 +22,14 @@ public class MyPetDTO {
 	private Long add_atk;
 	private Long add_dod;
 	private Long equip_num;
+	private Long pet_evolution;
+	
+	public Long getPet_evolution() {
+		return pet_evolution;
+	}
+	public void setPet_evolution(Long pet_evolution) {
+		this.pet_evolution = pet_evolution;
+	}
 	private UsersDTO usersDTO;
 	
 	

@@ -45,18 +45,18 @@ sock.onmessage = onMessage;
 // 연결이 끊겼을 때 실행
 sock.onclose = onClose;
 
-// function onOpen(){
-//     //연결될 때 연결된 사람의 정보 전송
-//     sock.send(loginUserId);
-// }
+function onOpen(){
+    //연결될 때 연결된 사람의 정보 전송
+    sock.send(loginUserId);
+}
 
 // 메세지 전송
 function sendMessage(){
     // 서버로 데이터를 전송
-    sock.send(chatContent.value);
+    // sock.send(chatContent.value);
 
     // 나: 보낸내용
-    console.log(loginUserId + ": " + chatContent.value);
+    // console.log(loginUserId + ": " + chatContent.value);
 }
 
 // 메세지 수신
@@ -65,26 +65,27 @@ function onMessage(msg) {
     // 메세지 내용
     let data = msg.data; 
     alert(data);
-    console.log("socket : ",data);
-    console.log("attr :" , loginFriendId);
-    
-    if(data == loginFriendId) {
-        friendStatus.innerHTML = "접속중";
-        console.log("접속중");
-        startChat.style.display = "inline";
-    } else {
-        //대화하기 버튼 안보이게
-        startChat.style.display = "none";
-    }
 
-    //한 줄 추가
-    let h3 = document.createElement("h3");
-    h3.append(data);
-    div.append(h3);
-    modalContent.append(div);
+    // console.log("socket : ",data);
+    // console.log("attr :" , loginFriendId);
     
-    // 친구: 보낸내용
-    console.log(loginFriendId + ": " + data);
+    // if(data == loginFriendId) {
+    //     friendStatus.innerHTML = "접속중";
+    //     console.log("접속중");
+    //     startChat.style.display = "inline";
+    // } else {
+    //     //대화하기 버튼 안보이게
+    //     startChat.style.display = "none";
+    // }
+
+    // //한 줄 추가
+    // let h3 = document.createElement("h3");
+    // h3.append(data);
+    // div.append(h3);
+    // modalContent.append(div);
+    
+    // // 친구: 보낸내용
+    // console.log(loginFriendId + ": " + data);
 
 
     

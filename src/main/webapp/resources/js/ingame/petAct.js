@@ -31,6 +31,7 @@ const pet_hp = document.getElementById("pet_hp"); //체력
 const pet_level = document.getElementById("pet_level"); //레벨
 const pet_name = document.getElementById("pet_name"); //이름
 const pet_washroom = document.getElementById("pet_washroom");//화장실
+const pet_evolution = document.getElementById("pet_evolution"); //진화단계
 
 
 
@@ -211,6 +212,7 @@ petStatusBtn.addEventListener("click", ()=>{
         if(r.pet_exp >= 200) {
             pet_exp.value = r.pet_exp;
             pet_level.value = r.pet_level;
+            
             pet_exp.style.border="solid 2px red";
             levelUpBtn.style.display = "inline";
             petReady.innerHTML="레벨업 준비완료";
@@ -223,7 +225,7 @@ petStatusBtn.addEventListener("click", ()=>{
             weaponImg.src = "/resources/img/ingame/poop.png";
             weaponImg.setAttribute("id", "poop");
 
-            followingPetText.innerHTML = "똥.. 치워주세요";
+            followingPetText.innerHTML = "청소해주세요";
             followingPetText.setAttribute("id", "followingPetText");
             followingPetDiv.append(followingPetText);
             followingPetDiv.setAttribute("id", "followingPetDiv");
@@ -260,7 +262,8 @@ levelUpBtn.addEventListener("click", ()=>{
         .then((r)=>{
             pet_exp.value = r.pet_exp;
             pet_level.value = r.pet_level;
-            myPetAct.src = "/resources/img/ingame/ex2.gif";
+            pet_evolution.value = r.pet_evolution;
+            
             modalActLabel.innerHTML = "레벨: " + r.pet_level;
             done.style.display = "inline";
             actCloseBtn.style.display = "inline";

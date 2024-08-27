@@ -54,10 +54,27 @@ public class InGameController {
 	}
 	
 	@GetMapping("fight")
-	public void fight(HttpSession session, ItemDTO itemDTO) throws Exception{
+	public void fight(HttpSession session, ItemDTO itemDTO, MyPetDTO enemyPetDTO, Model model) throws Exception{
 		
 		itemDTO = storeService.getItemDetail(itemDTO);
+		UsersDTO tempDTO = (UsersDTO) session.getAttribute("users_info");
+		// 내 캐릭터
+		MyPetDTO myPetDTO = new MyPetDTO();
+		myPetDTO.setUser_id(tempDTO.getUser_id());
+		myPetDTO = inGameService.getPetStatus(myPetDTO);
+		model.addAttribute("myDTO", myPetDTO);
+		ItemDTO myItemDTO = new ItemDTO();
+		itemDTO.setItem_num(myPetDTO.getItem_num());
+		itemDTO = storeService.getItemDetail(itemDTO);
+		model.addAttribute("myItemFile", itemDTO);
 		
+		// 상대 캐릭터
+		enemyPetDTO = inGameService.getPetStatus(enemyPetDTO);
+		model.addAttribute("enemyDTO", enemyPetDTO);
+		ItemDTO enemyItemDTO = new ItemDTO();
+		enemyItemDTO.setItem_num(enemyPetDTO.getItem_num());
+		enemyItemDTO = storeService.getItemDetail(enemyItemDTO);
+		model.addAttribute("enemyItemFile", enemyItemDTO);
 		
 	}
 	
@@ -86,6 +103,8 @@ public class InGameController {
 		UsersDTO tempDTO = (UsersDTO) session.getAttribute("users_info");
 		myPetDTO.setUser_id(tempDTO.getUser_id());
 		myPetDTO = inGameService.getPetStatus(myPetDTO);
+		
+		
 		model.addAttribute("myPetDTO", myPetDTO);
 		
 		ItemDTO itemDTO = new ItemDTO();
@@ -143,8 +162,26 @@ public class InGameController {
 	@GetMapping("levelUp")
 	@ResponseBody
 	public MyPetDTO levelUp(MyPetDTO myPetDTO) throws Exception {
-		int result = inGameService.levelUp(myPetDTO);
 		myPetDTO = inGameService.checkPetStatus(myPetDTO);
+		
+		int result = 0;
+		
+		if(myPetDTO.getPet_level() == 9 && myPetDTO.getPet_evolution() == 0) {
+			result = inGameService.evolutionUp(myPetDTO);
+			result = inGameService.levelUp(myPetDTO);
+			
+		} else if(myPetDTO.getPet_level() == 29 && myPetDTO.getPet_evolution() == 1) {
+			result = inGameService.evolutionUp(myPetDTO);
+			result = inGameService.levelUp(myPetDTO);
+		} else if(myPetDTO.getPet_level() == 59 && myPetDTO.getPet_evolution() == 2) {
+			result = inGameService.evolutionUp(myPetDTO);
+			result = inGameService.levelUp(myPetDTO);
+		} else {
+			
+		}
+
+		
+		
 		return myPetDTO;
 		
 	}
