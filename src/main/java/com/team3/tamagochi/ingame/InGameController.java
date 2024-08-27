@@ -54,10 +54,27 @@ public class InGameController {
 	}
 	
 	@GetMapping("fight")
-	public void fight(HttpSession session, ItemDTO itemDTO) throws Exception{
+	public void fight(HttpSession session, ItemDTO itemDTO, MyPetDTO enemyPetDTO, Model model) throws Exception{
 		
 		itemDTO = storeService.getItemDetail(itemDTO);
+		UsersDTO tempDTO = (UsersDTO) session.getAttribute("users_info");
+		// 내 캐릭터
+		MyPetDTO myPetDTO = new MyPetDTO();
+		myPetDTO.setUser_id(tempDTO.getUser_id());
+		myPetDTO = inGameService.getPetStatus(myPetDTO);
+		model.addAttribute("myDTO", myPetDTO);
+		ItemDTO myItemDTO = new ItemDTO();
+		itemDTO.setItem_num(myPetDTO.getItem_num());
+		itemDTO = storeService.getItemDetail(itemDTO);
+		model.addAttribute("myItemFile", itemDTO);
 		
+		// 상대 캐릭터
+		enemyPetDTO = inGameService.getPetStatus(enemyPetDTO);
+		model.addAttribute("enemyDTO", enemyPetDTO);
+		ItemDTO enemyItemDTO = new ItemDTO();
+		enemyItemDTO.setItem_num(enemyPetDTO.getItem_num());
+		enemyItemDTO = storeService.getItemDetail(enemyItemDTO);
+		model.addAttribute("enemyItemFile", enemyItemDTO);
 		
 	}
 	

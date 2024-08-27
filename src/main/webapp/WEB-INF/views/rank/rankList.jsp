@@ -49,13 +49,11 @@
 											<h5 class="card-title">인기도: <p style="display:inline-block;"> ${list.pet_pop}</p></h5>
 												</c:when>
 											</c:choose>
-													<div style="inline-block;">
-													<a id="rankplay" href="../ingame/fight?item_num=${list.item_num}"><img style="width:40%; " src="/resources/img/rankboard/playimg.png"></a> 
-													
-													<div style="inline-block;">
-													<a id="ranklike" href="javascript:void(0);" class="pop_btn" data-pet-num="${list.pet_num}"><img class="pop_btn" style="width:20%; float:right;" src="/resources/img/rankboard/likeimg.png"></a> 
+													<div>
+													<a style="display: inline;" id="rankplay" href="../ingame/fight?item_num=${list.item_num}&user_id=${list.user_id}"><img style="width:40%; " src="/resources/img/rankboard/playimg.png"></a> 
+																					
+													<a style="display: inline;" id="ranklike" href="javascript:void(0);" class="pop_btn" data-pet-num="${list.pet_num}"><img class="pop_btn" style="width:20%; float:center;" src="/resources/img/rankboard/likeimg.png"></a> 
 													</div>
-													</div>								
 												
 										</div>
 									</div>
