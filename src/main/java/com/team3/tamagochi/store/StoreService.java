@@ -26,6 +26,11 @@ public class StoreService {
 	@Autowired
 	FileManager fileManager;
 	
+	public Integer checkEquip(ItemDTO itemDTO) {
+		return storeDAO.checkEquip(itemDTO);
+	}
+	
+	//중복확인
 	public int checkDuplication(WishListDTO wishlistDTO) {
 		
 		ItemDTO itemDTO = new ItemDTO();
