@@ -11,7 +11,7 @@
 	<div class="container">
         <div class="row">
             <div class="col">
-				<h1 class="text-white mt-5 mb-5">위시리스트</h1>
+				<h1 class="text-white mt-5 mb-5">장바구니</h1>
             	<div class="container mt-5">
 					<div class="row tm-content-row">
 					  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
@@ -58,7 +58,6 @@
 						  <!-- table container -->
 						   <input type="hidden" name="ar" id="arr">
 						  <button class="btn btn-primary" id="purchasebtn" type="button">구매하기</button>
-						  <a class="btn btn-primary" href="#">선물하기</a>
 						</div>
 					</form>
 					  </div>

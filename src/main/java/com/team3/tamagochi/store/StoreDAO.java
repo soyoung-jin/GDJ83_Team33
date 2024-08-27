@@ -19,6 +19,10 @@ public class StoreDAO {
 
 	private final String NAMESPACE = "com.team3.tamagochi.store.StoreDAO.";
 	
+	public List<WishListDTO> checkDuplication(WishListDTO wishlistDTO) {
+		return sqlSession.selectList(NAMESPACE+"checkDuplication", wishlistDTO);
+	}
+	
 	public int addBag (Map<String, Object> map) {
 		return sqlSession.insert(NAMESPACE+"addBag", map);
 	}

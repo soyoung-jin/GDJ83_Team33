@@ -25,6 +25,26 @@ public class StoreService {
 
 	@Autowired
 	FileManager fileManager;
+	
+	public int checkDuplication(WishListDTO wishlistDTO) {
+		
+		ItemDTO itemDTO = new ItemDTO();
+		itemDTO.setItem_num(wishlistDTO.getItem_num());
+		
+		itemDTO = storeDAO.getItemDetail(itemDTO);
+		
+		wishlistDTO.setItemDTO(itemDTO);
+		
+		List<WishListDTO> list = storeDAO.checkDuplication(wishlistDTO);
+		
+		if(list.size()>0) {
+			return 0;
+		} else {
+			return 1;
+		}
+		
+		
+	}
 
 	public int addTransaction(TransactionDTO transactionDTO) {
 		int result = storeDAO.addTransaction(transactionDTO);

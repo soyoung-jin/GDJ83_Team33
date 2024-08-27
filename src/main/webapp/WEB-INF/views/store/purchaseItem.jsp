@@ -33,23 +33,37 @@
 								</tr>
 							  </thead>
 							  <tbody id="checkdiv">
-									<c:forEach items="${purchaseList}" var="list">
-										<tr>
-											<td><div class="tm-gray-circle"><img src="getImage?file_name=${not empty list.itemDTO.itemFileDTOs?list.itemDTO.itemFileDTOs[0].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div></td>
-											<td class="tm-product-name itemName" id="${list.itemDTO.item_num}" data-wnum="${list.wishlist_num}">${list.itemDTO.item_name}</td>
-											<td>${list.itemDTO.item_description}</td>
-											<td>${list.itemDTO.item_hp}</td>
-											<td>${list.itemDTO.item_atk}</td>
-											<td>${list.itemDTO.item_dod}</td>
-											<td class="itemPrice" id="${list.itemDTO.item_price}">${list.itemDTO.item_price}</td>
+							  		<c:choose>
+							  			<c:when test="${purchaseList eq null}">
+							  				<tr>
+											<td><div class="tm-gray-circle"><img src="getImage?file_name=${not empty dto.itemFileDTOs?dto.itemFileDTOs[0].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div></td>
+											<td class="tm-product-name itemName" id="${dto.item_num}">${dto.item_name}</td>
+											<td>${dto.item_description}</td>
+											<td>${dto.item_hp}</td>
+											<td>${dto.item_atk}</td>
+											<td>${dto.item_dod}</td>
+											<td class="itemPrice" id="${dto.item_price}">${dto.item_price}</td>
 										</tr>
-									</c:forEach>
+							  			</c:when>
+							  			<c:otherwise>
+											<c:forEach items="${purchaseList}" var="list">
+												<tr>
+													<td><div class="tm-gray-circle"><img src="getImage?file_name=${not empty list.itemDTO.itemFileDTOs?list.itemDTO.itemFileDTOs[0].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div></td>
+													<td class="tm-product-name itemName" id="${list.itemDTO.item_num}" data-wnum="${list.wishlist_num}">${list.itemDTO.item_name}</td>
+													<td>${list.itemDTO.item_description}</td>
+													<td>${list.itemDTO.item_hp}</td>
+													<td>${list.itemDTO.item_atk}</td>
+													<td>${list.itemDTO.item_dod}</td>
+													<td class="itemPrice" id="${list.itemDTO.item_price}">${list.itemDTO.item_price}</td>
+												</tr>
+											</c:forEach>
+							  			</c:otherwise>
+							  		</c:choose>
 								</tbody>
 							</table>
 						  </div>
 						  <!-- table container -->
 						  <button type="button" id="kakaobtn">카카오페이</button>
-                		<button type="button" id="kakaodelbtn">취소</button>
 						</div>
 					</form>
 					  </div>

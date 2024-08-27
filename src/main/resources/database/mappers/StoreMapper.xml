@@ -5,6 +5,20 @@
   
   <mapper namespace="com.team3.tamagochi.store.StoreDAO">
   
+  	<select id="checkDuplication" parameterType="WishListDTO" resultType="WishListDTO">
+  		SELECT *
+  		FROM
+	  		<choose>
+	  			<when test="itemDTO.category_num==0">
+	  				MY_PET
+	  			</when>
+	  			<otherwise>
+	  				INVENTORY
+	  			</otherwise>
+	  		</choose>
+  		WHERE ITEM_NUM = #{item_num} AND USER_ID = #{user_id}
+  	</select>
+  
   	<insert id="addBag" parameterType="java.util.Map">
   		INSERT INTO
   		<choose>

@@ -23,8 +23,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.team3.tamagochi.boards.util.Pager;
+import com.team3.tamagochi.mypet.MyPetDTO;
+import com.team3.tamagochi.mypet.MyPetService;
 import com.team3.tamagochi.users.TransactionDTO;
 import com.team3.tamagochi.users.UsersDTO;
+import com.team3.tamagochi.users.UsersService;
 
 @RequestMapping("/store/*")
 @Controller
@@ -32,12 +35,18 @@ public class StoreController {
 
 	@Autowired
 	StoreService storeService;
+	
+	@Autowired
+	MyPetService myPetService;
+	
+	@Autowired
+	UsersService usersService;
 
 	// ==============================결제 관련 메소드=============================
 	// ==============================결제 관련 메소드=============================
 	// ==============================결제 관련 메소드=============================
 
-	// 결제할 제품을 결제창으로 가져오는 메소드
+	// 장바구니 결제 메소드
 	@GetMapping("purchaseItem")
 	public void purchaseItem(@RequestParam List<Long> ar, Model model) throws Exception {
 			List<WishListDTO> list = new ArrayList<WishListDTO>();
@@ -47,11 +56,31 @@ public class StoreController {
 				wishListDTO = storeService.getWishListDetail(wishListDTO);
 				
 				list.add(wishListDTO);
-				
 			}
-				
 				model.addAttribute("purchaseList", list);
-
+	}
+	
+	// 단품결제 메소드
+	@PostMapping("purchaseItem")
+	public String purchaseItem(ItemDTO itemDTO, HttpSession session, Model model) throws Exception {
+		
+		// 아이템 중복 검사
+		WishListDTO wishListDTO = new WishListDTO();
+		wishListDTO.setItem_num(itemDTO.getItem_num());
+		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
+		wishListDTO.setUser_id(usersDTO.getUser_id());
+		
+		int check = storeService.checkDuplication(wishListDTO);
+		
+		if(check == 0) {
+			model.addAttribute("result", "이미 가지고 있는 아이템입니다.");
+			model.addAttribute("url", "/store/itemList");
+			return "commons/message";
+		} else {
+			itemDTO = storeService.getItemDetail(itemDTO);
+			model.addAttribute("dto",itemDTO);
+			return "purchaseItem";
+		}
 	}
 
 	// 카카오페이 결제 후 DB 저장
@@ -75,6 +104,11 @@ public class StoreController {
 			model.addAttribute("url", "/");
 		}
 	}
+	
+	@GetMapping("purchaseFinish")
+	public void purchaseFinish () throws Exception {
+		
+	}
 
 	// ==============================위시리스트 관련 메소드=============================
 	// ==============================위시리스트 관련 메소드=============================
@@ -83,6 +117,9 @@ public class StoreController {
 	@GetMapping("deleteWishList")
 	public String deleteWishList(WishListDTO wishListDTO, HttpSession session, Model model) {
 		
+		if(wishListDTO.getWishlist_num() == null) {
+			return "commons/result";
+		}
 
 		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
 		wishListDTO.setUser_id(usersDTO.getUser_id());
@@ -96,6 +133,7 @@ public class StoreController {
 
 	@GetMapping("addWishList")
 	public String addWishList(WishListDTO wishListDTO, HttpSession session, Model model) throws Exception {
+		
 
 		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
 
@@ -106,6 +144,13 @@ public class StoreController {
 		}
 
 		wishListDTO.setUser_id(usersDTO.getUser_id());
+		
+		//중복확인
+		int check = storeService.checkDuplication(wishListDTO);
+		if(check == 0) {
+			model.addAttribute("msg", -2);
+			return "commons/result";
+		}
 
 		int result = storeService.addWishList(wishListDTO);
 
@@ -169,19 +214,43 @@ public class StoreController {
 	}
 
 	@GetMapping("itemListRefresh")
-	public String getItemList(ItemDTO itemDTO, Pager pager, Model model) throws Exception {
+	public String getItemList(ItemDTO itemDTO, Pager pager, Model model, HttpSession session) throws Exception {
 
+		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
+		
 		pager.setPerPage(6);
 
 		List<ItemDTO> list = storeService.getItemList(itemDTO, pager);
 		
-		System.out.println(list.size());
-
 		if (list == null) {
 			model.addAttribute("msg", "<h2 class=\"text-white\">결과값이 없습니다.</h2>");
 			return "commons/result";
 		}
-
+		
+		//소유한 장비, 캐릭터 중복확인하는 과정
+		if(itemDTO.getCategory_num()==0) {
+			List<MyPetDTO> myPetList = myPetService.getList(usersDTO);
+			
+			for(MyPetDTO mypetDTO:myPetList) {
+				for(ItemDTO dto:list) {
+					if(dto.getItem_num()==mypetDTO.getItem_num()) {
+						dto.setItem_description("");
+					}
+				}
+			}
+		} else {
+			List<ItemDTO> invenList = usersService.getInvenList(usersDTO);
+			
+			for(ItemDTO invenDTO:invenList) {
+				for(ItemDTO dto:list) {
+					if(dto.getItem_num()==invenDTO.getItem_num()) {
+						dto.setItem_description("");
+					}
+				}
+			}
+		}
+		//소유한 장비, 캐릭터 중복확인하는 과정
+		
 		model.addAttribute("itemList", list);
 		model.addAttribute("pager", pager);
 

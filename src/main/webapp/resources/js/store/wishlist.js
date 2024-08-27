@@ -20,7 +20,6 @@ purchasebtn.addEventListener("click",()=>{
             ar.push(wishnum);
         } else {
             for(i=0;i<ar.length;i++){
-
                 if(ar[i]===wishnum){
                     ar.splice(i,1);
                 }
