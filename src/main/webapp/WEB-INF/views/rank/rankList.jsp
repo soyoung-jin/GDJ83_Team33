@@ -32,9 +32,9 @@
 											</c:otherwise>
 										</c:choose>
 										<!-- 디테일가기위한 a태그 -->
-										<a href="/rank/rankDetail?pet_num=${list.pet_num }">
+										<a href="/rank/rankDetail?pet_num=${list.pet_num}">
 											<!-- 카드형 상부 이미지 -->
-											<img src="/resources/img/character/4.gif" class="card-img-top" alt="...">
+											<img src="/store/getImage?file_name=${list.itemFileDTOs[list.pet_evolution].file_name}" class="card-img-top" alt="...">
 										</a>
 										<div class="card-body">
 											<!-- 카드 이미지 하단 아이템명, 가격 -->

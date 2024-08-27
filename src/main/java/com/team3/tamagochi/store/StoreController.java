@@ -344,19 +344,18 @@ public class StoreController {
 
 	@GetMapping("deleteItem")
 	public String deleteItem(ItemDTO itemDTO, Model model) throws Exception {
-
-		int result = storeService.deleteItem(itemDTO);
-
-		if (result == 1) {
-			model.addAttribute("result", "삭제 성공");
-		} else {
-			model.addAttribute("result", "삭제 실패");
+		
+		int result = storeService.checkEquip(itemDTO);
+		
+		if(result==-1) {
+			model.addAttribute("msg",result);
+			return "commons/result";
 		}
 
-		itemDTO = storeService.getItemDetail(itemDTO);
+		result = storeService.deleteItem(itemDTO);
+		
+		model.addAttribute("msg", result);
 
-		model.addAttribute("url", "itemList?category_num=" + itemDTO.getCategory_num());
-
-		return "commons/message";
+		return "commons/result";
 	}
 }

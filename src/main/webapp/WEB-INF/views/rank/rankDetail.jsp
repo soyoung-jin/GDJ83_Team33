@@ -26,7 +26,7 @@
 								class="form-control validate" />
 							<input id="pet_num" name="pet_num" value="${myPetDTO.pet_num }" type="hidden"/>
 							<div class="tm-avatar-container">
-								<img src="/resources/img/character/4.gif" alt="Avatar"
+								<img src="/store/getImage?file_name=${myPetDTO.itemFileDTOs[myPetDTO.pet_evolution].file_name}" alt="Avatar"
 									class="tm-avatar img-fluid mb-4" />
 							</div>
 							

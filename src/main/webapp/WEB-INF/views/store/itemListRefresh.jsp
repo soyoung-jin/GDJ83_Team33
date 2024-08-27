@@ -57,7 +57,7 @@
 								<input type="hidden" name="item_num" value="${itemDTO.item_num}">
 									<c:choose>
 										<c:when test="${itemDTO.item_description eq ''}">
-											<button type="button" class="btn btn-info" onclick="alert('이미 구매한 제품입니다.')">구매 완료</button>
+											<button type="button" class="btn" onclick="alert('이미 구매한 제품입니다.')">구매 완료</button>
 										</c:when>
 										<c:otherwise>
 											<button class="btn btn-info purchaseItem" data-inum="${itemDTO.item_num}">구매</button>
