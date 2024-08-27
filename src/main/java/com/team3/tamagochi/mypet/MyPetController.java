@@ -46,7 +46,7 @@ public class MyPetController {
 			model.addAttribute("myPetDTO", myPetDTO);
 		}else {			
 			model.addAttribute("result", "잘못된 접근입니다.");
-			model.addAttribute("url", "/mypet/petDetail?pet_num=" + myPetDTO.getPet_num()); // 아직 다 못함
+			model.addAttribute("url", "/mypet/mypetList");
 			return "commons/message";
 		}
 		

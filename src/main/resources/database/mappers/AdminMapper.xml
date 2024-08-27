@@ -31,7 +31,7 @@
   	
   	<!-- 관리자가 선택한 유저의 거래 내역을 조회하는 쿼리문 -->
   	<select id="getUserTradeList" parameterType="TransactionDTO" resultMap="TradeList">
-  		SELECT i.ITEM_NAME, t.TRANSACTION_DATE, t.TRANSACTION_AMOUNT, t.TRANSACTION_TYPE
+  		SELECT i.ITEM_NAME, t.*
   		FROM TRANSACTION t
 		INNER JOIN ITEM i
 		ON (t.ITEM_NUM = i.ITEM_NUM)
@@ -44,6 +44,7 @@
   		<result column="TRANSACTION_DATE" property="transaction_date"></result>
   		<result column="TRANSACTION_AMOUNT" property="transaction_amount"></result>
   		<result column="TRANSACTION_TYPE" property="transaction_type"></result>
+  		<result column="TRANSACTION_ORDER" property="transaction_order"></result>
   		
   		<association property="itemDTO" javaType="ItemDTO">
 			<result column="ITEM_NAME" property="item_name"></result>  		
@@ -95,6 +96,45 @@
 		WHERE TO_CHAR(TRANSACTION_DATE, 'MM') = TO_CHAR(SYSDATE, 'MM') AND TRANSACTION_TYPE = '환불'
 		GROUP BY TO_CHAR(TRANSACTION_DATE, 'MM')
   	</select>
+  	
+  	
+  	
+  	<!-- 환불 관련 쿼리 모음 -->
+  	<select id="refundCharacter1" parameterType="myPetDTO" resultType="myPetDTO">
+  		SELECT * FROM MY_PET
+		WHERE ITEM_NUM = #{item_num} AND USER_ID = #{user_id}
+  	</select>
+  	<delete id="refundCharacter2" parameterType="MyPetDTO">
+  		DELETE MY_PET
+		WHERE PET_NUM = #{pet_num}
+  	</delete>
+  	<select id="refundItem1" parameterType="TransactionDTO" resultType="InventoryDTO">
+  		SELECT * FROM INVENTORY
+  		WHERE ITEM_NUM = #{item_num} AND USER_ID = #{user_id}
+  	</select>
+  	<update id="refundItem2" parameterType="MyPetDTO">
+  		UPDATE MY_PET SET ADD_HP = 0, ADD_ATK =0, ADD_DOD =0
+		WHERE USER_ID = #{user_id} AND EQUIP_NUM = #{equip_num}
+  	</update>
+  	<delete id="refundItem3" parameterType="InventoryDTO">
+  		DELETE INVENTORY
+		WHERE INVENTORY_NUM = #{inventory_num}
+  	</delete>
+  	<select id="refundTransaction1" parameterType="TransactionDTO" resultType="TransactionDTO">
+  		SELECT * FROM TRANSACTION
+		WHERE TRANSACTION_NUM = #{transaction_num}
+  	</select>
+  	<insert id="refundTransaction2" parameterType="TransactionDTO">
+  		INSERT INTO TRANSACTION
+  		(TRANSACTION_NUM, USER_ID, ITEM_NUM, TRANSACTION_DATE,
+  		TRANSACTION_AMOUNT, TRANSACTION_TYPE, TRANSACTION_ORDER)
+		VALUES (TRANSACTION_SEQ.NEXTVAL, #{user_id}, #{item_num}, SYSDATE,
+		#{transaction_amount}, '환불', null)
+  	</insert>
+  	<update id="refundTransaction3" parameterType="TransactionDTO">
+  		UPDATE TRANSACTION SET TRANSACTION_ORDER = null
+  		WHERE TRANSACTION_NUM = #{transaction_num}
+  	</update>
   	
   
   </mapper>
