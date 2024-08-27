@@ -58,7 +58,6 @@
 						  <!-- table container -->
 						   <input type="hidden" name="ar" id="arr">
 						  <button class="btn btn-primary" id="purchasebtn" type="button">구매하기</button>
-						  <a class="btn btn-primary" href="#">선물하기</a>
 						</div>
 					</form>
 					  </div>

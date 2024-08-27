@@ -34,7 +34,7 @@
 						    </div>
 						  </div>
 						</a>
-						  <c:if test="${itemDTO.category_num eq 0}">
+						<c:if test="${itemDTO.category_num eq 0}">
 							  <a class="carousel-control-prev atime" type="button" data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide="prev">
 							    <span class="carouselIcon" aria-hidden="true"><img src="/resources/img/item/arrow-pre.png"></span>
 							    <!-- <span class="sr-only">Previous</span -->
@@ -44,10 +44,10 @@
 							    <span class="carouselIcon" aria-hidden="true"><img src="/resources/img/item/arrow-next.png"></span>
 							    <!-- <span class="sr-only">Next</span> -->
 							  </a>
-							</c:if>
+						</c:if>
 						</div>
 						<!-- 이미지 리스트 -->
-						<form action="purchaseItem" method="post">
+						<form action="/store/purchaseItem" method="post">
 							<div class="card-body">
 								<!-- 카드 이미지 하단 아이템명, 가격 -->
 								<h5 class="card-title">${itemDTO.item_name}</h5>
@@ -55,8 +55,15 @@
 									${itemDTO.item_price} 원
 								</p>
 								<input type="hidden" name="item_num" value="${itemDTO.item_num}">
-								<a type="submit" class="btn btn-info purchaseItem" data-inum="${itemDTO.item_num}">구매</a>
-								<a type="button" class="btn btn-info addwish" data-inum="${itemDTO.item_num}">장바구니</a>
+									<c:choose>
+										<c:when test="${itemDTO.item_description eq ''}">
+											<button type="button" class="btn btn-info" onclick="alert('이미 구매한 제품입니다.')">구매 완료</button>
+										</c:when>
+										<c:otherwise>
+											<button class="btn btn-info purchaseItem" data-inum="${itemDTO.item_num}">구매</button>
+											<button type="button" class="btn btn-info addwish" data-inum="${itemDTO.item_num}">장바구니</button>
+										</c:otherwise>
+									</c:choose>
 							</div>
 						</form>
 					</div>

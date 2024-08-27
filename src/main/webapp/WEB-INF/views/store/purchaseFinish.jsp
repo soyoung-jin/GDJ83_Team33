@@ -12,10 +12,10 @@
 	<div class="container">
         <div class="row">
             <div class="col">
-                <p class="text-white mt-5 mb-5">결제 완료</b></p>
+                <h1 class="text-white mt-5 mb-5">결제 완료</b></h1>
             </div>
-            <a href="/users/tradeList">결제 내역</button>
         </div>
+        <a href="/users/tradeList">결제 내역</a>
             <!-- row -->
     </div>
 	<c:import url="../template/footer.jsp"></c:import>

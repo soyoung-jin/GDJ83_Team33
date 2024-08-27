@@ -3,9 +3,10 @@ const kakaodelbtn = document.getElementById("kakaodelbtn")
 const itemPrice = document.getElementsByClassName("itemPrice")
 const itemName = document.getElementsByClassName("itemName")
 
-
 let uuid = "";
 let resultPrice = 0
+
+const kakaostatus = '';
 
 //제품들 총 가격 계산
 function totalPrice(){
@@ -17,14 +18,10 @@ function totalPrice(){
     return resultPrice;
 }
 
-//카카오결제 취소 버튼
-kakaodelbtn.addEventListener("click",()=>{
-    kakaoDel()
-});
 
 //카카오 결제 취소 함수
 async function kakaoDel() {
-    uuid = "payment-6d8667f6-2fc6-4955-8e94-c829a9c42f46";
+    uuid = "payment-ee489c7b-9abe-4e98-b34c-b0241234d391";
     const del = await fetch(`https://api.portone.io/payments/`+uuid+`/cancel`,{ 
         method: 'post',
         headers: {Authorization: `PortOne i68oGkSudVRHtsQtbxZitbS7DPq99kDGH6xS2tz5l9W7w8ppV6xKcAioepMEyyYiW2Ae0mUGZ0NgUguK`, headers: {'Content-Type': 'application/json'}},
@@ -35,6 +32,8 @@ async function kakaoDel() {
     const d = await del.json();
 
     console.log(d);
+    
+    return d.cancellation.status;
 }
 
 //카카오 결제 버튼
@@ -97,11 +96,15 @@ async function kakaoRequestPayment() {
                         }),
                     })
                     
-                    fetch("/store/deleteWishList?wishlist_num="+itemName[i].getAttribute("data-wnum"),{
-                        method:"get"
-                    }).then(r=>{r.text})
+                    if(itemName[i].getAttribute("data-wnum")){
+                        fetch("/store/deleteWishList?wishlist_num="+itemName[i].getAttribute("data-wnum"),{
+                            method:"get"
+                        }).then(r=>{r.text})
+                    }
+
                 }
                 alert("결제 성공")
+                location.href="/store/purchaseFinish"
                 break;
             }
             default : {

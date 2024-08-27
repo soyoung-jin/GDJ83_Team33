@@ -99,10 +99,12 @@ itemListdiv.addEventListener("click",(e)=>{
                 if(check){
                     location.href="getWishList"
                 }
-            } else if(r<0){
+            } else if(r==0){
                 alert ("로그인 ㄱㄱ")
-            } else {
+            } else if(r==-1){
                 alert ("추가 실패")
+            } else if(r==-2){
+                alert ("이미 가지고 있는 아이템입니다.")
             }
 
         }).catch(()=>{alert("추가 실패")})
