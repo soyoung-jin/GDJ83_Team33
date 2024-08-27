@@ -46,4 +46,9 @@ public class InGameService {
 	public int levelUp(MyPetDTO myPetDTO) throws Exception {
 		return inGameDAO.levelUp(myPetDTO);
 	}
+	
+	// 진화
+	public int evolutionUp(MyPetDTO myPetDTO) throws Exception {
+		return inGameDAO.evolutionUp(myPetDTO);
+	}
 }

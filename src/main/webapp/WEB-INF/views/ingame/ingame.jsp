@@ -125,9 +125,14 @@
 										<input id="pet_hungry" name="pet_hungry" value="${myPetDTO.pet_hungry}"
 											type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 									</div>
-									<div class="form-group col-lg-12">
+									<div class="form-group col-lg-6">
 										<label for="pet_washroom">화장실</label>
 										<input id="pet_washroom" name="pet_washroom" value="${myPetDTO.pet_washroom}"
+											type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
+									</div>
+									<div class="form-group col-lg-6">
+										<label for="pet_evolution">진화 단계</label>
+										<input id="pet_evolution" name="pet_evolution" value="${myPetDTO.pet_evolution}"
 											type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 									</div>
 								</form>
@@ -155,7 +160,7 @@
 			
 			<div class="container">
 				<div id="petParent">
-					<img id="myPet" src="getImage?file_name=${not empty itemFile.itemFileDTOs[1]?itemFile.itemFileDTOs[1].file_name:'default.gif'}" alt="moving cracked egg">
+					<img id="myPet" src="getImage?file_name=${not empty itemFile.itemFileDTOs[myPetDTO.pet_evolution]?itemFile.itemFileDTOs[myPetDTO.pet_evolution].file_name:'default.gif'}" alt="moving cracked egg">
 					<img id="rightArrow" src="/resources/img/ingame/rightArrow.png" alt="right Arrow">
 					<div id="chatDiv">
 	

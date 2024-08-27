@@ -86,6 +86,8 @@ public class InGameController {
 		UsersDTO tempDTO = (UsersDTO) session.getAttribute("users_info");
 		myPetDTO.setUser_id(tempDTO.getUser_id());
 		myPetDTO = inGameService.getPetStatus(myPetDTO);
+		
+		
 		model.addAttribute("myPetDTO", myPetDTO);
 		
 		ItemDTO itemDTO = new ItemDTO();
@@ -143,8 +145,26 @@ public class InGameController {
 	@GetMapping("levelUp")
 	@ResponseBody
 	public MyPetDTO levelUp(MyPetDTO myPetDTO) throws Exception {
-		int result = inGameService.levelUp(myPetDTO);
 		myPetDTO = inGameService.checkPetStatus(myPetDTO);
+		
+		int result = 0;
+		
+		if(myPetDTO.getPet_level() == 9 && myPetDTO.getPet_evolution() == 0) {
+			result = inGameService.evolutionUp(myPetDTO);
+			result = inGameService.levelUp(myPetDTO);
+			
+		} else if(myPetDTO.getPet_level() == 29 && myPetDTO.getPet_evolution() == 1) {
+			result = inGameService.evolutionUp(myPetDTO);
+			result = inGameService.levelUp(myPetDTO);
+		} else if(myPetDTO.getPet_level() == 59 && myPetDTO.getPet_evolution() == 2) {
+			result = inGameService.evolutionUp(myPetDTO);
+			result = inGameService.levelUp(myPetDTO);
+		} else {
+			
+		}
+
+		
+		
 		return myPetDTO;
 		
 	}

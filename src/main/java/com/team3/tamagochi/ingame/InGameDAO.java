@@ -50,6 +50,11 @@ public class InGameDAO {
 		return sqlSession.update(NAMESPACE + "levelUp", myPetDTO);
 	}
 	
+	// 진화
+	public int evolutionUp(MyPetDTO myPetDTO) throws Exception {
+		return sqlSession.update(NAMESPACE + "evolutionUp", myPetDTO);
+	}
+	
 	
 	
 }
