@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team3.tamagochi.mypet.MyPetDTO;
+import com.team3.tamagochi.store.ItemDTO;
+import com.team3.tamagochi.users.InventoryDTO;
 import com.team3.tamagochi.users.UsersDTO;
 
 @Repository
@@ -53,6 +55,11 @@ public class InGameDAO {
 	// 진화
 	public int evolutionUp(MyPetDTO myPetDTO) throws Exception {
 		return sqlSession.update(NAMESPACE + "evolutionUp", myPetDTO);
+	}
+	
+	// 인벤토리 테이블에서 아이템번호 찾아오기
+	public ItemDTO getItemNumForWeapon(InventoryDTO inventoryDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getItemNumForWeapon", inventoryDTO);
 	}
 	
 	

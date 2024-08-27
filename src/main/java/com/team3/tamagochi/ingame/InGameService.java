@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team3.tamagochi.mypet.MyPetDTO;
+import com.team3.tamagochi.store.ItemDTO;
+import com.team3.tamagochi.users.InventoryDTO;
 import com.team3.tamagochi.users.UsersDTO;
 
 @Service
@@ -50,5 +52,10 @@ public class InGameService {
 	// 진화
 	public int evolutionUp(MyPetDTO myPetDTO) throws Exception {
 		return inGameDAO.evolutionUp(myPetDTO);
+	}
+	
+	// 인벤토리 테이블에서 아이템번호 찾아오기
+	public ItemDTO getItemNumForWeapon(InventoryDTO inventoryDTO) throws Exception {
+		return inGameDAO.getItemNumForWeapon(inventoryDTO);
 	}
 }

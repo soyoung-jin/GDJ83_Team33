@@ -25,9 +25,10 @@
 					<h3 id="line">준비됐다</h3>
 				</div>
 				
-				<img src="/resources/img/ingame/ex2.gif" alt="" id="petImg" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="무기를 드래그해서 공격하세요">
-				
-				<img src="/resources/img/ingame/weapon3.png" alt="" id="weaponImg">
+				<img src="getImage?file_name=${myItemFile.itemFileDTOs[myDTO.pet_evolution].file_name}" alt="" id="petImg" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="무기를 드래그해서 공격하세요">
+				<c:if test="${not empty myWeaponFile}">
+				<img src="getImage?file_name=${myWeaponFile.itemFileDTOs[0].file_name}" alt="" id="weaponImg">				
+				</c:if>
 				
 				
 			</div>
@@ -37,8 +38,8 @@
 				<div id="lineEnemyParent" class="mb-2">
 					<h3 id="enemyLine">나도 준비됐다</h3>
 				</div>
-				<img src="/resources/img/character/Character4_4.gif"  class="droppable" alt="" id="enemyImg">
-				<img src="/resources/img/ingame/weapon5.png" alt="" id="enemyWeaponImg">
+				<img src="getImage?file_name=${enemyItemFile.itemFileDTOs[enemyDTO.pet_evolution].file_name}"  class="droppable" alt="" id="enemyImg">
+				<img src="getImage?file_name=${enemyWeaponFile.itemFileDTOs[0].file_name}" alt="" id="enemyWeaponImg">
 				
 				
 			</div>

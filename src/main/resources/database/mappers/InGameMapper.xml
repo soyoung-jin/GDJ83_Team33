@@ -121,4 +121,8 @@
   		
   	</resultMap>
   	
+  	<select id="getItemNumForWeapon" parameterType="InventoryDTO" resultType="ItemDTO">
+  		SELECT * FROM INVENTORY i WHERE INVENTORY_NUM = #{inventory_num}
+  	</select>
+  	
   </mapper>

@@ -21,6 +21,7 @@ import com.team3.tamagochi.mypet.MyPetDTO;
 import com.team3.tamagochi.store.ItemDTO;
 import com.team3.tamagochi.store.ItemFileDTO;
 import com.team3.tamagochi.store.StoreService;
+import com.team3.tamagochi.users.InventoryDTO;
 import com.team3.tamagochi.users.UsersDTO;
 
 @Controller
@@ -63,10 +64,29 @@ public class InGameController {
 		myPetDTO.setUser_id(tempDTO.getUser_id());
 		myPetDTO = inGameService.getPetStatus(myPetDTO);
 		model.addAttribute("myDTO", myPetDTO);
+		
+		// 내 캐릭터 이미지
 		ItemDTO myItemDTO = new ItemDTO();
 		itemDTO.setItem_num(myPetDTO.getItem_num());
 		itemDTO = storeService.getItemDetail(itemDTO);
 		model.addAttribute("myItemFile", itemDTO);
+		
+		
+		
+		// 내 무기
+		if(myPetDTO.getEquip_num() != null) {
+			// myPet에서 equip_num 가져오기
+			// inventory_num에 equip_num 넣기
+			// inventory_num으로 item_num 찾아오기
+			InventoryDTO myInventoryDTO = new InventoryDTO();
+			myInventoryDTO.setInventory_num(myPetDTO.getEquip_num());
+			
+			ItemDTO myWeaponDTO = new ItemDTO();
+			myWeaponDTO = inGameService.getItemNumForWeapon(myInventoryDTO);
+			myWeaponDTO = storeService.getItemDetail(myWeaponDTO);
+			model.addAttribute("myWeaponFile", myWeaponDTO);
+			
+		}
 		
 		// 상대 캐릭터
 		enemyPetDTO = inGameService.getPetStatus(enemyPetDTO);
@@ -75,6 +95,22 @@ public class InGameController {
 		enemyItemDTO.setItem_num(enemyPetDTO.getItem_num());
 		enemyItemDTO = storeService.getItemDetail(enemyItemDTO);
 		model.addAttribute("enemyItemFile", enemyItemDTO);
+		
+		// 상대 무기
+		if(enemyPetDTO.getEquip_num() != null) {
+			// enemyPetDTO에서 equip_num 가져오기
+			// inventory_num에 equip_num 넣기
+			// inventory_num으로 item_num 찾아오기
+			InventoryDTO EnemyInventoryDTO = new InventoryDTO();
+			EnemyInventoryDTO.setInventory_num(enemyPetDTO.getEquip_num());
+			
+			ItemDTO enemyWeaponDTO = new ItemDTO();
+			enemyWeaponDTO = inGameService.getItemNumForWeapon(EnemyInventoryDTO);
+			enemyWeaponDTO = storeService.getItemDetail(enemyWeaponDTO);
+			model.addAttribute("enemyWeaponFile", enemyWeaponDTO);
+			
+		}
+		
 		
 	}
 	
@@ -168,13 +204,13 @@ public class InGameController {
 		
 		if(myPetDTO.getPet_level() == 9 && myPetDTO.getPet_evolution() == 0) {
 			result = inGameService.evolutionUp(myPetDTO);
-			
+			result = inGameService.levelUp(myPetDTO);
 		} else if(myPetDTO.getPet_level() == 29 && myPetDTO.getPet_evolution() == 1) {
 			result = inGameService.evolutionUp(myPetDTO);
-			
+			result = inGameService.levelUp(myPetDTO);
 		} else if(myPetDTO.getPet_level() == 59 && myPetDTO.getPet_evolution() == 2) {
 			result = inGameService.evolutionUp(myPetDTO);
-			
+			result = inGameService.levelUp(myPetDTO);
 		} else {
 			result = inGameService.levelUp(myPetDTO);
 			
