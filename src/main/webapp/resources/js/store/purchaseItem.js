@@ -52,7 +52,7 @@ async function kakaoRequestPayment() {
         // 채널 키 설정
         channelKey: "channel-key-a30ed3c2-b963-42d9-a899-949483621dc4",
         paymentId: `payment-`+uuid,
-        orderName: itemName[0].id+"외 "+(itemName.length-1)+"개",
+        orderName: itemName[0].getAttribute("data-iname")+"외 "+(itemName.length-1)+"개",
         totalAmount: totalPrice(),
         currency: "CURRENCY_KRW",
         payMethod: "EASY_PAY",

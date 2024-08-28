@@ -49,7 +49,7 @@
 											<c:forEach items="${purchaseList}" var="list">
 												<tr>
 													<td><div class="tm-gray-circle"><img src="getImage?file_name=${not empty list.itemDTO.itemFileDTOs?list.itemDTO.itemFileDTOs[0].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div></td>
-													<td class="tm-product-name itemName" id="${list.itemDTO.item_num}" data-wnum="${list.wishlist_num}">${list.itemDTO.item_name}</td>
+													<td class="tm-product-name itemName" id="${list.itemDTO.item_num}" data-wnum="${list.wishlist_num}" data-iname="${list.itemDTO.item_name}">${list.itemDTO.item_name}</td>
 													<td>${list.itemDTO.item_description}</td>
 													<td>${list.itemDTO.item_hp}</td>
 													<td>${list.itemDTO.item_atk}</td>
@@ -70,7 +70,7 @@
 					  </div>
 					</div>
 
-
+ 
 
                 
             </div>
