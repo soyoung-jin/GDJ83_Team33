@@ -71,6 +71,11 @@
 								<div class="col-12">
 									<a href="/users/tradeList" class="btn btn-success btn-block text-uppercase">거래 내역 조회</a>
 								</div>
+								<div class="form-group col-lg-6"></div>
+								<div class="form-group col-12">
+									<a href="/ingame/fightList?user_id=${usersDTO.user_id }"
+									class="btn btn-info btn-block text-uppercase">전적 보러가기</a>
+								</div>
 							</form>
 						</div>
 					</div>

@@ -35,8 +35,8 @@
 								class="form-control validate" />
 							<input name="pet_num" value="${myPetDTO.pet_num }" type="hidden"/>
 							<div class="tm-avatar-container">
-								<img src="/resources/img/character/4.gif" alt="Avatar"
-									class="tm-avatar img-fluid mb-4" />
+								<img src="/store/getImage?file_name=${not empty myPetDTO.itemFileDTOs[myPetDTO.pet_evolution]?myPetDTO.itemFileDTOs[myPetDTO.pet_evolution].file_name:'default.gif'}"
+								alt="Avatar" class="tm-avatar img-fluid mb-4" />
 							</div>
 							<button class="btn btn-primary btn-block text-uppercase">
 								캐릭터 이름 수정</button>

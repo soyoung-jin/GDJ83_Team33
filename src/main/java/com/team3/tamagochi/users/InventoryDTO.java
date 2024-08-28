@@ -1,11 +1,12 @@
 package com.team3.tamagochi.users;
 
+
 public class InventoryDTO {
 	
 	private Long inventory_num;
 	private Long item_num;
 	private String user_id;
-	
+
 	
 	
 	public Long getItem_num() {

@@ -108,7 +108,8 @@ public class AdminController {
 		usersDTO.setUser_id(transactionDTO.getUser_id());
 		itemDTO.setItem_num(transactionDTO.getItem_num());
 		
-		// storeService에서 itemDetail 메서드를 통해 해당 아이템의 카테고리를 가져온다
+		// 환불한 아이템은 무기 or 캐릭터에 따라서 처리해야 하는 메서드가 달라진다
+		// 때문에 구분을 위해 storeService에서 itemDetail 메서드를 통해 해당 아이템의 카테고리 정보를 가져온다
 		itemDTO = storeService.getItemDetail(itemDTO);
 		
 		long category = itemDTO.getCategory_num();
@@ -119,33 +120,36 @@ public class AdminController {
 			// 캐릭터 환불 코드 실행
 			myPetDTO.setItem_num(transactionDTO.getItem_num());
 			myPetDTO.setUser_id(transactionDTO.getUser_id());
-			myPetDTO = adminService.refundCharacter1(myPetDTO);		// 아이템 번호에 맞는 캐릭터를 조회
+			myPetDTO = adminService.refundCharacter1(myPetDTO);		// 환불한 아이템 번호에 맞는 캐릭터를 조회
 			result = adminService.refundCharacter2(myPetDTO);	// 조회한 캐릭터를 DB에서 삭제
-			if(myPetDTO.getPet_selected() == 1) {	// 삭제한 캐릭터가 현재 선택된 캐릭터라면, 다른 캐릭터를 조회해서 선택
+			// 삭제한 캐릭터가 만약 현재 사용중인 캐릭터라면, 다른 캐릭터를 조회해서 임의로 하나의 캐릭터를 사용중으로 바꿈
+			if(myPetDTO.getPet_selected() == 1) {
 				List<MyPetDTO> list = myPetService.getList(usersDTO);
-				result = adminService.selectMyPet(list.get(0));
+				result = adminService.selectMyPet(list.get(0)); // 캐릭터 선택은 기존에 만들어둔 메서드를 재활용
 			}
 			
 		}else {
-			System.out.println("안녕하세요 무기입니다.");
 			// 무기 환불 코드 실행
-			// 환불하려는 아이템의 소지품 번호를 검색
+			// 1. 환불하려는 아이템의 소지품 번호를 검색
 			inventoryDTO = adminService.refundItem1(transactionDTO);
 			
-			// 환불 유저의 캐릭터 중 해당 아이템을 장착중인 캐릭터의 추가 능력치를 0으로 만듬
+			// 2. 환불 유저의 캐릭터 중 해당 아이템을 장착중인 캐릭터의 추가 능력치를 0으로 만듬
 			myPetDTO2.setUser_id(inventoryDTO.getUser_id());
 			myPetDTO2.setEquip_num(inventoryDTO.getInventory_num());
 			result = adminService.refundItem2(myPetDTO2);
 			
-			// inventory에 있는 환불 요청 아이템을 삭제
+			// 3. inventory에 있는 환불 요청 아이템을 삭제
 			result = adminService.refundItem3(inventoryDTO);
 		}
 		
 		if(result > 0) {
 			
-			// 환불하고자 하는 거래내역을 조회한 뒤, 해당 값에서 거래 타입을 '환불'로 바꿔서 다시 삽입
+			// 1. 환불하고자 하는 구매내역을 조회
 			transactionDTO = adminService.refundTransaction1(transactionDTO);
+			/* 2. 구입한 거래내역에서 order번호를 null로 update해줌
+			   (이미 구입한 아이템이나 환불한 아이템은 다시 환불하지 못하게 order번호의 null여부로 button을 보이게 한다) */
 			result = adminService.refundTransaction2(transactionDTO);
+			// 3. 조회한 구매내역 정보로 환불 내역을 새로 insert해줌(거래 종류, 날짜를 제외한 나머지 값이 구입한 거래내역과 같다)
 			result = adminService.refundTransaction3(transactionDTO);
 		}
 		

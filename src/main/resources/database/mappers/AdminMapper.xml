@@ -36,6 +36,7 @@
 		INNER JOIN ITEM i
 		ON (t.ITEM_NUM = i.ITEM_NUM)
 		WHERE t.USER_ID = #{user_id}
+		ORDER BY t.TRANSACTION_DATE DESC
   	</select>
   	<resultMap type="TransactionDTO" id="TradeList">
   		<id column="TRANSACTION_NUM" property="transaction_num"></id>
