@@ -303,10 +303,10 @@ public class InGameController {
 		if(myPetDTO.getPet_level() == 9 && myPetDTO.getPet_evolution() == 0) {
 			result = inGameService.evolutionUp(myPetDTO);
 			result = inGameService.levelUp(myPetDTO);
-		} else if(myPetDTO.getPet_level() == 29 && myPetDTO.getPet_evolution() == 1) {
+		} else if(myPetDTO.getPet_level() == 19 && myPetDTO.getPet_evolution() == 1) {
 			result = inGameService.evolutionUp(myPetDTO);
 			result = inGameService.levelUp(myPetDTO);
-		} else if(myPetDTO.getPet_level() == 59 && myPetDTO.getPet_evolution() == 2) {
+		} else if(myPetDTO.getPet_level() == 29 && myPetDTO.getPet_evolution() == 2) {
 			result = inGameService.evolutionUp(myPetDTO);
 			result = inGameService.levelUp(myPetDTO);
 		} else {

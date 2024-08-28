@@ -69,6 +69,13 @@ feed.addEventListener("click", ()=>{
                 modalImg.append(h4One);
                 modalImg.append(h4Two);
 
+                if(r.pet_exp>=200) {
+                    done.addEventListener("click", ()=>{
+                        alert("레벨업 버튼을 눌러주세요");
+                    })
+                    petStatusBtn.innerHTML = "레벨업!";
+                }
+
             })
         .then((r)=>{
             followingPetText.innerHTML = "배불러요";
@@ -120,6 +127,20 @@ stroll.addEventListener("click", ()=>{
                 h4Two.innerHTML = "경험치 +10";
                 modalImg.append(h4One);
                 modalImg.append(h4Two);
+
+                if(r.pet_exp>=200) {
+                    
+                    petStatusBtn.innerHTML = "레벨업!";
+                    done.addEventListener("click", ()=>{
+                        alert("레벨업 버튼을 눌러주세요");
+                    })
+                }
+
+                if(r.pet_hungry <= 0) {
+                    pet_hungry.value = 0;
+                    
+                }
+
             
         })
         .then((r)=>{
@@ -161,7 +182,7 @@ clean.addEventListener("click", ()=>{
         })
         .then(r=>r.json())
         .then((r)=>{
-                pet_hp.value = r.pet_hp;
+                
                 pet_washroom.value = r.pet_washroom;
                 pet_hungry.value = r.pet_hungry;
 
@@ -169,10 +190,7 @@ clean.addEventListener("click", ()=>{
                 actImg.src = "/resources/img/petAct/doneFeeding.gif";
                 done.style.display = "inline";
                 actCloseBtn.style.display = "inline";
-                h4One.innerHTML = "HP +10";
-                h4Two.innerHTML = "";
-                modalImg.append(h4One);
-                modalImg.append(h4Two);
+                
                 weaponImg.remove();
 
         })
@@ -277,39 +295,22 @@ levelUpBtn.addEventListener("click", ()=>{
             
             modalImg.append(h4One);
             modalImg.append(h4Two);
+            
+            done.addEventListener("click",()=>{
+                location.href = "./ingame";
+            })
+            
 
-            weaponImg.src = "/resources/img/ingame/guitar.png";
-            weaponImg.setAttribute("id", "weaponImg");
-
-            followingPetText.innerHTML = "락스피릿";
-            followingPetText.setAttribute("id", "followingPetText");
-            followingPetDiv.append(followingPetText);
-            followingPetDiv.setAttribute("id", "followingPetDiv");
-            followingPetDiv.style.left = myPetAct.style.left;
-            followingPetDiv.style.top = myPetAct.style.top;
-            weaponImg.style.left = myPetAct.style.left;
-            weaponImg.style.top = myPetAct.style.top;
-
-            actPetParent.append(followingPetDiv);
-            actPetParent.append(weaponImg);
-
-            setTimeout(()=>{
-                followingPetDiv.remove();
-                weaponImg.remove();
-            }, 10000)
-
-            // actCloseBtn.addEventListener("click", ()=>{
-            //     document.querySelector(".modal-backdrop").remove();
-            // })
-            // done.addEventListener("click", ()=>{
-            //     document.querySelector(".modal-backdrop").remove();
-            // })
+           
         })
+        
         .catch(()=>{
             alert("오류");
         })
     }, 1400)
 })
+
+
 
 
 
