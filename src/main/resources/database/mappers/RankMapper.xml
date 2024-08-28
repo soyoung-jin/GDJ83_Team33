@@ -11,7 +11,7 @@
 		LEFT JOIN 
 			USERS u 
 		ON (mp.USER_ID = u.USER_ID)
-		WHERE mp.PET_SELECTED = 1
+		WHERE mp.PET_SELECTED = 1 ORDER BY PET_LEVEL DESC
   	</select>
   	<resultMap type="MyPetDTO" id="mypetResult">
   		<id column="PET_NUM" property="pet_num"></id>

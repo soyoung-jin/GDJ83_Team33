@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team3.tamagochi.mypet.MyPetDTO;
+import com.team3.tamagochi.record.RecordDTO;
 import com.team3.tamagochi.store.ItemDTO;
 import com.team3.tamagochi.store.ItemFileDTO;
 import com.team3.tamagochi.store.StoreService;
@@ -54,6 +55,7 @@ public class InGameController {
 		return result;
 	}
 	
+	// 전투장
 	@GetMapping("fight")
 	public void fight(HttpSession session, ItemDTO itemDTO, MyPetDTO enemyPetDTO, Model model) throws Exception{
 		
@@ -109,6 +111,84 @@ public class InGameController {
 			enemyWeaponDTO = storeService.getItemDetail(enemyWeaponDTO);
 			model.addAttribute("enemyWeaponFile", enemyWeaponDTO);
 			
+		}
+		
+		
+		
+	}
+	
+	// 전투 결과
+	@GetMapping("fightResult")
+	public String fightResult(Model model, RecordDTO recordDTO) throws Exception {
+		// 상대방 Record
+		RecordDTO enemyRecordDTO = new RecordDTO();
+		
+		// 내 펫 정보 가져오기
+		MyPetDTO myPetDTO = new MyPetDTO();
+		myPetDTO.setPet_num(recordDTO.getPet_num());
+		myPetDTO = inGameService.checkPetStatus(myPetDTO);
+		
+		// 상대방 펫 정보 가져오기
+		MyPetDTO enemyPetDTO = new MyPetDTO();
+		enemyPetDTO.setPet_num(recordDTO.getRecord_enemy_num());
+		enemyPetDTO = inGameService.checkPetStatus(enemyPetDTO);
+		
+		// 상대방 로우에 들어갈 정보
+		enemyRecordDTO.setPet_num(recordDTO.getRecord_enemy_num());
+		enemyRecordDTO.setRecord_enemy_num(recordDTO.getPet_num());
+		
+		// {(내 HP * 10) - (상대방 공격력 * 상대발 레벨)} + 회피력 = score
+		Long myScore = ((myPetDTO.getPet_hp()*10)-(enemyPetDTO.getPet_atk()*enemyPetDTO.getPet_level())) + myPetDTO.getPet_dod();
+		
+		// 상대방 score
+		Long enemyScore = ((enemyPetDTO.getPet_hp()*10)-(myPetDTO.getPet_atk()*myPetDTO.getPet_level())) + enemyPetDTO.getPet_dod();
+		
+		// recordOutCome
+		Integer MyRecordOutCome  = 0;
+		Integer enemyRecordOutCome  = 0;
+		
+		// insert문 실행 결과
+		int result = 0;
+		int flag = 0;
+		
+		
+		// score 점수 비교해서 높은 사람이 승리
+		// 결과 => RecordDTO에 두 개의 row 남기기(fightResult메소드)
+		if(myScore > enemyScore) {
+			// 내가 이겼을 때
+			MyRecordOutCome = 1;
+			recordDTO.setRecord_outcome(MyRecordOutCome);
+			enemyRecordDTO.setRecord_outcome(enemyRecordOutCome);
+			result = inGameService.fightResult(recordDTO);
+			result = inGameService.fightResult(enemyRecordDTO);
+			flag = 1;
+			
+			model.addAttribute("msg", flag);
+			return "commons/result";
+			
+		} else if(myScore < enemyScore) {
+			// 내가 졌을 때
+			enemyRecordOutCome = 1;
+			recordDTO.setRecord_outcome(MyRecordOutCome);
+			enemyRecordDTO.setRecord_outcome(enemyRecordOutCome);
+			result = inGameService.fightResult(recordDTO);
+			result = inGameService.fightResult(enemyRecordDTO);
+			flag = 0;
+			
+			model.addAttribute("msg", flag);
+			return "commons/result";
+			
+		} else {
+			// 비겼을 때
+			MyRecordOutCome = 2;
+			enemyRecordOutCome = 2;
+			result = inGameService.fightResult(recordDTO);
+			result = inGameService.fightResult(enemyRecordDTO);
+			flag = 2;
+			
+			model.addAttribute("msg", flag);
+			
+			return "commons/result";
 		}
 		
 		

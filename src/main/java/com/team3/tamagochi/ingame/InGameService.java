@@ -60,8 +60,13 @@ public class InGameService {
 		return inGameDAO.getItemNumForWeapon(inventoryDTO);
 	}
 	
-	//전투 결과
+	// 전투 결과 삽입
 	public int fightResult(RecordDTO recordDTO) throws Exception {
 		return inGameDAO.fightResult(recordDTO);
+	}
+	
+	// 전투 결과 조회
+	public RecordDTO fightScore(RecordDTO recordDTO) throws Exception {
+		return inGameDAO.fightScore(recordDTO);
 	}
 }

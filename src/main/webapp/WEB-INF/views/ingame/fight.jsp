@@ -57,15 +57,16 @@
 							</div>
 							<div class="modal-body">
 							<div class="form-floating" id="modalImg">
-								<img id="fightResultImg" class="petAct" src="" alt="character image">
+								<img id="fightResultImg" class="petAct" src="" alt="character image" data-mypet-num="${myDTO.pet_num}" data-enemypet-num="${enemyDTO.pet_num}">
 								
 							</div>
 							</div>
 							<div class="modal-footer">
 								<div class="input-group mb-3 justify-content-center">
 									
-									<a href="./fightResult?pet_num=${myDTO.pet_num}&record_enemy_num=${enemyDTO.pet_num}" id="done" class="btn btn-outline-secondary close" type="button" data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">확인</a>
-									
+									<!-- <a href="./ingame" id="done" class="btn btn-outline-secondary close" type="button" data-bs-toggle="modal" data-bs-dismiss="modal" aria-label="Close">확인</a> -->
+									<a id="check" class="btn btn-outline-warning" type="button">결과보기</a>
+									<a href="./ingame" id="goHome" class="btn btn-outline-warning" type="button">홈으로 가기</a>
 								</div>
 								
 							</div>

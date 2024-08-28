@@ -63,9 +63,14 @@ public class InGameDAO {
 		return sqlSession.selectOne(NAMESPACE + "getItemNumForWeapon", inventoryDTO);
 	}
 	
-	// 전투 결과
+	// 전투 결과 삽입
 	public int fightResult(RecordDTO recordDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "fightResult", recordDTO);
+	}
+	
+	// 전투 결과 조회
+	public RecordDTO fightScore(RecordDTO recordDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "fightScore", recordDTO);
 	}
 	
 	
