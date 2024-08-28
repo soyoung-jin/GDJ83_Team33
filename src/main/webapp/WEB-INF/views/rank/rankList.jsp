@@ -13,7 +13,8 @@
 			<div class="row tm-content-row">
 				<div class="col-sm-12 col-md-12 col-lg-9 col-xl-9 tm-block-col">
 					<h1 class="text-white mt-12 mb-12">랭킹 게시판</h1>
-
+					<a type="button" class="" data-bs-toggle="modal" data-bs-target="#petStatusModal" id="modalBtn">
+					</a>
 					<div class="tm-bg-primary-dark tm-block tm-block-h-auto" style="display:inline-block;">
 						<div class="col-sm-4 col-md-4 col-lg-12 col-xl-12 tm-block-col">
 							<div class="row justify-content-center" id="go">
@@ -38,17 +39,13 @@
 										</a>
 										<div class="card-body">
 											<!-- 카드 이미지 하단 아이템명, 가격 -->
-											<c:choose>
-												
-												<c:when test="${list.pet_selected == 1 }">
-												
+											
 												
 											<h5 class="card-title">닉네임: ${list.usersDTO.user_nickname}</h5>
 											<h5 class="card-title">펫 이름: ${list.pet_name }</h5>
 											<h5 class="card-title">레벨: ${list.pet_level }</h5>
 											<h5 class="card-title">인기도: <p style="display:inline-block;"> ${list.pet_pop}</p></h5>
-												</c:when>
-											</c:choose>
+												
 											<c:choose>
 											<c:when test="${users_info.user_id == list.user_id}">
 													<a style="display: inline;" id="ranklike" href="javascript:void(0);" class="pop_btn" data-pet-num="${list.pet_num}"><img class="pop_btn" style="width:20%; float:center;" src="/resources/img/rankboard/likeimg.png"></a> 
@@ -56,74 +53,21 @@
 											</c:when>
 											
 											<c:otherwise>
-													<div>
-													<a data-bs-toggle="modal" data-bs-target="#petStatusModal" style="display: inline;" id="rankplay" ><img style="width:40%; " src="/resources/img/rankboard/playimg.png"></a> 
+													<a onclick="getPetDTO('${list.pet_num}')" data-bs-toggle="modal" data-bs-target="#petStatusModal" style="display: inline;" id="rankplay" ><img style="width:40%; " src="/resources/img/rankboard/playimg.png"></a> 
+													<a style="display: inline;" id="ranklike" href="javascript:void(0);" class="pop_btn" data-pet-num="${list.pet_num}"><img class="pop_btn" style="width:20%; float:center;" src="/resources/img/rankboard/likeimg.png"></a> 
+													
 															<div id="petStatusDiv">
 																<div class="modal fade" id="petStatusModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="petStatusModal" aria-hidden="true">
 																	<div class="modal-dialog modal-dialog-scrollable">
-																	  <div class="modal-content">
+																	  <div class="modal-content" id="modalContents">
 												
-																		<div class="modal-header">
-																		  <h1 class="modal-title fs-5" id="petReady">Hi, ${list.usersDTO.user_nickname}</h1>
-																		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
-																		</div>
-												
-																		<div class="modal-body">
-																		 <!-- 펫 상태 리스트 -->
-																		 <div class="tm-block-col tm-col-account-settings" id="petStatusList">
-																			<div class="tm-bg-primary-dark tm-block tm-block-settings">
-																				<h2 class="tm-block-title">캐릭터 정보</h2>
-																				<form action="" class="tm-signup-form row">
-																					<div class="form-group col-lg-6">
-																						<label for="pet_spc">종족</label>
-																						<input id="pet_spc" name="pet_spc" value="${list.pet_spc}"
-																							type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
-																					</div>
-																					<div class="form-group col-lg-6">
-																						<label for="pet_level">레벨</label>
-																						<input id="pet_level" name="pet_level" value="${list.pet_level}"
-																							type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
-																					</div>
-																					<div class="form-group col-lg-6">
-																						<label for="pet_exp">경험치</label>
-																						<input id="pet_exp" name="pet_exp" value="${list.pet_exp}"
-																							type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
-																					</div>
-																					<div class="form-group col-lg-6">
-																						<label for="pet_hp">체력</label>
-																						<input id="pet_hp" name="pet_hp" value="${list.pet_hp}"
-																							type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
-																					</div>
-																					<div class="form-group col-lg-6">
-																						<label for="pet_atk">공격력</label>
-																						<input id="pet_atk" name="pet_atk" value="${list.pet_atk}"
-																							type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
-																					</div>
-																					<div class="form-group col-lg-6">
-																						<label for="pet_dod">회피력</label>
-																						<input id="pet_dod" name="pet_dod" value="${list.pet_dod}"
-																							type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
-																					</div>
-																				</form>
-																			</div>
-																		  </div>
-																		</div>
-																		<div class="modal-footer">
-																			<div class="input-group mb-3 justify-content-center">
-																				
-																				<a href="../ingame/fight?item_num=${list.item_num}&user_id=${list.user_id}" class="btn btn-outline-warning">
-																					싸우러 가기</a>
-																				
-																			</div>
-																			
-																		</div>
+																		
 																	  </div>
 																	</div>
 																  </div>
 															   </div>						
-													<a style="display: inline;" id="ranklike" href="javascript:void(0);" class="pop_btn" data-pet-num="${list.pet_num}"><img class="pop_btn" style="width:20%; float:center;" src="/resources/img/rankboard/likeimg.png"></a> 
 													
-													</div>
+													
 											</c:otherwise>
 											
 											</c:choose>
