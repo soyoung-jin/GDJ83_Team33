@@ -114,7 +114,7 @@ let enemypet_num = fightResultImg.getAttribute("data-enemypet-num");
 
 enemyImg.addEventListener("click", ()=>{
    fightResultImg.src = "/resources/img/ingame/fight.gif"
-   h4One.innerHTML = "싸우는 중";
+   h4One.innerHTML = "싸우는 중...";
    modalImg.append(h4One);
    checkBtn.style.display = "none";
    goHome.style.display="none";
@@ -135,17 +135,20 @@ checkBtn.addEventListener("click", ()=>{
    .then((res)=>{return res.text()})
    .then((res) =>{
       if(res == 1) {
+         fightResultImg.src = "/resources/img/ingame/victory.gif"
          h4One.innerHTML = "승리를 축하드려요";
          modalImg.append(h4One);
          checkBtn.style.display = "none";
          goHome.style.display="inline";
          
       } else if (res == 0) {
+         fightResultImg.src = "/resources/img/ingame/lose.gif"
          h4One.innerHTML = "패배했어요";
          modalImg.append(h4One);
          checkBtn.style.display = "none";
          goHome.style.display="inline";
       } else {
+         fightResultImg.src = "/resources/img/ingame/draw.gif"
          h4One.innerHTML = "비겼어요";
          modalImg.append(h4One);
          checkBtn.style.display = "none";

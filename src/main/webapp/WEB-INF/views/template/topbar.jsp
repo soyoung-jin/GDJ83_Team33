@@ -48,7 +48,8 @@
                             </a>
                         </li>
 
-                        
+                <c:choose>
+	                <c:when test="${not empty users_info}">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -65,6 +66,8 @@
                                 <a class="dropdown-item" href="/friend/friendList">내 친구들</a>
                             </div>
                         </li>
+                    </c:when>
+                </c:choose>
                         <!-- 관리자 권한이 있는 유저만 해당 탭을 볼 수 있음 -->
                         <c:if test="${users_info.user_auth eq 0 }">
 	                        <li class="nav-item dropdown">

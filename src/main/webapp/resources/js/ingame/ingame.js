@@ -4,6 +4,8 @@ const modalContent = document.getElementById("modalContent");
 const sendBtn = document.getElementById("sendBtn");
 const chatContent = document.getElementById("chatContent");
 const rightArrow = document.getElementById("rightArrow");
+const pet_spc = document.getElementById("pet_spc").value;
+
 
 
 /* =====================챗봇에 관련된 변수===================== */
@@ -149,7 +151,7 @@ async function fetchAIResponse(userMsg) {
                     content: [
                       {
                         type: "text",
-                        text: "you are my pet.\nyou are kind and happy all the time and bring me joy.\nyou don't need to be my assistant.\njust at least pretend to be a pet.\nyou don't have to ask me anything, just be fun. basically, you are a bird."
+                        text: "you are my pet. you are kind and happy and bring me joy. you are not my assistant. just be fun. basically, you are a " + pet_spc
                       }
                     ]
                 },
@@ -170,7 +172,7 @@ async function fetchAIResponse(userMsg) {
     try {
         const response = await fetch(apiEndpoint, requestOptions);
         const data = await response.json();
-        console.log(data);
+        
         const aiResponse = data.choices[0].message.content;
         return aiResponse;
     } catch (error) {
