@@ -46,6 +46,7 @@ public class RankController {
 		
 		for(int i=0;i<ar.size();i++) {
 			MyPetDTO myPetDTO = myPetService.getDetail(ar.get(i));
+			myPetDTO.setUsersDTO(ar.get(i).getUsersDTO());
 			ar.set(i, myPetDTO);
 		}
 		mv.addObject("list", ar);

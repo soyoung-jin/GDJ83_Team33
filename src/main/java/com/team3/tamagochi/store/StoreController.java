@@ -79,7 +79,7 @@ public class StoreController {
 		} else {
 			itemDTO = storeService.getItemDetail(itemDTO);
 			model.addAttribute("dto",itemDTO);
-			return "purchaseItem";
+			return "store/purchaseItem";
 		}
 	}
 
