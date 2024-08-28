@@ -29,7 +29,9 @@
 				<c:if test="${not empty myWeaponFile}">
 				<img src="getImage?file_name=${myWeaponFile.itemFileDTOs[0].file_name}" alt="" id="weaponImg">				
 				</c:if>
-				
+				<c:if test="${empty myWeaponFile}">
+				<img src="/resources/img/ingame/fist.gif" alt="" id="weaponImg">				
+				</c:if>
 				
 			</div>
 
@@ -44,6 +46,9 @@
 				
 				<c:if test="${not empty enemyWeaponFile}">
 				<img src="getImage?file_name=${enemyWeaponFile.itemFileDTOs[0].file_name}" alt="" id="enemyWeaponImg">
+				</c:if>
+				<c:if test="${empty myWeaponFile}">
+				<img src="/resources/img/ingame/fist.gif" alt="" id="weaponImg">				
 				</c:if>
 
 				<!-- 경기 종료 모달 -->

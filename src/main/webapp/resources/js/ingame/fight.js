@@ -114,7 +114,7 @@ let enemypet_num = fightResultImg.getAttribute("data-enemypet-num");
 
 enemyImg.addEventListener("click", ()=>{
    fightResultImg.src = "/resources/img/ingame/fight.gif"
-   h4One.innerHTML = "싸우는 중";
+   h4One.innerHTML = "싸우는 중...";
    modalImg.append(h4One);
    checkBtn.style.display = "none";
    goHome.style.display="none";

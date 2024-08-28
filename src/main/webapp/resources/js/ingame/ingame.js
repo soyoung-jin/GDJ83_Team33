@@ -4,11 +4,13 @@ const modalContent = document.getElementById("modalContent");
 const sendBtn = document.getElementById("sendBtn");
 const chatContent = document.getElementById("chatContent");
 const rightArrow = document.getElementById("rightArrow");
+const pet_spc = document.getElementById("pet_spc").value;
+
 
 
 /* =====================챗봇에 관련된 변수===================== */
 // 내 키
-const apiKey = '';
+const apiKey = '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';
 // post로 보낼시 json 형식으로 나타날 주소 
 const apiEndpoint = 'https://api.openai.com/v1/chat/completions';
 
@@ -149,7 +151,7 @@ async function fetchAIResponse(userMsg) {
                     content: [
                       {
                         type: "text",
-                        text: "you are my pet.\nyou are kind and happy all the time and bring me joy.\nyou don't need to be my assistant.\njust at least pretend to be a pet.\nyou don't have to ask me anything, just be fun. basically, you are a bird."
+                        text: "you are my pet. you are kind and happy and bring me joy. you are not my assistant. just be fun. basically, you are a " + pet_spc
                       }
                     ]
                 },
@@ -170,7 +172,7 @@ async function fetchAIResponse(userMsg) {
     try {
         const response = await fetch(apiEndpoint, requestOptions);
         const data = await response.json();
-        console.log(data);
+        
         const aiResponse = data.choices[0].message.content;
         return aiResponse;
     } catch (error) {
