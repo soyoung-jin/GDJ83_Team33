@@ -18,7 +18,15 @@
 						<div class="card-body">
 							<h5 class="card-title">${myPetDTO.pet_name}</h5>
 							<div>
+							<c:choose>
+								<c:when test="${myPetDTO.pet_exp ge 200}">
+								<a style="display: inline;" href="./checkPetStatus" data-pet-status="${myPetDTO.pet_num}" id="petStatusBtn" data-bs-toggle="modal" data-bs-target="#petStatusModal">레벨업하기!!</a>
+								</c:when>
+								
+								<c:otherwise>
 								<a style="display: inline;" href="./checkPetStatus" data-pet-status="${myPetDTO.pet_num}" id="petStatusBtn" data-bs-toggle="modal" data-bs-target="#petStatusModal">펫 상태 보기</a>
+								</c:otherwise>
+							</c:choose>
 								
 							</div>
 							
