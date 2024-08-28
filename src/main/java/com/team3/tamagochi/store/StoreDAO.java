@@ -99,6 +99,10 @@ public class StoreDAO {
 	public int addItem(ItemDTO itemDTO) {
 		return sqlSession.insert(NAMESPACE + "addItem", itemDTO);
 	}
+	
+	public List<ItemDTO> checkItemName(ItemDTO itemDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"checkItemName", itemDTO);
+	}
 
 	public int updateItem(ItemDTO itemDTO) {
 		return sqlSession.update(NAMESPACE + "updateItem", itemDTO);

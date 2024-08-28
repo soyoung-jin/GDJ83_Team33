@@ -158,6 +158,18 @@ public class StoreService {
 
 		return result;
 	}
+	
+	public int checkItemName (ItemDTO itemDTO) throws Exception {
+		int result = 0;
+		
+		List<ItemDTO> list = storeDAO.checkItemName(itemDTO);
+		
+		if(list.size()==0) {
+			result = 1;
+		}
+		
+		return result; 
+	}
 
 	public int updateItem(ItemDTO itemDTO, MultipartFile[] files, HttpSession session) throws Exception {
 		

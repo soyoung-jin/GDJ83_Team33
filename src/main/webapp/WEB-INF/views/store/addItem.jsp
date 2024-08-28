@@ -21,7 +21,7 @@
 			</div>
 			<div class="row">
 				<main class="form-signin w-100 m-auto">
-					<div class="col-6 login">
+					<div class="col-6 login" id="add">
 						<form class="form" action="${dto eq null?'addItem':'updateItem'}" method="post" enctype="multipart/form-data">
 							<div class="mb-2">
 								<!-- 캐릭터, 무기 분류별로 조회하기 위한 셀렉트 태그 -->
@@ -42,61 +42,67 @@
 							<input type="hidden" name="item_num" value="${dto.item_num}">
 							
 							<div class="form-floating">
-								<label for="item_name" id="chname">이름</label>
-								<input type="text" class="form-control" id="item_name" name="item_name" value="${dto.item_name}">
+								<label for="name" id="chname">이름</label>
+								<input type="text" class="form-control" id="name" name="item_name" value="${dto.item_name}">
+								<div id="name_error"></div>
 							</div>
 							<div class="form-floating mt-1">
-								<label for="item_description">설명</label>
-								<input type="text" class="form-control" id="item_description" name="item_description" value="${dto.item_description}">
+								<label for="description">설명</label>
+								<input type="text" class="form-control" id="description" name="item_description" value="${dto.item_description}">
+								<div id="description_error"></div>
 							</div>
 							<div class="form-floating mt-1">
-								<label for="item_hp">추가 체력</label>
-								<input type="text" class="form-control" id="item_hp" name="item_hp" value="${dto.item_hp}">
+								<label for="hp">추가 체력</label>
+								<input type="text" class="form-control" id="hp" name="item_hp" value="${dto.item_hp}">
+								<div id="hp_error"></div>
 							</div>
 							<div class="form-floating mt-1">
-								<label for="item_atk">추가 공격력</label>
-								<input type="text" class="form-control" id="item_atk" name="item_atk" value="${dto.item_atk}">
+								<label for="atk">추가 공격력</label>
+								<input type="text" class="form-control" id="atk" name="item_atk" value="${dto.item_atk}">
+								<div id="atk_error"></div>
 							</div>
 							<div class="form-floating mt-1">
-								<label for="item_dod">추가 회피력</label>
-								<input type="text" class="form-control" id="item_dod" name="item_dod" value="${dto.item_dod}">
+								<label for="dod">추가 회피력</label>
+								<input type="text" class="form-control" id="dod" name="item_dod" value="${dto.item_dod}">
+								<div id="dod_error"></div>
 							</div>
 							<div class="form-floating mt-1">
-								<label for="item_price">가격</label>
-								<input type="text" class="form-control" id="item_price" name="item_price" value="${dto.item_price}">
+								<label for="price">가격</label>
+								<input type="text" class="form-control" id="price" name="item_price" value="${dto.item_price}">
+								<div id="price_error"></div>
 							</div>
 							<div class="form-floating mt-1" id="fileUpload">
 								<c:if test="${dto eq null}">
 									<label class="form-label">기본 이미지</label>
-									<input type="file" id="imgFile" name="attach">
+									<input class="fileList" type="file" name="attach">
 									<label class="form-label">2단계 이미지</label>
-									<input type="file" id="imgFile" name="attach">
+									<input class="fileList" type="file" name="attach">
 									<label class="form-label">3단계 이미지</label>
-									<input type="file" id="imgFile" name="attach">
+									<input class="fileList" type="file" name="attach">
 									<label class="form-label">4단계 이미지</label>
-									<input type="file" id="imgFile" name="attach">
+									<input class="fileList" type="file" name="attach">
 								</c:if>
 							</div>
 							<div>
 								<c:if test="${dto ne null}">
 									<label class="form-label">기본 이미지</label>
-									<input type="file" id="imgFile" name="attach">
+									<input type="file" name="attach">
 									<div class="tm-gray-circle"><img src="getImage?file_name=${dto.itemFileDTOs[0] ne null?dto.itemFileDTOs[0].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div>
 									<c:if test="${dto.category_num == 0}">
 										<label class="form-label">2단계 이미지</label>
-										<input type="file" id="imgFile" name="attach">
+										<input class="fileList" type="file" name="attach">
 										<div class="tm-gray-circle"><img src="getImage?file_name=${dto.itemFileDTOs[1] ne null?dto.itemFileDTOs[1].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div>
-										<label class="form-label">3단계 이미지</label>
-										<input type="file" id="imgFile" name="attach">
+										<label class="fileList" class="form-label">3단계 이미지</label>
+										<input class="fileList" type="file" name="attach">
 										<div class="tm-gray-circle"><img src="getImage?file_name=${dto.itemFileDTOs[2] ne null?dto.itemFileDTOs[2].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div>
 										<label class="form-label">4단계 이미지</label>
-										<input type="file" id="imgFile" name="attach">
+										<input class="fileList" type="file"  name="attach">
 										<div class="tm-gray-circle"><img src="getImage?file_name=${dto.itemFileDTOs[3] ne null?dto.itemFileDTOs[3].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div>
 									</c:if>
 								</c:if>
 							</div>
 							<div class="mt-3">
-								<button class="btn btn-primary w-100 py-2" type="submit"> ${dto eq null?'아이템 추가':'아이템 수정'} </button>
+								<button class="btn btn-primary w-100 py-2" type="submit" id="btn"> ${dto eq null?'아이템 추가':'아이템 수정'} </button>
 							</div>
 						</form>
 					</div>
