@@ -18,25 +18,21 @@
 						<div class="card-body">
 							<h5 class="card-title">${myPetDTO.pet_name}</h5>
 							<div>
-							<c:choose>
-								<c:when test="${myPetDTO.pet_exp ge 200}">
-								<a style="display: inline;" href="./checkPetStatus" data-pet-status="${myPetDTO.pet_num}" id="petStatusBtn" data-bs-toggle="modal" data-bs-target="#petStatusModal">레벨업하기!!</a>
-								</c:when>
+							
 								
-								<c:otherwise>
+								
 								<a style="display: inline;" href="./checkPetStatus" data-pet-status="${myPetDTO.pet_num}" id="petStatusBtn" data-bs-toggle="modal" data-bs-target="#petStatusModal">펫 상태 보기</a>
-								</c:otherwise>
-							</c:choose>
+									<div class="justify-content-center align-item-center mt-3">
+										<!-- 펫 상태 보기 모달 버튼 -->
+										
+										<a href="./feed" id="feed" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#actModal">먹이주기</a>
+										<a href="./stroll" id="stroll" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#actModal">산책하기</a>
+										<a href="./clean" id="clean" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#actModal">청소하기</a>
+									</div>
+								
 								
 							</div>
 							
-							<div class="justify-content-center align-item-center mt-3">
-								<!-- 펫 상태 보기 모달 버튼 -->
-								
-								<a href="./feed" id="feed" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#actModal">먹이주기</a>
-								<a href="./stroll" id="stroll" class="btn btn-primary mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#actModal">산책하기</a>
-								<a href="./clean" id="clean" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#actModal">청소하기</a>
-							</div>
 						</div>
 					</div>
 				</div>
