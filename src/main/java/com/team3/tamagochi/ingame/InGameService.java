@@ -1,5 +1,7 @@
 package com.team3.tamagochi.ingame;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,5 +70,9 @@ public class InGameService {
 	// 전투 결과 조회
 	public RecordDTO fightScore(RecordDTO recordDTO) throws Exception {
 		return inGameDAO.fightScore(recordDTO);
+	}
+	
+	public List<RecordDTO> getFightList(RecordDTO recordDTO) throws Exception{
+		return inGameDAO.getFightList(recordDTO);
 	}
 }

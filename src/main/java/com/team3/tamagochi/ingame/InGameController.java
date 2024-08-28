@@ -136,7 +136,11 @@ public class InGameController {
 		// 상대방 로우에 들어갈 정보
 		enemyRecordDTO.setPet_num(recordDTO.getRecord_enemy_num());
 		enemyRecordDTO.setRecord_enemy_num(recordDTO.getPet_num());
+		enemyRecordDTO.setEnemy_user_id(myPetDTO.getUser_id());
 		
+		// 내 컬럼에 들어갈 상대방 id
+		recordDTO.setEnemy_user_id(enemyPetDTO.getUser_id());
+
 		// {(내 HP * 10) - (상대방 공격력 * 상대발 레벨)} + 회피력 = score
 		Long myScore = ((myPetDTO.getPet_hp()*10)-(enemyPetDTO.getPet_atk()*enemyPetDTO.getPet_level())) + myPetDTO.getPet_dod();
 		
@@ -193,6 +197,19 @@ public class InGameController {
 		
 		
 		
+	}
+	
+	@GetMapping("fightList")
+	public String getFightList(MyPetDTO myPetDTO, Model model) throws Exception{
+		myPetDTO = inGameService.getPetStatus(myPetDTO);
+		RecordDTO recordDTO = new RecordDTO();
+		recordDTO.setPet_num(myPetDTO.getPet_num());
+		List<RecordDTO> list = inGameService.getFightList(recordDTO);
+		model.addAttribute("list", list);
+		
+		
+		
+		return "ingame/fightList";
 	}
 	
 //	

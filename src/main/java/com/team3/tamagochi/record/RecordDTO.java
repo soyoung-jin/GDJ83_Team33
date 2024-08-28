@@ -8,8 +8,15 @@ public class RecordDTO {
 	private Integer record_outcome;
 	private Long record_enemy_num;
 	private Date record_date;
+	private String enemy_user_id;
 	
 	
+	public String getEnemy_user_id() {
+		return enemy_user_id;
+	}
+	public void setEnemy_user_id(String enemy_user_id) {
+		this.enemy_user_id = enemy_user_id;
+	}
 	public Long getRecord_num() {
 		return record_num;
 	}

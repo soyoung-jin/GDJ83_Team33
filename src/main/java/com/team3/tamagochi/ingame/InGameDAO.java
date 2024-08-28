@@ -1,10 +1,14 @@
 package com.team3.tamagochi.ingame;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.team3.tamagochi.boards.util.Pager;
 import com.team3.tamagochi.mypet.MyPetDTO;
+import com.team3.tamagochi.notice.NoticeDTO;
 import com.team3.tamagochi.record.RecordDTO;
 import com.team3.tamagochi.store.ItemDTO;
 import com.team3.tamagochi.users.InventoryDTO;
@@ -71,6 +75,11 @@ public class InGameDAO {
 	// 전투 결과 조회
 	public RecordDTO fightScore(RecordDTO recordDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "fightScore", recordDTO);
+	}
+	
+	// 전적리스트 조회
+	public List<RecordDTO> getFightList(RecordDTO recordDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE + "getFightList" ,recordDTO);
 	}
 	
 	

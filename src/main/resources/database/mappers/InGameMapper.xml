@@ -126,7 +126,7 @@
   	</select>
   	
   	<insert id="fightResult" parameterType="RecordDTO">
-  		INSERT INTO RECORD VALUES (RECORD_SEQ.NEXTVAL, #{pet_num}, #{record_outcome}, #{record_enemy_num}, SYSDATE)
+  		INSERT INTO RECORD VALUES (RECORD_SEQ.NEXTVAL, #{pet_num}, #{record_outcome}, #{record_enemy_num}, SYSDATE, #{enemy_user_id})
   	</insert>
   	
   	<select id="fightScore" parameterType="RecordDTO" resultType="RecordDTO">
@@ -137,6 +137,10 @@
 			WHERE PET_NUM = #{pet_num}
 			AND RECORD_ENEMY_NUM  = #{record_enemy_num} 
 			AND RECORD_OUTCOME = 1)
+  	</select>
+  	
+  	<select id="getFightList" parameterType="RecordDTO" resultType="RecordDTO">
+  		SELECT * FROM RECORD WHERE PET_NUM = #{pet_num}
   	</select>
   	
   </mapper>
