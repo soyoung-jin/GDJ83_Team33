@@ -6,17 +6,21 @@
   <!-- namespace는 꼭 들어가야될 속성 -->
   <mapper namespace="com.team3.tamagochi.mypet.MyPetDAO">
   	
-  	<select id="getList" resultType="MyPetDTO" parameterType="UsersDTO">
-  		SELECT * FROM MY_PET
-  		WHERE USER_ID = #{user_id}
+  	<select id="getList" resultMap="itemlist" parameterType="UsersDTO">
+  		SELECT *
+  		FROM MY_PET MP
+  			LEFT JOIN
+  			ITEMFILE it
+  			ON (MP.ITEM_NUM = it.ITEM_NUM)
+		WHERE USER_ID = #{user_id}
   	</select>
   	
   	<select id="getDetail" resultMap="itemlist" parameterType="MyPetDTO">
   		SELECT *
   		FROM MY_PET MP
   			LEFT JOIN
-  			ITEMFILE IF
-  			ON (MP.ITEM_NUM = IF.ITEM_NUM)
+  			ITEMFILE it
+  			ON (MP.ITEM_NUM = it.ITEM_NUM)
 		WHERE PET_NUM = #{pet_num}
   	</select>
   	

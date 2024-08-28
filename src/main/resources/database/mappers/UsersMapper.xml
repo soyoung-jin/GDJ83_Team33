@@ -42,6 +42,9 @@
 		LEFT JOIN
 		ITEM IT
 		ON I.ITEM_NUM = IT.ITEM_NUM
+		LEFT JOIN
+		ITEMFILE ITF
+		ON IT.ITEM_NUM = ITF.ITEM_NUM
 		WHERE I.user_id = #{user_id}
   	</select>
   	<resultMap type="ItemDTO" id="invenResult">
@@ -55,6 +58,11 @@
   		<association property="inventoryDTO" javaType="InventoryDTO">
   			<id column="INVENTORY_NUM" property="inventory_num"></id>
   			<result column="USER_ID" property="user_id"/>
+  		</association>
+  		<association property="itemFileDTO" javaType="ItemFileDTO">
+  		  	<id column="FILE_NUM" property="file_num"/>
+  			<result column="FILE_NAME" property="file_name"/>
+  			<result column="ORI_NAME" property="ori_name"/>
   		</association>
   	</resultMap>
   	
@@ -118,6 +126,7 @@
 		INNER JOIN ITEM i
 		ON (t.ITEM_NUM = i.ITEM_NUM)
 		WHERE t.USER_ID =#{user_id}
+		ORDER BY t.TRANSACTION_DATE DESC
   	</select>
   	<resultMap type="TransactionDTO" id="TradeList">
   		<id column="TRANSACTION_NUM" property="transaction_num"></id>

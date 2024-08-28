@@ -68,17 +68,10 @@
                         <!-- 관리자 권한이 있는 유저만 해당 탭을 볼 수 있음 -->
                         <c:if test="${users_info.user_auth eq 0 }">
 	                        <li class="nav-item dropdown">
-	                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-	                                aria-haspopup="true" aria-expanded="false">
+	                            <a class="nav-link" href="/admin/adminMain">
 	                                <i class="far fa-user"></i>
-	                                <span>
-	                                    관리자 페이지 <i class="fas fa-angle-down"></i>
-	                                </span>
+	                                    관리자 페이지
 	                            </a>
-	                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	                                <a class="dropdown-item" href="/admin/adminMain">회원 정보</a>
-	                                <a class="dropdown-item" href="#">매출 내역</a>
-	                            </div>
 	                        </li>                        
                         </c:if>
                     </ul>

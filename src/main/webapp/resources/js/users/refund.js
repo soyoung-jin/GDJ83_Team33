@@ -5,34 +5,41 @@ const btn = document.getElementsByClassName("btn");
 for(let b of btn){
     b.addEventListener("click",(e)=>{
 
-        let transaction_num = b.getAttribute("data-transaction-num");
-        let item_num = b.getAttribute("data-item-num");
-        let transaction_order = b.getAttribute("data-transaction-order");
-        let user_id = b.getAttribute("data-user-id");
-
-
-
-        if(e.target.classList.contains("btn")){
-
-            kakaoDel(transaction_order).then(r=>{
-                if(r == "SUCCEEDED"){
+        if(confirm("정말로 환불하시겠습니까?")){
+            let transaction_num = b.getAttribute("data-transaction-num");
+            let item_num = b.getAttribute("data-item-num");
+            let transaction_order = b.getAttribute("data-transaction-order");
+            let user_id = b.getAttribute("data-user-id");
     
-                    fetch("/admin/refund",{
-                        method:"POST",
-                        headers:{"Content-type":"application/x-www-form-urlencoded"},
-                        body:"transaction_num=" + transaction_num + "&item_num=" + item_num + "&user_id=" + user_id
-                    })
-                    .then((res)=>{return res.text()})
-                    .then((res)=>{
-                        if(res>0){
-                            alert("환불 성공!");
-                        }
-                    })
-                }
+    
+    
+            if(e.target.classList.contains("btn")){
+    
+                kakaoDel(transaction_order).then(r=>{
+                    if(r == "SUCCEEDED"){
+        
+                        fetch("/admin/refund",{
+                            method:"POST",
+                            headers:{"Content-type":"application/x-www-form-urlencoded"},
+                            body:"transaction_num=" + transaction_num + "&item_num=" + item_num + "&user_id=" + user_id
+                        })
+                        .then((res)=>{return res.text()})
+                        .then((res)=>{
+                            if(res>0){
+                                alert("환불 성공!");
+                                location.href="/admin/tradeList?user_id=" + user_id;
+                            }
+                        })
+                    }
+    
+                })
+    
+            }
 
-            })
-
+        }else{
+            return;
         }
+
         
     });
 }
