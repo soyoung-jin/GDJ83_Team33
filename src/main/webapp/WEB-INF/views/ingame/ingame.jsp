@@ -102,17 +102,17 @@
 									</div>
 									<div class="form-group col-lg-6">
 										<label for="pet_hp">체력</label>
-										<input id="pet_hp" name="pet_hp" value="${myPetDTO.pet_hp}"
+										<input id="pet_hp" name="pet_hp" value="${myPetDTO.pet_hp + myPetDTO.add_hp}"
 											type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 									</div>
 									<div class="form-group col-lg-6">
 										<label for="pet_atk">공격력</label>
-										<input id="pet_atk" name="pet_atk" value="${myPetDTO.pet_atk}"
+										<input id="pet_atk" name="pet_atk" value="${myPetDTO.pet_atk + myPetDTO.add_atk}"
 											type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 									</div>
 									<div class="form-group col-lg-6">
 										<label for="pet_dod">회피력</label>
-										<input id="pet_dod" name="pet_dod" value="${myPetDTO.pet_dod}"
+										<input id="pet_dod" name="pet_dod" value="${myPetDTO.pet_dod + myPetDTO.add_dod}"
 											type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
 									</div>
 									<div class="form-group col-lg-6">

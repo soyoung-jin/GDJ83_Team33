@@ -212,10 +212,7 @@ petStatusBtn.addEventListener("click", ()=>{
     .then((r)=> {
 
         // 장비장착시 능력 추가
-        pet_hp.value = Number(pet_hp.value) + r.add_hp;
-        pet_atk.value = Number(pet_atk.value) + r.add_atk;
-        pet_dod.value = Number(pet_dod.value) + r.add_dod;
-
+        
         
         if(r.pet_exp >= 200) {
             pet_exp.value = r.pet_exp;
