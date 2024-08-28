@@ -28,6 +28,8 @@ let petNum = petStatusBtn.getAttribute("data-pet-status"); //펫 번호
 const pet_exp = document.getElementById("pet_exp"); //경험치
 const pet_hungry = document.getElementById("pet_hungry"); //포만감
 const pet_hp = document.getElementById("pet_hp"); //체력
+const pet_atk = document.getElementById("pet_atk"); //공격
+const pet_dod = document.getElementById("pet_dod"); //회피
 const pet_level = document.getElementById("pet_level"); //레벨
 const pet_name = document.getElementById("pet_name"); //이름
 const pet_washroom = document.getElementById("pet_washroom");//화장실
@@ -208,10 +210,17 @@ petStatusBtn.addEventListener("click", ()=>{
     })
     .then(r=>{return r.json()})
     .then((r)=> {
+
+        // 장비장착시 능력 추가
+        pet_hp.value = Number(pet_hp.value) + r.add_hp;
+        pet_atk.value = Number(pet_atk.value) + r.add_atk;
+        pet_dod.value = Number(pet_dod.value) + r.add_dod;
+
         
         if(r.pet_exp >= 200) {
             pet_exp.value = r.pet_exp;
             pet_level.value = r.pet_level;
+
             
             pet_exp.style.border="solid 2px red";
             levelUpBtn.style.display = "inline";

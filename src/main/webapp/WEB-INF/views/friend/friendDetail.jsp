@@ -19,7 +19,7 @@
 				<div class="row tm-content-row">
 					<div class="tm-block-col tm-col-avatar">
 						<div class="tm-bg-primary-dark tm-block tm-block-avatar">
-							<h2 id="friendStatus" data-friend-id="${friendInfoDTO.user_id}" data-user-id="${users_info.user_id}" class="tm-block-title">부재중</h2>
+							<%-- <h2 id="friendStatus" data-friend-id="${friendInfoDTO.user_id}" data-user-id="${users_info.user_id}" class="tm-block-title">부재중</h2>
 							<div id="chatParent">
 							<a id="startChat" type="button" class="btn btn-outline-warning btn-block text-uppercase mb-3"
 									data-bs-toggle="modal" data-bs-target="#commentModal"
@@ -53,7 +53,7 @@
 								  </div>
 								</div>
 		
-							</div>
+							</div> --%>
 							<div class="tm-avatar-container">
 								<img src="/resources/img/friendImage/chick.png" alt="Avatar"
 									class="tm-avatar img-fluid mb-4" /> 

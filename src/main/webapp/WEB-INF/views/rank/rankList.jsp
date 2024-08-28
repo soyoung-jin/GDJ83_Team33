@@ -57,9 +57,72 @@
 											
 											<c:otherwise>
 													<div>
-													<a style="display: inline;" id="rankplay" href="../ingame/fight?item_num=${list.item_num}&user_id=${list.user_id}"><img style="width:40%; " src="/resources/img/rankboard/playimg.png"></a> 
-																					
+													<a data-bs-toggle="modal" data-bs-target="#petStatusModal" style="display: inline;" id="rankplay" ><img style="width:40%; " src="/resources/img/rankboard/playimg.png"></a> 
+															<div id="petStatusDiv">
+																<div class="modal fade" id="petStatusModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="petStatusModal" aria-hidden="true">
+																	<div class="modal-dialog modal-dialog-scrollable">
+																	  <div class="modal-content">
+												
+																		<div class="modal-header">
+																		  <h1 class="modal-title fs-5" id="petReady">Hi, ${list.usersDTO.user_nickname}</h1>
+																		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+																		</div>
+												
+																		<div class="modal-body">
+																		 <!-- 펫 상태 리스트 -->
+																		 <div class="tm-block-col tm-col-account-settings" id="petStatusList">
+																			<div class="tm-bg-primary-dark tm-block tm-block-settings">
+																				<h2 class="tm-block-title">캐릭터 정보</h2>
+																				<form action="" class="tm-signup-form row">
+																					<div class="form-group col-lg-6">
+																						<label for="pet_spc">종족</label>
+																						<input id="pet_spc" name="pet_spc" value="${list.pet_spc}"
+																							type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
+																					</div>
+																					<div class="form-group col-lg-6">
+																						<label for="pet_level">레벨</label>
+																						<input id="pet_level" name="pet_level" value="${list.pet_level}"
+																							type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
+																					</div>
+																					<div class="form-group col-lg-6">
+																						<label for="pet_exp">경험치</label>
+																						<input id="pet_exp" name="pet_exp" value="${list.pet_exp}"
+																							type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
+																					</div>
+																					<div class="form-group col-lg-6">
+																						<label for="pet_hp">체력</label>
+																						<input id="pet_hp" name="pet_hp" value="${list.pet_hp}"
+																							type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
+																					</div>
+																					<div class="form-group col-lg-6">
+																						<label for="pet_atk">공격력</label>
+																						<input id="pet_atk" name="pet_atk" value="${list.pet_atk}"
+																							type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
+																					</div>
+																					<div class="form-group col-lg-6">
+																						<label for="pet_dod">회피력</label>
+																						<input id="pet_dod" name="pet_dod" value="${list.pet_dod}"
+																							type="text" class="form-control validate" readonly style="background-color:#4e657a"/>
+																					</div>
+																				</form>
+																			</div>
+																		  </div>
+																		</div>
+																		<div class="modal-footer">
+																			<div class="input-group mb-3 justify-content-center">
+																				
+																				<a href="../ingame/fight?item_num=${list.item_num}&user_id=${list.user_id}" class="btn btn-outline-warning">
+																					싸우러 가기</a>
+																				
+																			</div>
+																			
+																		</div>
+																	  </div>
+																	</div>
+																  </div>
+															   </div>						
 													<a style="display: inline;" id="ranklike" href="javascript:void(0);" class="pop_btn" data-pet-num="${list.pet_num}"><img class="pop_btn" style="width:20%; float:center;" src="/resources/img/rankboard/likeimg.png"></a> 
+													
 													</div>
 											</c:otherwise>
 											
@@ -68,10 +131,13 @@
 										</div>
 									</div>
 								</div>							
+							  
 							</c:forEach>
 							</div>
 						</div>
 					</div>
+					<!-- 펫 상태 보기 모달 -->
+			  
 					<!-- row -->
 				</div>
 		<div class="col-sm-5 col-md-5 col-lg-3 col-xl-3 tm-block-col" style="display: inline-block;">
@@ -152,6 +218,9 @@
 
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+	
 	<script src="/resources/js/users/myPetList.js"></script>
 	<script src="/resources/js/rank/rankboard.js"></script>
 </body>

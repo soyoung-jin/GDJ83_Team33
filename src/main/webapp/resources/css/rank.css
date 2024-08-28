@@ -1,18 +1,22 @@
 @charset "UTF-8";
-#rankplay{
+/* #rankplay{
 	display: inline-block;
 }
 #ranklike{
 	display: inline-block;
 	
-}
+} */
 
 #ranklike > .pop_btn{
-	display: inline-block;
+	/* display: inline-block; */
 	width:20%;
 	height:20%;
 }
 
 .tm-bg-primary-dark tm-block tm-block-h-auto{
 	display:inline-block;
+}
+
+#petStatusList{
+    width: 100%;
 }
