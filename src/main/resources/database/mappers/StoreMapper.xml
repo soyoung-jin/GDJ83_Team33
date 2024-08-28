@@ -190,6 +190,12 @@
   		VALUES (#{item_num}, #{category_num}, #{item_name}, #{item_description}, #{item_hp}, #{item_atk}, #{item_dod}, #{item_price})
   	</insert>
   	
+  	<select id="checkItemName" parameterType="ItemDTO" resultType="ItemDTO">
+  		SELECT *
+  		FROM ITEM
+  		WHERE ITEM_NAME = #{item_name}
+  	</select>
+  	
   	<update id="updateItem" parameterType="ItemDTO">
   		UPDATE 
   		ITEM SET

@@ -314,6 +314,15 @@ public class StoreController {
 
 		return "store/addItem";
 	}
+	
+	@GetMapping("checkItemName")
+	public String checkItemName(ItemDTO itemDTO, Model model) throws Exception {
+		int result = storeService.checkItemName(itemDTO);
+		
+		model.addAttribute("msg", result);
+		
+		return "commons/result";
+	}
 
 	@PostMapping("updateItem")
 	public String updateItem(ItemDTO itemDTO, MultipartFile[] attach, Model model, HttpSession session) throws Exception {
