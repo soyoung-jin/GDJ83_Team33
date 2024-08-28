@@ -22,7 +22,7 @@
   	</update>
   	
   	<update id="cleanPet" parameterType="MyPetDTO">
-  		UPDATE MY_PET SET PET_HP = PET_HP + 10, PET_WASHROOM = 0, PET_HUNGRY = 50 WHERE PET_NUM = #{pet_num}
+  		UPDATE MY_PET SET PET_WASHROOM = 0, PET_HUNGRY = 50 WHERE PET_NUM = #{pet_num}
   	</update>
   	
   	<select id="getPetExp" parameterType="MyPetDTO" resultType="java.lang.Long">

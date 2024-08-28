@@ -94,7 +94,7 @@
 							</c:forEach>
 							
 								<a href="/friend/makeFriend?user_id=${myPetDTO.user_id}&pet_num=${myPetDTO.pet_num}" data-user-id="${myPetDTO.user_id}" id="makeFriendBtn" class="btn btn-outline-success mb-3">친구추가</a>
-							
+								<a type="button" class="btn btn-secondary btn-block text-uppercase" href="./rankList">돌아가기</a>
 						</form>
 					</div>
 				</div>
