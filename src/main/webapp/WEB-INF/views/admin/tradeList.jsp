@@ -60,6 +60,7 @@
 														data-item-num="${dto.item_num }"
 														data-transaction-order="${dto.transaction_order }"
 														data-user-id="${dto.user_id }"
+														data-transaction-amount = "${dto.transaction_amount}"
 													>환불</button>
 												</c:if>
 											</td>

@@ -91,7 +91,7 @@ async function kakaoRequestPayment() {
                         // paymentId와 주문 정보를 서버에 전달합니다
                         body: JSON.stringify({
                             item_num: itemName[i].id,
-                            transaction_amount: payment.amount.paid,
+                            transaction_amount: itemPrice[i].id,
                             transaction_order: payment.id,
                         }),
                     })

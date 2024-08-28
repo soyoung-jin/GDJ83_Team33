@@ -10,12 +10,13 @@ for(let b of btn){
             let item_num = b.getAttribute("data-item-num");
             let transaction_order = b.getAttribute("data-transaction-order");
             let user_id = b.getAttribute("data-user-id");
+            let transaction_amount= b.getAttribute("data-transaction-amount");
     
     
     
             if(e.target.classList.contains("btn")){
     
-                kakaoDel(transaction_order).then(r=>{
+                kakaoDel(transaction_order,transaction_amount).then(r=>{
                     if(r == "SUCCEEDED"){
         
                         fetch("/admin/refund",{
@@ -47,13 +48,17 @@ for(let b of btn){
 
 
 //카카오 결제 취소 함수
-async function kakaoDel(transaction_order) {
+async function kakaoDel(transaction_order,transaction_amount) {
     uuid = transaction_order ;
+
+    let trsamount = 0;
+    trsamount = transaction_amount;
+
 
     const del = await fetch(`https://api.portone.io/payments/`+uuid+`/cancel`,{ 
         method: 'post',
-        headers: {Authorization: `PortOne i68oGkSudVRHtsQtbxZitbS7DPq99kDGH6xS2tz5l9W7w8ppV6xKcAioepMEyyYiW2Ae0mUGZ0NgUguK`, headers: {'Content-Type': 'application/json'}},
-        body: '{"reason":"그냥"}'
+        headers: {Authorization: `PortOne i68oGkSudVRHtsQtbxZitbS7DPq99kDGH6xS2tz5l9W7w8ppV6xKcAioepMEyyYiW2Ae0mUGZ0NgUguK`, 'Content-Type': 'application/json'},
+        body: `{"amount":${trsamount},"reason":"reason"}`
     },);
     if (!del.ok)
         throw new Error(`del:`+ await del.json());
