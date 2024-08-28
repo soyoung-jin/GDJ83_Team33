@@ -43,6 +43,7 @@
 			<mapping path="/store/*"/>
 			<mapping path="/friend/*"/>
 			<mapping path="/ingame/*"/>
+			<mapping path="/friend/*"/>
 			<mapping path="/userboard/userboardAdd"/>
 			<mapping path="/userboard/userboardUpdate"/>
 			<mapping path="/userboard/delete"/>

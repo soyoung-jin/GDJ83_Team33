@@ -1,0 +1,37 @@
+#title {
+    text-align: center;
+    
+}
+
+.textLines {
+    padding-bottom: 50px;
+    padding-top: 100px;
+}
+
+#headerTop{
+    margin-top: 100px;
+}
+
+#goStore {
+    background-color: maroon;
+}
+
+#goSign{
+    
+}
+
+#tamagotchi {
+    width: 50%;
+    padding-bottom: 100px;;
+}
+
+#bunch {
+    width: 150%;
+    border-radius: 10px;
+    border: solid 4px white;
+}
+
+hr {
+    width: 70%;
+    border-width: 5px;
+}
