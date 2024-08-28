@@ -7,6 +7,7 @@ const ranklike = document.getElementById("ranklike");
 const pet_pop = document.getElementById("pet_pop");
 const pop_btn = document.getElementsByClassName("pop_btn");
 
+const modalContents = document.getElementById("modalContents");
 
 
 for(let b of pop_btn){
@@ -29,6 +30,20 @@ for(let b of pop_btn){
 
     })
         }
+    })
+}
+
+// 랭킹 리스트 모달 요청
+function getPetDTO(pet_num) {
+    fetch("rankPlayModal?pet_num="+pet_num,{
+        method:"get"
+    }).then(r=>r.text())
+    .then(r=>{
+        modalContents.innerHTML=r
+
+        modalBtn.click()
+    }).catch(()=>{
+        alert("오류!")
     })
 }
 

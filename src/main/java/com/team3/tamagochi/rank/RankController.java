@@ -55,6 +55,13 @@ public class RankController {
 		return mv;
 	}
 	
+	@GetMapping("rankPlayModal")
+	public void rankPlayModal(Model model, MyPetDTO myPetDTO) throws Exception {
+		myPetDTO = myPetService.getDetail(myPetDTO);
+		model.addAttribute("petDTO", myPetDTO);
+		
+	}
+	
 
 	@GetMapping("rankDetail")
 	public String detail(MyPetDTO myPetDTO, Model model, HttpSession session, Pager pager) throws Exception{
