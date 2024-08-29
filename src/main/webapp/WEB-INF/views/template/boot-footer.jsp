@@ -8,6 +8,8 @@
     <script src="/resources/js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
     <script src="/resources/js/tooplate-scripts.js"></script>
+    <script src="https://kit.fontawesome.com/2b0dfd3754.js" crossorigin="anonymous"></script>
+    
     <script>
         Chart.defaults.global.defaultFontColor = 'white';
         let ctxLine,

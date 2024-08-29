@@ -92,6 +92,23 @@
 			                                 <b>${users_info.user_nickname }님</b>
 			                            </a>
 			                        </li>
+                                    
+                                    <div class="dropdown table-hover">
+                                        <li class="nav-item">
+                                            <a class="nav-link d-block dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <img style="width: 25px;" alt="bell" src="/resources/img/index/bell.png">
+                                            </a>
+    
+                                            <ul class="dropdown-menu">
+                                                <p>최근 5개 알림</p>
+                                                <li><a class="dropdown-item" href="#">1</a></li>
+                                                <li><a class="dropdown-item" href="#">2</a></li>
+                                                <li><a class="dropdown-item" href="#">3</a></li>
+                                                <li><a class="dropdown-item" href="#">4</a></li>
+                                                <li><a class="dropdown-item" href="#">5</a></li>
+                                            </ul>
+                                        </li>
+                                      </div>
 	                    	</c:when>
 	                    	<c:otherwise>
 			                        <li class="nav-item">
@@ -110,3 +127,4 @@
                 </div>
             </div>
         </nav>
+        
