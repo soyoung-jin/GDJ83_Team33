@@ -35,3 +35,14 @@ hr {
     width: 70%;
     border-width: 5px;
 }
+
+#recentAlarm {
+    text-align: center;
+}
+
+#notification{
+    border: solid 2px black;
+    border-radius: 10px;
+    
+}
+

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.socket.WebSocketSession;
 
+import com.team3.tamagochi.ingame.InGameDAO;
+import com.team3.tamagochi.ingame.InGameService;
 import com.team3.tamagochi.mypet.MyPetDTO;
 import com.team3.tamagochi.store.ItemDTO;
 import com.team3.tamagochi.users.InventoryDTO;
@@ -24,7 +26,8 @@ public class FriendController {
 	@Autowired
 	private FriendService friendService;
 	
-	
+	@Autowired
+	private InGameService inGameService;
 	
 	
 	@GetMapping("friendList")
@@ -112,6 +115,18 @@ public class FriendController {
 		friendDTOReversed.setFriend_id(friendDTO.getUser_id());
 		result = friendService.makeFriends(friendDTOReversed);
 		
+		// 친구 캐릭터(item_num) 가져오기
+		MyPetDTO friendPetDTO = new MyPetDTO();
+		friendPetDTO.setUser_id(friendDTO.getUser_id());
+		friendPetDTO = inGameService.getPetStatus(friendPetDTO);
+		
+		// alarmSender = user_id
+		AlarmDTO alarmDTO = new AlarmDTO();
+		alarmDTO.setAlarm_sender(usersDTO.getUser_id());
+		alarmDTO.setUser_id(friendDTO.getUser_id());
+		alarmDTO.setItem_num(friendPetDTO.getItem_num());
+		int alarmResult = friendService.sendFriendAlarm(alarmDTO);
+		
 		// 친구 불러오기
 		//usersDTO = friendService.getFriendList(usersDTO);
 		
@@ -142,5 +157,7 @@ public class FriendController {
 		}
 		return "commons/message";
 	}
+	
+	
 	
 }
