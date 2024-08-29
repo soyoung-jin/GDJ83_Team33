@@ -56,7 +56,7 @@ price.addEventListener("blur", ()=>{
         price.value=price.value.replace(reqExpNum,"");
         price.setAttribute("value",price.value)
         btn.disabled = false;
-        if(price.value%1000!=0){
+        if(price.value%100!=0){
             error.innerText="1000원 단위로 입력";
             btn.disabled = true;
         }
