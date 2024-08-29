@@ -19,7 +19,9 @@
         <div class="row">
             <div class="col">
 				<h1 class="text-white mt-5 mb-5">STORE</h1>
-				<a class="btn btn-primary" href="addItem">추가</a>
+				<c:if test="${users_info.user_auth == 0}">
+					<a class="btn btn-primary" href="addItem">추가</a>
+				</c:if>
 				<div class="tm-bg-primary-dark tm-block tm-block-h-auto">
 					<div class="form-group mb-3">
 						<!-- 검색기능 태그 -->

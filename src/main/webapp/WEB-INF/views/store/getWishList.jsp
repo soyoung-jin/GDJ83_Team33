@@ -35,23 +35,30 @@
 								</tr>
 							  </thead>
 							  <tbody id="checkdiv">
-									<c:forEach items="${wishlist}" var="list">
-										<tr>
-											<td scope="row"><input type="checkbox" class="ch" data-wnum="${list.wishlist_num}" data-inum="${list.itemDTO.item_num}"/></td>
-											<td><div class="tm-gray-circle"><img src="getImage?file_name=${not empty list.itemDTO.itemFileDTOs?list.itemDTO.itemFileDTOs[0].file_name:'default.gif'}"  width="80" alt="Avatar Image" class="rounded-circle"></div></td>
-											<td class="tm-product-name">${list.itemDTO.item_name}</td>
-											<td>${list.itemDTO.item_description}</td>
-											<td>${list.itemDTO.item_hp}</td>
-											<td>${list.itemDTO.item_atk}</td>
-											<td>${list.itemDTO.item_dod}</td>
-											<td>${list.itemDTO.item_price}</td>
-											<td>
-												<a class="tm-product-delete-link delbtn" data-wnum="${list.wishlist_num}" id="${list.wishlist_num}">
-												<i class="far fa-trash-alt tm-product-delete-icon"></i>
-												</a>
-											</td>
-										</tr>
-									</c:forEach>
+							  		<c:if test="${wishlist ne null}">
+										<c:forEach items="${wishlist}" var="list">
+											<tr>
+												<td scope="row"><input type="checkbox" class="ch" data-wnum="${list.wishlist_num}" data-inum="${list.itemDTO.item_num}"/></td>
+												<td><div class="tm-gray-circle"><img src="getImage?file_name=${not empty list.itemDTO.itemFileDTOs?list.itemDTO.itemFileDTOs[0].file_name:'default.gif'}"  width="80" alt="Avatar Image" class="rounded-circle"></div></td>
+												<td class="tm-product-name">${list.itemDTO.item_name}</td>
+												<td>${list.itemDTO.item_description}</td>
+												<td>${list.itemDTO.item_hp}</td>
+												<td>${list.itemDTO.item_atk}</td>
+												<td>${list.itemDTO.item_dod}</td>
+												<td>${list.itemDTO.item_price}</td>
+												<td>
+													<a class="tm-product-delete-link delbtn" data-wnum="${list.wishlist_num}" id="${list.wishlist_num}">
+													<i class="far fa-trash-alt tm-product-delete-icon"></i>
+													</a>
+												</td>
+											</tr>
+										</c:forEach>
+							  		</c:if>
+							  		<c:if test="${wishlist eq null}">
+							  			<tr>
+							  				<td colspan="9" align="center"><h3>장바구니에 아이템이 없습니다.</h3></td>
+							  			</tr>
+							  		</c:if>
 								</tbody>
 							</table>
 						  </div>
