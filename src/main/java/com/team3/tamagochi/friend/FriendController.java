@@ -75,8 +75,7 @@ public class FriendController {
 		List<FriendDTO> ar = usersDTO.getFriendDTO();
 		
 		List<MyPetDTO> friendPetAr = new ArrayList<MyPetDTO>();
-		System.out.println(ar.size());
-		System.out.println(ar.get(0).getFriend_id());
+		
 		
 		for(int i = 0; i < ar.size(); i++) {
 			MyPetDTO friendPet = new MyPetDTO();
