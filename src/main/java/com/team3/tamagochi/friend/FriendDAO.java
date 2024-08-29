@@ -56,4 +56,9 @@ public class FriendDAO {
 		return sqlSession.insert(NAMESPACE + "sendAlarm", alarmDTO);
 	}
 	
+	// 주소창으로 남의 친구 목록에 들어가는걸 방지하기 위한 검증 메서드
+	public FriendDTO getFriendID(FriendDTO friendDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE + "getFriendID", friendDTO);
+	}
+	
 }

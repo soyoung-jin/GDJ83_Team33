@@ -17,7 +17,9 @@ for(let b of btn){
     
                 kakaoDel(transaction_order).then(r=>{
                     if(r == "SUCCEEDED"){
-        
+                        
+                        // let form = new FormData()
+                        // form.append("transaction_num", transaction_num)
                         fetch("/admin/refund",{
                             method:"POST",
                             headers:{"Content-type":"application/x-www-form-urlencoded"},
