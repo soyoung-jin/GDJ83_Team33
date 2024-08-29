@@ -53,6 +53,12 @@
   		DELETE FROM FRIEND WHERE USER_ID = #{user_id} AND FRIEND_ID=#{friend_id}
   	</delete>
   	
+  	<!-- 주소창으로 남의 친구창 들어가는걸 방지하기 위해 친구 목록에 등록되어 있는 user_id를 가져오는 쿼리 -->
+  	<select id="getFriendID" parameterType="FriendDTO" resultType="FriendDTO">
+  		SELECT * FROM FRIEND
+  		WHERE FRIEND_NUM= #{friend_num}
+  	</select>
+  	
   	<!-- 내 소지품에서 아이템 가져오는 쿼리문. JOIN을 사용했기 때문에 ResultMap이 필요하다 -->
   	<select id="getInvenList" parameterType="UsersDTO" resultMap="invenResult">
   		SELECT * FROM
@@ -88,12 +94,22 @@
   	
   	<!-- 선물 받는 쪽에서 알람 -->
   	<insert id="sendAlarm" parameterType="AlarmDTO">
-  		INSERT INTO ALARM VALUES (ALARM_SEQ.NEXTVAL, #{user_id}, #{item_num}, #{alarm_sender}, SYSDATE, '선물이 도착했습니다.', 0)
+  		INSERT INTO ALARM VALUES (ALARM_SEQ.NEXTVAL, #{user_id}, #{item_num}, #{alarm_sender}, SYSDATE, #{alarm_sender}||'이/가 선물을 보냈습니다.', 0)
+  	</insert>
+  	
+  	<!-- 친구맺으면 받는 쪽에서 알람 -->
+  	<insert id="sendFriendAlarm" parameterType="AlarmDTO">
+  		INSERT INTO ALARM VALUES (ALARM_SEQ.NEXTVAL, #{user_id}, #{item_num}, #{alarm_sender}, SYSDATE, #{alarm_sender}||'이/가 친구를 맺었습니다.', 0)
   	</insert>
   	
   	<!-- 알람 확인 -->
   	<update id="checkAlarm" parameterType="AlarmDTO">
   		UPDATE ALARM SET CHECKED = 1 WHERE ALARM_NUM = #{alarm_num}
   	</update>
+  	
+  	<!-- 알람 리스트 -->
+  	<select id="getAlarmList" parameterType="UsersDTO" resultType="AlarmDTO">
+  		SELECT * FROM alarm WHERE USER_ID = #{user_id} ORDER BY ALARM_RECEIVED_DATE DESC
+  	</select>
   	
   </mapper>

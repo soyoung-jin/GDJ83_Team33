@@ -92,6 +92,22 @@
 			                                 <b>${users_info.user_nickname }님</b>
 			                            </a>
 			                        </li>
+                                    
+                                    <div class="dropdown table-hover" >
+                                        <li class="nav-item">
+                                            <a class="nav-link d-block dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <img style="width: 25px;" alt="bell" src="/resources/img/index/bell.png">
+                                            </a>
+                                            
+                                            <ul class="dropdown-menu" id="notification">
+                                                <li id="recentAlarm">최근 5개 알림</li>
+                                                <hr>
+                                                <c:forEach items="${alarmList}" var="list">
+                                                <li><a class="dropdown-item">${list.alarm_contents}</a></li>
+                                                </c:forEach>
+                                            </ul>
+                                        </li>
+                                      </div>
 	                    	</c:when>
 	                    	<c:otherwise>
 			                        <li class="nav-item">
@@ -110,3 +126,4 @@
                 </div>
             </div>
         </nav>
+        

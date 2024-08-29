@@ -64,8 +64,8 @@ feed.addEventListener("click", ()=>{
                 actImg.src = "/resources/img/petAct/doneFeeding.gif";
                 done.style.display = "inline";
                 actCloseBtn.style.display = "inline";
-                h4One.innerHTML = "포만감 +10";
-                h4Two.innerHTML = "경험치 +10";
+                h4One.innerHTML = "포만감 +50";
+                h4Two.innerHTML = "경험치 +50";
                 modalImg.append(h4One);
                 modalImg.append(h4Two);
 
@@ -123,8 +123,9 @@ stroll.addEventListener("click", ()=>{
                 actImg.src = "/resources/img/petAct/doneFeeding.gif";
                 done.style.display = "inline";
                 actCloseBtn.style.display = "inline";
-                h4One.innerHTML = "포만감 -20";
-                h4Two.innerHTML = "경험치 +10";
+                h4One.innerHTML = "경험치 +50";
+                h4Two.innerHTML = "포만감 -20";
+                
                 modalImg.append(h4One);
                 modalImg.append(h4Two);
 
@@ -190,6 +191,11 @@ clean.addEventListener("click", ()=>{
                 actImg.src = "/resources/img/petAct/doneFeeding.gif";
                 done.style.display = "inline";
                 actCloseBtn.style.display = "inline";
+                
+                h4Two.innerHTML = "포만감 -20";
+                
+                modalImg.append(h4One);
+                modalImg.append(h4Two);
                 
                 weaponImg.remove();
 
