@@ -52,4 +52,9 @@ public class FriendService {
 	public int sendAlarm(AlarmDTO alarmDTO) throws Exception {
 		return friendDAO.sendAlarm(alarmDTO);
 	}
+	
+	// 주소창으로 남의 친구 목록에 들어가는걸 방지하기 위한 검증 메서드
+	public FriendDTO getFriendID(FriendDTO friendDTO) throws Exception{
+		return friendDAO.getFriendID(friendDTO);
+	}
 }
