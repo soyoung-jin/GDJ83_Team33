@@ -40,12 +40,14 @@ public class StoreService {
 		
 		wishlistDTO.setItemDTO(itemDTO);
 		
-		List<WishListDTO> list = storeDAO.checkDuplication(wishlistDTO);
+		int result = storeDAO.checkDuplication(wishlistDTO);
 		
-		if(list.size()>0) {
-			return 0;
-		} else {
+		if(result>0) {
 			return 1;
+		} else if (result==0){
+			return 0;
+		} else{
+			return -1;
 		}
 		
 		
@@ -67,10 +69,11 @@ public class StoreService {
 			map.put("id", id);
 			map.put("itemDTO", itemDTO);
 
-			System.out.println(itemDTO.getItem_hp());
-
 			// 결제내역 DB저장 정상 > 캐릭터, 무기 저장
 			result = storeDAO.addBag(map);
+			
+			
+			
 		}
 
 		return result;

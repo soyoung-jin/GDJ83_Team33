@@ -28,7 +28,9 @@ public class StoreDAO {
 			
 			result = sqlSession.selectOne(NAMESPACE+"checkPet", itemDTO);
 			
-			return -1;
+			if(result>0) {
+				return -1;
+			}
 			
 		} else {
 			List<InventoryDTO> invenList = sqlSession.selectList(NAMESPACE+"getInven", itemDTO);
@@ -46,11 +48,34 @@ public class StoreDAO {
 		
 	}
 	
-	public List<WishListDTO> checkDuplication(WishListDTO wishlistDTO) {
-		return sqlSession.selectList(NAMESPACE+"checkDuplication", wishlistDTO);
+	public int checkDuplication(WishListDTO wishlistDTO) {
+		
+		List<WishListDTO> result = sqlSession.selectList(NAMESPACE+"checkDuplication", wishlistDTO);		
+		
+		if(result.size()>0) {
+			return result.size();
+		}
+		result = sqlSession.selectList(NAMESPACE+"checkMyWish", wishlistDTO);
+		if(result.size()>0) {
+			return -1;
+		}
+		
+		return result.size();
 	}
 	
 	public int addBag (Map<String, Object> map) {
+		
+		WishListDTO wishListDTO = new WishListDTO();
+		
+		wishListDTO.setUser_id((String)map.get("id"));
+		
+		ItemDTO itemDTO = (ItemDTO) map.get("itemDTO");
+		
+		wishListDTO.setItem_num(itemDTO.getItem_num());
+		wishListDTO.setWishlist_num(0L);
+		
+		sqlSession.delete(NAMESPACE+"deleteWishList", wishListDTO);
+		
 		return sqlSession.insert(NAMESPACE+"addBag", map);
 	}
 	

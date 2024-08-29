@@ -14,32 +14,15 @@ function totalPrice(){
     for(i=0;i<itemPrice.length;i++){
         resultPrice = resultPrice+Number(itemPrice[i].id)
     }
-    console.log("가격은 "+resultPrice)
     return resultPrice;
-}
-
-
-//카카오 결제 취소 함수
-async function kakaoDel() {
-    uuid = "payment-ee489c7b-9abe-4e98-b34c-b0241234d391";
-    const del = await fetch(`https://api.portone.io/payments/`+uuid+`/cancel`,{ 
-        method: 'post',
-        headers: {Authorization: `PortOne i68oGkSudVRHtsQtbxZitbS7DPq99kDGH6xS2tz5l9W7w8ppV6xKcAioepMEyyYiW2Ae0mUGZ0NgUguK`, headers: {'Content-Type': 'application/json'}},
-        body: '{"reason":"그냥"}'
-    },);
-    if (!del.ok)
-        throw new Error(`del:`+ await del.json());
-    const d = await del.json();
-
-    console.log(d);
-    
-    return d.cancellation.status;
 }
 
 //카카오 결제 버튼
 kakaobtn.addEventListener("click",()=>{
     kakaoRequestPayment();
+   
 });
+    
 
 //카카오 결제창 요청 함수
 async function kakaoRequestPayment() {
@@ -59,8 +42,6 @@ async function kakaoRequestPayment() {
         currency: "CURRENCY_KRW",
         payMethod: "EASY_PAY",
     });
-    console.log("결제 번호: "+response.paymentId)
-    console.log("오류 내용: "+response.code)
 
     if (response.code != null) {
         // 오류 발생
@@ -77,8 +58,6 @@ async function kakaoRequestPayment() {
     
     const payment = await paymentResponse.json();
     
-    console.log("결제 단건 조회 json:")
-    console.log(payment)
         
     // 조회내역의 금액과 요청시의 금액 비교
     if(payment.amount.total == resultPrice){
@@ -96,13 +75,13 @@ async function kakaoRequestPayment() {
                             transaction_amount: itemPrice[i].id,
                             transaction_order: payment.id,
                         }),
-                    })
+                    }).catch(()=>{})
                     
-                    if(itemName[i].getAttribute("data-wnum")){
-                        fetch("/store/deleteWishList?wishlist_num="+itemName[i].getAttribute("data-wnum"),{
-                            method:"get"
-                        }).then(r=>{r.text})
-                    }
+                    // if(itemName[i].getAttribute("data-wnum")){
+                    //     fetch("/store/deleteWishList?wishlist_num="+itemName[i].getAttribute("data-wnum"),{
+                    //         method:"get"
+                    //     }).catch(()=>{})
+                    // }
 
                 }
                 alert("결제 성공")

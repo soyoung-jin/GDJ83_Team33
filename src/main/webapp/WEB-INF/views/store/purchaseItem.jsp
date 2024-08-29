@@ -33,7 +33,7 @@
 								</tr>
 							  </thead>
 							  <tbody id="checkdiv">
-							  		<c:choose>
+							  		<c:choose> 
 							  			<c:when test="${purchaseList eq null}">
 							  				<tr>
 											<td><div class="tm-gray-circle"><img src="getImage?file_name=${not empty dto.itemFileDTOs?dto.itemFileDTOs[0].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div></td>

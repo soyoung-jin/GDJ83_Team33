@@ -48,7 +48,7 @@
 												
 											<c:choose>
 											<c:when test="${users_info.user_id == list.user_id}">
-													<a style="display: inline;" id="ranklike" href="javascript:void(0);" class="pop_btn" data-pet-num="${list.pet_num}"><img class="pop_btn" style="width:20%; float:center;" src="/resources/img/rankboard/likeimg.png"></a> 
+												<a onclick="getPetDTO('${list.pet_num}')" data-bs-toggle="modal" style="visibility:hidden;" data-bs-target="#petStatusModal" id="rankplay" ><img style="height: 50;" src="/resources/img/rankboard/playimg.png"></a>
 											
 											</c:when>
 											

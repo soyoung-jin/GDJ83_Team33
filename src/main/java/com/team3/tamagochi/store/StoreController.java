@@ -45,19 +45,42 @@ public class StoreController {
 	// ==============================결제 관련 메소드=============================
 	// ==============================결제 관련 메소드=============================
 	// ==============================결제 관련 메소드=============================
+	
+	@GetMapping("checkItem")
+	public String checkItem(ItemDTO itemDTO,Model model,HttpSession session) throws Exception {
+		WishListDTO wishListDTO = new WishListDTO();
+		wishListDTO.setItem_num(itemDTO.getItem_num());
+		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
+		wishListDTO.setUser_id(usersDTO.getUser_id());
+		
+		int check = storeService.checkDuplication(wishListDTO);
+		
+		model.addAttribute("msg", check);
+
+		return "commons/result";
+	}
 
 	// 장바구니 결제 메소드
 	@GetMapping("purchaseItem")
-	public void purchaseItem(@RequestParam List<Long> ar, Model model) throws Exception {
+	public String purchaseItem(@RequestParam List<Long> ar, Model model) throws Exception {
 			List<WishListDTO> list = new ArrayList<WishListDTO>();
 			for (Long a : ar) {
 				WishListDTO wishListDTO = new WishListDTO();
 				wishListDTO.setWishlist_num(a);
 				wishListDTO = storeService.getWishListDetail(wishListDTO);
 				
-				list.add(wishListDTO);
+				int check = storeService.checkDuplication(wishListDTO);
+				
+				if(check == 1) {
+					model.addAttribute("result", "이미 가지고 있는 아이템입니다.");
+					model.addAttribute("url", "/store/itemList");
+					return "commons/message";
+				} else {
+					list.add(wishListDTO);
+				}
 			}
-				model.addAttribute("purchaseList", list);
+		model.addAttribute("purchaseList", list);
+		return "store/purchaseItem";
 	}
 	
 	// 단품결제 메소드
@@ -72,7 +95,7 @@ public class StoreController {
 		
 		int check = storeService.checkDuplication(wishListDTO);
 		
-		if(check == 0) {
+		if(check == 1) {
 			model.addAttribute("result", "이미 가지고 있는 아이템입니다.");
 			model.addAttribute("url", "/store/itemList");
 			return "commons/message";
@@ -85,12 +108,8 @@ public class StoreController {
 
 	// 카카오페이 결제 후 DB 저장
 	@PostMapping("purchaseComplete")
-	public void purchaseComplete(@RequestBody TransactionDTO transactionDTO, HttpSession session, Model model)
+	public String purchaseComplete(@RequestBody TransactionDTO transactionDTO, HttpSession session, Model model)
 			throws Exception {
-
-		System.out.println(transactionDTO.getItem_num());
-		System.out.println(transactionDTO.getTransaction_amount());
-		System.out.println(transactionDTO.getTransaction_order());
 
 		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
 		transactionDTO.setUser_id(usersDTO.getUser_id());
@@ -98,11 +117,11 @@ public class StoreController {
 
 		//결제내역 생성
 		int result = storeService.addTransaction(transactionDTO);
+		
+		model.addAttribute("msg", result);
 	
-		if (result == 0) {
-			model.addAttribute("result", "DB저장 실패");
-			model.addAttribute("url", "/");
-		}
+		
+		return "commons/result";
 	}
 	
 	@GetMapping("purchaseFinish")
@@ -137,18 +156,16 @@ public class StoreController {
 
 		UsersDTO usersDTO = (UsersDTO) session.getAttribute("users_info");
 
-		if (usersDTO == null) {
-			model.addAttribute("msg", -1);
-
-			return "commons/result";
-		}
 
 		wishListDTO.setUser_id(usersDTO.getUser_id());
 		
 		//중복확인
 		int check = storeService.checkDuplication(wishListDTO);
-		if(check == 0) {
-			model.addAttribute("msg", -2);
+		if(check == 1) {
+			model.addAttribute("msg", check);
+			return "commons/result";
+		} else if(check ==-1){
+			model.addAttribute("msg", check);
 			return "commons/result";
 		}
 
