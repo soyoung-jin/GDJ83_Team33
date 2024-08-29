@@ -16,6 +16,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.socket.messaging.SubProtocolWebSocketHandler;
 
 import com.team3.tamagochi.mypet.MyPetDTO;
 import com.team3.tamagochi.record.RecordDTO;
@@ -57,10 +58,18 @@ public class InGameController {
 	
 	// 전투장
 	@GetMapping("fight")
-	public void fight(HttpSession session, ItemDTO itemDTO, MyPetDTO enemyPetDTO, Model model) throws Exception{
+	public String fight(HttpSession session, ItemDTO itemDTO, MyPetDTO enemyPetDTO, Model model) throws Exception{
+		
 		
 		itemDTO = storeService.getItemDetail(itemDTO);
 		UsersDTO tempDTO = (UsersDTO) session.getAttribute("users_info");
+		
+		if(enemyPetDTO.getUser_id().equals(tempDTO.getUser_id())) {
+			model.addAttribute("result", "잘못된 요청입니다.");
+			model.addAttribute("url", "/");
+			
+			return "commons/message";
+		}
 		// 내 캐릭터
 		MyPetDTO myPetDTO = new MyPetDTO();
 		myPetDTO.setUser_id(tempDTO.getUser_id());
@@ -112,6 +121,8 @@ public class InGameController {
 			model.addAttribute("enemyWeaponFile", enemyWeaponDTO);
 			
 		}
+		
+		return "ingame/fight";
 		
 		
 		
