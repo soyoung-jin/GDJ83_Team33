@@ -53,6 +53,12 @@
   		DELETE FROM FRIEND WHERE USER_ID = #{user_id} AND FRIEND_ID=#{friend_id}
   	</delete>
   	
+  	<!-- 주소창으로 남의 친구창 들어가는걸 방지하기 위해 친구 목록에 등록되어 있는 user_id를 가져오는 쿼리 -->
+  	<select id="getFriendID" parameterType="FriendDTO" resultType="FriendDTO">
+  		SELECT * FROM FRIEND
+  		WHERE FRIEND_NUM= #{friend_num}
+  	</select>
+  	
   	<!-- 내 소지품에서 아이템 가져오는 쿼리문. JOIN을 사용했기 때문에 ResultMap이 필요하다 -->
   	<select id="getInvenList" parameterType="UsersDTO" resultMap="invenResult">
   		SELECT * FROM

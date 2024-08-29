@@ -41,15 +41,27 @@ public class FriendController {
 	}
 	
 	@GetMapping("friendDetail")
-	public void	getFriendDetail(FriendDTO friendDTO, Model model, HttpSession session) throws Exception{
-		UsersDTO friendInfoDTO = friendService.getFriendDetail(friendDTO);
-		model.addAttribute("friendInfoDTO", friendInfoDTO);
+	public String getFriendDetail(FriendDTO friendDTO, Model model, HttpSession session) throws Exception{
+	
+		friendDTO = friendService.getFriendID(friendDTO);
 		UsersDTO myDTO = (UsersDTO) session.getAttribute("users_info");
-		model.addAttribute("myDTO", myDTO);
 		
-		List<ItemDTO> inventoryList  = friendService.getInvenList(myDTO);
-		
-		model.addAttribute("inventoryList", inventoryList);
+		// 주소창에서 남의 친구 detail에 들어가는걸 방지하기 위한 검증용 if문
+		// 클릭한 친구의 정보에 들어있는 user_id와 로그인한 사용자의 user_id가 일치하지 않으면 else문을 실행
+		if(friendDTO.getUser_id().equals(myDTO.getUser_id())) {
+			UsersDTO friendInfoDTO = friendService.getFriendDetail(friendDTO);
+			model.addAttribute("friendInfoDTO", friendInfoDTO);
+			model.addAttribute("myDTO", myDTO);
+			
+			List<ItemDTO> inventoryList  = friendService.getInvenList(myDTO);
+			
+			model.addAttribute("inventoryList", inventoryList);			
+		}else {
+			model.addAttribute("result", "잘못된 접근입니다.");
+			model.addAttribute("url", "/friend/friendList");
+			return "commons/message";
+		}
+		return "/friend/friendDetail";
 	}
 	
 	@GetMapping("sendGift")
