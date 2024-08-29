@@ -43,8 +43,10 @@ kakaobtn.addEventListener("click",()=>{
 
 //카카오 결제창 요청 함수
 async function kakaoRequestPayment() {
+    let orderPre = new Date().getTime()
+    let orderBack = Math.floor(Math.random() *1000000)
 
-    uuid = crypto.randomUUID();
+    uuid = orderPre+"-"+orderBack;
     
     const response = await PortOne.requestPayment({
         // Store ID 설정
