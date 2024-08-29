@@ -178,32 +178,32 @@
   		(PET_NUM, USER_ID, ITEM_NUM, PET_NAME, PET_SPC, PET_WASHROOM,
   			PET_EXP,PET_LEVEL, PET_HP, PET_ATK, PET_DOD, PET_POP, PET_HUNGRY, PET_SELECTED)
 		VALUES
-		(PET_SEQ.NEXTVAL, #{user_id}, 1, '인간', '인간', 0,
-			0, 1, 50, 20, 20, 0, 10, 1)
+		(PET_SEQ.NEXTVAL, #{user_id}, 1, '오리', '오리', 0,
+			0, 1, 200, 100, 100, 0, 10, 1)
   	</insert>
   	<insert id="setDefaultCharacter2" parameterType="UsersDTO">
   		INSERT INTO MY_PET
   		(PET_NUM, USER_ID, ITEM_NUM, PET_NAME, PET_SPC, PET_WASHROOM,
   			PET_EXP,PET_LEVEL, PET_HP, PET_ATK, PET_DOD, PET_POP, PET_HUNGRY)
 		VALUES
-		(PET_SEQ.NEXTVAL, #{user_id}, 2, '개발자', '개발자', 0,
-			0, 1, 50, 20, 20, 0, 10)
+		(PET_SEQ.NEXTVAL, #{user_id}, 2, '흰토끼', '흰토끼', 0,
+			0, 1, 150, 100, 200, 0, 10)
   	</insert>
   	<insert id="setDefaultCharacter3" parameterType="UsersDTO">
   		INSERT INTO MY_PET
   		(PET_NUM, USER_ID, ITEM_NUM, PET_NAME, PET_SPC, PET_WASHROOM,
   			PET_EXP,PET_LEVEL, PET_HP, PET_ATK, PET_DOD, PET_POP, PET_HUNGRY)
 		VALUES
-		(PET_SEQ.NEXTVAL, #{user_id}, 3, '오크', '오크', 0,
-			0, 1, 50, 20, 20, 0, 10)
+		(PET_SEQ.NEXTVAL, #{user_id}, 3, '파랑새', '파랑새', 0,
+			0, 1, 150, 150, 150, 0, 10)
   	</insert>
   	<insert id="setDefaultCharacter4" parameterType="UsersDTO">
   		INSERT INTO MY_PET
   		(PET_NUM, USER_ID, ITEM_NUM, PET_NAME, PET_SPC, PET_WASHROOM,
   			PET_EXP,PET_LEVEL, PET_HP, PET_ATK, PET_DOD, PET_POP, PET_HUNGRY)
 		VALUES
-		(PET_SEQ.NEXTVAL, #{user_id}, 4, '박쥐', '박쥐', 0,
-			0, 1, 50, 20, 20, 0, 10)
+		(PET_SEQ.NEXTVAL, #{user_id}, 4, '빨강 독수리', '빨강 독수리', 0,
+			0, 1, 100, 200, 150, 0, 10)
   	</insert>
   
   </mapper>
