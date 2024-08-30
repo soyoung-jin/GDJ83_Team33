@@ -10,8 +10,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 <!-- https://fonts.google.com/specimen/Roboto -->
-<link rel="stylesheet" href="/resources/css/fontawesome.min.css">
-<!-- https://fontawesome.com/ -->
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 <!-- https://getbootstrap.com/ -->
 <link rel="stylesheet" href="/resources/css/templatemo-style.css">
