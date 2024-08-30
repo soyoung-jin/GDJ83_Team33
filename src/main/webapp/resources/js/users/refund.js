@@ -59,7 +59,7 @@ async function kakaoDel(transaction_order,transaction_amount) {
 
     const del = await fetch(`https://api.portone.io/payments/`+uuid+`/cancel`,{ 
         method: 'post',
-        headers: {Authorization: `PortOne i68oGkSudVRHtsQtbxZitbS7DPq99kDGH6xS2tz5l9W7w8ppV6xKcAioepMEyyYiW2Ae0mUGZ0NgUguK`, 'Content-Type': 'application/json'},
+        headers: {Authorization: ``, 'Content-Type': 'application/json'},
         body: `{"amount":${trsamount},"reason":"reason"}`
     },);
     if (!del.ok)
