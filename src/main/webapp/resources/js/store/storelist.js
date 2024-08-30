@@ -14,6 +14,25 @@ if(itemListdiv.getAttribute("data-idto")){
     getList(itemListdiv.getAttribute("data-idto"),1,'','')
 }
 
+function stopItem(itemnum, categorynum){
+    fetch("deleteItem?item_num="+itemnum+"&category_num="+categorynum,{
+        method:"get"
+    }).then(r=>r.text())
+    .then(r=>{
+        r = r.trim()
+
+        if(r>0){
+            alert("삭제 성공")
+        } else if(r==0){
+            alert("삭제 실패")
+        } else if(r==-1){
+            alert("아이템 장착 해제 후 삭제해야합니다.")
+        }
+    }).catch(()=>{
+        alert("오류!")
+    })
+}
+
 //디테일 모달 요청
 function getItemNum(itemnum){
 
@@ -24,20 +43,11 @@ function getItemNum(itemnum){
         modalContents.innerHTML=r
 
         modalBtn.click()
+    }).catch(()=>{
+        alert("오류!")
     })
 
 }
-
-// //결제 버튼
-// itemListdiv.addEventListener("click", (e)=>{
-
-//     if(e.target.classList.contains("purchaseItem")){
-//         let itemnum= e.target.getAttribute("data-inum");
-
-//         e.target.href="purchaseItem?ar="+itemnum;
-//     }
-
-// })
  
 //리스트 불러오는 함수
 function getList(category_num, page, kind, search){
@@ -99,10 +109,10 @@ itemListdiv.addEventListener("click",(e)=>{
                 if(check){
                     location.href="getWishList"
                 }
-            } else if(r<0){
-                alert ("로그인 ㄱㄱ")
-            } else {
-                alert ("추가 실패")
+            } else if(r==1){
+                alert ("이미 가지고있는 아이템입니다.")
+            } else if(r==-1){
+                alert ("위시리스트에 추가되어있습니다")
             }
 
         }).catch(()=>{alert("추가 실패")})

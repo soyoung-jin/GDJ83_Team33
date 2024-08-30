@@ -24,8 +24,8 @@
 									<!-- 카드형 태그 -->
 									<div class="card h-10">
 										<!-- 카드형 상부 이미지 -->
-										<img src="/resources/img/character/4.gif" class="card-img-top"
-											alt="...">
+										<img src="/store/getImage?file_name=${not empty dto.itemFileDTO?dto.itemFileDTO.file_name:'default.gif'}"
+										class="card-img-top" alt="...">
 										<div class="card-body">
 											<!-- 카드 이미지 하단 아이템명, 가격 -->
 											<h5 class="card-title">${dto.item_name }</h5>

@@ -16,6 +16,7 @@ public class RankService {
 	public List<MyPetDTO> list(Pager pager) throws Exception {
 		pager.makerow();
 		pager.makeNum(rankDAO.getTotalCount(pager));
+		
 		return rankDAO.list(pager);
 	}
 	

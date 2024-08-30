@@ -7,8 +7,10 @@
 </head>
 <body id="reportsPage" class="font">
 	<div class="container">
-		        <a class="btn btn-primary" href="updateItem?item_num=${dto.item_num}">수정</a>
-	            <a class="btn btn-primary" href="deleteItem?item_num=${dto.item_num}">판매 중지</a>
+				<c:if test="${users_info.user_auth == 0}">
+			        <a class="btn btn-primary" href="updateItem?item_num=${dto.item_num}">수정</a>
+		            <a class="btn btn-primary text-white" onclick="stopItem('${dto.item_num}','${dto.category_num}')">판매 중지</a>
+	            </c:if>
         <div class="row">
             <div class="col">
                 <div class="row justify-content-center">

@@ -26,7 +26,7 @@
 								class="form-control validate" />
 							<input id="pet_num" name="pet_num" value="${myPetDTO.pet_num }" type="hidden"/>
 							<div class="tm-avatar-container">
-								<img src="/resources/img/character/4.gif" alt="Avatar"
+								<img src="/store/getImage?file_name=${myPetDTO.itemFileDTOs[myPetDTO.pet_evolution].file_name}" alt="Avatar"
 									class="tm-avatar img-fluid mb-4" />
 							</div>
 							
@@ -94,7 +94,7 @@
 							</c:forEach>
 							
 								<a href="/friend/makeFriend?user_id=${myPetDTO.user_id}&pet_num=${myPetDTO.pet_num}" data-user-id="${myPetDTO.user_id}" id="makeFriendBtn" class="btn btn-outline-success mb-3">친구추가</a>
-							
+								<a type="button" class="btn btn-secondary btn-block text-uppercase" href="./rankList">돌아가기</a>
 						</form>
 					</div>
 				</div>

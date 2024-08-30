@@ -28,9 +28,12 @@ let petNum = petStatusBtn.getAttribute("data-pet-status"); //펫 번호
 const pet_exp = document.getElementById("pet_exp"); //경험치
 const pet_hungry = document.getElementById("pet_hungry"); //포만감
 const pet_hp = document.getElementById("pet_hp"); //체력
+const pet_atk = document.getElementById("pet_atk"); //공격
+const pet_dod = document.getElementById("pet_dod"); //회피
 const pet_level = document.getElementById("pet_level"); //레벨
 const pet_name = document.getElementById("pet_name"); //이름
 const pet_washroom = document.getElementById("pet_washroom");//화장실
+const pet_evolution = document.getElementById("pet_evolution"); //진화단계
 
 
 
@@ -61,10 +64,17 @@ feed.addEventListener("click", ()=>{
                 actImg.src = "/resources/img/petAct/doneFeeding.gif";
                 done.style.display = "inline";
                 actCloseBtn.style.display = "inline";
-                h4One.innerHTML = "포만감 +10";
-                h4Two.innerHTML = "경험치 +10";
+                h4One.innerHTML = "포만감 +50";
+                h4Two.innerHTML = "경험치 +50";
                 modalImg.append(h4One);
                 modalImg.append(h4Two);
+
+                if(r.pet_exp>=200) {
+                    done.addEventListener("click", ()=>{
+                        alert("레벨업 버튼을 눌러주세요");
+                    })
+                    petStatusBtn.innerHTML = "레벨업!";
+                }
 
             })
         .then((r)=>{
@@ -113,10 +123,25 @@ stroll.addEventListener("click", ()=>{
                 actImg.src = "/resources/img/petAct/doneFeeding.gif";
                 done.style.display = "inline";
                 actCloseBtn.style.display = "inline";
-                h4One.innerHTML = "포만감 -20";
-                h4Two.innerHTML = "경험치 +10";
+                h4One.innerHTML = "경험치 +50";
+                h4Two.innerHTML = "포만감 -20";
+                
                 modalImg.append(h4One);
                 modalImg.append(h4Two);
+
+                if(r.pet_exp>=200) {
+                    
+                    petStatusBtn.innerHTML = "레벨업!";
+                    done.addEventListener("click", ()=>{
+                        alert("레벨업 버튼을 눌러주세요");
+                    })
+                }
+
+                if(r.pet_hungry <= 0) {
+                    pet_hungry.value = 0;
+                    
+                }
+
             
         })
         .then((r)=>{
@@ -158,7 +183,7 @@ clean.addEventListener("click", ()=>{
         })
         .then(r=>r.json())
         .then((r)=>{
-                pet_hp.value = r.pet_hp;
+                
                 pet_washroom.value = r.pet_washroom;
                 pet_hungry.value = r.pet_hungry;
 
@@ -166,10 +191,12 @@ clean.addEventListener("click", ()=>{
                 actImg.src = "/resources/img/petAct/doneFeeding.gif";
                 done.style.display = "inline";
                 actCloseBtn.style.display = "inline";
-                h4One.innerHTML = "HP +10";
-                h4Two.innerHTML = "";
+                
+                h4Two.innerHTML = "포만감 -20";
+                
                 modalImg.append(h4One);
                 modalImg.append(h4Two);
+                
                 weaponImg.remove();
 
         })
@@ -207,10 +234,15 @@ petStatusBtn.addEventListener("click", ()=>{
     })
     .then(r=>{return r.json()})
     .then((r)=> {
+
+        // 장비장착시 능력 추가
+        
         
         if(r.pet_exp >= 200) {
             pet_exp.value = r.pet_exp;
             pet_level.value = r.pet_level;
+
+            
             pet_exp.style.border="solid 2px red";
             levelUpBtn.style.display = "inline";
             petReady.innerHTML="레벨업 준비완료";
@@ -223,7 +255,7 @@ petStatusBtn.addEventListener("click", ()=>{
             weaponImg.src = "/resources/img/ingame/poop.png";
             weaponImg.setAttribute("id", "poop");
 
-            followingPetText.innerHTML = "똥.. 치워주세요";
+            followingPetText.innerHTML = "청소해주세요";
             followingPetText.setAttribute("id", "followingPetText");
             followingPetDiv.append(followingPetText);
             followingPetDiv.setAttribute("id", "followingPetDiv");
@@ -260,7 +292,8 @@ levelUpBtn.addEventListener("click", ()=>{
         .then((r)=>{
             pet_exp.value = r.pet_exp;
             pet_level.value = r.pet_level;
-            myPetAct.src = "/resources/img/ingame/ex2.gif";
+            pet_evolution.value = r.pet_evolution;
+            
             modalActLabel.innerHTML = "레벨: " + r.pet_level;
             done.style.display = "inline";
             actCloseBtn.style.display = "inline";
@@ -268,39 +301,22 @@ levelUpBtn.addEventListener("click", ()=>{
             
             modalImg.append(h4One);
             modalImg.append(h4Two);
+            
+            done.addEventListener("click",()=>{
+                location.href = "./ingame";
+            })
+            
 
-            weaponImg.src = "/resources/img/ingame/guitar.png";
-            weaponImg.setAttribute("id", "weaponImg");
-
-            followingPetText.innerHTML = "락스피릿";
-            followingPetText.setAttribute("id", "followingPetText");
-            followingPetDiv.append(followingPetText);
-            followingPetDiv.setAttribute("id", "followingPetDiv");
-            followingPetDiv.style.left = myPetAct.style.left;
-            followingPetDiv.style.top = myPetAct.style.top;
-            weaponImg.style.left = myPetAct.style.left;
-            weaponImg.style.top = myPetAct.style.top;
-
-            actPetParent.append(followingPetDiv);
-            actPetParent.append(weaponImg);
-
-            setTimeout(()=>{
-                followingPetDiv.remove();
-                weaponImg.remove();
-            }, 10000)
-
-            // actCloseBtn.addEventListener("click", ()=>{
-            //     document.querySelector(".modal-backdrop").remove();
-            // })
-            // done.addEventListener("click", ()=>{
-            //     document.querySelector(".modal-backdrop").remove();
-            // })
+           
         })
+        
         .catch(()=>{
             alert("오류");
         })
     }, 1400)
 })
+
+
 
 
 

@@ -24,18 +24,19 @@
 						<!-- Pricing card free-->
 						<c:choose>
 							<c:when test="${not empty usersDTO.friendDTO[0].friend_num}">
-								<c:forEach items="${usersDTO.friendDTO}" var="fDTO">
+								<c:forEach items="${list}" var="list" varStatus="status">
 									<div class="col-lg-6 col-xl-4 mb-5">
 										<a class="text-white"
-											href="./friendDetail?friend_num=${fDTO.friend_num}">
+											href="./friendDetail?friend_num=${usersDTO.friendDTO[status.index].friend_num}">
 											<div class="card cardBorder ">
 												<div class="card-body p-5">
-													<div class="small bold text-white">${fDTO.friend_num}</div>
+													<div class="small bold text-white">${status.count}</div>
 													<div class="tm-avatar-container">
-														<img class="tm-avatar img-fluid mb-4" alt="tamagochi" src="/resources/img/friendImage/chick.png">
+													<img id="friendImg" src="getImage?file_name=${list.itemFileDTOs[list.pet_evolution].file_name}" class="tm-avatar img-fluid mb-4" alt="...">
+														
 													</div>
 													<div class="mb-3">
-														<h2 class="display-5 fw-bold text-white">${fDTO.friend_id}</h2>
+														<h2 class="display-5 fw-bold text-white">${list.user_id}</h2>
 													</div>
 
 												</div>

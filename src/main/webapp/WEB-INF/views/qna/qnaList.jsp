@@ -34,16 +34,6 @@
 							<div class="col-auto">
 								<button type="submit" class="btn btn-primary" >검색</button>
 							</div>
-							
-							<div class="col-auto">
-							<label style="margin-top: 14px;" for="category">정렬</label>
-							</div>
-							<div class="col-sm-2">
-							<select class="custom-select" name="order" id="category" data-cat-num="">
-								<option  value="1">조회수순</option>
-								<option value="2">최신순</option>
-							</select>
-							</div>
 							</div>
  					</form>
 					</div>

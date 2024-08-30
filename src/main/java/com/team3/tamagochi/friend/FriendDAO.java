@@ -42,13 +42,38 @@ public class FriendDAO {
 	}
 	
 	// 선물 받기
-	public int takeGift (InventoryDTO inventoryDTO) throws Exception {
+	public int takeGift(InventoryDTO inventoryDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE + "takeGift", inventoryDTO);
 	}
 	
 	// 선물 주기
-	public int sendGift (InventoryDTO inventoryDTO) throws Exception {
+	public int sendGift(InventoryDTO inventoryDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE + "sendGift", inventoryDTO);
+	}
+	
+	// 선물 알람 보내기
+	public int sendAlarm(AlarmDTO alarmDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "sendAlarm", alarmDTO);
+	}
+	
+	// 친구 맺기 알람 보내기
+	public int sendFriendAlarm(AlarmDTO alarmDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "sendFriendAlarm", alarmDTO);
+	}
+	
+	// 주소창으로 남의 친구 목록에 들어가는걸 방지하기 위한 검증 메서드
+	public FriendDTO getFriendID(FriendDTO friendDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE + "getFriendID", friendDTO);
+	}
+	
+	// 알림 리스트 5개
+	public List<AlarmDTO> getAlarmList(AlarmDTO alarmDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getAlarmList", alarmDTO);
+	}
+	
+	// 알림 리스트 All
+	public List<AlarmDTO> getAlarmListAll(AlarmDTO alarmDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getAlarmListAll", alarmDTO);
 	}
 	
 }

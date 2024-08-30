@@ -35,25 +35,7 @@
                     <textarea 
                       class="form-control validate" name="notice_contents" id="notice_contents"rows="10"required>${detail.notice_contents}</textarea>
                   </div>
-                  <div class="form-group mb-3"></div>
 			</div>
-              <div class=" col-md-12 mx-auto mb-4">
-                <div style="height:60% " class="tm-product-img-dummy mx-auto">
-                  <i
-                    class="fas fa-cloud-upload-alt tm-upload-icon"
-                    onclick="document.getElementById('fileInput').click();"
-                  ></i>
-                </div>
-                <div class="custom-file mt-3 mb-3">
-                  <input id="fileInput" type="file" style="display:none;" />
-                  <input
-                    type="button"
-                    class="btn btn-primary btn-block mx-auto"
-                    value="파일 업로드"
-                    onclick="document.getElementById('fileInput').click();"
-                  />
-                </div>
-              </div>
               
               <div id="updatebtn2" class="col-6">
                 <button onclick="location.href='noticeList.jsp'" class="btn btn-primary btn-block text-uppercase">뒤로가기</button>

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.team3.tamagochi.boards.util.Pager;
+import com.team3.tamagochi.mypet.MyPetDTO;
+import com.team3.tamagochi.users.InventoryDTO;
 import com.team3.tamagochi.users.TransactionDTO;
 import com.team3.tamagochi.users.UsersDTO;
 
@@ -19,7 +21,61 @@ public class StoreDAO {
 
 	private final String NAMESPACE = "com.team3.tamagochi.store.StoreDAO.";
 	
+	public Integer checkEquip (ItemDTO itemDTO) {
+		int result = 1;
+		
+		if(itemDTO.getCategory_num()==0) {
+			
+			result = sqlSession.selectOne(NAMESPACE+"checkPet", itemDTO);
+			
+			if(result>0) {
+				return -1;
+			}
+			
+		} else {
+			List<InventoryDTO> invenList = sqlSession.selectList(NAMESPACE+"getInven", itemDTO);
+			
+			for(InventoryDTO i:invenList) {
+				result = sqlSession.selectOne(NAMESPACE+"checkInven", i);
+				
+				if(result>0) {
+					return -1;
+				}
+			}
+		}
+		
+		return result;
+		
+	}
+	
+	public int checkDuplication(WishListDTO wishlistDTO) {
+		
+		List<WishListDTO> result = sqlSession.selectList(NAMESPACE+"checkDuplication", wishlistDTO);		
+		
+		if(result.size()>0) {
+			return result.size();
+		}
+		result = sqlSession.selectList(NAMESPACE+"checkMyWish", wishlistDTO);
+		if(result.size()>0) {
+			return -1;
+		}
+		
+		return result.size();
+	}
+	
 	public int addBag (Map<String, Object> map) {
+		
+		WishListDTO wishListDTO = new WishListDTO();
+		
+		wishListDTO.setUser_id((String)map.get("id"));
+		
+		ItemDTO itemDTO = (ItemDTO) map.get("itemDTO");
+		
+		wishListDTO.setItem_num(itemDTO.getItem_num());
+		wishListDTO.setWishlist_num(0L);
+		
+		sqlSession.delete(NAMESPACE+"deleteWishList", wishListDTO);
+		
 		return sqlSession.insert(NAMESPACE+"addBag", map);
 	}
 	
@@ -67,6 +123,10 @@ public class StoreDAO {
 
 	public int addItem(ItemDTO itemDTO) {
 		return sqlSession.insert(NAMESPACE + "addItem", itemDTO);
+	}
+	
+	public List<ItemDTO> checkItemName(ItemDTO itemDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE+"checkItemName", itemDTO);
 	}
 
 	public int updateItem(ItemDTO itemDTO) {

@@ -6,6 +6,10 @@
     
 }
 
+.giftBtn {
+    background-color: maroon;
+}
+
 
 
 #yourMsg {
@@ -23,5 +27,9 @@
 .cardBorder {
     background-color: maroon;
     border: 2px solid white;
+}
+
+#friendImg {
+    width: 100%;
 }
 

@@ -14,15 +14,15 @@
   	</select>
   	
   	<update id="feedPet" parameterType="MyPetDTO">
-  		UPDATE MY_PET SET PET_HUNGRY = PET_HUNGRY + 10, PET_EXP = PET_EXP + 20 , PET_WASHROOM = PET_WASHROOM + 30 WHERE PET_NUM = #{pet_num}
+  		UPDATE MY_PET SET PET_HUNGRY = PET_HUNGRY + 50, PET_EXP = PET_EXP + 50 , PET_WASHROOM = PET_WASHROOM + 30 WHERE PET_NUM = #{pet_num}
   	</update>
   	
   	<update id="strollPet" parameterType="MyPetDTO">
-  		UPDATE MY_PET SET PET_EXP = PET_EXP + 10, PET_HUNGRY = PET_HUNGRY - 20 WHERE PET_NUM = #{pet_num}
+  		UPDATE MY_PET SET PET_EXP = PET_EXP + 50, PET_HUNGRY = PET_HUNGRY - 20 WHERE PET_NUM = #{pet_num}
   	</update>
   	
   	<update id="cleanPet" parameterType="MyPetDTO">
-  		UPDATE MY_PET SET PET_HP = PET_HP + 10, PET_WASHROOM = 0, PET_HUNGRY = 50 WHERE PET_NUM = #{pet_num}
+  		UPDATE MY_PET SET PET_WASHROOM = 0, PET_HUNGRY = PET_HUNGRY - 20 WHERE PET_NUM = #{pet_num}
   	</update>
   	
   	<select id="getPetExp" parameterType="MyPetDTO" resultType="java.lang.Long">
@@ -31,6 +31,10 @@
   	
   	<update id="levelUp" parameterType="MyPetDTO">
   		UPDATE MY_PET SET PET_LEVEL = PET_LEVEL + 1, PET_EXP = 0 WHERE PET_NUM = #{pet_num}
+  	</update>
+  	
+  	<update id="evolutionUp" parameterType="MyPetDTO">
+  		UPDATE MY_PET SET PET_EVOLUTION = PET_EVOLUTION + 1 WHERE PET_NUM = #{pet_num}
   	</update>
   	
   	<select id="getPetImg" parameterType="UsersDTO" resultMap="petImage">
@@ -61,6 +65,7 @@
   		<result column="ADD_ATK" property="add_atk"></result>
   		<result column="ADD_DOD" property="add_dod"></result>
   		<result column="EQUIP_NUM" property="equip_num"></result>
+  		<result column="PET_EVOLUTION" property="pet_evolution"></result>
   		
   		
   		<association property="itemFileDTO" javaType="ItemFileDTO">
@@ -102,6 +107,7 @@
   		<result column="ADD_ATK" property="add_atk"></result>
   		<result column="ADD_DOD" property="add_dod"></result>
   		<result column="EQUIP_NUM" property="equip_num"></result>
+  		<result column="PET_EVOLUTION" property="pet_evolution"></result>
   		
   		<association property="inventoryDTO" javaType="InventoryDTO">
   			<id column="INVENTORY_NUM" property="inventory_num"></id>
@@ -114,5 +120,27 @@
   		</association>
   		
   	</resultMap>
+  	
+  	<select id="getItemNumForWeapon" parameterType="InventoryDTO" resultType="ItemDTO">
+  		SELECT * FROM INVENTORY i WHERE INVENTORY_NUM = #{inventory_num}
+  	</select>
+  	
+  	<insert id="fightResult" parameterType="RecordDTO">
+  		INSERT INTO RECORD VALUES (RECORD_SEQ.NEXTVAL, #{pet_num}, #{record_outcome}, #{record_enemy_num}, SYSDATE, #{enemy_user_id})
+  	</insert>
+  	
+  	<select id="fightScore" parameterType="RecordDTO" resultType="RecordDTO">
+  		SELECT * FROM RECORD 
+			WHERE RECORD_NUM = 
+			(SELECT MAX(#{record_num}) 
+			FROM RECORD
+			WHERE PET_NUM = #{pet_num}
+			AND RECORD_ENEMY_NUM  = #{record_enemy_num} 
+			AND RECORD_OUTCOME = 1)
+  	</select>
+  	
+  	<select id="getFightList" parameterType="RecordDTO" resultType="RecordDTO">
+  		SELECT * FROM RECORD WHERE PET_NUM = #{pet_num}
+  	</select>
   	
   </mapper>

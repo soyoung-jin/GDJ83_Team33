@@ -20,7 +20,6 @@ purchasebtn.addEventListener("click",()=>{
             ar.push(wishnum);
         } else {
             for(i=0;i<ar.length;i++){
-
                 if(ar[i]===wishnum){
                     ar.splice(i,1);
                 }
@@ -116,7 +115,6 @@ function delwish(wishnum){
     }).then(r=>r.text())
     .then(r=>{
         r = r.trim()
-
         if(r>0){
             
             let delid = document.getElementById(wishnum)
@@ -124,7 +122,6 @@ function delwish(wishnum){
             delid.parentNode.parentNode.remove()
 
         }
-
     })
 }
 

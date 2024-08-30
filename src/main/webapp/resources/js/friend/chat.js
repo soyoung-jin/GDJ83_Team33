@@ -12,12 +12,21 @@ const loginFriendId = friendStatus.getAttribute("data-friend-id"); //친구 아�
 console.log("친구: "+loginFriendId);
 console.log("나:" + loginUserId);
 
-
-
-
+const giftBtn = document.getElementsByClassName("giftBtn"); // 선물 보내기 버튼
 
 let div = document.createElement("div"); //모달 안에 추가될 글들의 부모
 
+
+//==================선물 알람 보내기===================
+for(let btn of giftBtn) {
+    btn.addEventListener("click", (e)=>{
+        if(e.target.classList.contains("giftBtn")) {
+            sock.send(loginUserId + "가 선물을 보냈습니다.");
+            return;
+        }
+
+    })
+}
 
 
 //==================친구와 채팅===================
@@ -27,7 +36,7 @@ let sock = new SockJS("http://192.168.7.108/friend");
 
 
 // 연결이 되었을 때
-sock.onopen = onOpen;
+//sock.onopen = onOpen;
 
 // 웹소켓을 통해 메세지를 받았을 때 실행
 // 클라이언트가 서버로부터 메세지를 받았을 때 실행
@@ -44,10 +53,10 @@ function onOpen(){
 // 메세지 전송
 function sendMessage(){
     // 서버로 데이터를 전송
-    sock.send(chatContent.value);
+    // sock.send(chatContent.value);
 
     // 나: 보낸내용
-    console.log(loginUserId + ": " + chatContent.value);
+    // console.log(loginUserId + ": " + chatContent.value);
 }
 
 // 메세지 수신
@@ -55,26 +64,30 @@ function onMessage(msg) {
     
     // 메세지 내용
     let data = msg.data; 
-    console.log("socket : ",data);
-    console.log("attr :" , loginFriendId);
-    
-    if(data == loginFriendId) {
-        friendStatus.innerHTML = "접속중";
-        console.log("접속중");
-        startChat.style.display = "inline";
-    } else {
-        //대화하기 버튼 안보이게
-        startChat.style.display = "none";
-    }
+    alert(data);
 
-    //한 줄 추가
-    let h3 = document.createElement("h3");
-    h3.append(data);
-    div.append(h3);
-    modalContent.append(div);
+    // console.log("socket : ",data);
+    // console.log("attr :" , loginFriendId);
     
-    // 친구: 보낸내용
-    console.log(loginFriendId + ": " + data);
+    // if(data == loginFriendId) {
+    //     friendStatus.innerHTML = "접속중";
+    //     console.log("접속중");
+    //     startChat.style.display = "inline";
+    // } else {
+    //     //대화하기 버튼 안보이게
+    //     startChat.style.display = "none";
+    // }
+
+    // //한 줄 추가
+    // let h3 = document.createElement("h3");
+    // h3.append(data);
+    // div.append(h3);
+    // modalContent.append(div);
+    
+    // // 친구: 보낸내용
+    // console.log(loginFriendId + ": " + data);
+
+
     
 }
 

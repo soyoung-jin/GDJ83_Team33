@@ -48,7 +48,8 @@
                             </a>
                         </li>
 
-                        
+                <c:choose>
+	                <c:when test="${not empty users_info}">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -61,24 +62,19 @@
                                 <a class="dropdown-item" href="/users/mypage">내 정보</a>
                                 <a class="dropdown-item" href="/mypet/mypetList">내 캐릭터</a>
                                 <a class="dropdown-item" href="/users/inventory">인벤토리</a>
-                                <a class="dropdown-item" href="/store/getWishList">위시리스트</a>
+                                <a class="dropdown-item" href="/store/getWishList">장바구니</a>
                                 <a class="dropdown-item" href="/friend/friendList">내 친구들</a>
                             </div>
                         </li>
+                    </c:when>
+                </c:choose>
                         <!-- 관리자 권한이 있는 유저만 해당 탭을 볼 수 있음 -->
                         <c:if test="${users_info.user_auth eq 0 }">
 	                        <li class="nav-item dropdown">
-	                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-	                                aria-haspopup="true" aria-expanded="false">
+	                            <a class="nav-link" href="/admin/adminMain">
 	                                <i class="far fa-user"></i>
-	                                <span>
-	                                    관리자 페이지 <i class="fas fa-angle-down"></i>
-	                                </span>
+	                                    관리자 페이지
 	                            </a>
-	                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-	                                <a class="dropdown-item" href="/admin/adminMain">회원 정보</a>
-	                                <a class="dropdown-item" href="#">매출 내역</a>
-	                            </div>
 	                        </li>                        
                         </c:if>
                     </ul>
@@ -96,6 +92,23 @@
 			                                 <b>${users_info.user_nickname }님</b>
 			                            </a>
 			                        </li>
+                                    
+                                    <div class="dropdown table-hover" >
+                                        <li class="nav-item">
+                                            <a class="nav-link d-block dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <img style="width: 25px;" alt="bell" src="/resources/img/index/bell.png">
+                                            </a>
+                                            
+                                            <ul class="dropdown-menu" id="notification">
+                                                <li id="recentAlarm">최근 5개 알림</li>
+                                                <hr>
+                                                <c:forEach items="${alarmList}" var="list">
+                                                <li><a class="dropdown-item">${list.alarm_contents}</a></li>
+                                                </c:forEach>
+                                                <li><a href="/friend/alarmList?user_id=${users_info.user_id}" class="dropdown-item">전체 알람 보기</a></li>
+                                            </ul>
+                                        </li>
+                                      </div>
 	                    	</c:when>
 	                    	<c:otherwise>
 			                        <li class="nav-item">
@@ -114,3 +127,4 @@
                 </div>
             </div>
         </nav>
+        

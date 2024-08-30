@@ -34,19 +34,6 @@
 			                    	<label for="contents">내용</label>
 			                    	<textarea class="form-control validate" name="notice_contents" id="editor" rows="10"required></textarea>
 			                  	</div>
-			   					<!-- 구분선 -->
-	                 			<div class="form-group mb-3"></div>
-			   					<!-- 첨부파일 -->
-				              	<div class=" col-md-12 mx-auto mb-4">
-				              		<!-- 첨부파일 등록 버튼-->
-				                	<div style="height:60% " class="tm-product-img-dummy mx-auto">
-				                 		<i class="fas fa-cloud-upload-alt tm-upload-icon" onclick="document.getElementById('fileInput').click();"></i>
-				                	</div>
-					                <div class="custom-file mt-3 mb-3">
-					                 	<input id="fileInput" type="file" style="display:none;" />
-					                  	<input type="button" class="btn btn-primary btn-block mx-auto" value="파일 업로드" onclick="document.getElementById('fileInput').click();"/>
-					                </div>
-				              	</div>
 							   	<!-- 등록버튼 -->
 				              	<div class="col-12">
 				                	<button type="submit" name="noticeAdd" class="btn btn-primary btn-block text-uppercase">등록</button>

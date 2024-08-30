@@ -34,16 +34,6 @@
 							<div class="col-auto">
 								<button type="submit" class="btn btn-primary" >검색</button>
 							</div>
-							
-							<div class="col-auto">
-							<label style="margin-top: 14px;" for="category">정렬</label>
-							</div>
-							<div class="col-sm-2">
-							<select class="custom-select" name="order" id="category" data-cat-num="">
-								<option  value="1">조회수순</option>
-								<option value="2">최신순</option>
-							</select>
-							</div>
 							</div>
  					</form>
 					</div>
@@ -88,10 +78,9 @@
             <li class="page-item ${pager.next ? '':'disabled'}"><a class="page-link" href="./noticeList?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">Next</a></li>
           </ul>
         </nav>         
-            <a
-              href="./noticeAdd"
-              class="btn btn-primary btn-block text-uppercase mb-3">공지사항 글쓰기</a>
-   
+        <c:if test="${users_info.user_auth == 0}">
+            <a href="./noticeAdd" class="btn btn-primary btn-block text-uppercase mb-3">공지사항 글쓰기</a>
+   		</c:if>
           </div>
         </div>
         <div class="col-sm-12 col-md-12 col-lg-3 col-xl-3 tm-block-col">

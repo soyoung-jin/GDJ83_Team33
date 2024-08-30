@@ -47,8 +47,23 @@
 											<td>${dto.itemDTO.item_name }</td>
 											<td>${dto.transaction_date }</td>
 											<td>${dto.transaction_amount }</td>
-											<td>${dto.transaction_type }</td>
-											<td><button class="btn btn-danger">환불</button></td>
+											<c:if test="${dto.transaction_type eq '구입' }">
+												<td class="text-primary">${dto.transaction_type }</td>
+											</c:if>
+											<c:if test="${dto.transaction_type eq '환불' }">
+												<td class="text-danger">${dto.transaction_type }</td>
+											</c:if>
+											<td>
+												<c:if test="${dto.transaction_order ne null }">
+													<button class="btn btn-danger"
+														data-transaction-num="${dto.transaction_num }"
+														data-item-num="${dto.item_num }"
+														data-transaction-order="${dto.transaction_order }"
+														data-user-id="${dto.user_id }"
+														data-transaction-amount = "${dto.transaction_amount}"
+													>환불</button>
+												</c:if>
+											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -65,5 +80,6 @@
 	<c:import url="../template/footer.jsp"></c:import>
 	<c:import url="../template/boot-footer.jsp"></c:import>
 	<script src="/resources/js/users/tradeList.js"></script>
+	<script src="/resources/js/users/refund.js"></script>
 </body>
 </html>

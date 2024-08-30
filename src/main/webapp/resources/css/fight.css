@@ -81,3 +81,8 @@
 #enemyDiv {
     display: inline;
 }
+
+#fightResultImg {
+    width: 100%;
+}
+

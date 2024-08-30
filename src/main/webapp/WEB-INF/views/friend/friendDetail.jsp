@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>Home</title>
+<title>friend</title>
 <c:import url="../template/header.jsp"></c:import>
 <link rel="stylesheet" href="/resources/css/friend.css">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
@@ -19,7 +19,7 @@
 				<div class="row tm-content-row">
 					<div class="tm-block-col tm-col-avatar">
 						<div class="tm-bg-primary-dark tm-block tm-block-avatar">
-							<h2 id="friendStatus" data-friend-id="${friendInfoDTO.user_id}" data-user-id="${users_info.user_id}" class="tm-block-title">부재중</h2>
+							<%-- <h2 id="friendStatus" data-friend-id="${friendInfoDTO.user_id}" data-user-id="${users_info.user_id}" class="tm-block-title">부재중</h2>
 							<div id="chatParent">
 							<a id="startChat" type="button" class="btn btn-outline-warning btn-block text-uppercase mb-3"
 									data-bs-toggle="modal" data-bs-target="#commentModal"
@@ -53,7 +53,7 @@
 								  </div>
 								</div>
 		
-							</div>
+							</div> --%>
 							<div class="tm-avatar-container">
 								<img src="/resources/img/friendImage/chick.png" alt="Avatar"
 									class="tm-avatar img-fluid mb-4" /> 
@@ -116,7 +116,7 @@
 																	<h5 class="card-title">공격력 증가 : ${invenItem.item_atk }</h5>
 																	<h5 class="card-title">회피력 증가 : ${invenItem.item_dod }</h5>
 																	<a href="./sendGift?item_num=${invenItem.item_num}&user_id=${friendInfoDTO.user_id}" 
-																	id="sendSelectedGift" type="button" class="btn btn-primary chatBtn">선물 보내기</a>	
+																	id="sendSelectedGift" type="button" class="btn btn-primary giftBtn">선물 보내기</a>	
 																</div>
 															</div>
 														</div>

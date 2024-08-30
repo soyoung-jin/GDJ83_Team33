@@ -47,4 +47,29 @@ public class FriendService {
 	public int sendGift (InventoryDTO inventoryDTO) throws Exception {
 		return friendDAO.sendGift(inventoryDTO);
 	}
+	
+	// 선물 알람 보내기
+	public int sendAlarm(AlarmDTO alarmDTO) throws Exception {
+		return friendDAO.sendAlarm(alarmDTO);
+	}
+	
+	// 친구 알람 보내기
+	public int sendFriendAlarm(AlarmDTO alarmDTO) throws Exception {
+		return friendDAO.sendFriendAlarm(alarmDTO);
+	}
+	
+	// 주소창으로 남의 친구 목록에 들어가는걸 방지하기 위한 검증 메서드
+	public FriendDTO getFriendID(FriendDTO friendDTO) throws Exception{
+		return friendDAO.getFriendID(friendDTO);
+	}
+	
+	// 알림 리스트 5개
+	public List<AlarmDTO> getAlarmList(AlarmDTO alarmDTO) throws Exception{
+		return friendDAO.getAlarmList(alarmDTO);
+	}
+	
+	// 알림 리스트 All
+	public List<AlarmDTO> getAlarmListAll(AlarmDTO alarmDTO) throws Exception{
+		return friendDAO.getAlarmListAll(alarmDTO);
+	}
 }

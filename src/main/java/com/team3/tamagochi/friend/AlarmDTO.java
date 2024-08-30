@@ -9,7 +9,40 @@ public class AlarmDTO {
 	private String alarm_sender;
 	private Date alarm_received_date;
 	private String alarm_contents;
+	private int checked;
+	private String kind;
+	private String search;
 	
+
+	
+	public String getKind() {
+		if (this.kind == null) {
+			this.kind = "";
+		}
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+	public String getSearch() {
+		if (this.search == null) {
+			this.search = "";
+		}
+		
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
+	
+	
+	public int getChecked() {
+		return checked;
+	}
+	public void setChecked(int checked) {
+		this.checked = checked;
+	}
 	public Long getAlarm_num() {
 		return alarm_num;
 	}

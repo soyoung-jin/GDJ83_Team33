@@ -6,16 +6,12 @@
 <mapper namespace="com.team3.tamagochi.rank.RankDAO">
 <!-- 내 소지품에서 아이템 가져오는 쿼리문. JOIN을 사용했기 때문에 ResultMap이 필요하다 -->
 	<select id="list" resultMap="mypetResult">
-  		SELECT 
-	  *
-		FROM
-			MY_PET mp
+  		SELECT *
+		FROM MY_PET mp
 		LEFT JOIN 
 			USERS u 
-		ON 
-			mp.USER_ID = u.USER_ID
-		WHERE 
-			mp.PET_SELECTED = 1
+		ON (mp.USER_ID = u.USER_ID)
+		WHERE mp.PET_SELECTED = 1 ORDER BY PET_LEVEL DESC
   	</select>
   	<resultMap type="MyPetDTO" id="mypetResult">
   		<id column="PET_NUM" property="pet_num"></id>
@@ -24,6 +20,7 @@
   		<result column="PET_LEVEL" property="pet_level"></result>
   		<result column="PET_POP" property="pet_pop"></result>
   		<result column="PET_SELECTED" property="pet_selected"></result>
+  		<result column="PET_EVOLUTION" property="pet_evolution"></result>
   		<result column="ITEM_NUM" property="item_num"></result>
   		
   		<association property="usersDTO" javaType="UsersDTO">
@@ -37,7 +34,6 @@
 		FROM(
 			SELECT *
 			FROM MY_PET
-			
 		)
 	</select>
 	

@@ -5,6 +5,44 @@
   
   <mapper namespace="com.team3.tamagochi.store.StoreDAO">
   
+  	<select id="checkInven" parameterType="InventoryDTO" resultType="Integer">
+  		SELECT COUNT(*)
+  		FROM MY_PET
+	  	WHERE EQUIP_NUM = #{inventory_num}
+  	</select>
+  
+  	<select id="getInven" parameterType="ItemDTO" resultType="InventoryDTO">
+		SELECT *
+		FROM INVENTORY
+		WHERE ITEM_NUM = #{item_num}
+  	</select>
+  	
+	<select id="checkPet" parameterType="ItemDTO" resultType="Integer">
+		SELECT COUNT(*)
+		FROM MY_PET
+		WHERE ITEM_NUM = #{item_num} AND PET_SELECTED = 1
+	</select>
+	
+	<select id="checkMyWish" parameterType="WishListDTO" resultType="WishListDTO">
+		SELECT *
+		FROM WISHLIST
+		WHERE ITEM_NUM = #{item_num} AND USER_ID = #{user_id}
+	</select>
+  
+  	<select id="checkDuplication" parameterType="WishListDTO" resultType="WishListDTO">
+  		SELECT *
+  		FROM
+	  		<choose>
+	  			<when test="itemDTO.category_num==0">
+	  				MY_PET
+	  			</when>
+	  			<otherwise>
+	  				INVENTORY
+	  			</otherwise>
+	  		</choose>
+  		WHERE ITEM_NUM = #{item_num} AND USER_ID = #{user_id}
+  	</select>
+  
   	<insert id="addBag" parameterType="java.util.Map">
   		INSERT INTO
   		<choose>
@@ -34,9 +72,9 @@
   		SELECT ITEM_SEQ.NEXTVAL FROM DUAL
   	</select>
   
-  	<delete id="deleteWishList" parameterType="wishListDTO">
+  	<delete id="deleteWishList" parameterType="WishListDTO">
   	 DELETE WISHLIST
-  	 WHERE USER_ID = #{user_id} AND WISHLIST_NUM = #{wishlist_num}
+  	 WHERE USER_ID = #{user_id} AND (WISHLIST_NUM = #{wishlist_num} OR ITEM_NUM=#{item_num})
   	
   	</delete>
   
@@ -157,6 +195,12 @@
   		INSERT INTO ITEM (ITEM_NUM, CATEGORY_NUM, ITEM_NAME, ITEM_DESCRIPTION, ITEM_HP, ITEM_ATK, ITEM_DOD, ITEM_PRICE)
   		VALUES (#{item_num}, #{category_num}, #{item_name}, #{item_description}, #{item_hp}, #{item_atk}, #{item_dod}, #{item_price})
   	</insert>
+  	
+  	<select id="checkItemName" parameterType="ItemDTO" resultType="ItemDTO">
+  		SELECT *
+  		FROM ITEM
+  		WHERE ITEM_NAME = #{item_name}
+  	</select>
   	
   	<update id="updateItem" parameterType="ItemDTO">
   		UPDATE 

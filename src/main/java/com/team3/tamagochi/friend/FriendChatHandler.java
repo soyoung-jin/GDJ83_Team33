@@ -50,15 +50,23 @@ public class FriendChatHandler extends TextWebSocketHandler{
 
     //클라이언트가 웹소켓 서버로 메시지를 전송했을 때 실행
     @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage chatContent) throws Exception {
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
     	Map map = (Map)session.getAttributes();
     	UsersDTO usersDTO = (UsersDTO) map.get(("users_info"));
     	String id = usersDTO.getUser_id();
     	
-    	logger.info("{}: {} ", id, chatContent.getPayload());
+    	logger.info("{}: {} ", id, message.getPayload());
+    	
         //모든 유저에게 메세지 출력
         for(WebSocketSession sess : sessionList){
-            sess.sendMessage(new TextMessage(chatContent.getPayload()));
+        	UsersDTO sessionId = (UsersDTO) sess.getAttributes().get("users_info");
+        	System.out.println(sessionId.getUser_id());
+        	
+        	UsersDTO currentSessionId = (UsersDTO) session.getAttributes().get("users_info");
+        	System.out.println(currentSessionId.getUser_id());
+        	String msg = message.getPayload();
+        	
+            //sess.sendMessage(new TextMessage(message.getPayload()));
         }
     }
 

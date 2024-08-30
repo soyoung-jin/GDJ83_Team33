@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.team3.tamagochi.friend.AlarmDTO;
+import com.team3.tamagochi.friend.FriendService;
 import com.team3.tamagochi.mypet.MyPetDTO;
 import com.team3.tamagochi.store.ItemDTO;
 import com.team3.tamagochi.store.WeaponDTO;
@@ -29,6 +31,9 @@ public class UsersController {
 	
 	@Autowired
 	private UsersService usersService;
+	
+	@Autowired
+	private FriendService friendService;
 	
 	// NaverLoginBO
 	private NaverLoginBO naverLoginBO;
@@ -92,9 +97,20 @@ public class UsersController {
 		
 		usersDTO = usersService.loginUsers(usersDTO);
 		
+		
 		// 탈퇴한 회원은 resign값이 0이기 때문에 이 값으로 탈퇴한 회원인지 아닌지 구분.
 		if(usersDTO != null && usersDTO.getUser_resign() == 1) {
+			
+			// 로그인 할 때 알람도 같이 조회
+			AlarmDTO alarmDTO = new AlarmDTO();
+			alarmDTO.setUser_id(usersDTO.getUser_id());
+			List<AlarmDTO> alarmList = friendService.getAlarmList(alarmDTO);
+			
+			// 세션에 AlarmDTO도 추가
+			session.setAttribute("alarmList", alarmList);
+			
 			session.setAttribute("users_info", usersDTO);
+			
 			model.addAttribute("result", "환영합니다!");
 			model.addAttribute("url", "/");
 		}else if(usersDTO != null && usersDTO.getUser_resign() == 0){

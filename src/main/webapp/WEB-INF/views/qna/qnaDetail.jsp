@@ -55,8 +55,8 @@
 					            <c:if test="${users_info.user_id eq detail.user_id}">
 					            	<a href="./qnaUpdate?question_num=${detail.question_num}" class="btn btn-outline-success mb-3">수정</a>
 					              	<a href="./delete?question_num=${detail.question_num}" id="deletea" class="btn btn-outline-delete mb-3">삭제</a>
-					              	<a href="./reply?question_num=${detail.question_num}" class="btn btn-outline-success mb-3">답글 쓰기</a>
 					            </c:if>
+								<a href="./reply?question_num=${detail.question_num}" class="btn btn-outline-success mb-3">답글 쓰기</a>
             			</form>
 					</div>	
 				</div>
