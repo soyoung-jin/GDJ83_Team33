@@ -147,7 +147,7 @@ public class StoreService {
 
 			ServletContext servletContext = session.getServletContext();
 			String path = servletContext.getRealPath("/resources/img/item");
-
+			path = "/var/upload/img/item";
 			String filename = fileManager.fileSave(file, path);
 
 			ItemFileDTO itemFileDTO = new ItemFileDTO();
@@ -182,7 +182,7 @@ public class StoreService {
 			
 			//이미지 저장될 실제 경로
 			String path = session.getServletContext().getRealPath("/resources/img/item");
-			
+			path = "/var/upload/img/item";
 			//수정할 아이템의 이미지파일 경로 가져오기
 			List<ItemFileDTO> itemFileDTO = storeDAO.filedetail(itemDTO);
 			

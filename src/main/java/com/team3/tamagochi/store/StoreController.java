@@ -212,7 +212,8 @@ public class StoreController {
 	@GetMapping("getImage")
 	public ResponseEntity<byte[]> getImage(ItemFileDTO itemFileDTO, HttpSession session) throws Exception {
 
-		String realPath = session.getServletContext().getRealPath("/resources/img/item");
+		String realPath = session.getServletContext().getRealPath("/item");
+		realPath = "/var/upload/img/item";
 
 		File file = new File(realPath, itemFileDTO.getFile_name());
 		

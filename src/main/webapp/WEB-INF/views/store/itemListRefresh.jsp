@@ -12,12 +12,7 @@
 					<div class="card h-10" >
 						<!-- 이미지 리스트 -->
 						<div id="carouselExampleIndicators${itemDTO.item_num}" class="carousel slide" data-ride="carousel" data-interval="false">
-						  <ol class="carousel-indicators">
-						    <li data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide-to="0" class="active"></li>
-						    <li data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide-to="1"></li>
-						    <li data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide-to="2"></li>
-						    <li data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide-to="3"></li>
-						  </ol>
+						  
 						  <a onclick="getItemNum('${itemDTO.item_num}')" style="cursor:pointer;" >
 						  <div class="carousel-inner" >
 						    <div class="carousel-item active">
