@@ -48,7 +48,7 @@ public class FriendController {
 		System.out.println(itemFileDTO);
 
 		String realPath = session.getServletContext().getRealPath("/resources/img/item");
-
+		realPath = "/var/upload/img/item";
 		File file = new File(realPath, itemFileDTO.getFile_name());
 
 		ResponseEntity<byte[]> result = null;
@@ -115,6 +115,14 @@ public class FriendController {
 			UsersDTO friendInfoDTO = friendService.getFriendDetail(friendDTO);
 			model.addAttribute("friendInfoDTO", friendInfoDTO);
 			model.addAttribute("myDTO", myDTO);
+			
+			MyPetDTO friendPetDTO = new MyPetDTO();
+			friendPetDTO.setUser_id(friendInfoDTO.getUser_id());
+			friendPetDTO = inGameService.getPetStatus(friendPetDTO);
+			friendPetDTO = myPetService.getDetail(friendPetDTO);
+			
+			System.out.println(friendPetDTO.getItemFileDTOs().get(0).getFile_name());
+			model.addAttribute("friendPetDTO", friendPetDTO);
 			
 			List<ItemDTO> inventoryList  = friendService.getInvenList(myDTO);
 			

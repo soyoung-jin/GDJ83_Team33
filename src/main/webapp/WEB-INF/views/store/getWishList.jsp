@@ -59,12 +59,12 @@
 													  </div>
 													<c:if test="${list.itemDTO.category_num eq 0}">
 														  <a class="carousel-control-prev atime" type="button" data-target="#carouselExampleIndicators${list.itemDTO.item_num}" data-slide="prev">
-														    <span class="carouselIcon" aria-hidden="true"><img src="/resources/img/item/arrow-pre.png" width="10"></span>
+														    <span class="carouselIcon" aria-hidden="true"><img src="getImage?file_name=arrow-pre.png" width="10"></span>
 														    <!-- <span class="sr-only">Previous</span -->
 														  </a>
 														  
 														  <a class="carousel-control-next atime" type="button" data-target="#carouselExampleIndicators${list.itemDTO.item_num}" data-slide="next">
-														    <span class="carouselIcon" aria-hidden="true"><img src="/resources/img/item/arrow-next.png" width="10"></span>
+														    <span class="carouselIcon" aria-hidden="true"><img src="getImage?file_name=arrow-next.png" width="10"></span>
 														    <!-- <span class="sr-only">Next</span> -->
 														  </a>
 													</c:if>
@@ -76,7 +76,7 @@
 												<td>${list.itemDTO.item_dod}</td>
 												<td>${list.itemDTO.item_price}</td>
 												<td>
-													<a class="tm-product-delete-link delbtn" data-wnum="${list.wishlist_num}" id="${list.wishlist_num}">
+													<a class="tm-product-delete-link delbtn" data-wnum="${list.wishlist_num}" data-inum="${list.itemDTO.item_num}" id="${list.wishlist_num}">
 													<i class="far fa-trash-alt tm-product-delete-icon"></i>
 													</a>
 												</td>
