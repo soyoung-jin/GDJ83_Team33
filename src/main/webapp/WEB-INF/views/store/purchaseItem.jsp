@@ -33,22 +33,42 @@
 								</tr>
 							  </thead>
 							  <tbody id="checkdiv">
-							  		<c:choose>
+							  		<c:choose> 
 							  			<c:when test="${purchaseList eq null}">
-							  				<tr>
-											<td><div class="tm-gray-circle"><img src="getImage?file_name=${not empty dto.itemFileDTOs?dto.itemFileDTOs[0].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div></td>
-											<td class="tm-product-name itemName" id="${dto.item_num}">${dto.item_name}</td>
-											<td>${dto.item_description}</td>
-											<td>${dto.item_hp}</td>
-											<td>${dto.item_atk}</td>
-											<td>${dto.item_dod}</td>
-											<td class="itemPrice" id="${dto.item_price}">${dto.item_price}</td>
-										</tr>
 							  			</c:when>
 							  			<c:otherwise>
 											<c:forEach items="${purchaseList}" var="list">
 												<tr>
-													<td><div class="tm-gray-circle"><img src="getImage?file_name=${not empty list.itemDTO.itemFileDTOs?list.itemDTO.itemFileDTOs[0].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle"></div></td>
+													<td><div class="tm-white-circle" style="text-align: center;">
+												<!-- 이미지 리스트 -->
+													<div id="carouselExampleIndicators${list.itemDTO.item_num}" class="carousel slide" data-ride="carousel" data-interval="false">
+													  
+													  <div class="carousel-inner" >
+													    <div class="carousel-item active">
+													      <img src="getImage?file_name=${not empty list.itemDTO.itemFileDTOs[0]?list.itemDTO.itemFileDTOs[0].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle">
+													    </div>
+													    <div class="carousel-item">
+													      <img src="getImage?file_name=${not empty list.itemDTO.itemFileDTOs[1]?list.itemDTO.itemFileDTOs[1].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle">
+													    </div>
+													    <div class="carousel-item">
+													      <img src="getImage?file_name=${not empty list.itemDTO.itemFileDTOs[2]?list.itemDTO.itemFileDTOs[2].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle">
+													    </div>
+													    <div class="carousel-item">
+													      <img src="getImage?file_name=${not empty list.itemDTO.itemFileDTOs[3]?list.itemDTO.itemFileDTOs[3].file_name:'default.gif'}" width="80" alt="Avatar Image" class="rounded-circle">
+													    </div>
+													  </div>
+													<c:if test="${list.itemDTO.category_num eq 0}">
+														  <a class="carousel-control-prev atime" type="button" data-target="#carouselExampleIndicators${list.itemDTO.item_num}" data-slide="prev">
+														    <span class="carouselIcon" aria-hidden="true"><img src="/resources/img/item/arrow-pre.png" width="10"></span>
+														    <!-- <span class="sr-only">Previous</span -->
+														  </a>
+														  
+														  <a class="carousel-control-next atime" type="button" data-target="#carouselExampleIndicators${list.itemDTO.item_num}" data-slide="next">
+														    <span class="carouselIcon" aria-hidden="true"><img src="/resources/img/item/arrow-next.png" width="10"></span>
+														    <!-- <span class="sr-only">Next</span> -->
+														  </a>
+													</c:if>
+													</div></div></td>
 													<td class="tm-product-name itemName" id="${list.itemDTO.item_num}" data-wnum="${list.wishlist_num}" data-iname="${list.itemDTO.item_name}">${list.itemDTO.item_name}</td>
 													<td>${list.itemDTO.item_description}</td>
 													<td>${list.itemDTO.item_hp}</td>

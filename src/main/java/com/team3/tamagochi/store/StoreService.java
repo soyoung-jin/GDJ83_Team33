@@ -40,12 +40,14 @@ public class StoreService {
 		
 		wishlistDTO.setItemDTO(itemDTO);
 		
-		List<WishListDTO> list = storeDAO.checkDuplication(wishlistDTO);
+		int result = storeDAO.checkDuplication(wishlistDTO);
 		
-		if(list.size()>0) {
-			return 0;
-		} else {
+		if(result>0) {
 			return 1;
+		} else if (result==0){
+			return 0;
+		} else{
+			return -1;
 		}
 		
 		
@@ -67,10 +69,11 @@ public class StoreService {
 			map.put("id", id);
 			map.put("itemDTO", itemDTO);
 
-			System.out.println(itemDTO.getItem_hp());
-
 			// 결제내역 DB저장 정상 > 캐릭터, 무기 저장
 			result = storeDAO.addBag(map);
+			
+			
+			
 		}
 
 		return result;
@@ -144,7 +147,7 @@ public class StoreService {
 
 			ServletContext servletContext = session.getServletContext();
 			String path = servletContext.getRealPath("/resources/img/item");
-
+			path = "/var/upload/img/item";
 			String filename = fileManager.fileSave(file, path);
 
 			ItemFileDTO itemFileDTO = new ItemFileDTO();
@@ -179,7 +182,7 @@ public class StoreService {
 			
 			//이미지 저장될 실제 경로
 			String path = session.getServletContext().getRealPath("/resources/img/item");
-			
+			path = "/var/upload/img/item";
 			//수정할 아이템의 이미지파일 경로 가져오기
 			List<ItemFileDTO> itemFileDTO = storeDAO.filedetail(itemDTO);
 			

@@ -14,13 +14,19 @@
   	<select id="getInven" parameterType="ItemDTO" resultType="InventoryDTO">
 		SELECT *
 		FROM INVENTORY
-		WHERE ITEM_NUM = #{item_num}	
+		WHERE ITEM_NUM = #{item_num}
   	</select>
   	
 	<select id="checkPet" parameterType="ItemDTO" resultType="Integer">
 		SELECT COUNT(*)
 		FROM MY_PET
-		WHERE ITEM_NUM = #{item_num}
+		WHERE ITEM_NUM = #{item_num} AND PET_SELECTED = 1
+	</select>
+	
+	<select id="checkMyWish" parameterType="WishListDTO" resultType="WishListDTO">
+		SELECT *
+		FROM WISHLIST
+		WHERE ITEM_NUM = #{item_num} AND USER_ID = #{user_id}
 	</select>
   
   	<select id="checkDuplication" parameterType="WishListDTO" resultType="WishListDTO">
@@ -66,9 +72,9 @@
   		SELECT ITEM_SEQ.NEXTVAL FROM DUAL
   	</select>
   
-  	<delete id="deleteWishList" parameterType="wishListDTO">
+  	<delete id="deleteWishList" parameterType="WishListDTO">
   	 DELETE WISHLIST
-  	 WHERE USER_ID = #{user_id} AND WISHLIST_NUM = #{wishlist_num}
+  	 WHERE USER_ID = #{user_id} AND (WISHLIST_NUM = #{wishlist_num} OR ITEM_NUM=#{item_num})
   	
   	</delete>
   

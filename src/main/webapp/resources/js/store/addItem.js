@@ -24,19 +24,21 @@ const price_error = document.getElementById("price_error");
 
 let error = null;
 
+//파일 확장자 gif만 가능
+add.addEventListener("change",(e)=>{
+    if(e.target.classList.contains("fileList")){
+        if(e.target.files[0].type != 'image/gif'){
+            console.log("type="+e.target.files[0].type)
+            alert("gif 파일을 넣어주세요.")
+        }
+    }
+})
+
 let reqExpEng = /[A-Za-z]/g;
 let reqExpNum = /[0-9]/g;
 let reqExpKor = /[ㄱ-ㅎ]/g
 let reqExpSpe = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"\s]/g
 
-//파일 확장자 gif만 가능
-add.addEventListener("change",(e)=>{
-    if(e.target.classList.contains("fileList")){
-        if(e.target.files[0].type != 'image/gif'){
-            alert("gif 파일을 넣어주세요.")
-        }
-    }
-})
 
 price.addEventListener("blur", ()=>{
 
