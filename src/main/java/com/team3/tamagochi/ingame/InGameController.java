@@ -42,7 +42,7 @@ public class InGameController {
 		System.out.println(itemFileDTO);
 
 		String realPath = session.getServletContext().getRealPath("/resources/img/item");
-
+		realPath = "/var/upload/img/item";
 		File file = new File(realPath, itemFileDTO.getFile_name());
 
 		ResponseEntity<byte[]> result = null;

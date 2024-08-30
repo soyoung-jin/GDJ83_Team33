@@ -132,6 +132,7 @@ stroll.addEventListener("click", ()=>{
                 if(r.pet_exp>=200) {
                     
                     petStatusBtn.innerHTML = "레벨업!";
+
                     done.addEventListener("click", ()=>{
                         alert("레벨업 버튼을 눌러주세요");
                     })

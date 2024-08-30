@@ -10,7 +10,7 @@ const pet_spc = document.getElementById("pet_spc").value;
 
 /* =====================챗봇에 관련된 변수===================== */
 // 내 키
-const apiKey = '';
+const apiKey = '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';
 // post로 보낼시 json 형식으로 나타날 주소 
 const apiEndpoint = 'https://api.openai.com/v1/chat/completions';
 

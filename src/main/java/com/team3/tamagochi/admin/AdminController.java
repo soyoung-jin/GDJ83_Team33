@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.team3.tamagochi.mypet.MyPetDTO;
 import com.team3.tamagochi.mypet.MyPetService;
-import com.team3.tamagochi.store.CharacterDTO;
 import com.team3.tamagochi.store.ItemDTO;
 import com.team3.tamagochi.store.StoreService;
 import com.team3.tamagochi.users.InventoryDTO;
