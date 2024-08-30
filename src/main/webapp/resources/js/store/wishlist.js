@@ -75,7 +75,7 @@ delAll.addEventListener("click", ()=>{
         }
     }
 })
-
+let inum = 0;
 //각 아이템별 삭제 기능
 checkdiv.addEventListener("click", (e)=>{    
         let flag = false;
@@ -88,6 +88,7 @@ checkdiv.addEventListener("click", (e)=>{
                 }
 
                 wishnum = e.target.getAttribute("data-wnum")
+                inum = e.target.getAttribute("data-inum")
                 flag = true;
                 break
             } else if (e.target.classList.contains("far")){
@@ -98,6 +99,7 @@ checkdiv.addEventListener("click", (e)=>{
                 }
 
                 wishnum = e.target.closest('a').getAttribute("data-wnum")
+                inum = e.target.closest('a').getAttribute("data-inum")
                 flag = true;
                 break
             }
@@ -110,7 +112,7 @@ checkdiv.addEventListener("click", (e)=>{
 })
 
 function delwish(wishnum){
-    fetch("deleteWishList?wishlist_num="+wishnum,{
+    fetch("deleteWishList?wishlist_num="+wishnum+"&item_num="+inum,{
         method:"get"
     }).then(r=>r.text())
     .then(r=>{

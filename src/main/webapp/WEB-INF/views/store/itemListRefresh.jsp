@@ -31,12 +31,12 @@
 						</a>
 						<c:if test="${itemDTO.category_num eq 0}">
 							  <a class="carousel-control-prev atime" type="button" data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide="prev">
-							    <span class="carouselIcon" aria-hidden="true"><img src="/resources/img/item/arrow-pre.png"></span>
+							    <span class="carouselIcon" aria-hidden="true"><img src="getImage?file_name=arrow-pre.png"></span>
 							    <!-- <span class="sr-only">Previous</span -->
 							  </a>
 							  
 							  <a class="carousel-control-next atime" type="button" data-target="#carouselExampleIndicators${itemDTO.item_num}" data-slide="next">
-							    <span class="carouselIcon" aria-hidden="true"><img src="/resources/img/item/arrow-next.png"></span>
+							    <span class="carouselIcon" aria-hidden="true"><img src="getImage?file_name=arrow-next.png"></span>
 							    <!-- <span class="sr-only">Next</span> -->
 							  </a>
 						</c:if>
