@@ -43,24 +43,29 @@ public class FriendController {
 	private MyPetService myPetService;
 	
 	// 캐릭터 이미지 가져오기
-		@GetMapping("getImage")
-		public ResponseEntity<byte[]> getImage(ItemFileDTO itemFileDTO, HttpSession session) throws Exception {
-			System.out.println(itemFileDTO);
+	@GetMapping("getImage")
+	public ResponseEntity<byte[]> getImage(ItemFileDTO itemFileDTO, HttpSession session) throws Exception {
+		System.out.println(itemFileDTO);
 
-			String realPath = session.getServletContext().getRealPath("/resources/img/item");
+		String realPath = session.getServletContext().getRealPath("/resources/img/item");
 
-			File file = new File(realPath, itemFileDTO.getFile_name());
+		File file = new File(realPath, itemFileDTO.getFile_name());
 
-			ResponseEntity<byte[]> result = null;
+		ResponseEntity<byte[]> result = null;
 
-			HttpHeaders header = new HttpHeaders();
+		HttpHeaders header = new HttpHeaders();
 
-			header.add("Content-type", Files.probeContentType(file.toPath()));
+		header.add("Content-type", Files.probeContentType(file.toPath()));
 
-			result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
 
-			return result;
-		}
+		return result;
+	}
+		
+	@GetMapping("alarmList")
+	public void getAlarmList()throws Exception{
+		
+	}
 	
 	
 	@GetMapping("friendList")
@@ -93,6 +98,7 @@ public class FriendController {
 		
 	}
 	
+	
 	@GetMapping("friendDetail")
 	public String getFriendDetail(FriendDTO friendDTO, Model model, HttpSession session) throws Exception{
 	
@@ -116,6 +122,7 @@ public class FriendController {
 		}
 		return "/friend/friendDetail";
 	}
+	
 	
 	@GetMapping("sendGift")
 	public String getInvenList(AlarmDTO alarmDTO, InventoryDTO inventoryDTO, HttpSession session, Model model) throws Exception {

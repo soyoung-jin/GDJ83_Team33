@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>Home</title>
+<title>friend</title>
 <c:import url="../template/header.jsp"></c:import>
 <link rel="stylesheet" href="/resources/css/friend.css">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>

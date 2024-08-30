@@ -105,6 +105,7 @@
                                                 <c:forEach items="${alarmList}" var="list">
                                                 <li><a class="dropdown-item">${list.alarm_contents}</a></li>
                                                 </c:forEach>
+                                                <li><a href="/friend/alarmList" class="dropdown-item">전체 알람 보기</a></li>
                                             </ul>
                                         </li>
                                       </div>

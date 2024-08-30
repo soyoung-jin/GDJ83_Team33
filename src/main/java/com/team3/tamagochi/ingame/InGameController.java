@@ -152,11 +152,11 @@ public class InGameController {
 		// 내 컬럼에 들어갈 상대방 id
 		recordDTO.setEnemy_user_id(enemyPetDTO.getUser_id());
 
-		// {(내 HP * 10) - (상대방 공격력 * 상대발 레벨)} + 회피력 = score
-		Long myScore = ((myPetDTO.getPet_hp()*10)-(enemyPetDTO.getPet_atk()*enemyPetDTO.getPet_level())) + myPetDTO.getPet_dod();
+		// (내 HP * 내 레벨 * 10) - (상대방 공격력 * 상대발 레벨 * 5) + (내 회피력 * 내 레벨 * 5) = score
+		Long myScore = ((myPetDTO.getPet_hp()* myPetDTO.getPet_level() * 10)-(enemyPetDTO.getPet_atk()*enemyPetDTO.getPet_level()*5)) + (myPetDTO.getPet_dod()*myPetDTO.getPet_level()*5);
 		
 		// 상대방 score
-		Long enemyScore = ((enemyPetDTO.getPet_hp()*10)-(myPetDTO.getPet_atk()*myPetDTO.getPet_level())) + enemyPetDTO.getPet_dod();
+		Long enemyScore = ((enemyPetDTO.getPet_hp()*enemyPetDTO.getPet_level()*10)-(myPetDTO.getPet_atk()*myPetDTO.getPet_level()*5)) + (enemyPetDTO.getPet_dod()enemyPetDTO.getPet_level()*5);
 		
 		// recordOutCome
 		Integer MyRecordOutCome  = 0;
