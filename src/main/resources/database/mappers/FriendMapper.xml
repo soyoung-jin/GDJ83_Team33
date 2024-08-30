@@ -107,9 +107,41 @@
   		UPDATE ALARM SET CHECKED = 1 WHERE ALARM_NUM = #{alarm_num}
   	</update>
   	
+  	<sql id="searchSql">
+				
+			AND ALARM_NUM > 0	
+			<choose>
+				<when test="kind == 'alarm_sender'">
+					AND ALARM_SENDER LIKE '%'||#{search}||'%'
+					ORDER BY ALARM_RECEIVED_DATE DESC
+				</when>
+				<otherwise>
+					AND ALARM_CONTENTS LIKE '%'||#{search}||'%'
+					ORDER BY ALARM_RECEIVED_DATE DESC
+				</otherwise>
+				
+			</choose>
+		
+	</sql>
+  	
+  	
   	<!-- 알람 리스트 -->
-  	<select id="getAlarmList" parameterType="UsersDTO" resultType="AlarmDTO">
-  		SELECT * FROM alarm WHERE USER_ID = #{user_id} ORDER BY ALARM_RECEIVED_DATE DESC
+  	<select id="getAlarmListAll" parameterType="AlarmDTO" resultType="AlarmDTO">
+  		SELECT * FROM alarm WHERE USER_ID = #{user_id} 
+		<include refid="searchSql"/>
+		
+  	</select>
+  	
+  	<!-- 상위 5개 -->
+  	<select id="getAlarmList" parameterType="AlarmDTO" resultType="AlarmDTO">
+  		SELECT * FROM 
+			(
+			SELECT * FROM alarm 
+			WHERE USER_ID = #{user_id}
+			ORDER BY ALARM_RECEIVED_DATE DESC
+			) 
+		WHERE ROWNUM &lt; 6 
+		
   	</select>
   	
   </mapper>

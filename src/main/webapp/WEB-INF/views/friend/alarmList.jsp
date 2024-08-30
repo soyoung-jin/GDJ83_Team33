@@ -17,6 +17,34 @@
 					  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 tm-block-col">
 						
 						<div class="tm-bg-primary-dark tm-block tm-block-products">
+						<div class="form-group mb-3">
+						<!-- 검색기능 태그 -->
+						<!-- 검색기능 태그 -->
+							<form method="get">
+									<div class="row">
+									<div class="col-auto">
+										<select id="kind" name="kind" class="custom-select mr-sm-2">
+											<option value="alarm_sender" ${alarmList[0].kind eq 'alarm_sender' ? 'selected' : ''}>보낸 사람</option>
+			              					<option value="alarm_contents" ${alarmList[0].kind eq 'alarm_contents' ? 'selected' : ''}>내용</option>
+										</select>
+									</div>
+									
+									<div class="col-sm-5">
+										<input name="search" size="20" type="text" class="form-control" id="search" placeholder="검색어를 입력하세요.">
+									</div>
+									
+									
+										<input name="user_id" value="${users_info.user_id}" type="hidden" id="alarm_sender" >
+									
+									
+									<div class="col-auto">
+										<button type="submit" class="btn btn-primary" >검색</button>
+									</div>
+									
+									</div>
+		 					</form>
+						</div>
+						
 							<div class="tm-product-table-container" id="wishdiv">
 							<table class="table table-hover tm-table-small tm-product-table">
 							  <thead>
@@ -30,7 +58,7 @@
 								</tr>
 							  </thead>
 							  <tbody id="checkdiv">
-									<c:forEach items="${alarmList}" var="list" varStatus="status">
+									<c:forEach items="${alarmListAll}" var="list" varStatus="status">
 										<tr>
 											
 											<td>${status.count}</td>

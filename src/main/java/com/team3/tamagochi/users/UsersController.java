@@ -102,7 +102,9 @@ public class UsersController {
 		if(usersDTO != null && usersDTO.getUser_resign() == 1) {
 			
 			// 로그인 할 때 알람도 같이 조회
-			List<AlarmDTO> alarmList = friendService.getAlarmList(usersDTO);
+			AlarmDTO alarmDTO = new AlarmDTO();
+			alarmDTO.setUser_id(usersDTO.getUser_id());
+			List<AlarmDTO> alarmList = friendService.getAlarmList(alarmDTO);
 			
 			// 세션에 AlarmDTO도 추가
 			session.setAttribute("alarmList", alarmList);

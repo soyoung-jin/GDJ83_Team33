@@ -16,7 +16,7 @@
                 
                 <h1>요청하신 페이지가 존재하지 않습니다.</h1>
                 <a type="button" class="btn btn-secondary btn-block text-uppercase"
-									href="../index">
+									href="/">
 										돌아가기</a>
             </div>
         </div>

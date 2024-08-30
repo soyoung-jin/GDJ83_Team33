@@ -156,7 +156,7 @@ public class InGameController {
 		Long myScore = ((myPetDTO.getPet_hp()* myPetDTO.getPet_level() * 10)-(enemyPetDTO.getPet_atk()*enemyPetDTO.getPet_level()*5)) + (myPetDTO.getPet_dod()*myPetDTO.getPet_level()*5);
 		
 		// 상대방 score
-		Long enemyScore = ((enemyPetDTO.getPet_hp()*enemyPetDTO.getPet_level()*10)-(myPetDTO.getPet_atk()*myPetDTO.getPet_level()*5)) + (enemyPetDTO.getPet_dod()enemyPetDTO.getPet_level()*5);
+		Long enemyScore = ((enemyPetDTO.getPet_hp()*enemyPetDTO.getPet_level()*10)-(myPetDTO.getPet_atk()*myPetDTO.getPet_level()*5)) + (enemyPetDTO.getPet_dod() * enemyPetDTO.getPet_level()*5);
 		
 		// recordOutCome
 		Integer MyRecordOutCome  = 0;

@@ -66,9 +66,14 @@ public class FriendDAO {
 		return sqlSession.selectOne(NAMESPACE + "getFriendID", friendDTO);
 	}
 	
-	// 알림 리스트
-	public List<AlarmDTO> getAlarmList(UsersDTO usersDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE + "getAlarmList", usersDTO);
+	// 알림 리스트 5개
+	public List<AlarmDTO> getAlarmList(AlarmDTO alarmDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getAlarmList", alarmDTO);
+	}
+	
+	// 알림 리스트 All
+	public List<AlarmDTO> getAlarmListAll(AlarmDTO alarmDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE + "getAlarmListAll", alarmDTO);
 	}
 	
 }

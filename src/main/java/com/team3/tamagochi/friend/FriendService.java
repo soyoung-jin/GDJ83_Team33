@@ -63,8 +63,13 @@ public class FriendService {
 		return friendDAO.getFriendID(friendDTO);
 	}
 	
-	// 알림 리스트
-	public List<AlarmDTO> getAlarmList(UsersDTO usersDTO) throws Exception{
-		return friendDAO.getAlarmList(usersDTO);
+	// 알림 리스트 5개
+	public List<AlarmDTO> getAlarmList(AlarmDTO alarmDTO) throws Exception{
+		return friendDAO.getAlarmList(alarmDTO);
+	}
+	
+	// 알림 리스트 All
+	public List<AlarmDTO> getAlarmListAll(AlarmDTO alarmDTO) throws Exception{
+		return friendDAO.getAlarmListAll(alarmDTO);
 	}
 }

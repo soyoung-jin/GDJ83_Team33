@@ -63,7 +63,11 @@ public class FriendController {
 	}
 		
 	@GetMapping("alarmList")
-	public void getAlarmList()throws Exception{
+	public void getAlarmList(Model model, AlarmDTO alarmDTO)throws Exception{
+		
+		System.out.println(alarmDTO.getKind());
+		List<AlarmDTO> alarmList = friendService.getAlarmListAll(alarmDTO);
+		model.addAttribute("alarmListAll", alarmList);
 		
 	}
 	
