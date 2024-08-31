@@ -132,6 +132,7 @@ stroll.addEventListener("click", ()=>{
                 if(r.pet_exp>=200) {
                     
                     petStatusBtn.innerHTML = "레벨업!";
+
                     done.addEventListener("click", ()=>{
                         alert("레벨업 버튼을 눌러주세요");
                     })
@@ -285,8 +286,11 @@ levelUpBtn.addEventListener("click", ()=>{
     actCloseBtn.style.display = "none";
 
     setTimeout(()=>{
-        fetch("./levelUp?pet_num=" + petNum, {
-            method: "GET"
+        let formData = new FormData();
+        formData.append("pet_num",petNum);
+        fetch("./levelUp", {
+            method: "POST",
+            body: formData
         })
         .then(r=>r.json())
         .then((r)=>{

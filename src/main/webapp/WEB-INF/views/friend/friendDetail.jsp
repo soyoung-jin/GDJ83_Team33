@@ -55,7 +55,7 @@
 		
 							</div> --%>
 							<div class="tm-avatar-container">
-								<img src="/resources/img/friendImage/chick.png" alt="Avatar"
+								<img src="getImage?file_name=${friendPetDTO.itemFileDTOs[friendPetDTO.pet_evolution].file_name}" alt="Avatar"
 									class="tm-avatar img-fluid mb-4" /> 
 							</div>
 							

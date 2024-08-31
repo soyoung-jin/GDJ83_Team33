@@ -33,9 +33,9 @@ async function kakaoRequestPayment() {
     
     const response = await PortOne.requestPayment({
         // Store ID 설정
-        storeId: "store-0db2908e-d8b1-4658-a473-043843f02a63",
+        storeId: "",
         // 채널 키 설정
-        channelKey: "channel-key-a30ed3c2-b963-42d9-a899-949483621dc4",
+        channelKey: "",
         paymentId: `payment-`+uuid,
         orderName: itemName[0].getAttribute("data-iname")+"외 "+(itemName.length-1)+"개",
         totalAmount: totalPrice(),
@@ -50,7 +50,7 @@ async function kakaoRequestPayment() {
     
     //포트원 결제내역 단건조회 API 호출
     const paymentResponse = await fetch(`https://api.portone.io/payments/payment-`+uuid,{
-        headers: { Authorization: `PortOne i68oGkSudVRHtsQtbxZitbS7DPq99kDGH6xS2tz5l9W7w8ppV6xKcAioepMEyyYiW2Ae0mUGZ0NgUguK`} },
+        headers: { Authorization: ``} },
     )
     
     if (!paymentResponse.ok)
